@@ -1,0 +1,145 @@
+@media screen and (max-width: 700px){
+    .footer {
+        height: auto;
+        max-height: 870px;
+        text-align: center;
+        position: relative;
+        min-width: 320px;
+        overflow: hidden;
+        width: 100%;
+        min-height: 300px;
+        display: inline-block;
+        background-color: #59c6f1;
+        color: white;
+    }
+    .footer .leftSide {
+        display: inline-block;
+        float: left;
+        height: 100%;
+    }
+    .footer .rightSide {
+        display: inline-block;
+        float: right;
+        height: 100%;
+    }
+    .footer .rightSide, .footer .leftSide {
+        width: 100%;
+    }
+    .footer .mobileContactFooter {
+        margin-top: 0%;
+        height: 0%;
+        display: block;
+        margin-bottom: 50px;
+    }
+    .footer .tabletLine1, .footer .tabletLine2, .footer .tabletLine3 {
+        display: none;
+    }
+    .footer .company {
+        width: 98%;
+        margin-bottom: 0px;
+        margin-left: 1%;
+        margin-top: 4.5%;
+        display: inline-block;
+        float: left;
+        display: inline-block;
+    }
+    .footer .contacts {
+        margin-top: 0%;
+        margin-left: 5%;
+        display: none;
+        width: 300px;
+        height: 240px;
+    }
+    .footer .apps {
+        display: inline-block;
+        width: 284px;
+        height: auto;
+        position: relative;
+        margin-top: 2%;
+        margin-right: 0px;
+    }
+    .footer .mobileContactFooter {
+        margin-top: 0%;
+        height: 0%;
+        display: block;
+        margin-bottom: 50px;
+        font-size: 14px;
+    }
+    .mobileContacts, .mobileContactTelephone span, .mobileContactTime span, .mobileContactEmail span, .mobileContactFooter span {
+        font-family: "Geometria Narrow Light" !important;
+    }
+    .footer .titleCompany {
+        width: 248px;
+        margin-left: 3%;
+        height: 30px;
+        background-image: url(../../images/company_name.jpg);
+        background-repeat: no-repeat;
+        display: inline-block;
+    }
+    .footer .bodyCompany {
+        height: 160px;
+    }
+    .mobileContacts {
+        display: block;
+    }
+    .mobileContactTelephone {
+        font-size: 24px;
+        text-align: center;
+    }
+    .footer .mobileContactEmail {
+        height: 40px;
+        margin-top: 30px;
+        font-size: 25px;
+    }
+    .mobileMailToLink {
+        color: white;
+        text-decoration: inherit;
+        cursor: pointer;
+        font-family: "Geometria Narrow Light" !important;
+    }
+    .socialCompany {
+        margin-left: 5%;
+        margin-top: 3%;
+        text-align: center;
+        margin: 1.9%;
+    }
+    .socialCompany a {
+        margin-right: 24px;
+    }
+    .inst {
+        background-position: 70px 0px;
+    }
+    .tw {
+        background-position: 23px 0px;
+    }
+    .vk {
+        background-image: url(../images/logo_vk.png);
+        background-size: 100% 59%;
+        background-repeat: no-repeat;
+        background-color: white;
+        background-position: 0px 4px;
+    }
+    .socialIcon {
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        border-radius: 4px;
+        background-image: url(../../images/social.svg);
+    }
+
+
+    .apps .AppleApp {
+        width: 48%;
+        display: inline-block;
+    }
+    .apps .androidApp {
+        display: inline-block;
+        width: 48%;
+    }
+    .creativePeople {
+        margin-top: 8%;
+        margin-left: 15%;
+        float: left;
+        margin-bottom: 8%;
+    }
+}

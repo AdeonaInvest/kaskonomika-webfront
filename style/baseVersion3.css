@@ -1,0 +1,63 @@
+@font-face {
+    font-family: "Geometria Narrow";
+    src: url(../fonts/Geometria/GeometriaNarrow/GeometriaNarrow.ttf);
+}
+@font-face {
+    font-family: "Geometria Narrow Medium";
+    src: url(../fonts/Geometria/GeometriaNarrowMedium/GeometriaNarrow-Medium.ttf);
+}
+@font-face {
+    font-family: "Geometria Narrow Bold";
+    src: url(../fonts/Geometria/GeometriaNarrowBold/GeometriaNarrow-Bold.ttf);
+}
+@font-face {
+    font-family: "Geometria Narrow ExtraBold";
+    src: url(../fonts/Geometria/GeometriaNarrowExtraBold/GeometriaNarrow-ExtraBold.ttf);
+}
+@font-face {
+    font-family: "Web Symbols Liga Regular";
+    src: url(../fonts/WebSymbolsLiga-Regular/websymbolsligaregular.woff);
+}
+@font-face {
+    font-family: "Geometria Narrow Light";
+    src: url(../fonts/Geometria/GeometriaNarrowLight/GeometriaNarrow-Light.ttf);
+}
+*{
+    margin:0;
+    padding: 0;
+    font-family: "Geometria Narrow";
+}
+html, body, .allBody, .header{
+
+    overflow-x:hidden;
+    max-width: 3000px;
+}
+body{
+    width: 100%;
+    min-height: 800px;
+    min-width: 320px;
+
+}
+
+input{
+    border: 1px solid #ffffff;
+}
+div{
+    margin:0;
+    padding: 0;
+    font-family: 'Geometria Narrow';
+}
+li{
+    list-style: none;
+}
+input:focus{outline:0;}
+
+@media screen and (min-width: 3000px){
+    .pageElseFunctions, .footer, .toolbar{
+        width: 3000px;
+    }
+    .dotstyle{
+        margin-top: 6900px;
+    }
+}
+

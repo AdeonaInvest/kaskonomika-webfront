@@ -1,0 +1,36 @@
+@media only screen and (min-width: 700px) and (max-width: 1440px) {
+    .panelFiltersEF{
+        position: absolute;
+    }
+    .filterDogIcon{
+        margin-top: -4px;
+    }
+}
+@media only screen and (min-width: 700px) and (max-width: 999px) {
+    .owl-next, .owl-prev {
+        display: none;
+    }
+    .filterButtonEF span{
+        margin-left: 0px;
+    }
+    #panelFillterWithDog {
+        width: 100%;
+        margin-top: 75%;
+        height: auto;
+        margin-left: 5%;
+    }
+    .filterDogIcon {
+        /*display: none;*/
+        margin-left: -94px;
+    }
+    .panelFilters, .panelFiltersEF{
+        padding-bottom: 15px;
+    }
+
+    .panelFiltersEF{
+        margin-top: -1%;
+    }
+    .elseFunctionsText{
+        margin-top: 30%;
+    }
+}

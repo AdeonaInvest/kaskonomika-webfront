@@ -1,0 +1,66 @@
+.phone {
+    height: 658px;
+    width: 300px;
+    margin-left: 7.5%;
+    margin-top: 14%;
+    position: fixed;
+    z-index: 900000;
+}
+.phone .phoneBody {
+    height: 100%;
+    width: 100%;
+    min-width: 120px;
+    display: inline-block;
+    position: relative;
+    background-image: url(../images/phone.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+}
+.phone .phoneBody .phoneDisplay{
+    width: 79%;
+    height: 72%;
+    margin-left: 11%;
+    margin-top: 19%;
+    display: inline-block;
+    background-image: url(../images/mobile_app_1promo.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.mobileButton {
+    display: inline-block;
+    width: 20px;
+    height: 40px;
+    background-image: url(../images/mobile_phone_button.png);
+    background-repeat: no-repeat;
+    float: right;
+    margin-right: -19px;
+    cursor: pointer;
+    /* margin-top: 172px; */
+    margin-top: -320px;
+    background-size: contain;
+    display: none;
+    z-index: 100000000000;
+}
+.telematic {
+    width: 210px;
+    height: 225px;
+    background-image: url(../images/telematic.png);
+    position: absolute;
+    display: none;
+    margin-left: 280px;
+    margin-top: -118%;
+    opacity: 0.3;
+    z-index: -1000;
+}
+.telematic{
+    /*width: 210px;*/
+    /*height: 225px;*/
+    /*background-image: url(../images/telematic.png);*/
+    /*position: absolute;*/
+    /*display: none;*/
+    /*margin-left: -16px;*/
+    /*margin-top: 78%;*/
+    /*opacity: 0.3;*/
+    /*z-index: -1000;*/
+}

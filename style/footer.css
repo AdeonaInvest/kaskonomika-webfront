@@ -1,0 +1,186 @@
+.socialCompany{
+    margin-top: 50px;
+    text-align: left;
+    margin: 1.9%;
+}
+.socialCompany a{
+    margin-right: 24px;
+}
+.buttonShowAll{
+    height: 35px;
+    font-size: 15px;
+    text-align: center;
+    cursor: pointer;
+}
+.socialIcon {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border-radius: 4px;
+    background-image: url('../images/social.svg');
+}
+.fb{
+    background-position: 164px 0px;
+}
+.socialCompany .vk {
+    background-image: url('../images/logo_vk.png');
+    background-size: 100% 59%;
+    background-repeat: no-repeat;
+    background-color: white;
+    background-position: 0px 4px;
+}
+.inst{
+    background-position: 70px 0px;
+}
+.tw{
+    background-position: 23px 0px;
+}
+.mailToLink{
+    color: white;
+    text-decoration: inherit;
+    cursor: pointer;
+}
+.kaskonomikaIcon a{
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+
+.itemsec{
+    margin-top: 5px;
+    font-size: 14px;
+}
+.footer .contacts{
+    display: inline-block;
+    width: 300px;
+    height: 240px;
+    margin-top: 63px;
+    /*margin-left: -190px;*/
+
+
+}
+
+.footer .contactTelephone{
+    height: 40px;
+    margin-top: 20px;
+    font-size: 30px;
+}
+.footer .contactTime{
+    height: 20px;
+    margin-top: 8px;
+}
+.footer .contactEmail{
+    height: 40px;
+    margin-top: 30px;
+    font-size: 30px;
+}
+.footer .mobileContactFooter{
+    height: 20px;
+    font-size: 14px;
+    display: none;
+}
+.contactFooter{
+    margin-top: 50px;
+    height: 20px;
+    font-size: 14px;
+    color: #bbe5fa;
+}
+.footer .apps{
+    display: inline-block;
+    width: 140px;
+    height: 100px;
+    margin-top: 65px;
+
+}
+.creativePeople {
+    width: 200px;
+    margin-top: 102px;
+    margin-right: -3px;
+    float: right;
+    color: #283d74;
+}
+.creativePeople span {
+    color: white;
+}
+.apps .AppleApp{
+    height: 46px;
+    margin-top: 4px;
+    background-image: url("../images/app-store-icon.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 0% 0%;
+}
+.apps .androidApp{
+    height: 46px;
+    margin-top: 4px;
+    background-image: url("../images/android-app-icon.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 0% 0%;
+}
+
+.mobileContacts{
+    display: none;
+}
+.footer{
+    height: 100%;
+    width: 100%;
+    background-color: #59c6f1;
+    color: white;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: -5px;
+}
+.footer .company{
+    display: inline-block;
+    width: 400px;
+    height: auto;
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-bottom: 40px;
+    float: left;
+}
+.footer .titleCompany{
+    display: inline-block;
+    width: 300px;
+    height: 30px;
+    background-image: url("../images/company_name.jpg");
+    background-repeat: no-repeat;
+    margin-left: -96px;
+}
+.footer .bodyCompany{
+    height: 160px;
+}
+.footer .item{
+    height: 20px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+.footer .firstItem{
+    margin-top: 10px;
+    font-size: 14px;
+}
+.footer .leftSide{
+    display: inline-block;
+    float: left;
+    height: 100%;
+    width: 69%;
+}
+.footer .rightSide{
+    display: inline-block;
+    float: right;
+    height: 100%;
+    width: 30%;
+}
+.footer .secondSide{
+    display: inline-block;
+    float: left;
+    height: 100%;
+    width: 230px;
+    margin-left: 32px;
+    margin-top: 5px;
+}
+
+.footer .tabletLine1, .footer .tabletLine2, .footer .tabletLine3 {
+    display: none;
+}

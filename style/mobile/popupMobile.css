@@ -1,0 +1,71 @@
+@media screen and (max-width: 480px){
+    .popupButton span{
+        position: relative;
+    }
+    .popupButton {
+        position: relative;
+        display: inline-block;
+        position: relative;
+        width: 127px;
+        height: 42px;
+        background-color: #263c75;
+        border-radius: 35px;
+        margin-top: 8%;
+        margin-left: 2%;
+        color: white;
+        cursor: pointer;
+        margin-bottom: 7%;
+        text-align: center;
+    }
+    .popupWindow {
+        min-width: 320px;
+        width: 100%;
+        height: auto;
+        background-color: rgb(255, 255, 255);
+        position: fixed;
+        /*margin-top: 10%;*/
+        border-radius: 7px;
+        margin-left: -50%;
+        text-align: center;
+    }
+    .popupWindow, .popupWindowThanks {
+        min-width: 320px;
+        width: 100%;
+        height: auto;
+        background-color: rgb(255, 255, 255);
+        position: fixed;
+        border-radius: 7px;
+        margin-left: -50%;
+        text-align: center;
+    }
+    .popupContacts {
+        display: inline-block;
+        width: 220px;
+        height: 38px;
+        margin-top: 6px;
+        border-radius: 6px;
+        border: 1px solid;
+        border-color: #59c6f2;
+        margin-left: 0%;
+    }
+    .popupInputs {
+        margin-left: 8%;
+    }
+}
+@media screen and (max-width: 455px){
+    .popupButton{
+        display: block;
+        width: 92%;
+        margin-left: 4%;
+        float: right;
+        margin-top: 0%;
+    }
+    .popupInputEmail{
+        margin-left: 3%;
+    }
+    /*.selectPanel, .selectPanelEF {*/
+        /*width: 90%;*/
+        /*margin-left: 0px;*/
+        /*text-align: left;*/
+    /*}*/
+}

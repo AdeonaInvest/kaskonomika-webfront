@@ -1,0 +1,411 @@
+.parallaxPages .parallaxPage .searchPanel{
+    margin-left: 32%;
+    text-align: left;
+}
+.panelFilters{
+    margin-top: -10%;
+}
+.panelFilters, .panelFiltersEF {
+    display: inline-block;
+    background-color: #59c6f2;
+    width: 830px;
+    height: 142px;
+    margin-left: 24px;
+    margin-right: 4px;
+    border-radius: 15px;
+    color: #FFFFFF;
+}
+.panelFiltersEF {
+    background-color: #FFFFFF;
+    margin-right: 4px;
+    border-radius: 15px;
+    color: #59c6f2;
+}
+.line1, .line1EF {
+    height: 40px;
+    margin-left: 28px;
+    margin-top: 25px;
+    font-size: 14px;
+}
+
+.container12, .container12EF {
+    display: inline-block;
+    float: left;
+    background-color: #59c6f2;
+    border: 0px solid #ccc;
+    color: white;
+    display: none;
+    cursor: pointer;
+}
+.container12EF {
+    color: #59c6f2;
+    background-color: #ffffff;
+}
+.container1, .container1EF {
+    display: inline-block;
+    float: left;
+}
+
+.container1 span, .container1EF span, .container12 span, .container12EF span {
+    text-transform: uppercase;
+}
+.container3, .container3EF {
+     display: inline-block;
+     width: 440px;
+     height: 35px;
+     margin-left: 52px;
+     float: left;
+     position: absolute;
+     margin-top: -4px;
+ }
+.container3lin1, .container3lin1EF  {
+    height: 15px;
+}
+.container3lin1 span, .container3lin1EF span {
+    margin-right: 47px;
+    font-size: 14px;
+}
+.buttonShowAll {
+    height: 35px;
+    font-size: 15px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.allMarkBody {
+    display: none;
+}
+
+.stepRound, .stepRoundEF {
+    border: 0px;
+    background-color: white;
+    width: 10px;
+    height: 10px;
+    z-index: 1000;
+    position: relative;
+    display: inline-block;
+    border-radius: 7px;
+}
+.stepRoundEF {
+    background-color: #59c6f2;
+}
+.container3lin2 .straight {
+    width: 137px;
+    height: 2px;
+    background-color: #50b2d9;
+    display: inline-block;
+    border-radius: 12px;
+    margin-bottom: 4px;
+    margin-right: -2px;
+    margin-left: -2px;
+}
+.container3lin2 .round {
+    width: 4px;
+    height: 4px;
+    display: inline-block;
+    border-radius: 7px;
+    border: 3px solid #50b2d9;
+    margin-right: -4px;
+    margin-left: -4px;
+}
+/*---line2---------------------------------------------------------------------*/
+
+.selectPanel {
+    display: inline-block;
+    width: 580px;
+    background-color: #ffffff;
+    margin-left: 30px;
+    border-radius: 5px;
+    color: #000000;
+}
+.parallaxPages .homeBackground .searchPanel .panelTitle{
+    margin-bottom: 11%;
+}
+.selectInputHead {
+    height: 40px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 100;
+}
+.searchInput {
+    border: 1px solid #ffffff;
+    height: 95%;
+    width: 240px;
+    font-size: 15px;
+    margin-left: 3px;
+}
+.openListIcon {
+    display: inline-block;
+    float: right;
+    transform: rotate(90deg);
+    margin-top: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    z-index: 1000;
+}
+.openListIconImg {
+    width: 20px;
+    height: 20px;
+}
+.selectInputBody, .selectInputBodyEF {
+    display: none;
+    width: 580px;
+    background-color: white;
+    position: absolute;
+    max-height: 440px;
+    overflow: auto;
+    z-index: 10000;
+}
+.selectInputBodyEF{
+    max-height: 350px;
+}
+.selectedTab, .selectedTabEF {
+    display: inline-block;
+    float: left;
+    margin-right: 5px;
+    margin-top: 0.2%;
+    margin-left: 3px;
+    font-size: 14px;
+    height: 94%;
+    background-color: #263c75;
+    color: white;
+    border-radius: 4px;
+}
+.selectedTab .selectedItem, .selectedTabEF .selectedItemEF {
+    float: left;
+    margin-right: 5px;
+    margin-left: 3px;
+    margin-top: 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.selectedTab .close, .selectedTabEF .closeEF {
+    font-size: 11px;
+    display: inline-block;
+    float: left;
+    height: 100%;
+    margin-top: 10px;
+    margin-left: 0%;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.selectInputBodydivRow1, .selectInputBodydivRow2, .selectInputBodydivRow3, .selectInputBodydivRow4, .selectInputBodydivRow {
+    margin-bottom: 40px;
+    margin-top: 15px;
+    float: left;
+}
+.selectInputBodydivRow {
+    width: 24%;
+    float: left;
+}
+.selectInputBody .mark, .model, .year, .selectInputBodyEF .mark, .model, .year {
+    display: inline-block;
+    height: 25px;
+    float: left;
+    margin-left: 22px;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-right: 20px;
+    width: 88%;
+}
+.selectInputBody span, .selectInputBodyEF span {
+    border-bottom: 1px dashed #000;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.popularMarkBody, .allMarkBody {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+}
+.allMarkBody {
+    display: none;
+}
+.buttonShowAll {
+    height: 35px;
+    font-size: 15px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.filterButton, .filterButtonEF {
+    display: inline-block;
+    width: 161px;
+    height: 40px;
+    border-radius: 50px;
+    background-color: #6fa5d0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+
+    margin-left: 1%;
+    margin-top: 1%;
+    position: relative;
+    float: right;
+    margin-right: 3.5%;
+}
+.filterButton span, .filterButtonEF span {
+    display: inline-block;
+    color: white;
+    margin-top: 7%;
+    margin-left: 15%;
+    font-size: 14px;
+    text-align: center;
+}
+
+.getAction, .getActionEF{
+    background-color: #263c75 !important;
+}
+
+.container1 span, .container1EF span, .container12 span, .container12EF span{
+    text-transform: uppercase;
+}
+.container12, .container12EF{
+    display: none;
+}
+
+.container1EF{
+    display: inline-block;
+    float: left;
+}
+.container3EF{
+    display: inline-block;
+    width: 440px;
+    height: 35px;
+    margin-left: 52px;
+    float: left;
+    position: absolute;
+    margin-top: -4px;
+}
+
+.container3, .container3EF{
+    display: block;
+    position: relative;
+    margin-top: 9px;
+    margin-left: -11px;
+    width: 98%;
+}
+
+
+.container3{
+    display: inline-block;
+    width: 440px;
+    height: 35px;
+    margin-left: 52px;
+    float: left;
+    position: absolute;
+    margin-top: -4px;
+}
+.container3EF{
+    display: inline-block;
+    width: 440px;
+    height: 35px;
+    margin-left: 52px;
+    float: left;
+    position: absolute;
+    margin-top: -4px;
+}
+/*.container3lin1{*/
+    /*height: 15px;*/
+/*}*/
+/*.container3lin1EF{*/
+    /*height: 15px;*/
+
+/*}*/
+.container3 .container3lin1, .container3EF .container3lin1EF{
+    height: 15px;
+    text-align: left;
+}
+
+.container3lin1EF span{
+    margin-right: 47px;
+    font-size: 14px;
+}
+.container3lin2 .round{
+    width: 4px;
+    height: 4px;
+    display: inline-block;
+    border-radius: 7px;
+    border: 3px solid #50b2d9;
+    margin-right: -4px;
+    margin-left: -4px;
+}
+.container3lin2EF .roundEF{
+    width: 4px;
+    height: 4px;
+    display: inline-block;
+    border-radius: 7px;
+    border: 3px solid #cccccc;
+    margin-right: -4px;
+    margin-left: -4px;
+}
+.container3lin2 .straight{
+    width: 137px;
+    height: 2px;
+    background-color: #50b2d9;
+    display: inline-block;
+    border-radius: 12px;
+    margin-bottom: 4px;
+    margin-right: -2px;
+    margin-left: -2px;
+}
+.container3lin2EF .straightEF{
+    width: 137px;
+    height: 2px;
+    background-color: #cccccc;
+    display: inline-block;
+    border-radius: 12px;
+    margin-bottom: 4px;
+    margin-right: -2px;
+    margin-left: -2px;
+}
+.line1{
+    height: 34px;
+}
+/*.container3{*/
+    /*margin-top: -12px;*/
+/*}*/
+
+.stepStraight, .stepStraightEF {
+    background-color: white;
+    width: 118px;
+    height: 2px;
+    display: inline-block;
+    border-radius: 12px;
+    margin-bottom: 4px;
+    margin-left: -3px;
+    margin-right: -3px;
+}
+.stepStraightEF {
+    background-color: #59c6f2;
+}
+
+
+.searchInput, .searchInputEF{
+    width: 136px;
+}
+.selectInputBody, .selectInputBodyEF{
+    width: 580px;
+}
+
+
+/*.sentence, .sentenceEF{*/
+    /*margin-left: 48%;*/
+/*}*/
+/*.pilot, .pilotEF{*/
+    /*margin-left: 22%;*/
+/*}*/
+.bar a{
+    padding: 0px 0px;
+}
+
+
+

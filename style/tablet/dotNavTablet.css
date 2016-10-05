@@ -1,0 +1,14 @@
+@media only screen and (min-width: 700px) and (max-width: 1440px){
+    .dotstyle{
+        margin-top: 1021px;
+    }
+}
+@media only screen and (min-width: 700px) and (max-width: 999px) {
+    .dotstyle ul{
+        margin-left: 0%;
+    }
+    .dotstyle li{
+        margin-bottom: 600%;
+        margin-left: 0%;
+    }
+}
