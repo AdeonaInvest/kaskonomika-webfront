@@ -77,7 +77,7 @@ if(!isset($_SESSION["open"])) {
         <link rel="stylesheet" type="text/css" href="style/tablet/searchPanelTablet.css" />
         <link rel="stylesheet" type="text/css" href="style/tablet/pageElseFunctionsTablet.css" />
         <link rel="stylesheet" type="text/css" href="style/tablet/footerTablet.css" />
-        <link rel="stylesheet" type="text/css" href="style/tablet/phoeTablet.css" />
+        <link rel="stylesheet" type="text/css" href="style/tablet/phoneTablet.css" />
         <link rel="stylesheet" type="text/css" href="style/tablet/dotNavTablet.css" />
         <link rel="stylesheet" type="text/css" href="style/tablet/popupTablet.css" />
 
@@ -100,7 +100,7 @@ if(!isset($_SESSION["open"])) {
             .owl-carousel .owl-item img{
                 width: 50%;
             }
-            .owl-stage-outer, .owl-stage, .owl-item, .elsePageSlideBody {
+            .owl-stage-outer, .owl-stage, .owl-item, .owl-carousel {
                 height: 100%;
             }
             @media only screen and (max-width: 700px) {
@@ -414,7 +414,7 @@ if(!isset($_SESSION["open"])) {
                                 </span>
                     </div>
                 </div>
-                <div class="elsePageSlideBody owl-carousel">
+                <div class=" owl-carousel">
                     <!--<div class="elsePageSlideItem elsePageFirstSlide">-->
                     <div class="elsePageSlideItem elsePageFirstSlide item">
                         <div class="elseFunctionsText">
@@ -461,58 +461,60 @@ if(!isset($_SESSION["open"])) {
 
                     <!--</div>-->
                 <!--</div>-->
-                <div class="panelDog">
-                    <div id="panelFillterWithDog" class="panel panelFillterWithDog">
-                        <div id="panelFiltersEF" class="panelFiltersEF">
-                            <div class="line1EF">
-                                <!-- <select class="container12EF">
-                                    <option class="container12OptEF">МОСКВА И ОБЛАСТЬ</option>
-                                    <option class="container12OptEF">САНКТ-ПЕТЕРБУРГ</option>
-                                </select> -->
-                                <div class="container12EF"><span>Для Москвы и МО</span></div>
-                                <div class="container1EF"><span>Для Москвы и Московской области</span></div>
-                                <div class="container3EF">
-                                    <div class="container3lin1EF">
-                                        <span class="automobileEF">Автомобиль </span>
-                                        <span class="pilotEF">Водители </span>
-                                        <span class="sentenceEF">Предложения </span>
-                                        <span class="requisitesEF">Реквизиты </span>
-                                    </div>
-                                    <div class="container3lin2EF">
-                                        <span class="automobileRoundEF stepRoundEF"></span>
-                                        <span id="driverStraightEF" class="straightEF driverStraightEF"></span>
-                                        <span id="driverroundEF" class="roundEF driverRoundEF"></span>
-                                        <span id="applicationStraightEF" class="straightEF applicationStraightEF"></span>
-                                        <span id="applicationRoundEF" class="roundEF applicationRoundEF"></span>
-                                        <span class="straightEF"></span>
-                                        <span class="roundEF"></span>
-                                    </div>
+
+
+            </div>
+
+
+            <div class="panelDog">
+                <div id="panelFillterWithDog" class="panel panelFillterWithDog">
+                    <div id="panelFiltersEF" class="panelFiltersEF">
+                        <div class="line1EF">
+                            <!-- <select class="container12EF">
+                                <option class="container12OptEF">МОСКВА И ОБЛАСТЬ</option>
+                                <option class="container12OptEF">САНКТ-ПЕТЕРБУРГ</option>
+                            </select> -->
+                            <div class="container12EF"><span>Для Москвы и МО</span></div>
+                            <div class="container1EF"><span>Для Москвы и Московской области</span></div>
+                            <div class="container3EF">
+                                <div class="container3lin1EF">
+                                    <span class="automobileEF">Автомобиль </span>
+                                    <span class="pilotEF">Водители </span>
+                                    <span class="sentenceEF">Предложения </span>
+                                    <span class="requisitesEF">Реквизиты </span>
                                 </div>
-                            </div>
-                            <div class="line2EF">
-                                <div id="selectPanelEF" class="selectPanelEF">
-                                    <div id="selectInputHeadEF" class="selectInputHeadEF">
-                                        <input id="searchInputEF" name="searchInputEF" class="searchInputEF" />
-                                        <div class="openListIconEF"> <img class="openListIconImg" src="images/ic_navigate_next_48px-128.png"> </div>
-                                    </div>
-                                    <div id="selectInputBodyEF" class="selectInputBodyEF">
-                                        <div class="selectInputBodyScrollingEF">
-                                            <div id="selectInputBodydivRow1EF" class="selectInputBodydivRowEF"></div>
-                                            <div id="selectInputBodydivRow2EF" class="selectInputBodydivRowEF"></div>
-                                            <div id="selectInputBodydivRow3EF" class="selectInputBodydivRowEF"></div>
-                                            <div id="selectInputBodydivRow4EF" class="selectInputBodydivRowEF"></div>
-                                        </div>
-                                    </div>
+                                <div class="container3lin2EF">
+                                    <span class="automobileRoundEF stepRoundEF"></span>
+                                    <span id="driverStraightEF" class="straightEF driverStraightEF"></span>
+                                    <span id="driverroundEF" class="roundEF driverRoundEF"></span>
+                                    <span id="applicationStraightEF" class="straightEF applicationStraightEF"></span>
+                                    <span id="applicationRoundEF" class="roundEF applicationRoundEF"></span>
+                                    <span class="straightEF"></span>
+                                    <span class="roundEF"></span>
                                 </div>
-                                <div id="filterButtonEF" class="filterButtonEF"><span>Отправить заявку</span></div>
                             </div>
                         </div>
-                        <div id="filterDogIcon" class="filterDogIcon"></div>
+                        <div class="line2EF">
+                            <div id="selectPanelEF" class="selectPanelEF">
+                                <div id="selectInputHeadEF" class="selectInputHeadEF">
+                                    <input id="searchInputEF" name="searchInputEF" class="searchInputEF" />
+                                    <div class="openListIconEF"> <img class="openListIconImg" src="images/ic_navigate_next_48px-128.png"> </div>
+                                </div>
+                                <div id="selectInputBodyEF" class="selectInputBodyEF">
+                                    <div class="selectInputBodyScrollingEF">
+                                        <div id="selectInputBodydivRow1EF" class="selectInputBodydivRowEF"></div>
+                                        <div id="selectInputBodydivRow2EF" class="selectInputBodydivRowEF"></div>
+                                        <div id="selectInputBodydivRow3EF" class="selectInputBodydivRowEF"></div>
+                                        <div id="selectInputBodydivRow4EF" class="selectInputBodydivRowEF"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="filterButtonEF" class="filterButtonEF"><span>Отправить заявку</span></div>
+                        </div>
                     </div>
+                    <div id="filterDogIcon" class="filterDogIcon"></div>
                 </div>
             </div>
-            <span class="elseSlideLeftButton"></span>
-            <span class="elseSlideRightButton"></span>
             <div class="footer">
                 <div class="leftSide">
                     <div class="company">

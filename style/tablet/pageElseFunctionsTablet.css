@@ -5,6 +5,10 @@
     .filterDogIcon{
         margin-top: -4px;
     }
+    .panelDog{
+        margin-top: -211px;
+    }
+
 }
 @media only screen and (min-width: 700px) and (max-width: 999px) {
     .owl-next, .owl-prev {
@@ -15,7 +19,6 @@
     }
     #panelFillterWithDog {
         width: 100%;
-        margin-top: 75%;
         height: auto;
         margin-left: 5%;
     }

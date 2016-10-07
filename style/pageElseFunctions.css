@@ -1,15 +1,11 @@
 .pageElseFunctions{
     height:712px;
-    /*overflow: hidden;*/
-    /*background-image: url("../images/else_functions.jpg");*/
     background-repeat: no-repeat;
     background-color: #565f66;
-    /*overflow-x: hidden;*/
+    overflow: hidden;
     width: 100%;
     max-width: 3000px;
-    margin-top:-5px;
     position: relative;
-    float: left;
     min-height: 650px;
 }
 .pageElseFunctions .panel{
@@ -21,63 +17,62 @@
     z-index: 1000000;
 }
 .elsePageSlideBody, .elsePageElements{
-    height: 712px;
-    display:inline-block;
-    position: absolute;
-    overflow: hidden;
-    overflow-y: hidden;
+    /*height: 712px;*/
+    /*display:inline-block;*/
+    /*position: absolute;*/
+    /*overflow: hidden;*/
+    /*overflow-y: hidden;*/
 }
 .elsePageSlideBody{
-    width: 220000px;
-    position: absolute;
+    /*width: 220000px;*/
+    /*position: absolute;*/
 }
 .elsePageSlideBody, .elsePageSlideItem {
-    overflow-x: hidden;
+    /*overflow-x: hidden;*/
 
 }
-.owl-prev{
+.elsePageSlideItem{
+    width: 100%;
+    height: 100%;
+}
+
+.owl-nav {
+    position: absolute;
+    bottom: 43%;
     display: inline-block;
+    width: 98%;
+    margin-left: 1%;
+}
+.owl-prev{
     width: 40px;
     height: 60px;
-    margin-top: -25%;
-    position: relative;
-    margin-left: 1.5%;
+    /* margin-top: -20%; */
+    text-indent: -999em;
     background-image: url(../images/slide_button.png);
     background-repeat: no-repeat;
     background-position: 0;
     transform: rotate(180deg);
-    z-index: 10000000;
-    cursor: pointer;
-    float: left;
-    text-indent: -999em;
+    position: relative;
+    /* top: -75%; */
+    /* text-indent: -999em; */
+    display: inline-block;
+
 }
 .owl-next{
-    display: inline-block;
     width: 40px;
     height: 60px;
-    margin-top: -25%;
-    margin-right: 3%;
-    float: right;
     background-image: url(../images/slide_button.png);
     background-repeat: no-repeat;
     background-position: 0;
-    cursor: pointer;
-    z-index: 10000000;
-    position: relative;
-    /* float: right; */
-    margin-left: 95%;
+    /* display: inline-block; */
+    float: right;
     text-indent: -999em;
+    cursor: pointer;
+    /* z-index: 10000000; */
+    display: inline-block;
 }
 
-.elsePageSlideItem{
-    position: relative;
-    display: inline-block;
-    width: 10px;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    z-index: 100000;
-}
+
 .elsePageFirstSlide .slideImage{
     background-image: url('../images/slide/screen5_1.png');
 }
@@ -141,7 +136,6 @@
 .panelFillterWithDog{
     display: inline-block;
     margin-left: 33%;
-    margin-top: 24%;
 }
 
 .selectPanelEF {
@@ -234,10 +228,13 @@
     line-height: 26px;
 }
 .panelDog{
+    margin-left: 0%;
+    z-index: 100000;
     display: inline-block;
-    width: 200px;
-    height: 200px;
-    float: left;
+    width: 100%;
+    height: 0px;
+    position: absolute;
+    margin-top: -191px;
 }
 .elsePageBars{
     display: inline-block;

@@ -1,8 +1,6 @@
-//$( document ).ready(function() {
-
-    var leftMeuOpen = 0;
+ var leftMeuOpen = 0;
     function leftMenuPosition(){
-        if(window.innerWidth<1400){
+        if(document.body.clientWidth<1400){
             if(leftMeuOpen ==0){
                 $("#leftMenu").css('display','inline');
                 leftMeuOpen = 1;
@@ -12,62 +10,40 @@
             }
         }
     }
-    //document.querySelector("#menu").addEventListener("click", leftMenuPosition());
     $("#menu").click(function(){
         leftMenuPosition();
     });
 
-    function resizePageElseFunctions(){
-        $('.parallaxPage').css('height',window.innerHeight+'px');
-        $('.pageElseFunctions').css('height',(window.innerHeight*0.89)+'px');
-        $('.parallaxPage').css('width',window.innerWidth+'px');
-        $('.pageElseFunctions, .elsePageSlideItem').css('width',window.innerWidth+'px');
-    }
-
     window.addEventListener("resize", function() {
-        if(window.innerWidth>1439){
+        if(document.body.clientWidth>1439){
             $("#leftMenu").css('display','none');
             leftMeuOpen = 0;
         };
-        resizePageElseFunctions();
-        if(window.innerWidth>320){
-            $('.allBody').css('width',window.innerWidth+'px');
-        }else{
-            $('.allBody').css('width','320px');
-        }
-        if(window.innerWidth>700 && window.innerWidth<1000){
+        if(document.body.clientWidth>700 && document.body.clientWidth<1000){
             $('.parallaxPages .homePage').css('height',(window.innerHeight+200)+'px');
         }
-        if(window.innerWidth<700){
+        if(document.body.clientWidth<700){
             $('.phone').css('margin-left','-262px');
         }
         if (window.scrollY > 5) {
-            if(window.innerWidth>700){
+            if(document.body.clientWidth>700){
                 document.getElementById('kaskonomikaIcon').style.backgroundImage = "url('images/logo_onscroll.svg')";
             }else{
                 document.getElementById('kaskonomikaIcon').style.backgroundImage = "url('images/Kaskonomika_name_image.png')";
             }
         }else{
-            if(window.innerWidth>700){
+            if(document.body.clientWidth>700){
                 document.getElementById('kaskonomikaIcon').style.backgroundImage = "url('images/logo.svg')";
             }else{
                 document.getElementById('kaskonomikaIcon').style.backgroundImage = "url('images/Kaskonomika_name_image.png')";
             }
         }
     });
-    resizePageElseFunctions();
-    if(window.innerWidth>320){
-        $('.allBody').css('width',window.innerWidth+'px');
-    }else{
-        $('.allBody').css('width','320px');
-    }
-
     window.addEventListener("scroll", function() {
-        resizePageElseFunctions();
         if (window.scrollY > 5) {
             document.getElementById('toolbar').style.backgroundColor = "#ffffff";
             document.getElementById('leftMenu').style.backgroundColor = "#ffffff";
-            if(window.innerWidth>700){
+            if(document.body.clientWidth>700){
                 document.getElementById('kaskonomikaIcon').style.backgroundImage = "url('images/logo_onscroll.svg')";
             }else{
                 document.getElementById('kaskonomikaIcon').style.backgroundImage = "url('images/Kaskonomika_name_image.png')";
@@ -75,7 +51,7 @@
         }else{
             document.getElementById('toolbar').style.backgroundColor = "#e5f3fc";
             document.getElementById('leftMenu').style.backgroundColor = "#e5f3fc";
-            if(window.innerWidth>700){
+            if(document.body.clientWidth>700){
                 document.getElementById('kaskonomikaIcon').style.backgroundImage = "url('images/logo.svg')";
             }else{
                 document.getElementById('kaskonomikaIcon').style.backgroundImage = "url('images/Kaskonomika_name_image.png')";

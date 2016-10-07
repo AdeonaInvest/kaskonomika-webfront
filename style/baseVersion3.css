@@ -30,7 +30,10 @@
 html, body, .allBody, .header{
 
     overflow-x:hidden;
-    max-width: 3000px;
+    /*max-width: 3000px;*/
+}
+.allBody{
+    overflow:hidden;
 }
 body{
     width: 100%;

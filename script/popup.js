@@ -8,7 +8,7 @@ $('#popupButton').click(function(){
         if($('#tel').val()== "" && $('#email').val()== ""){
             $('.error').css('display','inline-block');
         }else{
-            if(window.innerWidth>800){
+            if(document.body.clientWidth>800){
                 $('.popupWindow').css('margin-top', '10%');
             }else{
                 $('.popupWindow').css('margin-top', '0px');
@@ -177,7 +177,7 @@ $('#popupButton').click(function(){
         if($('#tel').val()== "" && $('#email').val()== ""){
             $('.error').css('display','inline-block');
         }else{
-            if(window.innerWidth>800){
+            if(document.body.clientWidth>800){
                 $('.popupWindow').css('margin-top', '10%');
             }else{
                 $('.popupWindow').css('margin-top', '0px');

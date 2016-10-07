@@ -29,6 +29,7 @@
     background-position: 100% 100%;
     background-repeat: no-repeat;
     text-align: center;
+    width: 100%;
 }
 .parallaxPages .parallaxPage .homeBackground{
     background-image: url(../images/promo_right.png), url(../images/promo_left.png);

@@ -49,7 +49,7 @@ function getSlide(){
     $('.elsePageBars').find('.elsePageBarNumber').css('background-color', 'rgba(253, 253, 253, 0)');
     $('#slideBar'+(slideItem-1)).css('background-color', 'rgba(253, 253, 253, 253)');
     $('#slideBar'+(slideItem-1)).css('color', '#000000');
-    if(window.innerWidth<700){
+    if(document.body.clientWidth<700){
         switch (slideItem){
             case 1:
                 $('.elsePageBars').css('margin-left','44%');
@@ -66,25 +66,25 @@ function getSlide(){
         }
     }
 }
-$(".panelFillterWithDog").swipe( {
-    //Generic swipe handler for all directions
-    swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
-        //$(this).text("You swiped " + direction );
-        if(direction == 'left'){
-            $('.owl-next').click();
-        }
-        if(direction == 'right') {
-                $('.owl-prev').click();
-            }else{
-            if(direction == 'up'){
-                $("html, body").animate({ scrollTop: $(document).scrollTop()+400 }, 200);
-            }else if(direction == 'down'){
-                $("html, body").animate({ scrollTop: $(document).scrollTop()-400 }, 200);
-            }
-        }
-    },
-    threshold:0
-});
+//$(".panelFillterWithDog").swipe( {
+//    //Generic swipe handler for all directions
+//    swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
+//        //$(this).text("You swiped " + direction );
+//        if(direction == 'left'){
+//            $('.owl-next').click();
+//        }
+//        if(direction == 'right') {
+//                $('.owl-prev').click();
+//            }else{
+//            if(direction == 'up'){
+//                $("html, body").animate({ scrollTop: $(document).scrollTop()+400 }, 200);
+//            }else if(direction == 'down'){
+//                $("html, body").animate({ scrollTop: $(document).scrollTop()-400 }, 200);
+//            }
+//        }
+//    },
+//    threshold:0
+//});
 
 $("#slideBar0").click(function(){
     owl.trigger('to.owl.carousel', 1);

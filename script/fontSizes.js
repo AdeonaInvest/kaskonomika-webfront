@@ -4,8 +4,8 @@ var titleParallaxLastPanel ='36px';
 var textParallaxPanel ='20px';
 var textParallaxLastPanel ='20px';
 function changeFontSizesForLoading(){
-    if(window.innerHeight<window.innerWidth){
-        //if(window.innerHeight>window.innerWidth*2/3){
+    if(window.innerHeight<document.body.clientWidth){
+        //if(window.innerHeight>document.body.clientWidth*2/3){
             if(window.innerHeight>799){
                 titleSearchPanel        = window.innerHeight/22+'px';
                 titleParallaxPanel      = window.innerHeight/15+'px';

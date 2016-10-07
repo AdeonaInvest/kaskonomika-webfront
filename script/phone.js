@@ -3,9 +3,9 @@
  */
 
 function mobileShowPhone(){
-        if(window.innerWidth<700){
+        if(document.body.clientWidth<700){
             if($('#phone').css('margin-left') =='6px'){
-                $('#phone').animate({'margin-left':'-262px'});
+                $('#phone').animate({'margin-left':'-200px'});
                 $('#phone').css({'z-index':'900000'});
                 $('.parallaxPages .parallaxPage .page4Item').css({'z-index':'1000000'});
             }else{
@@ -37,16 +37,16 @@ $('#phone').on('click touch', function(){
     mobileShowPhone();
 });
 function changePhonePosition(){
-    //if(window.innerWidth>1100){
+    //if(document.body.clientWidth>1100){
     //    document.querySelector("#dotNav").style.marginLeft = '-'+ window.scrollX + "px";
-    //}else if(window.innerWidth>700){
+    //}else if(document.body.clientWidth>700){
     //    document.querySelector("#phone").style.marginLeft = "-300px";
     //}else{
     //    document.querySelector("#phone").style.marginLeft = "-256px";
     //}
 }
 document.addEventListener("scroll", function(event) {
-    if(window.innerWidth<1000 && window.innerWidth>700){
+    if(document.body.clientWidth<1000 && document.body.clientWidth>700){
         mobileShowPhoneForTablet();
     }
 });
@@ -55,7 +55,7 @@ $(window).resize(function() {
     changePhonePosition();
     calcDown=0;
     calcUp=0;
-    if(window.innerWidth<1000 && window.innerWidth>700) {
+    if(document.body.clientWidth<1000 && document.body.clientWidth>700) {
         mobileShowPhoneForTablet();
     }
 });
