@@ -28,81 +28,60 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="phoneDesktop.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/style/desktop/phoneDesktop.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.0">
-              <caret line="57" column="64" selection-start-line="57" selection-start-column="59" selection-end-line="57" selection-end-column="64" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="phoneMobile.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/style/mobile/phoneMobile.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="phone.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/script/phone.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="phoneTablet.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/style/tablet/phoneTablet.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="5" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="baseVersion3.css" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/style/baseVersion3.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7256098">
-              <caret line="48" column="13" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="phone.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/style/phone.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="base.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/script/base.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="31" column="75" selection-start-line="31" selection-start-column="75" selection-end-line="31" selection-end-column="75" />
+              <caret line="91" column="24" selection-start-line="91" selection-start-column="24" selection-end-line="91" selection-end-column="24" />
+              <folding>
+                <element signature="e#1031#5013#0" expanded="false" />
+                <element signature="e#1099#3133#0" expanded="false" />
+                <element signature="e#5072#7345#0" expanded="false" />
+                <element signature="e#7714#9782#0" expanded="false" />
+                <element signature="e#9792#9855#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="combobox.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/script/combobox.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-9.551724">
+              <caret line="1049" column="5" selection-start-line="1049" selection-start-column="5" selection-end-line="1049" selection-end-column="5" />
+              <folding>
+                <element signature="e#97#517#0" expanded="false" />
+                <element signature="e#581#1686#0" expanded="false" />
+                <element signature="e#1750#2874#0" expanded="false" />
+                <element signature="n#!!block;n#clickOpenListIcon#0" expanded="false" />
+                <element signature="n#!!block;n#clickSelectInputHead#0" expanded="false" />
+                <element signature="e#4352#4383#0" expanded="false" />
+                <element signature="e#4492#4523#0" expanded="false" />
+                <element signature="e#4544#4613#0" expanded="false" />
+                <element signature="n#!!block;n#filtrationEndResult#0" expanded="false" />
+                <element signature="n#!!block;n#addFilter#0" expanded="false" />
+                <element signature="e#11402#14595#0" expanded="false" />
+                <element signature="e#14601#14603#0" expanded="false" />
+                <element signature="n#!!block;n#getPilotExYearData#0" expanded="false" />
+                <element signature="n#!!block;n#getPilotAgeData#0" expanded="false" />
+                <element signature="n#!!block;n#getPilotsData#0" expanded="false" />
+                <element signature="n#!!block;n#getModificationsData#0" expanded="false" />
+                <element signature="n#!!block;n#getModelsData#0" expanded="false" />
+                <element signature="n#!!block;n#getYearsData#0" expanded="false" />
+                <element signature="n#!!block;n#getMarksData#0" expanded="false" />
+                <element signature="e#59699#59844#0" expanded="false" />
+                <marker date="1475833454478" expanded="true" signature="1445:1485" placeholder="..." />
+                <marker date="1475833454478" expanded="true" signature="2630:2670" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="searchPanel.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/style/searchPanel.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.0237288">
+              <caret line="368" column="1" selection-start-line="368" selection-start-column="1" selection-end-line="368" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -116,7 +95,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/style/searchPanel.css" />
         <option value="$PROJECT_DIR$/style/mobile/footerMobile.css" />
         <option value="$PROJECT_DIR$/library/OwlCarousel2/dist/owl.carousel.js" />
         <option value="$PROJECT_DIR$/script/fontSizes.js" />
@@ -130,11 +108,12 @@
         <option value="$PROJECT_DIR$/style/mobile/searchPanelMobile.css" />
         <option value="$PROJECT_DIR$/style/desktop/pageElseFunctionsDesktop.css" />
         <option value="$PROJECT_DIR$/script/slider.js" />
-        <option value="$PROJECT_DIR$/script/combobox.js" />
         <option value="$PROJECT_DIR$/script/phone.js" />
         <option value="$PROJECT_DIR$/style/mobile/phoneMobile.css" />
         <option value="$PROJECT_DIR$/script/base.js" />
         <option value="$PROJECT_DIR$/style/baseVersion3.css" />
+        <option value="$PROJECT_DIR$/script/combobox.js" />
+        <option value="$PROJECT_DIR$/style/searchPanel.css" />
       </list>
     </option>
   </component>
@@ -150,10 +129,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1928" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="93" />
+    <option name="y" value="88" />
+    <option name="width" value="1347" />
+    <option name="height" value="724" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -326,15 +305,15 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1928" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="93" y="88" width="1347" height="724" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21268657" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3100233" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32969153" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25974026" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4054054" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -407,11 +386,19 @@
             <element signature="e#4492#4523#0" expanded="false" />
             <element signature="e#4544#4613#0" expanded="false" />
             <element signature="n#!!block;n#filtrationEndResult#0" expanded="false" />
+            <element signature="n#!!block;n#addFilter#0" expanded="false" />
             <element signature="e#11402#14595#0" expanded="false" />
             <element signature="e#14601#14603#0" expanded="false" />
-            <element signature="e#56150#56295#0" expanded="false" />
-            <marker date="1475829365549" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1475829365549" expanded="true" signature="-1:-1" placeholder="..." />
+            <element signature="n#!!block;n#getPilotExYearData#0" expanded="false" />
+            <element signature="n#!!block;n#getPilotAgeData#0" expanded="false" />
+            <element signature="n#!!block;n#getPilotsData#0" expanded="false" />
+            <element signature="n#!!block;n#getModificationsData#0" expanded="false" />
+            <element signature="n#!!block;n#getModelsData#0" expanded="false" />
+            <element signature="n#!!block;n#getYearsData#0" expanded="false" />
+            <element signature="n#!!block;n#getMarksData#0" expanded="false" />
+            <element signature="e#59699#59844#0" expanded="false" />
+            <marker date="1475833454478" expanded="true" signature="1445:1485" placeholder="..." />
+            <marker date="1475833454478" expanded="true" signature="2630:2670" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -444,7 +431,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-          <folding />
+          <folding>
+            <element signature="e#1031#5013#0" expanded="false" />
+            <element signature="e#1099#3133#0" expanded="false" />
+            <element signature="e#5072#7345#0" expanded="false" />
+            <element signature="e#7714#9782#0" expanded="false" />
+            <element signature="e#9792#9855#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -488,11 +481,19 @@
             <element signature="e#4492#4523#0" expanded="false" />
             <element signature="e#4544#4613#0" expanded="false" />
             <element signature="n#!!block;n#filtrationEndResult#0" expanded="false" />
+            <element signature="n#!!block;n#addFilter#0" expanded="false" />
             <element signature="e#11402#14595#0" expanded="false" />
             <element signature="e#14601#14603#0" expanded="false" />
-            <element signature="e#56150#56295#0" expanded="false" />
-            <marker date="1475829365549" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1475829365549" expanded="true" signature="-1:-1" placeholder="..." />
+            <element signature="n#!!block;n#getPilotExYearData#0" expanded="false" />
+            <element signature="n#!!block;n#getPilotAgeData#0" expanded="false" />
+            <element signature="n#!!block;n#getPilotsData#0" expanded="false" />
+            <element signature="n#!!block;n#getModificationsData#0" expanded="false" />
+            <element signature="n#!!block;n#getModelsData#0" expanded="false" />
+            <element signature="n#!!block;n#getYearsData#0" expanded="false" />
+            <element signature="n#!!block;n#getMarksData#0" expanded="false" />
+            <element signature="e#59699#59844#0" expanded="false" />
+            <marker date="1475833454478" expanded="true" signature="1445:1485" placeholder="..." />
+            <marker date="1475833454478" expanded="true" signature="2630:2670" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -525,15 +526,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/style/searchPanel.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.814815">
-          <caret line="155" column="0" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="19" />
-          <folding />
+          <folding>
+            <element signature="e#1031#5013#0" expanded="false" />
+            <element signature="e#1099#3133#0" expanded="false" />
+            <element signature="e#5072#7345#0" expanded="false" />
+            <element signature="e#7714#9782#0" expanded="false" />
+            <element signature="e#9792#9855#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -661,29 +660,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/script/combobox.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.8965516">
-          <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
-          <folding>
-            <element signature="e#97#517#0" expanded="false" />
-            <element signature="e#581#1686#0" expanded="false" />
-            <element signature="e#1750#2874#0" expanded="false" />
-            <element signature="n#!!block;n#clickOpenListIcon#0" expanded="false" />
-            <element signature="n#!!block;n#clickSelectInputHead#0" expanded="false" />
-            <element signature="e#4352#4383#0" expanded="false" />
-            <element signature="e#4492#4523#0" expanded="false" />
-            <element signature="e#4544#4613#0" expanded="false" />
-            <element signature="n#!!block;n#filtrationEndResult#0" expanded="false" />
-            <element signature="e#11402#14595#0" expanded="false" />
-            <element signature="e#14601#14603#0" expanded="false" />
-            <element signature="e#56150#56295#0" expanded="false" />
-            <marker date="1475829365549" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1475829365549" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/style/pageElseFunctions.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -708,22 +684,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/style/desktop/phoneDesktop.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.0">
-          <caret line="57" column="64" selection-start-line="57" selection-start-column="59" selection-end-line="57" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/style/tablet/phoneTablet.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -732,9 +692,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/script/phone.js">
+    <entry file="file://$PROJECT_DIR$/style/baseVersion3.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+          <caret line="36" column="1" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/phone.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35714287">
           <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
           <folding />
         </state>
@@ -742,8 +710,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/style/mobile/phoneMobile.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.42857143">
           <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5225653">
+          <caret line="57" column="64" selection-start-line="57" selection-start-column="59" selection-end-line="57" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/style/desktop/phoneDesktop.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39285713">
+          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -751,15 +735,52 @@
     <entry file="file://$PROJECT_DIR$/script/base.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="31" column="75" selection-start-line="31" selection-start-column="75" selection-end-line="31" selection-end-column="75" />
-          <folding />
+          <caret line="91" column="24" selection-start-line="91" selection-start-column="24" selection-end-line="91" selection-end-column="24" />
+          <folding>
+            <element signature="e#1031#5013#0" expanded="false" />
+            <element signature="e#1099#3133#0" expanded="false" />
+            <element signature="e#5072#7345#0" expanded="false" />
+            <element signature="e#7714#9782#0" expanded="false" />
+            <element signature="e#9792#9855#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/style/baseVersion3.css">
+    <entry file="file://$PROJECT_DIR$/script/combobox.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7256098">
-          <caret line="48" column="13" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
+        <state vertical-scroll-proportion="-9.551724">
+          <caret line="1049" column="5" selection-start-line="1049" selection-start-column="5" selection-end-line="1049" selection-end-column="5" />
+          <folding>
+            <element signature="e#97#517#0" expanded="false" />
+            <element signature="e#581#1686#0" expanded="false" />
+            <element signature="e#1750#2874#0" expanded="false" />
+            <element signature="n#!!block;n#clickOpenListIcon#0" expanded="false" />
+            <element signature="n#!!block;n#clickSelectInputHead#0" expanded="false" />
+            <element signature="e#4352#4383#0" expanded="false" />
+            <element signature="e#4492#4523#0" expanded="false" />
+            <element signature="e#4544#4613#0" expanded="false" />
+            <element signature="n#!!block;n#filtrationEndResult#0" expanded="false" />
+            <element signature="n#!!block;n#addFilter#0" expanded="false" />
+            <element signature="e#11402#14595#0" expanded="false" />
+            <element signature="e#14601#14603#0" expanded="false" />
+            <element signature="n#!!block;n#getPilotExYearData#0" expanded="false" />
+            <element signature="n#!!block;n#getPilotAgeData#0" expanded="false" />
+            <element signature="n#!!block;n#getPilotsData#0" expanded="false" />
+            <element signature="n#!!block;n#getModificationsData#0" expanded="false" />
+            <element signature="n#!!block;n#getModelsData#0" expanded="false" />
+            <element signature="n#!!block;n#getYearsData#0" expanded="false" />
+            <element signature="n#!!block;n#getMarksData#0" expanded="false" />
+            <element signature="e#59699#59844#0" expanded="false" />
+            <marker date="1475833454478" expanded="true" signature="1445:1485" placeholder="..." />
+            <marker date="1475833454478" expanded="true" signature="2630:2670" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/style/searchPanel.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0237288">
+          <caret line="368" column="1" selection-start-line="368" selection-start-column="1" selection-end-line="368" selection-end-column="1" />
           <folding />
         </state>
       </provider>

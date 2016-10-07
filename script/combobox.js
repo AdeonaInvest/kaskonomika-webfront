@@ -431,6 +431,12 @@ function getPilotExYearData() {
         $('.automobile, .pilot, .sentence, .automobileEF, .pilotEF, .sentenceEF').css('display', 'inline-block');
     }
 
+    $(".applicationStraight").removeClass("stepStraight"); $(".applicationStraight").removeClass("stepStraightEF");
+    $(".applicationRound").removeClass("stepRound"); $(".applicationRoundEF").removeClass("stepRoundEF");
+    $(".applicationStraight, .applicationStraightEF").addClass("straight"); $(".applicationStraight, .applicationStraightEF").addClass("straightEF");
+    $(".applicationRound, .applicationRoundEF").addClass("round"); $(".applicationRound, .applicationRoundEF").addClass("roundEF");
+
+
     $('.automobile, .pilot').css('color', '#ffffff');
     $('.automobileEF, .pilotEF').css('color', '#50b2d9');
     $('.sentence, .requisites').css('color', '#50b2d9');
@@ -488,7 +494,6 @@ function getPilotExYearData() {
             getPilotExYearData();
             $('.selectedExperiance, .selectedExperianceEF').remove();
             filtersList.width =(filtersList.words[5].symbols + 3) + (filtersList.words[4].symbols + 3) + (filtersList.words[3].symbols + 3) + (filtersList.words[2].symbols + 3) + (filtersList.words[1].symbols + 3) + (filtersList.words[0].symbols + 3);
-
         });
 
 
@@ -544,6 +549,11 @@ function getPilotAgeData() {
     $('.searchInput, .searchInputEF').css('width','100px');
 
     $(".searchInput, .searchInputEF").attr("placeholder", "Возраст");
+
+    $(".applicationStraight").removeClass("stepStraight"); $(".applicationStraight").removeClass("stepStraightEF");
+    $(".applicationRound").removeClass("stepRound"); $(".applicationRoundEF").removeClass("stepRoundEF");
+    $(".applicationStraight, .applicationStraightEF").addClass("straight"); $(".applicationStraight, .applicationStraightEF").addClass("straightEF");
+    $(".applicationRound, .applicationRoundEF").addClass("round"); $(".applicationRound, .applicationRoundEF").addClass("roundEF");
 
     $('.selectInputBodyScrolling, .selectInputBodyScrollingEF').html('<div class="selectInputBodydivRow selectInputBodydivRow1"></div> ' +
         '<div class="selectInputBodydivRow selectInputBodydivRow2"></div> ' +
@@ -618,6 +628,11 @@ function getPilotsData() {
 
     $(".searchInput, .searchInputEF").attr("placeholder", "Водитель");
 
+    $(".applicationStraight").removeClass("stepStraight"); $(".applicationStraight").removeClass("stepStraightEF");
+    $(".applicationRound").removeClass("stepRound"); $(".applicationRoundEF").removeClass("stepRoundEF");
+    $(".applicationStraight, .applicationStraightEF").addClass("straight"); $(".applicationStraight, .applicationStraightEF").addClass("straightEF");
+    $(".applicationRound, .applicationRoundEF").addClass("round"); $(".applicationRound, .applicationRoundEF").addClass("roundEF");
+
     $(".driverStraight").removeClass("stepStraight"); $(".driverStraightEF").removeClass("stepStraightEF");
     $(".driverRound").removeClass("stepRound"); $(".driverRoundEF").removeClass("stepRoundEF");
     $(".driverStraight").removeClass("straight"); $(".driverStraightEF").removeClass("straightEF");
@@ -677,6 +692,11 @@ function getModificationsData(url) {
     filtersList.inputWidth = 14;
     $('.searchInput, .searchInputEF').css('width','100px');
 
+    $(".applicationStraight").removeClass("stepStraight"); $(".applicationStraight").removeClass("stepStraightEF");
+    $(".applicationRound").removeClass("stepRound"); $(".applicationRoundEF").removeClass("stepRoundEF");
+    $(".applicationStraight, .applicationStraightEF").addClass("straight"); $(".applicationStraight, .applicationStraightEF").addClass("straightEF");
+    $(".applicationRound, .applicationRoundEF").addClass("round"); $(".applicationRound, .applicationRoundEF").addClass("roundEF");
+
     $(".driverStraight").removeClass("stepStraight"); $(".driverStraightEF").removeClass("stepStraightEF");
     $(".driverRound").removeClass("stepRound"); $(".driverRoundEF").removeClass("stepRoundEF");
     $(".driverStraight").addClass("straight"); $(".driverStraightEF").addClass("straightEF");
@@ -733,10 +753,16 @@ function getModelsData(url) {
     filtersList.inputWidth = 12;
     $('.searchInput, .searchInputEF').css('width','100px');
 
+    $(".applicationStraight").removeClass("stepStraight"); $(".applicationStraight").removeClass("stepStraightEF");
+    $(".applicationRound").removeClass("stepRound"); $(".applicationRoundEF").removeClass("stepRoundEF");
+    $(".applicationStraight, .applicationStraightEF").addClass("straight"); $(".applicationStraight, .applicationStraightEF").addClass("straightEF");
+    $(".applicationRound, .applicationRoundEF").addClass("round"); $(".applicationRound, .applicationRoundEF").addClass("roundEF");
+
     $(".driverStraight").removeClass("stepStraight"); $(".driverStraightEF").removeClass("stepStraightEF");
     $(".driverRound").removeClass("stepRound"); $(".driverRoundEF").removeClass("stepRoundEF");
     $(".driverStraight, .driverStraightEF").addClass("straight"); $(".driverStraight, .driverStraightEF").addClass("straightEF");
     $(".driverRound, .driverRoundEF").addClass("round"); $(".driverRound, .driverRoundEF").addClass("roundEF");
+
     $(".searchInput, .searchInputEF").attr("placeholder", "Модель");
 
     var htmlString = "";
@@ -788,10 +814,18 @@ function getYearsData(url){
     filtersList.inputWidth = 14;
     $('.searchInput, .searchInputEF').css('width','180px');
 
+    $(".applicationStraight").removeClass("stepStraight"); $(".applicationStraight").removeClass("stepStraightEF");
+    $(".applicationRound").removeClass("stepRound"); $(".applicationRoundEF").removeClass("stepRoundEF");
+    $(".applicationStraight, .applicationStraightEF").addClass("straight"); $(".applicationStraight, .applicationStraightEF").addClass("straightEF");
+    $(".applicationRound, .applicationRoundEF").addClass("round"); $(".applicationRound, .applicationRoundEF").addClass("roundEF");
+
     $(".driverStraight").removeClass("stepStraight"); $(".driverStraightEF").removeClass("stepStraightEF");
     $(".driverRound").removeClass("stepRound"); $(".driverRoundEF").removeClass("stepRoundEF");
     $(".driverStraight, .driverStraightEF").addClass("straight"); $(".driverStraight, .driverStraightEF").addClass("straightEF");
     $(".driverRound, .driverRoundEF").addClass("round"); $(".driverRound, .driverRoundEF").addClass("roundEF");
+
+
+
     $(".searchInput, .searchInputEF").attr("placeholder", "Год выпуска автомобиля");
     $('.selectInputBodyScrolling, .selectInputBodyScrollingEF').html('<div class="selectInputBodydivRow selectInputBodydivRow1"></div>' +
         '<div class="selectInputBodydivRow selectInputBodydivRow2"></div>' +
@@ -873,10 +907,17 @@ function getMarksData(url){
 
     filtersList.inputWidth = 24;
     $('.searchInput, .searchInputEF').css('width','180px');
+
+
+    $(".applicationStraight").removeClass("stepStraight"); $(".applicationStraight").removeClass("stepStraightEF");
+    $(".applicationRound").removeClass("stepRound"); $(".applicationRoundEF").removeClass("stepRoundEF");
+    $(".applicationStraight, .applicationStraightEF").addClass("straight"); $(".applicationStraight, .applicationStraightEF").addClass("straightEF");
+    $(".driveapplicationRoundrRound, .applicationRoundEF").addClass("round"); $(".applicationRound, .applicationRoundEF").addClass("roundEF");
+
+
     $(".driverStraight").removeClass("stepStraight"); $(".driverStraightEF").removeClass("stepStraightEF");
     $(".driverRound").removeClass("stepRound"); $(".driverRoundEF").removeClass("stepRoundEF");
-    $(".driverStraight, .driverStraightEF").addClass("straight");
-    $(".driverStraight, .driverStraightEF").addClass("straightEF");
+    $(".driverStraight, .driverStraightEF").addClass("straight"); $(".driverStraight, .driverStraightEF").addClass("straightEF");
     $(".driverRound, .driverRoundEF").addClass("round"); $(".driverRound, .driverRoundEF").addClass("roundEF");
     $(".searchInput, .searchInputEF").attr("placeholder", "Введите марку автомобиля ");
 
