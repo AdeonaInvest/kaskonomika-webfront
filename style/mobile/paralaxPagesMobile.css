@@ -1,14 +1,10 @@
 @media only screen and (max-width: 700px){
-
     .homeBackground{
         background-image: url('');
     }
-
-
     .page1Title span{
         font-size: 23px;
     }
-
     .parallaxPages .parallaxPage .pageTitle span{
         font-size: 23px;
     }
@@ -20,18 +16,14 @@
     }
     .parallaxPages .parallaxPage{
         float: left;
-
     }
-
     .parallaxPages .parallaxPage .searchPanel{
         margin-left: 8%;
         margin-top: 32%;
     }
-
     .parallaxPages .parallaxPage .pageBody span{
         font-size: 15px;
     }
-
     .parallaxPages .parallaxPage .pageTitle span, .parallaxPages .parallaxPage .page2Panel .pageTitle span,
     .parallaxPages .parallaxPage .page1Panel .pageTitle span, .parallaxPages .parallaxPage .page3Panel .pageTitle span,
     .parallaxPages .parallaxPage .page4Panel .pageTitle span{
@@ -41,5 +33,8 @@
     }
     .parallaxPages .parallaxPage .homeBackground{
         background-image: url('');
+    }
+    .parallaxPages #page3{
+        background-position: 66% 100%;
     }
 }

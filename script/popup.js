@@ -1,6 +1,3 @@
-
-
-
 var clickresetPageForm = 0;
 $('#popupButton').click(function(){
     clickresetPageForm = 0;

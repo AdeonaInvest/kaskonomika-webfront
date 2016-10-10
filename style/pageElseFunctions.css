@@ -7,6 +7,7 @@
     max-width: 3000px;
     position: relative;
     min-height: 650px;
+    overflow-x: hidden;
 }
 .pageElseFunctions .panel{
     margin-left: 21.5%;
@@ -15,6 +16,7 @@
     position: absolute;
     bottom: 0;
     z-index: 1000000;
+    overflow-x: hidden;
 }
 .elsePageSlideBody, .elsePageElements{
     /*height: 712px;*/
@@ -97,7 +99,7 @@
     opacity: 0.5;
     position: absolute;
     bottom: 0%;
-    margin-left: 3%;
+    margin-left: 0%;
 }
 .elseFunctionsText{
     display: inline-block;
@@ -135,7 +137,7 @@
 }
 .panelFillterWithDog{
     display: inline-block;
-    margin-left: 33%;
+    margin-left: 22%;
 }
 
 .selectPanelEF {
@@ -242,6 +244,7 @@
     width: 100%;
     position: absolute;
     text-align: center;
+    overflow-x: hidden;
 }
 .elsePageBarTitle {
     margin-left: -136%;

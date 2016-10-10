@@ -1,39 +1,8 @@
-@media only screen and (min-width: 1000px){
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@media only screen and (min-width: 1440px){
+    .parallaxPages .parallaxPage .pageBody span{
+        line-height: 200%;
+    }
+    .parallaxPages .parallaxPage .page1Panel .pageBody{
+        margin-top: 9%;
+    }
 }

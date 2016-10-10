@@ -40,6 +40,7 @@
         position: absolute;
         text-align: left;
         margin-left: 50%;
+        overflow-x: hidden;
     }
     .panelDog{
         margin-top: -230px;

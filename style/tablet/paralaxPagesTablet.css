@@ -7,7 +7,7 @@
         margin-left: 4%;
         margin-top: -1%;
         display: block;
-        margin-bottom: 12%;
+        margin-bottom: 15%;
         padding: 10px;
         font-family: "Geometria Narrow ExtraBold";
         width: 80%;
@@ -19,14 +19,32 @@
         font-size: 32px;
         font-family: "Geometria Narrow ExtraBold";
     }
+    .parallaxPages .parallaxPage .pageBody span{
+        line-height: 190%;
+    }
+
 }
 @media only screen and (min-width: 700px) and (max-width: 999px){
+
+    .parallaxPages .parallaxPage .homeBackground{
+        /*background-size: 47% 70%, 50% 94%;*/
+        /*background-position: right bottom, -64%;*/
+
+        background-size: 344px 73%, 384px 95%;
+        background-position: right bottom, -240px 100%;
+
+        height: 95%;
+        margin-top: 4%;
+    }
+
+
+
     .page1Title span{
         font-size: 38px;
     }
     .parallaxPages .parallaxPage .panel{
         margin-left: 31%;
-        margin-top: 36%;
+        margin-top: 24%;
         width: 52%;
     }
     .parallaxPages .parallaxPage .page4Panel{
@@ -46,12 +64,21 @@
     }
     .parallaxPages .homeBackground .searchPanel .panelTitle{
         margin-left: 6%;
+        margin-top: -4.5%;
+        margin-bottom: 11.5%;
+
+    }
+    .panelFilters{
+        margin-left: 2%;
     }
     .parallaxPages .parallaxPage .page1Panel .pageTitle{
         line-height: 265%;
     }
+    .slideImage{
+        margin-bottom: -3%;
+    }
 
     .parallaxPages .parallaxPage .searchPanel .panelTitle span{
-        font-size: 30px;
+        font-family: "Geometria Narrow ExtraBold";
     }
 }

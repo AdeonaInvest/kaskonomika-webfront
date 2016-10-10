@@ -1,7 +1,7 @@
 @media only screen and (max-width: 700px) {
 
     .parallaxPage .homeBackground .searchPanel {
-        margin-top: 18%;
+        margin-top: 6%;
     }
     .parallaxPage .homeBackground .searchPanel,
     .parallaxPage .homeBackground .panelFilters {
@@ -13,7 +13,7 @@
     .parallaxPage .homeBackground .panelFilters, .searchPanelEF, .panelFiltersEF{
         margin-top: 0%;
         margin-left: 0%;
-        width: 90%;
+        width: 96%;
         min-width: 272px;
         margin-bottom: 2%;
     }
@@ -118,7 +118,7 @@
     }
     .panelFilters, .panelFiltersEF{
         height: auto;
-        min-height: 165px;
+        min-height: 196px;
     }
 
     .searchPanel, .panelFilters{
@@ -149,7 +149,7 @@
         user-select: none;
         cursor: pointer;
         text-transform: uppercase;
-        margin-top: 19px;
+        margin-top: 21px;
         float: none;
     }
     .filterButton span, .filterButtonEF span{
@@ -163,6 +163,7 @@
         text-align: left;
         width: 90%;
         margin-left: 0px;
+        margin-top: 2%;
     }
     .filterButtonEF{
         margin-bottom: 8px;
@@ -180,8 +181,11 @@
         text-align: center;
     }
     .parallaxPages .parallaxPage .searchPanel .panelTitle span{
-        font-size: 20px;
+        font-size: 18px;
         text-align: center;
+    }
+    .parallaxPages .homeBackground .searchPanel .panelTitle{
+        margin-bottom: 4%;
     }
 
     .parallaxPage .homeBackground .panelTitle span,
@@ -199,4 +203,7 @@
         font-family: "Geometria Narrow ExtraBold";
     }
 
+    .line1, .line1EF{
+        margin-top: 11px;
+    }
 }

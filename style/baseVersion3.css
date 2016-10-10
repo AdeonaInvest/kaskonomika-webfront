@@ -32,16 +32,14 @@ html, body, .allBody, .header{
     overflow-x:hidden;
     /*max-width: 3000px;*/
 }
-.allBody{
+.allBody, .paralaxPages{
     overflow:hidden;
 }
-body{
+body, .allBody{
     width: 100%;
     min-height: 800px;
     min-width: 320px;
-
 }
-
 input{
     border: 1px solid #ffffff;
 }

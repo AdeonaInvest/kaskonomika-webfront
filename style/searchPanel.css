@@ -203,7 +203,7 @@
 }
 .selectInputBody .mark, .model, .year, .selectInputBodyEF .mark, .model, .year {
     display: inline-block;
-    height: 25px;
+    height: auto;
     float: left;
     margin-left: 22px;
     margin-top: 10px;
@@ -245,9 +245,8 @@
     -ms-user-select: none;
     user-select: none;
     cursor: pointer;
-
     margin-left: 1%;
-    margin-top: 1%;
+    margin-top: 1.2%;
     position: relative;
     float: right;
     margin-right: 3.5%;
@@ -255,7 +254,7 @@
 .filterButton span, .filterButtonEF span {
     display: inline-block;
     color: white;
-    margin-top: 7%;
+    margin-top: 6%;
     margin-left: 15%;
     font-size: 14px;
     text-align: center;
