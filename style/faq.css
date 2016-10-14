@@ -1,0 +1,30 @@
+.toolbar .kaskonomikaIcon{
+    margin-right: -2%;
+}
+.toolbar .menuItem1{
+    margin-left: 8%;
+}
+
+.calc{
+    float: right;
+    margin-right: 50px;
+}
+
+    .toolbar .calc {
+        margin-right: 2%;
+        margin-left: 0%;
+    }
+
+    .faqHeaderButtonItem{
+        cursor: pointer;
+    }
+
+
+    .linkToGroup{
+        margin-top: 20px;
+        margin-left:5px;
+        cursor: pointer;
+    }
+    #faqMenu{
+        min-width: 200px;
+    }

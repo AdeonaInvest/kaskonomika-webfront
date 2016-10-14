@@ -6,7 +6,7 @@
     #panelFillterWithDog {
         width: 100%;
         height: auto;
-        margin-left: 10%;
+        margin-left: 2%;
     }
     .owl-carousel .owl-item img{
         display: none;
@@ -30,9 +30,6 @@
         position: relative;
         text-align: center;
     }
-    .elsePageSlideItem{
-        text-align: center;
-    }
     .elsePageBars{
         display: inline-block;
         z-index: 9999999;
@@ -44,5 +41,7 @@
     }
     .panelDog{
         margin-top: -230px;
+        margin-left: 0px;
+        overflow: hidden;
     }
 }

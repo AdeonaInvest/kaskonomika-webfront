@@ -1,0 +1,55 @@
+
+@media screen and (min-width: 1440px){
+
+	.faqNotesItem{
+		width: 200px;
+	}
+
+
+	.faqHeaderDogIcon{
+		height: 186px;
+		width: 168px;
+		float: left;
+		margin-top: -74px;
+		margin-left: -776px;
+		position: relative;
+	}
+	.faqHeaderTitleText{
+		margin-top: 14px;
+	}
+	.faqHeaderSearch input{
+		margin-top: 1%;
+		margin-left: 382px;
+    	width: 43%;
+	}
+	.faqHeaderButtonItem{
+		float: left;
+		margin-top: 1%;
+		height: 82%;
+		margin-left: 21px;
+		cursor: pointer;
+	}
+	.faqHeaderContent{
+		margin-top: 0px;
+		width: auto;
+		display: block;
+	}
+	.faqNotes{
+		margin-top: 60px;
+    	margin-right: 104px;
+	}
+	.faqGroups{
+	    margin-left: 98px;	
+	}
+	.faqGroupsContext{
+	    margin-bottom: 10px;
+	}
+	.faqGroupItem{
+	    padding-left: 36px;
+	}
+	.faqGroupItemBody span {
+	    font-size: 16px;
+	}
+	
+}
+

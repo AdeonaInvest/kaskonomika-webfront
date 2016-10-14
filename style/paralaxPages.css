@@ -5,19 +5,19 @@
 }
 #page1{
     background-color:#b2dcf5;
-    background-image: url(../images/page1_bg.jpg);
+    background-image: url(../images/page1_bg.png);
 }
 #page2{
     background-color:#59c6f1;
-    background-image: url(../images/page2_bg.jpg);
+    background-image: url(../images/page2_bg.png);
 }
 #page3{
     background-color:#e86364;
-    background-image: url(../images/page3_bg.jpg);
+    background-image: url(../images/page3_bg.png);
 }
 #page4{
     background-color: #efefef;
-    background-image: url(../images/page4_bg.jpg);
+    background-image: url(../images/page4_bg.png);
 }
 
 .homeBackground{
@@ -83,11 +83,11 @@
 }
 .parallaxPages .parallaxPage .page1Panel{
     display: inline-block;
-    width: 47%;
+    width: 50%;
     height: auto;
     min-height: 45%;
     margin-left: 13%;
-    margin-top: 15%;
+    margin-top: 12%;
     padding: 0px;
 }
 .parallaxPages .parallaxPage .page1Panel .pageTitle{
@@ -102,6 +102,8 @@
 }
 .parallaxPages .parallaxPage .page1Panel .pageTitle span{
     font-size: 52px;
+    font-size: 3.7vw;
+    font-size: 6.8vh;
 }
 .parallaxPages .parallaxPage .page1Title{
     min-height: 210px;
@@ -114,15 +116,10 @@
 .parallaxPages .parallaxPage .page1Body{
     margin-top: 19px;
 }
-.parallaxPages .parallaxPage .pageBody span{
-    font-size: 21px;
-    display: block;
-
-}
 .parallaxPages .parallaxPage .page2Panel{
     display: inline-block;
     height: 400px;
-    width: 48%;
+    width: 50%;
     margin-left: 15%;
     margin-top: 12%;
 }
@@ -131,12 +128,14 @@
 }
 .parallaxPages .parallaxPage .page2Panel .pageTitle span{
     font-size: 53px;
+    font-size: 3.75vw;
+    font-size: 6.8vh;
     font-family: "Geometria Narrow Bold";
     line-height: 118%;
 }
 .parallaxPages .parallaxPage .page2Panel .pageBody{
     margin-top: 9.2%;
-    width: 81%;
+    width: 100%;
 }
 .page2Title{
     margin-bottom: 8%;
@@ -149,16 +148,11 @@
     margin-bottom: -29px;
 }
 
-.parallaxPages .parallaxPage .pageBody span{
-    font-size: 20px;
-    display: block;
-    margin-bottom: -7px;
-}
 .parallaxPages .parallaxPage .page3Panel{
     display: inline-block;
     height: auto;
     min-height: 45%;
-    margin-top: 15%;
+    margin-top: 12%;
     margin-left: 17%;
 }
 .parallaxPages .parallaxPage .page3Panel .pageTitle{
@@ -167,17 +161,11 @@
 }
 .parallaxPages .parallaxPage .page3Panel .pageTitle span{
     font-size: 53px;
+    font-size: 3.75vw;
+    font-size: 6.8vh;
 }
 .parallaxPages .parallaxPage .pageTitle{
     height: auto;
-}
-.parallaxPages .parallaxPage .pageTitle span{
-    font-size: 54px;
-    font-family: "Geometria Narrow Bold";
-}
-
-.parallaxPages .parallaxPage .pageBody span{
-    font-size: 20px;
 }
 .parallaxPages .parallaxPage .page4Panel{
     display: inline-block;
@@ -195,24 +183,27 @@
 }
 .parallaxPages .parallaxPage .pageTitle span{
     font-size: 36px;
+    font-size: 2.5vw;
     font-family: "Geometria Narrow Bold";
 }
 .parallaxPages .parallaxPage .pageBody{
     margin-top: 10%;
-
 }
 .parallaxPages .parallaxPage .pageBody span{
     font-size: 20px;
+    font-size: 1.48vw;
+    font-size: 2.6vh;
+    display: block;
+    margin-bottom: -7px;
 }
 .parallaxPages .parallaxPage .page4Item{
     display: inline-block;
     width: 100%;
     border-radius: 15px;
     padding: 5px;
-    margin-top: 15px;
+    margin-top: 7px;
     position: relative;
     z-index: 1000000;
-    margin-bottom: 2px;
 }
 
 .pageTitle, .elseFunctionsText, .pageBody, .panelTitle{
@@ -255,6 +246,8 @@
 }
 .parallaxPages .parallaxPage .searchPanel .panelTitle span{
     font-size: 36px;
+    font-size: 2.5vw;
+    font-size: 4.5vh;
     font-family: "Geometria Narrow Bold";
 }
 

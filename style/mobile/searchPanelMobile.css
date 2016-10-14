@@ -19,8 +19,6 @@
     }
     .searchPanelEF, .panelFiltersEF{
         min-width: 300px;
-        margin-left: -8%;
-
     }
     .parallaxPage .homeBackground .line1,
     .parallaxPage .homeBackground .line1EF {
@@ -182,6 +180,7 @@
     }
     .parallaxPages .parallaxPage .searchPanel .panelTitle span{
         font-size: 18px;
+        font-size: 5.8vw;
         text-align: center;
     }
     .parallaxPages .homeBackground .searchPanel .panelTitle{

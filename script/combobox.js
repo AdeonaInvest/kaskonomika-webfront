@@ -423,6 +423,11 @@ function addFilter(value, type, id) {
     filtrationExample(type);
 }
 function getPilotExYearData() {
+
+    $(".searchInput, .searchInputEF").css("display", "inline-block");
+    $(".openListIcon, .openListIconEF").css('display', 'inline-block');
+
+
     if (document.body.clientWidth < 1440) {
         $('.automobile, .automobileEF').css('display', 'none');
         $('.pilot, .pilotEF').css('display', 'inline-block');
@@ -454,7 +459,7 @@ function getPilotExYearData() {
     var htmlString3 = "";
     var htmlString4 = "";
     var yearCount = filtersList.words[5].value - 16;
-    if(document.body.clientWidth>1440){
+    if(document.body.clientWidth>=1440){
         for (var i = 2016 ; i > 2016 - (filtersList.words[5].value - 16); i--) {
             if(2016 -i < yearCount /4){
                 htmlString1 += '<div id="'+i+'" class="'+i+' year selectItemdiv"><span>'+i+'</span></div> ';
@@ -495,9 +500,6 @@ function getPilotExYearData() {
             $('.selectedExperiance, .selectedExperianceEF').remove();
             filtersList.width =(filtersList.words[5].symbols + 3) + (filtersList.words[4].symbols + 3) + (filtersList.words[3].symbols + 3) + (filtersList.words[2].symbols + 3) + (filtersList.words[1].symbols + 3) + (filtersList.words[0].symbols + 3);
         });
-
-
-
         $('.selectInputBodyScrolling, .selectInputBodyScrollingEF').html('');
         $('.selectInputBodyEF').css('padding-bottom', '0px');
         $('.selectInputBodyEF').css('padding-top', '0px');
@@ -506,7 +508,9 @@ function getPilotExYearData() {
         $('.selectInputBody').css('padding-top', '0px');
         $(".selectInputBody").css("display", "none");
         $(".selectInputBody, .selectInputBodyEF").slideUp("medium");
+
         $(".searchInput, .searchInputEF").css("display", "none");
+        $(".openListIcon, .openListIconEF").css('display', 'none');
 
         $(".applicationStraight").removeClass("straight"); $(".applicationStraightEF").removeClass("straightEF");
         $(".applicationRound").removeClass("round"); $(".applicationRoundEF").removeClass("roundEF");
@@ -517,7 +521,7 @@ function getPilotExYearData() {
         $('#selectPanel, #selectPanelEF').css('border-bottom-right-radius', '5px');
         $('#selectPanel, #selectPanelEF').css('border-bottom-left-radius', '5px');
         $(".filterButton").addClass('getAction'); $(".filterButtonEF").addClass('getActionEF');
-        $(".openListIcon, .openListIconEF").css('display', 'none');
+
 
         if (document.body.clientWidth < 1440) {
             $('.automobile, .automobileEF').css('display', 'none');
@@ -533,6 +537,10 @@ function getPilotExYearData() {
     });
 }
 function getPilotAgeData() {
+
+    $(".searchInput, .searchInputEF").css("display", "inline-block");
+    $(".openListIcon, .openListIconEF").css('display', 'inline-block');
+
     if (document.body.clientWidth < 1440) {
         $('.automobile, .automobileEF').css('display', 'none');
         $('.pilot, .pilotEF').css('display', 'inline-block');
@@ -563,7 +571,7 @@ function getPilotAgeData() {
     var htmlString2 = "";
     var htmlString3 = "";
     var htmlString4 = "";
-    if(document.body.clientWidth>1440) {
+    if(document.body.clientWidth>=1440) {
         for (var i = 18; i < 70; i++) {
             if(i <32){
                 htmlString1 += '<div id="' + i + '" class="' + i + ' year selectItemdiv"><span>' + i + '</span></div> ';
@@ -596,7 +604,7 @@ function getPilotAgeData() {
     $('.selectItemdiv, .selectItemdivEF').click(function(){
         addFilter($(this).context.id, 5, $(this).context.id);
 
-        $("#selectedAgeEF .close, #selectedAgeEF .close").click(function(){
+        $("#selectedAge .close, #selectedAgeEF .close").click(function(){
             $('.selectInputBody, .selectInputBodyEF').css('padding-bottom', '40px');
             $('.selectInputBody, .selectInputBodyEF').css('padding-top', '15px');
 
@@ -610,6 +618,10 @@ function getPilotAgeData() {
     });
 }
 function getPilotsData() {
+
+    $(".searchInput, .searchInputEF").css("display", "inline-block");
+    $(".openListIcon, .openListIconEF").css('display', 'inline-block');
+
     if (document.body.clientWidth < 1440) {
         $('.automobile, .automobileEF').css('display', 'none');
         $('.pilot, .pilotEF').css('display', 'inline-block');
@@ -677,6 +689,10 @@ function getPilotsData() {
     });
 }
 function getModificationsData(url) {
+
+    $(".searchInput, .searchInputEF").css("display", "inline-block");
+    $(".openListIcon, .openListIconEF").css('display', 'inline-block');
+
     if (document.body.clientWidth < 1440) {
         $('.automobile, .automobileEF').css('display', 'inline-block');
         $('.pilot, .pilotEF').css('display', 'none');
@@ -739,6 +755,9 @@ function getModificationsData(url) {
 }
 function getModelsData(url) {
 
+    $(".searchInput, .searchInputEF").css("display", "inline-block");
+    $(".openListIcon, .openListIconEF").css('display', 'inline-block');
+
     if (document.body.clientWidth < 1440) {
         $('.automobile, .automobileEF').css('display', 'inline-block');
         $('.pilot, .pilotEF').css('display', 'none');
@@ -799,6 +818,9 @@ function getModelsData(url) {
 }
 function getYearsData(url){
 
+    $(".searchInput, .searchInputEF").css("display", "inline-block");
+    $(".openListIcon, .openListIconEF").css('display', 'inline-block');
+
     if(document.body.clientWidth< 1440) {
         $('.automobile, .automobileEF').css('display', 'inline-block');
         $('.pilot, .pilotEF').css('display', 'none');
@@ -840,7 +862,7 @@ function getYearsData(url){
         dataType : "json",
         success: function (data, textStatus) {
             var responseLength = data.response.length;
-            if(document.body.clientWidth>1440){
+            if(document.body.clientWidth>=1440){
                 for (var i = 0; i<responseLength; i++) {
                     if(i <responseLength/4){
                         htmlString1 += '<div id="'+data.response[i]+'" class="'+data.response[i]+' year selectItemdiv"><span>'+data.response[i]+'</span></div> ';
@@ -893,6 +915,10 @@ function getYearsData(url){
     });
 }
 function getMarksData(url){
+
+    $(".searchInput, .searchInputEF").css("display", "inline-block");
+    $(".openListIcon, .openListIconEF").css('display', 'inline-block');
+
     if(document.body.clientWidth< 1440){
         $('.automobile, .automobileEF').css('display', 'inline-block');
         $('.pilot, .pilotEF').css('display', 'none');
@@ -948,7 +974,7 @@ function getMarksData(url){
                     popularMarksResponseJson.push(data.response[i].mark);
                 }
             }
-            if(document.body.clientWidth>1440){
+            if(document.body.clientWidth>=1440){
                 for (var i = 0; i<popularMarkResponseLength; i++) {
                     if(i <popularMarkResponseLength/4){
                         pHtmlString1 += '<div id="'+popularMarksResponseJson[i]+'" class="'+popularMarksResponseJson[i]+' mark selectItemdiv"><span>'+popularMarksResponseJson[i]+'</span></div> ';

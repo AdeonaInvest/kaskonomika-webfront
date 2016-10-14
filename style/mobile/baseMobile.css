@@ -1,37 +1,17 @@
 @media only screen and (max-width: 700px){
 
+body, .header, .allBody, .paralaxPages,
+.paralaxPage, .elsePageBars, .footer,
+.toolbar, .slideImage, .elseFunctionsText,
+.homeBackground, .panelTitle,
+ .owl-carousel, .owl-stage-outer,
+.owl-item, .item, .displayBlock,
+ .leftMenu, .pageElseFunctions,
+.owl-stage, .panelFillterWithDog, .panelDog{
+    overflow-x: hidden;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    .owl-stage-outer, .owl-stage, .owl-item, .owl-carousel{
+        overflow: hidden;
+    }
 }

@@ -23,11 +23,13 @@
     }
     .parallaxPages .parallaxPage .pageBody span{
         font-size: 15px;
+        font-size: 3vw;
     }
     .parallaxPages .parallaxPage .pageTitle span, .parallaxPages .parallaxPage .page2Panel .pageTitle span,
     .parallaxPages .parallaxPage .page1Panel .pageTitle span, .parallaxPages .parallaxPage .page3Panel .pageTitle span,
     .parallaxPages .parallaxPage .page4Panel .pageTitle span{
         font-size: 20px;
+        font-size: 6.5vw;
         line-height: 118%;
         margin-bottom: 12%;
     }
@@ -36,5 +38,8 @@
     }
     .parallaxPages #page3{
         background-position: 66% 100%;
+    }
+    .parallaxPages .parallaxPage .page4Panel .pageBody span{
+        font-size: 2.3vw;
     }
 }

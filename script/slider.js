@@ -106,7 +106,6 @@ $("#slideBar3").click(function(){
     slideItem = 4;
     getSlide();
 });
-
 $(window).resize(function() {
     getSlide();
 });

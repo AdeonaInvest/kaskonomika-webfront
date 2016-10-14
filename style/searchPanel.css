@@ -2,9 +2,6 @@
     margin-left: 32%;
     text-align: left;
 }
-.panelFilters{
-    margin-top: -10%;
-}
 .panelFilters, .panelFiltersEF {
     display: inline-block;
     background-color: #59c6f2;
@@ -157,7 +154,7 @@
     z-index: 10000;
 }
 .selectInputBodyEF{
-    max-height: 350px;
+    max-height: 255px;
 }
 .selectedTab, .selectedTabEF {
     display: inline-block;

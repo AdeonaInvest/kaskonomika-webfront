@@ -3,19 +3,19 @@
 }
 .toolbar{
     list-style-type: none;
-    padding-top: 12px;
-    height: 62px;
+    padding-top: 8px;
+    height: 70px;
     width: 100%;
     max-width: 3000px;
     position: fixed;
     background-color: #e5f3fc;
-    z-index: 10000000000;
+    z-index: 1000000000;
     min-width: 320px;
 }
 .toolbar .bar{
     float: left;
     cursor: pointer;
-    margin-left: 5%;
+    margin-left: 1.5%;
     margin-top: 9px;
 }
 .toolbar li{
@@ -37,6 +37,7 @@
     text-decoration: none;
     color:black;
     text-transform: uppercase;
+    font-size: 13px;
     font-family: "Geometria Narrow Medium";
 }
 .toolbar .bar a:hover{
@@ -51,17 +52,17 @@
     cursor: pointer;
 }
 .toolbar .kaskonomikaIcon{
-    width: 259px;
+    width: 268px;
     height: 59px;
     margin-left: 22px;
     margin-right: 10%;
-    /* margin-top: -56px; */
+    margin-top: -4px;
     background-image: url(../images/logo.svg);
     background-repeat: no-repeat;
     background-size: cover;
     float: left;
     cursor: pointer;
-    margin-top: -7px;
+
 }
 .toolbar .menuItem1{
     height: 30px;
@@ -95,12 +96,12 @@
 }
 .toolbar .accountTelephone{
     height: 30px;
-    margin-top: 21px;
+    margin-top: 24px;
     font-size: 12px;
     /*font-weight: bold;*/
     font-family: "Geometria Narrow Medium";
     float:right;
-    cursor: pointer;
+    /*cursor: pointer;*/
 }
 .toolbar .menuWorning{
     height: 41px;
@@ -145,18 +146,21 @@
     padding-right: 15px;
     background-color: #e5f3fc;
     z-index: 1000000000;
+    text-align: right;
 }
 .leftMenu .bar{
     display: none;
 }
 .leftMenu .bar a{
-    display: block;
+    border-bottom: 2px solid rgba(236, 235, 235, 0.61);
+    display: inline-block;
     text-align: right;
     padding: 14px 0px;
     text-decoration: none;
     color:black;
     text-transform: uppercase;
-    font-family: "Geometria Narrow Bold";
+    font-size: 13px;
+    font-family: "Geometria Narrow Medium";
 }
 .leftMenu .disable{
     display: none;
@@ -167,6 +171,34 @@
 .leftMenu{
     display: none;
 }
+
+.calc{
+    background-color: black;
+    color: white;
+    border-radius: 28px;
+    width: 184px;
+    margin-top: 11px;
+    display: inline-block;
+    margin-left: 4.7%;
+}
+.calc img{
+    margin-top: 10px;
+    display: inline-block;
+    float: left;
+    margin-left: 18px;
+}
+.calc a{
+    color: white;
+    font-size: 11px;
+    color: white;
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: "Geometria Narrow Bold";
+}
+
 @media only screen and (max-width: 1400px){
     .toolbar .menuItem4{
         display: none;

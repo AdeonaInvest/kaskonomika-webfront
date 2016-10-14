@@ -12,7 +12,7 @@
         min-width: 320px;
     }
     .parallaxPages .homeBackground .searchPanel .panelTitle{
-        margin-bottom: 14%;
+        margin-bottom: 5%;
         width: 82%;
         margin-left: 4%;
         margin-top: 0.4%;
@@ -67,6 +67,8 @@
         width: 73.5%;
     }
 
-
+    .filterButton, .filterButtonEF{
+        margin-top: 1%;
+    }
 
 }

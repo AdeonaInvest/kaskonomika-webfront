@@ -1,0 +1,218 @@
+    .toolbar .accountIcon{
+        background-color: #9ad8f5;
+    }
+    .faqBody{
+        min-width: 320px;
+    }
+    .faqHeader{
+        height: 278px;
+        background-color: #59c6f2;
+    }
+    .faqHeaderContent{
+        margin-top: 78px;
+        height: 200px;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+    }
+    .faqHeaderTitle{
+        display: inline-block;
+        height: 40px;
+        margin-top: 6px;
+        width: 100%;
+    }
+    .faqHeaderTitleText{
+        font-size: 27px;
+        margin-top: 4px;
+        display: inline-block;
+        color: #241e46;
+        font-family: "Geometria Narrow Bold";
+    }
+    .faqHeaderSearch{
+        display: inline-block;
+        margin-top: 20px;
+        height: 50px;
+        width: 100%;
+        float: left;
+    }
+    .faqHeaderSearch input{
+        width: 79%;
+        margin-left: 53px;
+        float: left;
+        height: 38px;
+        margin-top: 8px;
+        border-radius: 6px;
+    }
+    .faqHeaderDogIcon{
+        display: inline-block;
+        position: absolute;
+        width: 76px;
+        height: 152px;
+        background-image: url('../../images/faq/search_dog_icon_mobile.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 100%;
+    }
+    .faqHeaderSearch input{
+        padding-left: 15px;
+    }
+    .faqHeaderButton{
+        margin-top: 17px;
+        display: inline-block;
+        width: 100%;
+        height: 42px;
+    }
+    .faqHeaderButtonItem{
+        display: inline-block;
+        height: 96%;
+        width: 102px;
+        border-radius: 20px;
+        background-color: #241e46;
+    }
+    .faqHeaderButtonItem span {
+        margin-top: 9%;
+        display: inline-block;
+        color: white;
+    }
+    .faqNotesItem{
+        min-height: 50px;
+        background-color: #f4f4f4;
+        margin-top: 17px;
+        margin-left: 21px;
+        margin-right: 21px;
+        padding: 21px;
+    }
+    .faqNotesItemHead{
+        margin-bottom: 3px;
+        text-align: left;
+        margin-top: 2px;
+        margin-left: 2px;
+    }
+    .faqNotesItemHead span{
+        text-transform: uppercase;
+        font-family: "Geometria Narrow Bold";
+        font-size: 13px;
+        text-align: left;
+    }
+    .faqNotesItemBody span{
+        font-size: 14px;
+        text-align: left;
+    }
+    .faqGroups{
+        margin-left: 15px;
+        margin-right: -3px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .faqGroupsHead{
+        margin-right: 15px;
+        min-height: 40px;
+    }
+    .faqGroupsTitle{
+        display: inline-block;
+        height: 100%;
+        font-size: 18px;
+        padding-left: 4px;
+        padding-top: 8px;
+        font-family: "Geometria Narrow Bold";
+        width: 84%;
+    }
+    .faqGroupItem{
+        margin-top: 10px;
+        margin-right: 15px;
+        border: 1px solid #dadada;
+        border-radius: 5px;
+        padding: 22px;
+        text-align: left;
+        cursor: pointer;
+    }
+    .faqGroupItemHead{
+        text-align: left;
+    }
+    .faqGroupItemTitle{
+         font-family: "Geometria Narrow Medium";
+         font-size: 18px;
+         text-align: left;
+    }
+    .faqGroupItemBody{
+         margin-top: 10px;
+         text-align: left;
+         display: none;
+    }
+    .faqGroupItemBody span{
+         font-size: 12px;
+    }
+    .sectionButton, .sectionsButton{
+        display: inline-block;
+        width: 13px;
+        height: 10px;
+        background-image: url('../../images/faq/box_open_icon.png');
+        background-repeat: no-repeat;
+        -ms-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+        cursor: pointer;
+    }
+    .faqGroupsTitleButton {
+        margin-top: 20px;
+        margin-right: 14px;
+    }
+    .faqGroupItemTitleButton {
+        margin-right: -7px;
+        margin-top: 1%;
+        float: right;
+    }
+    .faqGroupsContext, .textAboutButton{
+        margin-top: 14px;
+        display: none;
+    }
+    .textAboutButton{
+        cursor: pointer;
+    }
+    .faqGroupsContext{
+        max-width: 480px;
+        min-width: 400px;
+    }
+
+    @media screen and (max-width: 699px){
+        .faqHeaderDogIcon{
+            position: relative;
+            margin-top: -67px;
+            margin-left: 0px;
+            float: left;
+        }
+        .faqHeaderContent{
+            margin-top: 35px;
+            height: 200px;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+        }
+        .faqHeaderSearch input{
+            width: 71%;
+        }
+        .faqHeaderButtonItem{
+            margin-top: 68px;
+            margin-left: -100%;
+            height: 82%;
+        }
+        .faqHeader{
+            height: 234px;
+        }
+        .calc{
+            margin-top: -3px;
+            width: 40px;
+            height: 40px;
+        }
+        .calc a{
+            display: none;
+        }
+        .calc img{
+            margin-left: 10px;
+            margin-top: 9px;
+        }
+    }
+
+

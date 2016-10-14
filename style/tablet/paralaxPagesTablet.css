@@ -7,13 +7,14 @@
         margin-left: 4%;
         margin-top: -1%;
         display: block;
-        margin-bottom: 15%;
+        margin-bottom: 4%;
         padding: 10px;
         font-family: "Geometria Narrow ExtraBold";
         width: 80%;
     }
     .parallaxPages .parallaxPage .searchPanel .panelTitle span{
         font-size: 28px;
+        font-size: 3vw;
     }
     .parallaxPages .parallaxPage .panelTitle span{
         font-size: 32px;
@@ -25,6 +26,11 @@
 
 }
 @media only screen and (min-width: 700px) and (max-width: 999px){
+
+    .parallaxPages .parallaxPage .pageBody span{
+        font-size: 2.48vw;
+        font-size: 2vw;
+    }
 
     .parallaxPages .parallaxPage .homeBackground{
         /*background-size: 47% 70%, 50% 94%;*/
@@ -57,6 +63,7 @@
     .parallaxPages .parallaxPage .page4Panel .pageTitle span,
     .parallaxPages .parallaxPage .page5Panel .pageTitle span{
         font-size: 36px;
+        font-size: 4.7vw;
     }
     .parallaxPages .parallaxPage .searchPanel{
         margin-left: -42%;
