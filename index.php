@@ -1,18 +1,11 @@
-
 <?php
-
 session_start();
-
 if(isset($_REQUEST["open"])) {
-
 	$_SESSION["open"] = true;
 }
-
 if(!isset($_SESSION["open"])) {
-
 	die("Это сайт!");
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -123,12 +116,12 @@ if(!isset($_SESSION["open"])) {
             <div class="header">
                 <ul id="toolbar" class="toolbar">
                     <li id="menu" class="menu"><div class="menuIconLine"></div><div class="menuIconLine"></div><div class="menuIconLine"></div></li>
-                    <li id="kaskonomikaIcon" class="kaskonomikaIcon"> <a href="index.html"></a></li>
+                    <li id="kaskonomikaIcon" class="kaskonomikaIcon"> <a href="index.php"></a></li>
                     <li class="accountIcon"></li>
                     <li class="menuWorning"></li>
                     <li class="accountTelephone">+7 499 550-00-09</li>
                     <li class="menuItem1 bar"><a href="#page2">наш сервис</a></li>
-                    <li class="menuItem2 bar"><a href="#page3">Как это работает</a></li>
+                    <li class="menuItem2 bar"><a href="howItWork.php">Как это работает</a></li>
                     <li class="menuItem3 bar"><a href="faq.php">Вопросы и ответы</a></li>
                     <li class="menuItem4 bar"><a href="#">скачать приложение</a></li>
                 </ul>
@@ -185,7 +178,7 @@ if(!isset($_SESSION["open"])) {
             </div>
             <ul id="leftMenu" class="leftMenu">
                 <li class="menuItem1 bar"><a href="#page2">наш сервис</a></li></br>
-                <li class="menuItem2 bar"><a href="#page3">Как это работает</a></li></br>
+                <li class="menuItem2 bar"><a href="howItWork.php">Как это работает</a></li>
                 <li class="menuItem3 bar"><a href="faq.php">Вопросы и ответы</a></li></br>
                 <li class="menuItem4 bar"><a href="#">скачать приложение</a></li></br>
             </ul>

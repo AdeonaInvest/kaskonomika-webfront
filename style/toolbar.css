@@ -198,6 +198,10 @@
     text-transform: uppercase;
     font-family: "Geometria Narrow Bold";
 }
+.toolbar .calc {
+    margin-right: 2%;
+    margin-left: 0%;
+}
 
 @media only screen and (max-width: 1400px){
     .toolbar .menuItem4{

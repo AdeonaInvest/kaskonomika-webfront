@@ -1,5 +1,25 @@
 $( document ).ready(function() {
 
+    window.addEventListener("scroll", function() {
+        if (window.scrollY > 5) {
+            document.getElementById('toolbar').style.backgroundColor = "#ffffff";
+            document.getElementById('leftMenu').style.backgroundColor = "#ffffff";
+            if(document.body.clientWidth>700){
+                document.getElementById('kaskonomikaIcon').style.backgroundImage = "url('images/logo_onscroll.svg')";
+            }else{
+                document.getElementById('kaskonomikaIcon').style.backgroundImage = "url('images/Kaskonomika_name_image.png')";
+            }
+        }else{
+            document.getElementById('toolbar').style.backgroundColor = "#e5f3fc";
+            document.getElementById('leftMenu').style.backgroundColor = "#e5f3fc";
+            if(document.body.clientWidth>700){
+                document.getElementById('kaskonomikaIcon').style.backgroundImage = "url('images/logo.svg')";
+            }else{
+                document.getElementById('kaskonomikaIcon').style.backgroundImage = "url('images/Kaskonomika_name_image.png')";
+            }
+        }
+    });
+
     var leftMeuOpen = 0;
     function leftMenuPosition(){
         if(document.body.clientWidth<1400){

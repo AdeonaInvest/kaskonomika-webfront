@@ -23,7 +23,7 @@
             $('.parallaxPages .homePage').css('height',(window.innerHeight+200)+'px');
         }
         if(document.body.clientWidth<700){
-            $('.phone').css('margin-left','-200px');
+            $('#phone').css('margin-left','-200px');
         }
         if (window.scrollY > 5) {
             if(document.body.clientWidth>700){
