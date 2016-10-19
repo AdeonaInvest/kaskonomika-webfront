@@ -1,24 +1,18 @@
 function setDisplayParams(){
     $('.slide1Body, .slide2Body').css('height', window.innerHeight*0.77+'px');
-    //$('.menuList').css('height', (window.innerHeight+window.innerHeight*1/3)+'px');
     $('.leftList, .phoneList, .rightList').css('height', window.innerHeight*0.7+'px');
     $('.filterDogIcon').css('margin-top', ($('.slide1Body').height()-160)+'px');
 
 }
 setDisplayParams();
-
 $(window).resize(function(){
     setDisplayParams();
-    if(document.body.clientWidth <700){
-        $('.phoneWithTelematic').css('height', document.body.clientWidth*1.23+'px');
-    }else{
-        $('.phoneWithTelematic').css('height', '604px');
-    }
+    //if(document.body.clientWidth <700){
+    //    //$('.phoneWithTelematic').css('height', document.body.clientWidth*1.23+'px');
+    //}else{
+    //    //$('.phoneWithTelematic').css('height', '604px');
+    //}
 });
-
-
-
-
     var slideItem = 0;
     var owl = $('.owl-carousel');
     owl.owlCarousel({
@@ -38,33 +32,30 @@ $(window).resize(function(){
             }
         }
     });
-
     owl.trigger('to.owl.carousel', 1);
-    $("#slideBar1").click(function(){
-        $('.tab').removeClass('active');
-        $(this).addClass('active');
-        owl.trigger('to.owl.carousel', 2);
-        slideItem = 2;
-    });
-    $("#slideBar2").click(function(){
-        $('.tab').removeClass('active');
-        $(this).addClass('active');
-        owl.trigger('to.owl.carousel', 3);
-        slideItem = 3;
-    });
-    $("#slideBar3").click(function(){
-        $('.tab').removeClass('active');
-        $(this).addClass('active');
-        owl.trigger('to.owl.carousel', 1);
-        slideItem = 1;
-    });
-
+//$("#slideBar1").click(function(){
+//    $('.tab').removeClass('active');
+//    $(this).addClass('active');
+//    owl.trigger('to.owl.carousel', 2);
+//    slideItem = 2;
+//});
+//$("#slideBar2").click(function(){
+//    $('.tab').removeClass('active');
+//    $(this).addClass('active');
+//    owl.trigger('to.owl.carousel', 3);
+//    slideItem = 3;
+//});
+//$("#slideBar3").click(function(){
+//    $('.tab').removeClass('active');
+//    $(this).addClass('active');
+//    owl.trigger('to.owl.carousel', 1);
+//    slideItem = 1;
+//});
 function setTab(item){
         $('.tab').removeClass('active');
         $("#slideBar"+item).addClass('active');
         owl.trigger('to.owl.carousel', item);
 }
-
 owl.on('changed.owl.carousel', function(event) {
     switch (event.item.index){
         case 1:

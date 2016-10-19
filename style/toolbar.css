@@ -59,7 +59,7 @@
     margin-top: -4px;
     background-image: url(../images/logo.svg);
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
     float: left;
     cursor: pointer;
 
@@ -199,7 +199,7 @@
     font-family: "Geometria Narrow Bold";
 }
 .toolbar .calc {
-    margin-right: 2%;
+    margin-right: 1%;
     margin-left: 0%;
 }
 
@@ -241,5 +241,11 @@
     }
     .leftMenu .menuItem4, .leftMenu .menuItem3, .leftMenu .menuItem2, .leftMenu .menuItem1{
         display: inline;
+    }
+}
+@media only screen and (max-width: 717px)  and (min-width: 700px){
+    .toolbar .kaskonomikaIcon{
+        height: 30px;
+        margin-top: 12px;
     }
 }

@@ -1,14 +1,31 @@
 @media only screen and (min-width: 700px) and (max-width: 1439px){
-
+    .accountTelephone{
+        display: none;
+    }
+    .slide3Body .pageInfoGroup{
+        margin-top: 20%;
+    }
 }
 @media only screen and (min-width: 1100px) and (max-width: 1300px){
     .elseQuestions{
         margin-right:-5%;
     }
+    .phoneWithTelematic{
+        margin-left: 8%;
+    }
+    .pageInfoGroup{
+        margin-left: 9%;
+    }
 }
 @media only screen and (min-width: 700px) and (max-width: 1100px){
+    .slide3Body .pageInfoGroup{
+        margin-top: 24%;
+    }
+    .addInfoGroup{
+        margin-right: 8%;
+    }
     .slide3Body{
-        margin-top: 21.5%;
+        margin-top: 12%;
     }
     .dogInCar{
         width: 50%;
@@ -21,9 +38,11 @@
     .pageInfoGroup{
         margin-left: 4.5%;
     }
-    /*.phoneWithTelematic{*/
-        /*margin-left: 4%;*/
-    /*}*/
+    .phoneWithTelematic{
+        margin-left: 4%;
+        background-size: contain;
+        margin-top: 20px;
+    }
     .leftList{
         width: 200px;
     }
@@ -32,12 +51,18 @@
     .elseQuestions{
         margin-right:-15%;
     }
+    .phoneWithTelematic{
+        margin-left: 2%;
+    }
 }
 @media only screen and (min-width: 700px) and (max-width: 800px){
     .elseQuestions{
         margin-right:-25%;
     }
     .leftList{
+        margin-left: 3%;
+    }
+    .phoneWithTelematic{
         margin-left: 0px;
     }
 }

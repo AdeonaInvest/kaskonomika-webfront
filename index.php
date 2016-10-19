@@ -178,7 +178,7 @@ if(!isset($_SESSION["open"])) {
             </div>
             <ul id="leftMenu" class="leftMenu">
                 <li class="menuItem1 bar"><a href="#page2">наш сервис</a></li></br>
-                <li class="menuItem2 bar"><a href="howItWork.php">Как это работает</a></li>
+                <li class="menuItem2 bar"><a href="howItWork.php">Как это работает</a></li></br>
                 <li class="menuItem3 bar"><a href="faq.php">Вопросы и ответы</a></li></br>
                 <li class="menuItem4 bar"><a href="#">скачать приложение</a></li></br>
             </ul>
