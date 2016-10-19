@@ -155,7 +155,7 @@
     }
     .leftButtonItem, .rightButtonItem{
         height: 100%;
-        width: 50px;
+        width: 48px;
         display: inline-block;
         cursor: pointer;
     }
