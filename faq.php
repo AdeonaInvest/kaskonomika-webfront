@@ -92,9 +92,7 @@
     <div class="faqHeader">
         <div class="faqHeaderContent">
             <div class="faqHeaderTitle"><span class="faqHeaderTitleText">Вопросы и ответы</span></div>
-
             <div class="faqHeaderSearch">
-
                 <input type="text" />
                 <div class="faqHeaderDogIcon"></div>
                 <div class="faqHeaderButtonItem"><span class="faqHeaderButtonItemText">Найти</span></div>

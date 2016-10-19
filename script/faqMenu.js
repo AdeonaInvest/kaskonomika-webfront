@@ -1,23 +1,19 @@
 $( document ).ready(function() {
 
+    document.getElementById('toolbar').style.backgroundColor = "#ffffff";
+    document.getElementById('leftMenu').style.backgroundColor = "#ffffff";
+    if(document.body.clientWidth>700){
+        document.getElementById('kaskonomikaIcon').style.backgroundImage = "url('images/logo_onscroll.svg')";
+    }else{
+        document.getElementById('kaskonomikaIcon').style.backgroundImage = "url('images/Kaskonomika_name_image.png')";
+    }
     window.addEventListener("scroll", function() {
-        if (window.scrollY > 5) {
-            document.getElementById('toolbar').style.backgroundColor = "#ffffff";
-            document.getElementById('leftMenu').style.backgroundColor = "#ffffff";
+
             if(document.body.clientWidth>700){
                 document.getElementById('kaskonomikaIcon').style.backgroundImage = "url('images/logo_onscroll.svg')";
             }else{
                 document.getElementById('kaskonomikaIcon').style.backgroundImage = "url('images/Kaskonomika_name_image.png')";
             }
-        }else{
-            document.getElementById('toolbar').style.backgroundColor = "#e5f3fc";
-            document.getElementById('leftMenu').style.backgroundColor = "#e5f3fc";
-            if(document.body.clientWidth>700){
-                document.getElementById('kaskonomikaIcon').style.backgroundImage = "url('images/logo.svg')";
-            }else{
-                document.getElementById('kaskonomikaIcon').style.backgroundImage = "url('images/Kaskonomika_name_image.png')";
-            }
-        }
     });
 
     var leftMeuOpen = 0;
@@ -64,8 +60,7 @@ $( document ).ready(function() {
     var htmlNotItemBody='';
     var htmlNotString = '';
 
-
-    htmlNotItemHead  += '<div class="faqNotesItemHead "><span>МЕНЮ </span> </div>';
+    htmlNotItemHead  += '<div class="faqNotesItemHead "><span>Содержание </span> </div>';
     for(var i=0; i<dataOfSections.length; i++){
         htmlNotItemHead  += '<div class="faqNotesItemBody linkToGroup"><span>'+dataOfSections[i].title+'  </span> </div>';
             htmlGroupHeadString += '<div class="faqGroupsHead">'+
@@ -176,7 +171,7 @@ $( document ).ready(function() {
             var headTitle = document.querySelectorAll('.faqGroups')[i].children[0].children[0].innerText;
             if(headTitle.split(str).length >1 ){
                 for(k=1;k<headTitle.split(str).length; k++){
-                    headTitle.replace(str, '<span class="findWord">' + str + '</span>')
+                    headTitle = headTitle.replace(str, '<span class="findWord">' + str + '</span>')
                 }
                 document.querySelectorAll('.faqGroups')[i].children[0].children[0].innerText = headTitle;
             }else{
@@ -186,13 +181,13 @@ $( document ).ready(function() {
                     var groupText = document.querySelectorAll('.faqGroups')[i].children[j].children[1].children[0].innerText;
                     if(groupTitle.split(str).length >1 || groupText.split(str).length >1){
                         for(k=1;k<groupTitle.split(str).length; k++){
-                            groupTitle.replace(str, '<span class="findWord">' + str + '</span>')
+                            groupTitle = groupTitle.replace(str, '<span class="findWord">' + str + '</span>')
                         }
                         for(k=1;k<groupText.split(str).length; k++){
-                            groupText.replace(str, '<span class="findWord">' + str + '</span>')
+                            groupText = groupText.replace(str, '<span class="findWord">' + str + '</span>')
                         }
-                        document.querySelectorAll('.faqGroups')[i].children[j].children[0].children[0].innerText = groupTitle;
-                        document.querySelectorAll('.faqGroups')[i].children[j].children[1].children[0].innerText = groupText;
+                        document.querySelectorAll('.faqGroups')[i].children[j].children[0].children[0].innerHTML = groupTitle;
+                        document.querySelectorAll('.faqGroups')[i].children[j].children[1].children[0].innerHTML = groupText;
                     }else{
                         groupNullResultCount++;
                         document.querySelectorAll('.faqGroups')[i].children[j].style.display="none";
@@ -218,12 +213,12 @@ $( document ).ready(function() {
             $('.faqGroupItem').css('width', (document.body.clientWidth - 442) +'px');
         }else if(document.body.clientWidth<700){
             $('.faqHeaderSearch input').css('width', '79%');
-            //$('.faqHeaderDogIcon').css('margin-left', '0px');
+            $('.faqHeaderDogIcon').css('margin-left', '0px');
             $('.faqGroups').css('width', '100%');
             $('.faqGroupItem').css('width', '80%');
         }else{
              $('.faqHeaderSearch input').css('width', (document.body.clientWidth - 825) +'px');
-             $('.faqHeaderDogIcon').css('margin-left', '-'+($('.faqHeaderSearch input').width()+161) +'px');
+             $('.faqHeaderDogIcon').css('margin-left', '-'+($('.faqHeaderSearch input').width()+170) +'px');
 
              $('.faqGroups').css('width', (document.body.clientWidth - 540) +'px');
              $('.faqGroupItem').css('width', '86%');
@@ -239,7 +234,7 @@ $( document ).ready(function() {
     $(window).scroll(function(){
         var docEl = document.documentElement;
         var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
-        if(scrollTop > 300 && document.body.clientWidth>699){
+        if(scrollTop > 200 && document.body.clientWidth>699){
             document.getElementById('faqMenu').style.position='fixed';
             document.getElementById('faqMenu').style.marginTop='-200px';
         }else{

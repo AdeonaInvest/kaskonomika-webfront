@@ -40,7 +40,7 @@
         }
     });
     window.addEventListener("scroll", function() {
-        if (window.scrollY > 5) {
+        if (window.scrollY > 5 || $('#phone').length == 0) {
             document.getElementById('toolbar').style.backgroundColor = "#ffffff";
             document.getElementById('leftMenu').style.backgroundColor = "#ffffff";
             if(document.body.clientWidth>700){

@@ -8,11 +8,12 @@
 
 	.faqHeaderDogIcon{
 		height: 186px;
-		width: 168px;
+		width: 180px;
 		float: left;
 		margin-top: -74px;
 		margin-left: -776px;
 		position: relative;
+		background-image: url(../../images/faq/search_dog_desktop_iceon.png);
 	}
 	.faqHeaderTitleText{
 		margin-top: 14px;
@@ -50,6 +51,6 @@
 	.faqGroupItemBody span {
 	    font-size: 16px;
 	}
-	
+
 }
 

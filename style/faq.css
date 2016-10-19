@@ -9,7 +9,6 @@
     float: right;
     margin-right: 50px;
 }
-
     .toolbar .calc {
         margin-right: 2%;
         margin-left: 0%;
@@ -18,8 +17,6 @@
     .faqHeaderButtonItem{
         cursor: pointer;
     }
-
-
     .linkToGroup{
         margin-top: 20px;
         margin-left:5px;
@@ -27,4 +24,7 @@
     }
     #faqMenu{
         min-width: 200px;
+    }
+    .findWord{
+        border-bottom: 1px solid black;
     }
