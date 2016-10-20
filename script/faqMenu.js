@@ -34,7 +34,7 @@ $( document ).ready(function() {
     document.querySelector('.faqBody').style.minHeight = window.innerHeight+'px';
     var urlSection = 'http://sitetest.kaskonomika.ru/faq/section/list';
     var urlNotice = 'http://sitetest.kaskonomika.ru/faq/notice/list';
-    var dateJson={}
+    var dateJson={};
     function getJsonDate(dateUrl){
         $.ajax({
             type: "GET",
@@ -58,7 +58,6 @@ $( document ).ready(function() {
     var htmlNotItemHead='';
     var htmlNotItemBody='';
     var htmlNotString = '';
-
     htmlNotItemHead  += '<div class="faqNotesItemHead "><span>Содержание </span> </div>';
     for(var i=0; i<dataOfSections.length; i++){
         htmlNotItemHead  += '<div class="faqNotesItemBody linkToGroup"><span>'+dataOfSections[i].title+'  </span> </div>';
@@ -92,8 +91,11 @@ $( document ).ready(function() {
         htmlNotString +='<div class="faqNotesItem">' + htmlNotItemHead + htmlNotItemBody + '</div>';
         htmlNotItemHead = ''; htmlNotItemBody = '';
     }
-    htmlNotString = '<div class="faqNotes">' + htmlNotString + '</div>';
+    var htmlDontFound ='<div id="dontFoundLine" class="dontFoundLine"><div class="dontFoundBlock"><span>По вашему запросу ничего не найдено</span></div></div> ';
+
+    htmlNotString = htmlDontFound + '<div class="faqNotes">' + htmlNotString + '</div>';
     $('.faqBody').html(htmlNotString + htmlGroupString);
+
     function getRotationDegrees(obj) {
         var matrix = obj.css("-webkit-transform") ||
             obj.css("-moz-transform") ||
@@ -161,34 +163,29 @@ $( document ).ready(function() {
     $('.faqBody').css('min-height', ($('.faqNotes').css('height')+100)+'px');
 
     function doSearch(str){
-
+        $('#dontFoundLine').css('display', 'none');
+        var lastSearchSpanOpen = '<span class="findWord">';
+        var lastSearchSpanClose = '</span>';
         var nullResultElementWidth = $('.faqGroupItem').width();
         var strUpperCase = str.toUpperCase();
         var strFSleUpperCase = '';
         if(str.length>0){
             strFSleUpperCase = str[0].toUpperCase() + str.substring(1, str.length);
-            $('#dontFoundLine').remove();
         }
-
-        $('.faqGroups').css('display', 'inline-block');
-        $('.faqGroupItem').css('display', 'inline-block');
         var groupNullResultCount = 0;
         var k=1;
         var itemsCount = 0;
         var headTitle, headTitleUpperCase, groupTitle, groupTitleUpperCase, groupText, groupTextUpperCase;
+
+        $('.faqGroups').css('display', 'inline-block');
+        $('.faqGroupItem').css('display', 'inline-block');
+
         for(var i =0; i<$('.faqGroups').length;i++){
             headTitle = document.querySelectorAll('.faqGroups')[i].children[0].children[0].innerText;
             headTitleUpperCase = headTitle.toUpperCase();
             itemsCount = itemsCount + headTitleUpperCase.split(strUpperCase).length - 1;
-            if(headTitleUpperCase.split(strUpperCase).length >1 ) {
-                for (k = 1; k < headTitleUpperCase.split(strUpperCase).length; k++) {
-                    headTitle = headTitle.replace(str, '<span class="findWord">' + str + '</span>');
-                    headTitle = headTitle.replace(strFSleUpperCase, '<span class="findWord">' + strFSleUpperCase + '</span>');
-                }
-                document.querySelectorAll('.faqGroups')[i].children[0].children[0].innerHTML = headTitle;
-            }
-            groupNullResultCount = 0;
 
+                groupNullResultCount = 0;
                 for(var j=1;j<document.querySelectorAll('.faqGroups')[i].children.length; j++){
                      groupTitle = document.querySelectorAll('.faqGroups')[i].children[j].children[0].children[0].innerText;
                      groupTitleUpperCase = groupTitle.toUpperCase();
@@ -196,6 +193,15 @@ $( document ).ready(function() {
                      groupTextUpperCase = groupText.toUpperCase();
 
                     itemsCount = itemsCount + groupTitleUpperCase.split(strUpperCase).length + groupTextUpperCase.split(strUpperCase).length - 2;
+
+                    for(k=1;k<groupTitle.split(lastSearchSpanOpen).length; k++){
+                        groupTitle = groupTitle.replace(lastSearchSpanOpen, '');
+                        groupTitle = groupTitle.replace(lastSearchSpanClose, '');
+                    }
+                    for(k=1;k<groupText.split(lastSearchSpanOpen).length; k++){
+                        groupText = groupText.replace(lastSearchSpanOpen, '');
+                        groupText = groupText.replace(lastSearchSpanClose, '');
+                    }
                     if(groupTitleUpperCase.split(strUpperCase).length >1 || groupTextUpperCase.split(strUpperCase).length >1){
                         for(k=1;k<groupTitleUpperCase.split(strUpperCase).length; k++){
                             groupTitle = groupTitle.replace(str, '<span class="findWord">' + str + '</span>');
@@ -205,14 +211,16 @@ $( document ).ready(function() {
                             groupText = groupText.replace(str, '<span class="findWord">' + str + '</span>');
                             groupText = groupText.replace(strFSleUpperCase, '<span class="findWord">' + strFSleUpperCase + '</span>');
                         }
+                        if(groupTextUpperCase.split(strUpperCase).length>1 && str.length>0){
+                            document.querySelectorAll('.faqGroups')[i].children[j].children[1].style.display="block";
+                        }else{
+                            document.querySelectorAll('.faqGroups')[i].children[j].children[1].style.display="none";
+                        }
                         document.querySelectorAll('.faqGroups')[i].children[j].children[0].children[0].innerHTML = groupTitle;
                         document.querySelectorAll('.faqGroups')[i].children[j].children[1].children[0].innerHTML = groupText;
-                        document.querySelectorAll('.faqGroups')[i].children[j].children[1].style.display='block';
                     }else{
-                        if(headTitleUpperCase.split(strUpperCase).length <2 ) {
-                            groupNullResultCount++;
-                            document.querySelectorAll('.faqGroups')[i].children[j].style.display = "none";
-                        }
+                        groupNullResultCount++;
+                        document.querySelectorAll('.faqGroups')[i].children[j].style.display = "none";
                     }
                 }
                 if(groupNullResultCount == document.querySelectorAll('.faqGroups')[i].children.length - 1){
@@ -223,10 +231,11 @@ $( document ).ready(function() {
         }
 
         if(itemsCount == 0){
-            var htmlNullResult = "<div id='dontFoundLine' class='dontFoundLine'><div class='dontFoundBlock'><span>По Вашему запросу не удалось ничего найти.</span></div></div>";
-            document.querySelector('#faqBody').innerHTML = htmlNullResult + document.querySelector('#faqBody').innerHTML;
+            $('#dontFoundLine').css('display', 'block');
             $('.dontFoundBlock').width(nullResultElementWidth);
-            doSearch('');
+            $('.faqGroups').css('display', 'block');
+            $('.faqGroups .faqGroupItem').css('display', 'block');
+
         }
     }
     $('.faqHeaderButtonItem').click(function(){
@@ -256,7 +265,6 @@ $( document ).ready(function() {
 
              $('.faqGroups').css('width', (document.body.clientWidth - 540) +'px');
              $('.faqGroupItem').css('width', '86%');
-             
         }
         $('.textAboutButton').css('margin-left', ($('.faqGroupItem').width() - 100)+'px');
     }
@@ -287,8 +295,4 @@ $( document ).ready(function() {
         var element =  document.getElementById($(this).text().trim());
         $('html, body').animate({scrollTop:element.getBoundingClientRect().top  +  scrollTop - clientTop -75}, 800);
     });
-
-
-
-
 });

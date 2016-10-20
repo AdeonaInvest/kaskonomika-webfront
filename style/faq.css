@@ -28,11 +28,10 @@
 .findWord{
     border-bottom: 1px solid black;
 }
-/*.dontFound{*/
-    /*display: none;*/
-/*}*/
+
 .dontFoundLine{
     text-align: center;
+    display: none;
 }
 .dontFoundBlock{
     display: inline-block;
