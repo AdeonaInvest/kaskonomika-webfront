@@ -9,22 +9,38 @@
     float: right;
     margin-right: 50px;
 }
-    .toolbar .calc {
-        margin-right: 2%;
-        margin-left: 0%;
-    }
+.toolbar .calc {
+    margin-right: 2%;
+    margin-left: 0%;
+}
 
-    .faqHeaderButtonItem{
-        cursor: pointer;
-    }
-    .linkToGroup{
-        margin-top: 20px;
-        margin-left:5px;
-        cursor: pointer;
-    }
-    #faqMenu{
-        min-width: 200px;
-    }
-    .findWord{
-        border-bottom: 1px solid black;
-    }
+.faqHeaderButtonItem{
+    cursor: pointer;
+}
+.linkToGroup{
+    margin-top: 20px;
+    margin-left:5px;
+    cursor: pointer;
+}
+#faqMenu{
+    min-width: 200px;
+}
+.findWord{
+    border-bottom: 1px solid black;
+}
+/*.dontFound{*/
+    /*display: none;*/
+/*}*/
+.dontFoundLine{
+    text-align: center;
+}
+.dontFoundBlock{
+    display: inline-block;
+    height: 50px;
+    background-color: #d4edfc;
+}
+.dontFoundBlock span{
+    font-size: 14px;
+    margin-top: 16px;
+    display: inline-block;
+}

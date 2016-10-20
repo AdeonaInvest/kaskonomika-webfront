@@ -46,7 +46,7 @@
         margin-bottom: 15px;
         margin-top: 43px;
     }
-    .faqGroups{
+    .faqGroups, .dontFoundBlock{
         display: inline-block;
         width: 394px;
         margin-right: 5px;

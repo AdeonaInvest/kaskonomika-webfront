@@ -71,7 +71,7 @@
 
     <style>
         .owl-carousel{
-            width: 88%;
+            width: 90%;
         }
         .owl-stage-outer{
             height: 100%;
@@ -117,10 +117,10 @@
                         </div>
 
                         <div class="groupTitle">
-                            <span>Выбирайте лучшие условия, оплачивайте и получайте полис прямо на сайте</span>
+                            <span>Выбирайте лучшие условия, оплачивайте и получайте полис прямо на сайте</span>
                         </div>
                         <div class="groupInfo">
-                            <span>Наш сайт позволяет создать любую конфигурацию наполнения и условий вашего Каско. </span>
+                            <span>Наш сайт позволяет создать любую конфигурацию наполнения и условий вашего Каско.</span>
                         </div>
                     </div>
                 </div>
@@ -131,10 +131,10 @@
                                 <span class="infoGroupNumber">2</span>
                             </div>
                             <div class="groupTitle">
-                                <span>Договоритесь с нашими специалистами об установке трекера и осмотре автомобиля</span>
+                                <span>Договоритесь с нашими специалистами об установке трекера и осмотре автомобиля</span>
                             </div>
                             <div class="groupInfo">
-                                <span>Мы готовы приехать в удобное для вас время и место. Не забудьте, что на осмотр должен быть представлен чистый автомобиль и два комплекта ключей </span>
+                                <span>Мы готовы приехать в удобное для вас время и место. Не забудьте, что на осмотр должен быть предоставлен чистый автомобиль и два комплекта ключей.</span>
                             </div>
                         </div>
                         <div class="dogInCar"></div>
@@ -143,8 +143,8 @@
                         <div class="addInfoGroup">
                             <div class="dots"></div><div class="dots"></div><div class="dots"></div>
                             <div class="groupInfo">
-                                <span>Во время установки трекера, мы активируем устройство и «привяжем» его к вашему полису Каско.</span>
-                                <span>Не забудьте установить мобильное приложение Каскономика на свой смартфон, чтобы пользоваться всеми сервисами, доступными для наших клиентов</span>
+                                <span>После установки трекера мы активируем его и «привяжем» к вашему полису Каско.</span>
+                                <span>Не забудьте установить мобильное приложение Каскономика на свой смартфон, чтобы пользоваться всеми сервисами, разработанными для наших клиентов.</span>
                             </div>
                             <div class="apps" >
                                 <div class="AppleApp"></div>
@@ -163,26 +163,27 @@
                             <span>Ваш автомобиль застрахован!</span>
                         </div>
                         <div class="groupInfo">
-                            <span>После осмотра машины и установки трекера, ваш полис начнет действовать.
-                                Совершайте поездки в привычном для вас режиме и наблюдайте как меняется оценка вашего вождения. 
-                                Если возникнет необходимость, мы всегда подскажем как ее улучшить через мобильное приложение
+                            <span>
+                                После осмотра машины и установки трекера ваш полис начнет действовать.
+                                Совершайте поездки в привычной для вас манере и наблюдайте, как меняется оценка вашего вождения.
+                                Если возникнет необходимость, мы всегда подскажем, как ее улучшить, через мобильное приложение.
                             </span>
                         </div>
                     </div>
                     <div class="elseQuestions">
                         <div class="question1">
-                            <span class="questionTitle">Оценка вождения</span></br>
-                            <span class="questionText">Отлично! Продолжайте в том же духе </span></br>
+                            <span class="questionTitle">ОЦЕНКА ВОЖДЕНИЯ</span></br>
+                            <span class="questionText">Отлично! Продолжайте в том же духе</span></br>
                             <span class="questionDate">12.10.2016</span>
                         </div>
                         <div class="question2">
-                            <span class="questionTitle">Рекомендации </span></br>
-                            <span class="questionText">Водите осторожнее </span></br>
+                            <span class="questionTitle">РЕКОМЕНДАЦИИ</span></br>
+                            <span class="questionText">Водите осторожнее</span></br>
                             <span class="questionDate">12.10.2016</span>
                         </div>
                         <div class="question3">
-                            <span class="questionTitle">Оценка Вождения </span></br>
-                            <span class="questionText">Хорошо. Внимательнее на поворотах.</span></br>
+                            <span class="questionTitle">ОЦЕНКА ВОЖДЕНИЯ</span></br>
+                            <span class="questionText">Хорошо. Внимательнее на поворотах</span></br>
                             <span class="questionDate">12.10.2016</span>
                         </div>
                     </div>
@@ -211,7 +212,7 @@
                                 <div id="slideBar3" class="tab"></div>
                             </div>
                             <div class="addGroupInfo">
-                                <span>Трекер считывает информацию о характере ваших поездок: </span>
+                                <span>Трекер считывает информацию о ваших поездках:</span>
                                 <div class="addGroupInfoItem">
                                     <span class="itemDot"></span>
                                     <span class="itemInfo">продолжительность,</span>
@@ -222,11 +223,11 @@
                                 </div>
                                 <div class="addGroupInfoItem">
                                     <span class="itemDot"></span>
-                                    <span class="itemInfo">агрессивность манеры езды,</span>
+                                    <span class="itemInfo">степень агрессивности вождения,</span>
                                 </div>
                                 <div class="addGroupInfoItem">
                                     <span class="itemDot"></span>
-                                    <span class="itemInfo">соблюдение скоростного режима</span>
+                                    <span class="itemInfo">соблюдение скоростного режима.</span>
                                 </div>
                             </div>
                         </div>
@@ -238,7 +239,7 @@
                         <div class="menuListBody">
                             <div class="leftList">
                                 <div class="addGroupInfo">
-                                    <span>Трекер считывает информацию о характере ваших поездок: </span>
+                                    <span>Трекер считывает информацию о ваших поездках:</span>
                                     <div class="addGroupInfoItem">
                                         <span class="itemDot"></span>
                                         <span class="itemInfo">продолжительность,</span>
@@ -249,18 +250,17 @@
                                     </div>
                                     <div class="addGroupInfoItem">
                                         <span class="itemDot"></span>
-                                        <span class="itemInfo">агрессивность манеры езды,</span>
+                                        <span class="itemInfo">степень агрессивности вождения,</span>
                                     </div>
                                     <div class="addGroupInfoItem">
                                         <span class="itemDot"></span>
-                                        <span class="itemInfo">соблюдение скоростного режима</span>
+                                        <span class="itemInfo">соблюдение скоростного режима.</span>
                                     </div>
                                 </div>
                                 <div class="redLineToPhone"></div>
                                 <div class="addGroupInfo">
                                 <span>
-                                    Данные с трекера анализируются в соответствии с системой оценки езды. 
-                                    А результат вы можете наблюдать в мобильном приложении
+                                    Данные с трекера анализируются в соответствии с системой оценки езды.  А результат вы можете узнать в мобильном приложении.
                                 </span>
                                 </div>
                             </div>
@@ -272,15 +272,15 @@
                             <div class="rightList">
                                 <div class="addGroupInfo">
                                 <span>
-                                    В мобильном приложении есть и другие полезные любому автомобилисту опции:
+                                    В мобильном приложении есть и другие полезные любому автомобилисту опции:
                                 </span>
                                     <div class="addGroupInfoItem">
                                         <span class="itemDot"></span>
-                                        <span class="itemInfo">мы можем предупреждать вас об эвакуации машины,</span>
+                                        <span class="itemInfo">мы можем предупреждать вас об эвакуации машины,</span>
                                     </div>
                                     <div class="addGroupInfoItem">
                                         <span class="itemDot"></span>
-                                        <span class="itemInfo">или сообщать об ошибках в работе вашего автомобиля</span>
+                                        <span class="itemInfo">сообщать об ошибках в работе вашего автомобиля.</span>
                                     </div>
                                 </div>
                             </div>
@@ -290,8 +290,10 @@
                         <div class="dogHeadIcon"></div>
                         <div class="addGroupInfo">
                                 <span>
-                                    Когда подойдет срок продлять страховку, мы подготовим для вас индивидуальные условия и скидки по всем страховым компаниям,
-                                    с которыми мы работаем, основанные на вашей оценке за вождение и пробеги, чтобы каждый год предлагая вам лучшее предложение на рынке.
+                                    Когда подойдет срок продлевать страховку, мы подготовим для вас новые индивидуальные условия и скидки по всем страховым компаниям, с которыми работаем.
+                                    Они будут основаны на вашей оценке за вождение и на данных о пробеге.
+                                    </br>
+                                    Каждый год мы предоставляем на ваш выбор лучшие предложения на рынке!
                                 </span>
                         </div>
                     </div>

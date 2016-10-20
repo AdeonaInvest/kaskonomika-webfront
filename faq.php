@@ -99,7 +99,7 @@
             </div>
         </div>
     </div>
-    <div class="faqBody">
+    <div id="faqBody" class="faqBody">
         <div class="faqNotes">
             <div class="faqNotesItem">
                 <div class="faqNotesItemHead"><span> На заметку  </span> </div>
@@ -110,7 +110,7 @@
                 <div class="faqNotesItemBody"><span> Мы являемся сервисом по подбору страховки. Выбирайте оптимальные для вашего автомобиля опции. Следите за своими расходами и новыми предложениями по страхованию в личном кабинете и приложении.</span> </div>
             </div>
         </div>
-        <div class="faqGroups">
+        <div id="faqGroups" class="faqGroups">
 
             <div class="faqGroupsHead">
                 <span class="faqGroupsTitle">Способы оплаты </span>

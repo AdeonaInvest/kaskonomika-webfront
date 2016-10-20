@@ -68,11 +68,10 @@
         background-size: contain;
     }
     .slide3Body{
-        margin-top: -33.5%;
+        margin-top: -47%;
     }
     .slide3Body .pageInfoGroup{
         margin-top: 44.8%;
-
     }
     .elseQuestions{
         margin-left: 5%;
@@ -195,7 +194,7 @@
         height: 331px;
         margin-top: 46px;
         position: absolute;
-        margin-left: 16px;
+        margin-left: 10px;
         background-color: white;
         background-image: url('');
     }
@@ -264,5 +263,16 @@
 
     .lastGroupInfo .addGroupInfo{
         width: 78%;
+    }
+}
+
+@media only screen and (max-width: 400px){
+    .phoneWithTelematic{
+        height: 300px;
+    }
+}
+@media only screen and (max-width: 500px){
+    .phoneWithTelematic{
+        height: 400px;
     }
 }

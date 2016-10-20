@@ -2,13 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="000baaa3-88be-45b8-a7bc-613979aff268" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/faq/search_dog_desktop_iceon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/howItWork/phone.png" afterPath="$PROJECT_DIR$/images/howItWork/phone.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images/howItWork/phone_wth_telematic.png" afterPath="$PROJECT_DIR$/images/howItWork/phone_wth_telematic.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style/faq.css" afterPath="$PROJECT_DIR$/style/faq.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/faq.php" afterPath="$PROJECT_DIR$/faq.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style/desktop/faqDesktop.css" afterPath="$PROJECT_DIR$/style/desktop/faqDesktop.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/script/faqMenu.js" afterPath="$PROJECT_DIR$/script/faqMenu.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style/mobile/faqMobile.css" afterPath="$PROJECT_DIR$/style/mobile/faqMobile.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style/tablet/faqTablet.css" afterPath="$PROJECT_DIR$/style/tablet/faqTablet.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/script/indexMenu.js" afterPath="$PROJECT_DIR$/script/indexMenu.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style/howItWork.css" afterPath="$PROJECT_DIR$/style/howItWork.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/howItWork.php" afterPath="$PROJECT_DIR$/howItWork.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/style/mobile/howItWorkMobile.css" afterPath="$PROJECT_DIR$/style/mobile/howItWorkMobile.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="kaskonomika-front-end.iws" />
@@ -40,36 +44,39 @@
       <file leaf-file-name="faqMenu.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/script/faqMenu.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.137931">
-              <caret line="189" column="112" selection-start-line="189" selection-start-column="112" selection-end-line="189" selection-end-column="112" />
+            <state vertical-scroll-proportion="-15.965517">
+              <caret line="211" column="79" selection-start-line="211" selection-start-column="79" selection-end-line="211" selection-end-column="79" />
               <folding>
-                <element signature="e#910#1213#0" expanded="false" />
-                <element signature="e#1561#1881#0" expanded="false" />
-                <element signature="e#1578#1873#0" expanded="false" />
-                <element signature="e#3027#3522#0" expanded="false" />
-                <element signature="e#6116#6826#0" expanded="false" />
-                <element signature="e#6871#7614#0" expanded="false" />
-                <element signature="e#10234#11437#0" expanded="false" />
+                <element signature="e#909#1212#0" expanded="false" />
+                <element signature="e#1560#1880#0" expanded="false" />
+                <element signature="e#1577#1872#0" expanded="false" />
+                <element signature="e#3026#3521#0" expanded="false" />
+                <element signature="e#3832#4214#0" expanded="false" />
+                <element signature="e#4382#4914#0" expanded="false" />
+                <element signature="e#4956#5998#0" expanded="false" />
+                <element signature="e#6090#6800#0" expanded="false" />
+                <element signature="e#6845#7588#0" expanded="false" />
+                <element signature="e#12386#13589#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="faq.css" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/style/faq.css">
+      <file leaf-file-name="howItWork.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/howItWork.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.61731845">
-              <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+            <state vertical-scroll-proportion="-4.309091">
+              <caret line="73" column="21" selection-start-line="73" selection-start-column="21" selection-end-line="73" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="indexMenu.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/script/indexMenu.js">
+      <file leaf-file-name="howItWork.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/style/howItWork.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.8965516">
-              <caret line="51" column="68" selection-start-line="51" selection-start-column="12" selection-end-line="51" selection-end-column="68" />
+            <state vertical-scroll-proportion="-11.413794">
+              <caret line="43" column="1" selection-start-line="43" selection-start-column="1" selection-end-line="43" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -78,60 +85,21 @@
       <file leaf-file-name="faq.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/faq.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.0">
-              <caret line="104" column="44" selection-start-line="104" selection-start-column="28" selection-end-line="104" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="faqDesktop.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/style/desktop/faqDesktop.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.0357144">
-              <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="box_open_icon.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/images/faq/box_open_icon.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="calc_icon.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/images/faq/calc_icon.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="search_dog_icon_mobile.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/images/faq/search_dog_icon_mobile.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="search_dog_icon_tablet.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/images/faq/search_dog_icon_tablet.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="faqTablet.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/style/tablet/faqTablet.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="99" selection-end-column="9" />
+            <state vertical-scroll-proportion="22.307692">
+              <caret line="111" column="14" selection-start-line="111" selection-start-column="14" selection-end-line="111" selection-end-column="14" />
               <folding>
-                <element signature="e#217#373#0" expanded="false" />
-                <element signature="e#374#466#0" expanded="false" />
+                <element signature="n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="howItWorkMobile.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/style/mobile/howItWorkMobile.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.33333334">
+              <caret line="69" column="16" selection-start-line="69" selection-start-column="16" selection-end-line="69" selection-end-column="16" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -178,23 +146,23 @@
         <option value="$PROJECT_DIR$/script/base.js" />
         <option value="$PROJECT_DIR$/style/base.css" />
         <option value="$PROJECT_DIR$/style/pageElseFunctions.css" />
-        <option value="$PROJECT_DIR$/style/mobile/faqMobile.css" />
         <option value="$PROJECT_DIR$/style/desktop/footerDesktop.css" />
         <option value="$PROJECT_DIR$/style/desktop/howItWorkDesktop.css" />
         <option value="$PROJECT_DIR$/script/howItWork.js" />
-        <option value="$PROJECT_DIR$/howItWork.php" />
-        <option value="$PROJECT_DIR$/style/howItWork.css" />
         <option value="$PROJECT_DIR$/style/toolbar.css" />
-        <option value="$PROJECT_DIR$/style/mobile/howItWorkMobile.css" />
         <option value="$PROJECT_DIR$/style/tablet/howItWorkTablet.css" />
         <option value="$PROJECT_DIR$/script/howItWorkPage.js" />
         <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/script/indexMenu.js" />
         <option value="$PROJECT_DIR$/faq.php" />
+        <option value="$PROJECT_DIR$/style/mobile/faqMobile.css" />
         <option value="$PROJECT_DIR$/style/tablet/faqTablet.css" />
         <option value="$PROJECT_DIR$/style/desktop/faqDesktop.css" />
-        <option value="$PROJECT_DIR$/script/indexMenu.js" />
-        <option value="$PROJECT_DIR$/script/faqMenu.js" />
         <option value="$PROJECT_DIR$/style/faq.css" />
+        <option value="$PROJECT_DIR$/script/faqMenu.js" />
+        <option value="$PROJECT_DIR$/howItWork.php" />
+        <option value="$PROJECT_DIR$/style/howItWork.css" />
+        <option value="$PROJECT_DIR$/style/mobile/howItWorkMobile.css" />
       </list>
     </option>
   </component>
@@ -238,7 +206,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -257,91 +225,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kaskonomika-front-end" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kaskonomika-front-end" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="style" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kaskonomika-front-end" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kaskonomika-front-end" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="style" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tablet" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kaskonomika-front-end" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kaskonomika-front-end" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="style" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mobile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kaskonomika-front-end" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kaskonomika-front-end" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="style" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="desktop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kaskonomika-front-end" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kaskonomika-front-end" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="script" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -431,30 +317,36 @@
       <option name="project" value="LOCAL" />
       <updated>1476870144820</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="edit FAQ page">
+      <created>1476886034503</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1476886034503</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17866324" sideWeight="0.48322147" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18059126" sideWeight="0.48322147" order="2" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32969153" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5497312" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2103929" sideWeight="0.5167785" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5497312" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -497,7 +389,8 @@
     <MESSAGE value="add page: &quot;how it work&quot;" />
     <MESSAGE value="page &quot;how it work&quot; : mobilw style debug" />
     <MESSAGE value="page &quot;how it work&quot; : mobile style debug and toolbar in index page" />
-    <option name="LAST_COMMIT_MESSAGE" value="page &quot;how it work&quot; : mobile style debug and toolbar in index page" />
+    <MESSAGE value="edit FAQ page" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit FAQ page" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -639,13 +532,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/script/combobox.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28756475">
-          <caret line="572" column="25" selection-start-line="572" selection-start-column="25" selection-end-line="572" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/style/paralaxPages.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="4.427461">
@@ -695,13 +581,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/style/mobile/faqMobile.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="180" column="31" selection-start-line="180" selection-start-column="31" selection-end-line="180" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/style/desktop/footerDesktop.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -737,40 +616,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/script/base.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0726257">
-          <caret line="26" column="77" selection-start-line="26" selection-start-column="52" selection-end-line="26" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/howItWork.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="90" column="88" selection-start-line="90" selection-start-column="88" selection-end-line="90" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/style/mobile/howItWorkMobile.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.862069">
-          <caret line="10" column="5" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/style/toolbar.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15866084">
           <caret line="220" column="1" selection-start-line="220" selection-start-column="1" selection-end-line="220" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/style/howItWork.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.51965064">
-          <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -799,17 +648,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/style/tablet/faqTablet.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="99" selection-end-column="9" />
-          <folding>
-            <element signature="e#217#373#0" expanded="false" />
-            <element signature="e#374#466#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/images/faq/box_open_icon.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -830,50 +668,120 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/script/indexMenu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="68" selection-start-line="22" selection-start-column="63" selection-end-line="22" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/base.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="152" column="29" selection-start-line="152" selection-start-column="29" selection-end-line="152" selection-end-column="29" />
+          <folding>
+            <marker date="1476272437697" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1476272437697" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/combobox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1070" column="0" selection-start-line="1070" selection-start-column="0" selection-end-line="1076" selection-end-column="3" />
+          <folding>
+            <marker date="1476182928684" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1476182928684" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/style/tablet/faqTablet.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.8965516">
+          <caret line="48" column="31" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="31" />
+          <folding>
+            <element signature="e#217#373#0" expanded="false" />
+            <element signature="e#374#466#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/script/faqMenu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.965517">
+          <caret line="211" column="79" selection-start-line="211" selection-start-column="79" selection-end-line="211" selection-end-column="79" />
+          <folding>
+            <element signature="e#909#1212#0" expanded="false" />
+            <element signature="e#1560#1880#0" expanded="false" />
+            <element signature="e#1577#1872#0" expanded="false" />
+            <element signature="e#3026#3521#0" expanded="false" />
+            <element signature="e#3832#4214#0" expanded="false" />
+            <element signature="e#4382#4914#0" expanded="false" />
+            <element signature="e#4956#5998#0" expanded="false" />
+            <element signature="e#6090#6800#0" expanded="false" />
+            <element signature="e#6845#7588#0" expanded="false" />
+            <element signature="e#12386#13589#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/howItWork.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.309091">
+          <caret line="73" column="21" selection-start-line="73" selection-start-column="21" selection-end-line="73" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/style/desktop/faqDesktop.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.0357144">
-          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.48180494">
+          <caret line="41" column="31" selection-start-line="41" selection-start-column="31" selection-end-line="41" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/style/mobile/faqMobile.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="100" column="31" selection-start-line="100" selection-start-column="17" selection-end-line="100" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/style/faq.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.83519554">
+          <caret line="43" column="18" selection-start-line="43" selection-start-column="18" selection-end-line="43" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/faq.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.0">
-          <caret line="104" column="44" selection-start-line="104" selection-start-column="28" selection-end-line="104" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/indexMenu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.8965516">
-          <caret line="51" column="68" selection-start-line="51" selection-start-column="12" selection-end-line="51" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/script/faqMenu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.137931">
-          <caret line="189" column="112" selection-start-line="189" selection-start-column="112" selection-end-line="189" selection-end-column="112" />
+        <state vertical-scroll-proportion="22.307692">
+          <caret line="111" column="14" selection-start-line="111" selection-start-column="14" selection-end-line="111" selection-end-column="14" />
           <folding>
-            <element signature="e#910#1213#0" expanded="false" />
-            <element signature="e#1561#1881#0" expanded="false" />
-            <element signature="e#1578#1873#0" expanded="false" />
-            <element signature="e#3027#3522#0" expanded="false" />
-            <element signature="e#6116#6826#0" expanded="false" />
-            <element signature="e#6871#7614#0" expanded="false" />
-            <element signature="e#10234#11437#0" expanded="false" />
+            <element signature="n#div#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/style/faq.css">
+    <entry file="file://$PROJECT_DIR$/style/howItWork.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.61731845">
-          <caret line="26" column="5" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+        <state vertical-scroll-proportion="-11.413794">
+          <caret line="43" column="1" selection-start-line="43" selection-start-column="1" selection-end-line="43" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/style/mobile/howItWorkMobile.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="69" column="16" selection-start-line="69" selection-start-column="16" selection-end-line="69" selection-end-column="16" />
           <folding />
         </state>
       </provider>

@@ -1,5 +1,4 @@
 $( document ).ready(function() {
-
     document.getElementById('toolbar').style.backgroundColor = "#ffffff";
     document.getElementById('leftMenu').style.backgroundColor = "#ffffff";
     if(document.body.clientWidth>700){
@@ -101,13 +100,12 @@ $( document ).ready(function() {
             obj.css("-ms-transform") ||
             obj.css("-o-transform") ||
             obj.css("transform");
+        var angle = 0;
         if (matrix !== 'none') {
             var values = matrix.split('(')[1].split(')')[0].split(',');
             var a = values[0];
             var b = values[1];
-            var angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
-        } else {
-            var angle = 0;
+            angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
         }
         return (angle < 0) ? angle + 360 : angle;
     }
@@ -163,34 +161,58 @@ $( document ).ready(function() {
     $('.faqBody').css('min-height', ($('.faqNotes').css('height')+100)+'px');
 
     function doSearch(str){
+
+        var nullResultElementWidth = $('.faqGroupItem').width();
+        var strUpperCase = str.toUpperCase();
+        var strFSleUpperCase = '';
+        if(str.length>0){
+            strFSleUpperCase = str[0].toUpperCase() + str.substring(1, str.length);
+            $('#dontFoundLine').remove();
+        }
+
         $('.faqGroups').css('display', 'inline-block');
         $('.faqGroupItem').css('display', 'inline-block');
         var groupNullResultCount = 0;
         var k=1;
+        var itemsCount = 0;
+        var headTitle, headTitleUpperCase, groupTitle, groupTitleUpperCase, groupText, groupTextUpperCase;
         for(var i =0; i<$('.faqGroups').length;i++){
-            var headTitle = document.querySelectorAll('.faqGroups')[i].children[0].children[0].innerText;
-            if(headTitle.split(str).length >1 ){
-                for(k=1;k<headTitle.split(str).length; k++){
-                    headTitle = headTitle.replace(str, '<span class="findWord">' + str + '</span>')
+            headTitle = document.querySelectorAll('.faqGroups')[i].children[0].children[0].innerText;
+            headTitleUpperCase = headTitle.toUpperCase();
+            itemsCount = itemsCount + headTitleUpperCase.split(strUpperCase).length - 1;
+            if(headTitleUpperCase.split(strUpperCase).length >1 ) {
+                for (k = 1; k < headTitleUpperCase.split(strUpperCase).length; k++) {
+                    headTitle = headTitle.replace(str, '<span class="findWord">' + str + '</span>');
+                    headTitle = headTitle.replace(strFSleUpperCase, '<span class="findWord">' + strFSleUpperCase + '</span>');
                 }
-                document.querySelectorAll('.faqGroups')[i].children[0].children[0].innerText = headTitle;
-            }else{
-                groupNullResultCount = 0;
+                document.querySelectorAll('.faqGroups')[i].children[0].children[0].innerHTML = headTitle;
+            }
+            groupNullResultCount = 0;
+
                 for(var j=1;j<document.querySelectorAll('.faqGroups')[i].children.length; j++){
-                    var groupTitle = document.querySelectorAll('.faqGroups')[i].children[j].children[0].children[0].innerText;
-                    var groupText = document.querySelectorAll('.faqGroups')[i].children[j].children[1].children[0].innerText;
-                    if(groupTitle.split(str).length >1 || groupText.split(str).length >1){
-                        for(k=1;k<groupTitle.split(str).length; k++){
-                            groupTitle = groupTitle.replace(str, '<span class="findWord">' + str + '</span>')
+                     groupTitle = document.querySelectorAll('.faqGroups')[i].children[j].children[0].children[0].innerText;
+                     groupTitleUpperCase = groupTitle.toUpperCase();
+                     groupText = document.querySelectorAll('.faqGroups')[i].children[j].children[1].children[0].innerText;
+                     groupTextUpperCase = groupText.toUpperCase();
+
+                    itemsCount = itemsCount + groupTitleUpperCase.split(strUpperCase).length + groupTextUpperCase.split(strUpperCase).length - 2;
+                    if(groupTitleUpperCase.split(strUpperCase).length >1 || groupTextUpperCase.split(strUpperCase).length >1){
+                        for(k=1;k<groupTitleUpperCase.split(strUpperCase).length; k++){
+                            groupTitle = groupTitle.replace(str, '<span class="findWord">' + str + '</span>');
+                            groupTitle = groupTitle.replace(strFSleUpperCase, '<span class="findWord">' + strFSleUpperCase + '</span>');
                         }
-                        for(k=1;k<groupText.split(str).length; k++){
-                            groupText = groupText.replace(str, '<span class="findWord">' + str + '</span>')
+                        for(k=1;k<groupTextUpperCase.split(strUpperCase).length; k++){
+                            groupText = groupText.replace(str, '<span class="findWord">' + str + '</span>');
+                            groupText = groupText.replace(strFSleUpperCase, '<span class="findWord">' + strFSleUpperCase + '</span>');
                         }
                         document.querySelectorAll('.faqGroups')[i].children[j].children[0].children[0].innerHTML = groupTitle;
                         document.querySelectorAll('.faqGroups')[i].children[j].children[1].children[0].innerHTML = groupText;
+                        document.querySelectorAll('.faqGroups')[i].children[j].children[1].style.display='block';
                     }else{
-                        groupNullResultCount++;
-                        document.querySelectorAll('.faqGroups')[i].children[j].style.display="none";
+                        if(headTitleUpperCase.split(strUpperCase).length <2 ) {
+                            groupNullResultCount++;
+                            document.querySelectorAll('.faqGroups')[i].children[j].style.display = "none";
+                        }
                     }
                 }
                 if(groupNullResultCount == document.querySelectorAll('.faqGroups')[i].children.length - 1){
@@ -198,11 +220,23 @@ $( document ).ready(function() {
                         document.querySelectorAll('.faqGroups')[i].style.display="none";
                     }
                 }
-            }
+        }
+
+        if(itemsCount == 0){
+            var htmlNullResult = "<div id='dontFoundLine' class='dontFoundLine'><div class='dontFoundBlock'><span>По Вашему запросу не удалось ничего найти.</span></div></div>";
+            document.querySelector('#faqBody').innerHTML = htmlNullResult + document.querySelector('#faqBody').innerHTML;
+            $('.dontFoundBlock').width(nullResultElementWidth);
+            doSearch('');
         }
     }
     $('.faqHeaderButtonItem').click(function(){
         doSearch($('.faqHeaderSearch input').val());
+    });
+
+    $('.faqHeaderSearch').on('keydown', function(e) {
+        if( e.which ==13){
+            doSearch($('.faqHeaderSearch input').val());
+        }
     });
 
     function resposibaleDisplay(){
@@ -232,6 +266,7 @@ $( document ).ready(function() {
     });
 
     $(window).scroll(function(){
+        var body = document.body;
         var docEl = document.documentElement;
         var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
         if(scrollTop > 200 && document.body.clientWidth>699){
@@ -252,5 +287,8 @@ $( document ).ready(function() {
         var element =  document.getElementById($(this).text().trim());
         $('html, body').animate({scrollTop:element.getBoundingClientRect().top  +  scrollTop - clientTop -75}, 800);
     });
+
+
+
 
 });
