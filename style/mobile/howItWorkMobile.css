@@ -15,7 +15,7 @@
         text-align: left;
     }
     .slide1Body{
-        background-size: contain;
+        background-image: url(../../images/howItWork/backgroundSlide.png);
     }
     .slide1Body .pageInfoGroup{
         margin-top: 28%;

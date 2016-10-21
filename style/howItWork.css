@@ -8,15 +8,20 @@
     margin-left: 0%;
     float: right;
 }
+.slide2Body{
+    margin-top: -7px;
+}
 .howItWorkPageBody, .slide1Body, .slide2Body, .slide3Body{
     display: inline-block;
     width: 100%;
+    min-height: 550px;
 }
 .slide1Body{
     background-color: #d4edfc;
-    background-image: url(../images/howItWork/slide1_bg.png);
+    background-image: url(../images/howItWork/background_slide_with_dog.png);
     background-position: 100% 100%;
     background-repeat: no-repeat;
+    background-size: contain;
 }
 .slide1Body .pageInfoGroup{
     position: absolute;
@@ -103,10 +108,16 @@
     background-repeat: no-repeat;
     background-size: cover;
     float: right;
-    margin-right: 728px;
 }
-
-
+.backgroundSlide{
+    width: 50%;
+    height: 100%;
+    float: right;
+    display: inline-block;
+    background-image: url(../images/howItWork/backgroundSlide.png);
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+}
 .line2{
     display: inline-block;
     width: 100%;
@@ -151,6 +162,9 @@
 }
 .apps .androidApp{
     margin-left: 5%;
+}
+.footer .apps .androidApp{
+    margin-left: 0%;
 }
 .apps{
     margin-top: 5%;
@@ -268,20 +282,21 @@
     display: inline-block;
     margin: auto;
     text-align: left;
+
 }
 .leftList, .rightList, .phoneList{
     width: 20%;
     display: inline-block;
     float: left;
-
 }
 .leftList{
-    margin-left: 10%;
+    /*margin-left: 0px;*/
     width: 288px;
+    margin-left: calc(50% - 488px);
 }
 .phoneList{
     width: 320px;
-    margin-left: 3.6%;
+    margin-left: 60px;
 }
 .phone{
     background-image: url(../images/howItWork/phone.png);
@@ -324,7 +339,6 @@
     margin-bottom: -80px;
 }
 .lastGroupInfo{
-    float: right;
     margin-bottom: 135px;
 }
 .dogHeadIcon{

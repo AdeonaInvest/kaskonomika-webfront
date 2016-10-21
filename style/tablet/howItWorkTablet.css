@@ -45,6 +45,7 @@
     }
     .leftList{
         width: 200px;
+        margin-left: calc(50% - 398px);
     }
 }
 @media only screen and (min-width: 700px) and (max-width: 1000px){
@@ -54,15 +55,25 @@
     .phoneWithTelematic{
         margin-left: 2%;
     }
+    .leftList{
+        margin-left: calc(50% - 395px);
+    }
 }
 @media only screen and (min-width: 700px) and (max-width: 800px){
     .elseQuestions{
         margin-right:-25%;
     }
     .leftList{
-        margin-left: 3%;
+        margin-left: calc(50% - 348px);
     }
     .phoneWithTelematic{
         margin-left: 0px;
+    }
+    .menuListBody{
+        margin-left: 0px;
+    }
+    .phoneList{
+        width: 280px;
+        margin-left: 10px;
     }
 }

@@ -107,7 +107,9 @@
             </ul>
             <div class="howItWorkPageBody">
                 <div class="slide1Body">
-                    <div id="filterDogIcon" class="filterDogIcon"></div>
+<!--                    <div id="backgroundSlide" class="backgroundSlide"></div>-->
+<!--                    <div id="filterDogIcon" class="filterDogIcon"></div>-->
+
                     <div class="pageTitle">
                         <span>Как это работает</span>
                     </div>
