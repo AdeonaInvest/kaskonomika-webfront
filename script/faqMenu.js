@@ -229,7 +229,6 @@ $( document ).ready(function() {
                     }
                 }
         }
-
         if(itemsCount == 0){
             $('#dontFoundLine').css('display', 'block');
             $('.dontFoundBlock').width(nullResultElementWidth);
@@ -274,16 +273,33 @@ $( document ).ready(function() {
     });
 
     $(window).scroll(function(){
+        console.log('a')
         var body = document.body;
         var docEl = document.documentElement;
         var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
-        if(scrollTop > 200 && document.body.clientWidth>699){
+        var footerHeight = 0;
+
+        if(scrollTop > 200 && document.body.clientWidth>699 && window.scrollY < document.body.clientHeight-window.innerHeight - 1000){
             document.getElementById('faqMenu').style.position='fixed';
             document.getElementById('faqMenu').style.marginTop='-200px';
         }else{
-            document.getElementById('faqMenu').style.position='relative';
-            document.getElementById('faqMenu').style.marginTop='17px';
+            if(document.body.clientWidth>1439){
+                footerHeight = 100;
+            }else{
+                footerHeight = 200;
+            }
+            if(window.scrollY > document.body.clientHeight-window.innerHeight - footerHeight && document.body.clientWidth>699){
+                document.getElementById('faqMenu').style.position='relative';
+                document.getElementById('faqMenu').style.marginTop=(scrollTop - window.innerHeight*1/3)+'px';
+            }else if(document.body.clientWidth>699 && scrollTop > 200){
+                document.getElementById('faqMenu').style.position='fixed';
+                document.getElementById('faqMenu').style.marginTop='-200px';
+            }else{
+                document.getElementById('faqMenu').style.position='relative';
+                document.getElementById('faqMenu').style.marginTop='17px';
+            }
         }
+
     });
 
     $('.linkToGroup').click(function(){
