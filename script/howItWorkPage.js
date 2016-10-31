@@ -63,3 +63,17 @@ $('#rightButton').click(function(){
 $('#leftButton').click(function(){
     $('.owl-prev').click();
 });
+
+window.onload = function(){
+
+    document.getElementById('toolbar').style.backgroundColor = "#ffffff";
+    document.getElementById('leftMenu').style.backgroundColor = "#ffffff";
+    if(document.body.clientWidth>700){
+        document.getElementById('kaskonomikaIcon').style.backgroundImage = "url('images/logo_onscroll.svg')";
+    }else{
+        document.getElementById('kaskonomikaIcon').style.backgroundImage = "url('images/Kaskonomika_name_image.png')";
+    }
+
+    setTimeout(function(){$(".loaderSlid").css('display', 'none')}, 300);
+
+};

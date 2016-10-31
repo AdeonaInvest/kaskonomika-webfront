@@ -5,27 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <!--google+-->
-    <meta itemprop="name" content="КАСКОНОМ??КА"/>
-    <meta itemprop="description" content="КАСКОНОМ??КА"/>
+    <meta itemprop="name" content="КАСКОНОМИКА"/>
+    <meta itemprop="description" content="КАСКОНОМИКА"/>
     <meta itemprop="image" content="http://kaskonomika.ru/images/icons/apple-touch-icon-180_180.png"/>
     <!--end google+-->
 
     <!--twitter-->
     <meta name="twitter:card" content="summary"/>  <!-- Тип окна -->
-    <meta name="twitter:site" content="КАСКОНОМ??КА"/>
-    <meta name="twitter:title" content="КАСКОНОМ??КА">
-    <meta name="twitter:description" content="КАСКОНОМ??КА"/>
-    <meta name="twitter:creator" content="КАСКОНОМ??КА"/>
+    <meta name="twitter:site" content="КАСКОНОМИКА"/>
+    <meta name="twitter:title" content="КАСКОНОМИКА">
+    <meta name="twitter:description" content="КАСКОНОМИКА"/>
+    <meta name="twitter:creator" content="КАСКОНОМИКА"/>
     <meta name="twitter:image:src" content="http://kaskonomika.ru/images/icons/apple-touch-icon-180_180.png"/>
     <meta name="twitter:domain" content="http://kaskonomika.ru"/>
     <!--end twitter-->
 
     <!--facebook-->
-    <meta property="og:title" content="КАСКОНОМ??КА"/>
+    <meta property="og:title" content="КАСКОНОМИКА"/>
     <meta property="og:description" content="Экономьте до 40% на стоимости Каско с умной страховкой от Каскономики"/>
     <meta property="og:image" content="http://kaskonomika.ru/images/icons/apple-touch-icon-180_180.png"/>
     <meta property="og:url" content="http://kaskonomika.ru"/>
-    <meta property="og:site_name" content="КАСКОНОМ??КА"/>
+    <meta property="og:site_name" content="КАСКОНОМИКА"/>
     <meta property="og:see_also" content="http://kaskonomika.ru"/>
     <!--end facebook-->
 
@@ -88,13 +88,22 @@
     <li class="menuItem3 bar"><a href="faq.php">Вопросы и ответы</a></li></br>
     <li class="menuItem4 bar"><a href="#">скачать приложение</a></li></br>
 </ul>
+<div class="loaderSlid">
+    <div class="loaderSlidImg"></div>
+</div>
 <div class="faqHead">
     <div class="faqHeader">
         <div class="faqHeaderContent">
             <div class="faqHeaderTitle"><span class="faqHeaderTitleText">Вопросы и ответы</span></div>
             <div class="faqHeaderSearch">
-                <input type="text" />
-                <div class="faqHeaderDogIcon"></div>
+                <div class="inputBlog">
+                    <input type="text" />
+                    <div class="faqHeaderDogIcon"></div>
+                    <span id="inputError" class="inputError">
+                        <img src="images/faq/errorIcon.png">
+                        ничего не найдено
+                    </span>
+                </div>
                 <div class="faqHeaderButtonItem"><span class="faqHeaderButtonItemText">Найти</span></div>
             </div>
         </div>
@@ -111,7 +120,6 @@
             </div>
         </div>
         <div id="faqGroups" class="faqGroups">
-
             <div class="faqGroupsHead">
                 <span class="faqGroupsTitle">Способы оплаты </span>
                 <span class="faqGroupsContext">(от др.-греч. ???? «далеко» + ?????? — «измеряю») — получение информации о значениях измеряемых параметров (напряжения, тока, давления, температуры и т. п.) </span>

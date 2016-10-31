@@ -85,6 +85,9 @@
         }
     </style>
         <div class="allBody">
+            <div class="loaderSlid">
+                <div class="loaderSlidImg"></div>
+            </div>
             <div class="header">
                 <ul id="toolbar" class="toolbar">
                     <li id="menu" class="menu"><div class="menuIconLine"></div><div class="menuIconLine"></div><div class="menuIconLine"></div></li>

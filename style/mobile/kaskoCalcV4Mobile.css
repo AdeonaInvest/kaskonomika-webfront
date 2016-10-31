@@ -1,0 +1,176 @@
+@media only screen and (max-width: 700px){
+
+    .mobileKaskoCalc, .mobileKaskoCalcSelectWindow{
+        display: inline-block;
+        width: 100%;
+        min-width: 320px;
+        min-height: 100%;
+        max-height: 100%;
+        position: fixed;
+        background: #59c6f2;
+        margin-top: -62px;
+        z-index: 2222222222;
+        display: none;
+
+    }
+    .mobileKaskoCalc, .mobileKaskoCalcHeader, .mobileKaskoCalcBody{
+        overflow-y: auto;
+    }
+    .calcClose{
+        margin-top: 27px;
+        margin-right: 18px;
+        float: right;
+    }
+    .calcName{
+        width: 95%;
+        font-size: 19px;
+        font-family: "Geometria Narrow Bold";
+    }
+    .mobileKaskoCalcBody{
+        width: calc(100% - 50px);
+        min-width: 260px;
+        margin-right: 25px;
+        margin-left: 25px;
+        min-height: 400px;
+    }
+    .mobileKaskoCalcHeader{
+        min-height: 110px;
+    }
+    .driverKaskoCalcGroupsTitle, .autoKaskoCalcGroupsTitle{
+        border-bottom: 1px solid #4faad9;
+        height: 33px;
+        margin-top: 46px;
+    }
+    .firstMobileCalcGroup{
+        margin-top: 0px;
+    }
+    .driverKaskoCalcGroup, .mobileKaskoCalcMark, .mobileKaskoCalcYear, .SubmitKaskoCalcGroup,
+    .mobileKaskoCalcModel, .mobileKaskoCalcDriversCount, .mobileKaskoCalcModification,
+    .mobileKaskoCalcDriversGender, .mobileKaskoCalcDriversAge, .mobileKaskoCalcDriversExperience{
+        display: block;
+        border-bottom: 1px solid #4faad9;
+        min-height: 63px;
+    }
+    .SubmitKaskoCalcGroup{
+        text-align: center;
+    }
+    .mobileKaskoCalcModel, .driverKaskoCalcGroup{
+        border-bottom: 0px solid rgba(79, 170, 217, 0);
+    }
+    .mobileCalcTitle{
+        margin-top: 16px;
+        display: block;
+
+    }
+    .openSelectPage{
+        float: right;
+    }
+    .value, .driverKaskoCalcGroupsTitle span, .autoKaskoCalcGroupsTitle span{
+        color:white;
+    }
+    .mobileKaskoCalcSubmit{
+         margin-top: 32px;
+         height: 40px;
+         width: 100px;
+         display: inline-block;
+         background-color: #263c75;
+         border-radius: 20px;
+         margin-bottom: 20px;
+        cursor:pointer;
+     }
+    .mobileKaskoCalcSubmit span{
+        margin-top: 8px;
+        display: inline-block;
+        color:white;
+    }
+    .selectDoor{
+        cursor: pointer;
+    }
+    .mobileWindowheader{
+        position: fixed;
+        display: block;
+        height: 84px;
+        width: 100%;
+        min-width: 320px;
+    }
+    .stepBack{
+        display: inline-block;
+        color:white;
+        font-family: "Geometria Narrow";
+        margin-top: 24px;
+        margin-left: 20px;
+        cursor: pointer;
+    }
+    .stepBack img{
+        transform: rotate(180deg);
+        display: inline-block;
+        float: left;
+        margin-right: 5px;
+    }
+    .stepBack span{
+        display: inline-block;
+    }
+    .mobileWindowTitle{
+        display: inline-block;
+        width: 100%;
+        min-width: 320px;
+        height: 30px;
+        text-align: center;
+    }
+    .mobileWindowTitle span{
+        color: white;
+        font-size: 20px;
+        font-family: "Geometria Narrow Bold";
+    }
+    .mobileWindowList{
+        height: calc(100% - 184px);
+        width: 100%;
+        min-width: 320px;
+        margin-top: 100px;
+        display: inline-block;
+        position: absolute;
+        overflow-y: scroll;
+    }
+    .mobileWindowItem{
+        height: 50px;
+        margin-top: 5px;
+        display: inline-block;
+        width: 100%;
+        min-width: 320px;
+        text-align: center;
+        cursor: pointer;
+    }
+    .mobileWindowItem span{
+        height: 22px;
+        margin-top: 14px;
+        display: inline-block;
+        color: white;
+        font-size: 14px;
+    }
+    .mobileWindowFooter{
+        position: fixed;
+        display: inline-block;
+        width: 100%;
+        min-width: 320px;
+        height: 80px;
+        bottom: 0;
+    }
+    .mobileWindowFooterName span{
+        margin-left: 25px;
+    }
+    .mobileWindowFooter input{
+        margin-left: 25px;
+        width: calc(100% - 52px);
+        height: 32px;
+        margin-top: 3px;
+        border-radius: 5px;
+        padding-left: 10px;
+        background: #59c6f2;
+    }
+
+
+
+
+
+
+}

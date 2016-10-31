@@ -7,14 +7,12 @@ $( document ).ready(function() {
         document.getElementById('kaskonomikaIcon').style.backgroundImage = "url('images/Kaskonomika_name_image.png')";
     }
     window.addEventListener("scroll", function() {
-
             if(document.body.clientWidth>700){
                 document.getElementById('kaskonomikaIcon').style.backgroundImage = "url('images/logo_onscroll.svg')";
             }else{
                 document.getElementById('kaskonomikaIcon').style.backgroundImage = "url('images/Kaskonomika_name_image.png')";
             }
     });
-
     var leftMeuOpen = 0;
     function leftMenuPosition(){
         if(document.body.clientWidth<1400){
@@ -85,14 +83,26 @@ $( document ).ready(function() {
     }
     htmlNotString +='<div id="faqMenu" class="faqNotesItem">' + htmlNotItemHead + '</div>';
 
+    function setFAQBodyHeight(){
+        var faqBodyHeight = 0;
+        var item =0;
+        $(".faqBody").children().each(function(){
+            if(item>0){
+                faqBodyHeight = faqBodyHeight + $(this).outerHeight(true);
+            }
+            item++;
+        });
+        $(".faqBody").height(faqBodyHeight);
+    }
+
     for(var k=0;k<dataOfNotices.length;k++){
         htmlNotItemHead  += '<div class="faqNotesItemHead"><span>'+dataOfNotices[k].title+'  </span> </div>';
         htmlNotItemBody +='<div class="faqNotesItemBody"><span>'+dataOfNotices[k].description+'</span> </div>';
         htmlNotString +='<div class="faqNotesItem">' + htmlNotItemHead + htmlNotItemBody + '</div>';
         htmlNotItemHead = ''; htmlNotItemBody = '';
     }
-    var htmlDontFound ='<div id="dontFoundLine" class="dontFoundLine"><div class="dontFoundBlock"><span>По вашему запросу ничего не найдено</span></div></div> ';
-
+    //var htmlDontFound ='<div id="dontFoundLine" class="dontFoundLine"><div class="dontFoundBlock"><span>По вашему запросу ничего не найдено</span></div></div> ';
+    var htmlDontFound ='';
     htmlNotString = htmlDontFound + '<div class="faqNotes">' + htmlNotString + '</div>';
     $('.faqBody').html(htmlNotString + htmlGroupString);
 
@@ -115,12 +125,12 @@ $( document ).ready(function() {
         if (getRotationDegrees($(this).find('.sectionButton')) == 0) {
             $(this).find('.faqGroupItemBody').slideDown();
             $(this).find('.sectionButton').css('transform', 'rotate(180deg)');
-            $('.textAboutButton').html('Свернуть все');
-            $('.sectionButton').parent().parent().parent().find('.sectionsButton').css('transform', 'rotate(180deg)');
+            $(this).parent().find('.textAboutButton').html('Свернуть все');
+            $(this).parent().find('.sectionButton').parent().parent().parent().find('.sectionsButton').css('transform', 'rotate(180deg)');
         } else {
             $(this).find('.faqGroupItemBody').slideUp();
             $(this).find('.sectionButton').css('transform', 'rotate(0deg)');
-            var faqGroupItemBody = $(this).find('.faqGroupItemBody');
+            var faqGroupItemBody = $(this).parent().find('.faqGroupItemBody');
             var c = 0;
             for (var q=0;q<faqGroupItemBody.length; q++){
                 if(faqGroupItemBody[q].style.display == 'block'){
@@ -128,36 +138,24 @@ $( document ).ready(function() {
                 }
             }
             if(c<2){
-                $('.textAboutButton').html('Раскрыть все');
-                $('.sectionButton').parent().parent().parent().find('.sectionsButton').css('transform', 'rotate(0deg)');
+                $(this).parent().find('.textAboutButton').html('Раскрыть все');
+                $(this).parent().find('.sectionButton').parent().parent().parent().find('.sectionsButton').css('transform', 'rotate(0deg)');
             }
         }
+        setFAQBodyHeight();
     });
     $('.textAboutButton').html('Раскрыть все');
-    $('.sectionsButton').click(function(){
-        if(getRotationDegrees($(this)) == 0){
-            $('.textAboutButton').html('Свернуть все');
-            $(this).parent().find('.sectionsButton').css('transform', 'rotate(180deg)');
-            $(this).parent().parent().find('.sectionButton').css('transform', 'rotate(180deg)');
-            $(this).parent().parent().find('.faqGroupItemBody').slideDown();
+    $('.faqGroupsHead').click(function(){
+        if(getRotationDegrees($(this).find('.sectionsButton')) == 0){
+            $(this).find('.textAboutButton').html('Свернуть все');
+            $(this).find('.sectionsButton').css('transform', 'rotate(180deg)');
+            $(this).parent().find('.sectionButton').css('transform', 'rotate(180deg)');
+            $(this).parent().find('.faqGroupItemBody').slideDown();
         }else{
-            $('.textAboutButton').html('Раскрыть все');
-            $(this).parent().find('.sectionsButton').css('transform', 'rotate(0deg)');
-            $(this).parent().parent().find('.sectionButton').css('transform', 'rotate(0deg)');
-            $(this).parent().parent().find('.faqGroupItemBody').slideUp();
-        }
-    });
-    $('.textAboutButton').click(function(){
-        if(getRotationDegrees($(this).parent().find('.sectionsButton')) == 0){
-            $('.textAboutButton').html('Свернуть все');
-            $(this).parent().find('.sectionsButton').css('transform', 'rotate(180deg)');
-            $(this).parent().parent().find('.sectionButton').css('transform', 'rotate(180deg)');
-            $(this).parent().parent().find('.faqGroupItemBody').slideDown();
-        }else{
-            $('.textAboutButton').html('Раскрыть все');
-            $(this).parent().find('.sectionsButton').css('transform', 'rotate(0deg)');
-            $(this).parent().parent().find('.sectionButton').css('transform', 'rotate(0deg)');
-            $(this).parent().parent().find('.faqGroupItemBody').slideUp();
+            $(this).find('.textAboutButton').html('Раскрыть все');
+            $(this).find('.sectionsButton').css('transform', 'rotate(0deg)');
+            $(this).parent().find('.sectionButton').css('transform', 'rotate(0deg)');
+            $(this).parent().find('.faqGroupItemBody').slideUp();
         }
     });
     $('.faqBody').css('min-height', ($('.faqNotes').css('height')+100)+'px');
@@ -172,7 +170,8 @@ $( document ).ready(function() {
         if(str.length>0){
             strFSleUpperCase = str[0].toUpperCase() + str.substring(1, str.length);
         }
-        var groupNullResultCount = 0;
+        var searchNullResultGroupCount =0;
+        var nullResultInsideGroup = 0;
         var k=1;
         var itemsCount = 0;
         var headTitle, headTitleUpperCase, groupTitle, groupTitleUpperCase, groupText, groupTextUpperCase;
@@ -184,16 +183,13 @@ $( document ).ready(function() {
             headTitle = document.querySelectorAll('.faqGroups')[i].children[0].children[0].innerText;
             headTitleUpperCase = headTitle.toUpperCase();
             itemsCount = itemsCount + headTitleUpperCase.split(strUpperCase).length - 1;
-
-                groupNullResultCount = 0;
+                nullResultInsideGroup = 0;
                 for(var j=1;j<document.querySelectorAll('.faqGroups')[i].children.length; j++){
-                     groupTitle = document.querySelectorAll('.faqGroups')[i].children[j].children[0].children[0].innerText;
-                     groupTitleUpperCase = groupTitle.toUpperCase();
-                     groupText = document.querySelectorAll('.faqGroups')[i].children[j].children[1].children[0].innerText;
-                     groupTextUpperCase = groupText.toUpperCase();
-
+                    groupTitle = document.querySelectorAll('.faqGroups')[i].children[j].children[0].children[0].innerText;
+                    groupTitleUpperCase = groupTitle.toUpperCase();
+                    groupText = document.querySelectorAll('.faqGroups')[i].children[j].children[1].children[0].innerText;
+                    groupTextUpperCase = groupText.toUpperCase();
                     itemsCount = itemsCount + groupTitleUpperCase.split(strUpperCase).length + groupTextUpperCase.split(strUpperCase).length - 2;
-
                     for(k=1;k<groupTitle.split(lastSearchSpanOpen).length; k++){
                         groupTitle = groupTitle.replace(lastSearchSpanOpen, '');
                         groupTitle = groupTitle.replace(lastSearchSpanClose, '');
@@ -213,20 +209,32 @@ $( document ).ready(function() {
                         }
                         if(groupTextUpperCase.split(strUpperCase).length>1 && str.length>0){
                             document.querySelectorAll('.faqGroups')[i].children[j].children[1].style.display="block";
+                            document.querySelectorAll('.faqGroups')[i].children[j].children[0].children[1].style.transform='rotate(180deg)';
+                            document.querySelectorAll('.faqGroups')[i].children[0].children[3].style.transform='rotate(180deg)';
+                            document.querySelectorAll('.faqGroups')[i].children[0].children[2].innerHTML='Свернуть все';
                         }else{
                             document.querySelectorAll('.faqGroups')[i].children[j].children[1].style.display="none";
+
+
                         }
                         document.querySelectorAll('.faqGroups')[i].children[j].children[0].children[0].innerHTML = groupTitle;
                         document.querySelectorAll('.faqGroups')[i].children[j].children[1].children[0].innerHTML = groupText;
                     }else{
-                        groupNullResultCount++;
-                        document.querySelectorAll('.faqGroups')[i].children[j].style.display = "none";
+                        nullResultInsideGroup++;
+                    }
+                    if(nullResultInsideGroup >= document.querySelectorAll('.faqGroups')[i].children.length - 1){
+                        if(headTitle.split(str).length <=1 ){
+                            document.querySelectorAll('.faqGroups')[i].style.display="none";
+
+                        }
+                        searchNullResultGroupCount++;
                     }
                 }
-                if(groupNullResultCount == document.querySelectorAll('.faqGroups')[i].children.length - 1){
-                    if(headTitle.split(str).length <=1 ){
-                        document.querySelectorAll('.faqGroups')[i].style.display="none";
-                    }
+                if(searchNullResultGroupCount >= document.querySelectorAll('.faqGroups').length){
+                    document.getElementById('inputError').style.display='block';
+                    $('.inputBlog input').css('border', '1px solid red');
+                    $('.inputBlog input').css('color', 'red');
+                    doSearch('');
                 }
         }
         if(itemsCount == 0){
@@ -234,46 +242,43 @@ $( document ).ready(function() {
             $('.dontFoundBlock').width(nullResultElementWidth);
             $('.faqGroups').css('display', 'block');
             $('.faqGroups .faqGroupItem').css('display', 'block');
-
+        }
+        if(str!='' && str!=null && str!=0){
+            $('html, body').animate({scrollTop:0}, 500);
         }
     }
     $('.faqHeaderButtonItem').click(function(){
-        doSearch($('.faqHeaderSearch input').val());
+        doSearch($('.faqHeaderSearch .inputBlog input').val());
     });
-
     $('.faqHeaderSearch').on('keydown', function(e) {
         if( e.which ==13){
-            doSearch($('.faqHeaderSearch input').val());
+            doSearch($('.faqHeaderSearch .inputBlog input').val());
         }
     });
 
     function resposibaleDisplay(){
-        if(document.body.clientWidth<1440 && document.body.clientWidth>699){
-            $('.faqHeaderSearch input').css('width', (document.body.clientWidth - 282) +'px');
-            $('.faqHeaderDogIcon').css('margin-left', '-'+($('.faqHeaderSearch input').width()+138) +'px');
+        if(window.innerWidth<=1439 && window.innerWidth>699){
             $('.faqGroups').css('width', (document.body.clientWidth - 356) +'px');
             $('.faqGroupItem').css('width', (document.body.clientWidth - 442) +'px');
-        }else if(document.body.clientWidth<700){
-            $('.faqHeaderSearch input').css('width', '79%');
-            $('.faqHeaderDogIcon').css('margin-left', '0px');
+            $('.faqHeaderSearch .inputBlog').css('width', (document.body.clientWidth - 282) +'px');
+        }else if(window.innerWidth<700){
             $('.faqGroups').css('width', '100%');
             $('.faqGroupItem').css('width', '80%');
+            $('.faqHeaderSearch .inputBlog').css('width', '79%');
         }else{
-             $('.faqHeaderSearch input').css('width', (document.body.clientWidth - 825) +'px');
-             $('.faqHeaderDogIcon').css('margin-left', '-'+($('.faqHeaderSearch input').width()+170) +'px');
-
-             $('.faqGroups').css('width', (document.body.clientWidth - 540) +'px');
-             $('.faqGroupItem').css('width', '86%');
+            $('.faqGroups').css('width', (document.body.clientWidth - 540) +'px');
+            $('.faqGroupItem').css('width', '86%');
+            $('.faqHeaderSearch .inputBlog').css('width', (document.body.clientWidth - 900) +'px');
         }
         $('.textAboutButton').css('margin-left', ($('.faqGroupItem').width() - 100)+'px');
+        setFAQBodyHeight();
     }
     resposibaleDisplay();
+    $('#faqBody').height($('.footer').position().top);
     $(window).resize(function(){
         resposibaleDisplay();
     });
-
     $(window).scroll(function(){
-        console.log('a')
         var body = document.body;
         var docEl = document.documentElement;
         var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
@@ -281,25 +286,31 @@ $( document ).ready(function() {
         if(document.body.clientWidth>1439){
             footerHeight = 100;
         }else{
-            footerHeight = 200;
+            footerHeight = 400;
         }
 
-        if(scrollTop > 200 && document.body.clientWidth>699 && window.scrollY < document.body.clientHeight-window.innerHeight - 1000){
+        if(scrollTop > 55 && document.body.clientWidth>699 && window.scrollY < document.body.clientHeight-window.innerHeight - 1000){
             document.getElementById('faqMenu').style.position='fixed';
-            document.getElementById('faqMenu').style.marginTop='-200px';
-        }else if(window.scrollY > document.body.clientHeight-window.innerHeight - footerHeight && document.body.clientWidth>699){
-                document.getElementById('faqMenu').style.position='relative';
-                document.getElementById('faqMenu').style.marginTop=(scrollTop - window.innerHeight*1/3)+'px';
-            }else if(document.body.clientWidth>699 && scrollTop > 200){
-                document.getElementById('faqMenu').style.position='fixed';
-                document.getElementById('faqMenu').style.marginTop='-200px';
+            document.getElementById('faqMenu').style.marginTop='-30px';
+        }
+        else if(window.scrollY > document.body.clientHeight-window.innerHeight - footerHeight && document.body.clientWidth>699){
+            console.log('relative');
+            document.getElementById('faqMenu').style.position='relative';
+            if(document.body.clientWidth<1440){
+                document.getElementById('faqMenu').style.marginTop=(scrollTop - 420)+'px';
             }else{
-                document.getElementById('faqMenu').style.position='relative';
-                document.getElementById('faqMenu').style.marginTop='17px';
+                document.getElementById('faqMenu').style.marginTop=(scrollTop - 30)+'px';
             }
-
+        }
+        else if(document.body.clientWidth>699 && scrollTop > 200){
+            document.getElementById('faqMenu').style.position='fixed';
+            document.getElementById('faqMenu').style.marginTop='-30px';
+        }else{
+            document.getElementById('faqMenu').style.position='relative';
+            document.getElementById('faqMenu').style.marginTop='17px';
+        }
+        setFAQBodyHeight();
     });
-
     $('.linkToGroup').click(function(){
         doSearch('');
         var body = document.body;
@@ -307,6 +318,15 @@ $( document ).ready(function() {
         var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
         var clientTop = docEl.clientTop || body.clientTop || 0;
         var element =  document.getElementById($(this).text().trim());
-        $('html, body').animate({scrollTop:element.getBoundingClientRect().top  +  scrollTop - clientTop -75}, 800);
+        $('html, body').animate({scrollTop:element.getBoundingClientRect().top  +  scrollTop - clientTop -350}, 800);
     });
 });
+window.onload = function(){
+    setTimeout(function(){$(".loaderSlid").css('display', 'none')}, 300);
+    $('.inputBlog input').keyup(function() {
+        $('.inputBlog input').css('color', 'black');
+        $('.inputError').css('display', 'none');
+        $('.inputBlog input').css('border', '1px solid rgba(255, 0, 0, 0)');
+
+    });
+};

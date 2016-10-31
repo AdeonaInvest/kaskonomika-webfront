@@ -58,11 +58,12 @@
     text-align: center;
 }
 .infoGroupNumber{
-    margin-top: 15%;
     display: inline-block;
     font-size: 18px;
     margin-left: -3%;
+    margin-top: 6px;
     color: #53b4de;
+    font-family: "Geometria Narrow Bold";
 }
 .groupTitle{
     margin-top: 5%;
@@ -128,7 +129,7 @@
     min-width: 250px;
 }
 .slide2Body .infoGroupNumber{
-    margin-top: 12%;
+    margin-top: 6px;
     margin-left: -2%;
 }
 .slide2Body .groupInfo{
@@ -261,7 +262,7 @@
 }
 
 .elseOptionsTitle{
-    margin-top: 1%;
+    margin-top: 5%;
     text-align: center;
     display: inline-block;
     width: 100%;
@@ -343,7 +344,7 @@
 }
 .dogHeadIcon{
     width: 100px;
-    height: 100px;
+    height: 108px;
     margin: auto;
     background-image: url(../images/howItWork/dog_icon_last_part.png);
     background-repeat: no-repeat;

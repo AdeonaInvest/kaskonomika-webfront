@@ -1,0 +1,72 @@
+@media only screen and (max-width: 700px){
+    .header{
+        height: 62px;
+    }
+    .toolbarV4{
+        min-height: 35px;
+        height: 54px;
+    }
+    .toolbarV4 .menu{
+        margin-top: 14px;
+        margin-left: 16px;
+    }
+    .toolbarV4 .kaskonomikaIcon{
+        height: 20px;
+        width: 148px;
+        margin-left: 5px;
+        margin-top: 15px;
+        margin-right: 4%;
+        background-image: url(../../images/Kaskonomika_name_image.png);
+        background-size: contain;
+
+    }
+    .toolbarV4 .accountTelephone{
+        display: none;
+        margin-top: 18px;
+        margin-right: 10px;
+    }
+    .toolbarV4 .menuWorning{
+        display: none;
+        margin-right: 20px;
+    }
+    .toolbarV4 .accountIcon{
+        background-color: #ffffff;
+        margin-top: 4px;
+        margin-right: 5%;
+    }
+    .toolbarV4 .accountTelephone,.toolbarV4 .menuWorning{
+        display: none;
+    }
+    .calc{
+        margin-top: 4px;
+        width: 40px;
+        height: 40px;
+    }
+    .calc a {
+        display: none;
+    }
+    .calc img{
+        margin-left: 10px;
+        margin-top: 9px;
+    }
+
+    .fromToolbar, .baseMenu{
+        margin-left: 50px;
+        margin-top: 4%;
+        vertical-align: middle;
+    }
+    .baseMenu {
+        margin-top: 5%;
+    }
+    .toolbarV4 .mobileHide{
+        display: none;
+    }
+    .toolbarV4 .mobileShow{
+        display: inline-block;
+    }
+    .leftMenu{
+        width: 100%;
+    }
+
+
+}

@@ -3,10 +3,15 @@
     }
     .faqBody{
         min-width: 320px;
+        padding-top: 250px;
+        overflow: hidden;
     }
     .faqHeader{
         height: 278px;
         background-color: #59c6f2;
+        width: 100%;
+        position: fixed;
+        z-index: 1;
     }
     .faqHeaderContent{
         margin-top: 78px;
@@ -35,13 +40,32 @@
         width: 100%;
         float: left;
     }
-    .faqHeaderSearch input{
+    .faqHeaderSearch .inputBlog{
         width: 79%;
         margin-left: 53px;
         float: left;
-        height: 38px;
+        height: auto;
         margin-top: 8px;
+
+    }
+    .inputBlog input{
+        height: 38px;
+        width: 100%;
         border-radius: 6px;
+
+    }
+    .inputError{
+        float: right;
+        text-transform: uppercase;
+        font-size: 11px;
+        font-family: "Geometria Narrow Bold";
+        display: none;
+        margin-top: 10px;
+    }
+    .inputError img{
+        width: 12px;
+        height: 12px;
+        margin-bottom: -2px;
     }
     .faqHeaderDogIcon{
         display: inline-block;
@@ -53,7 +77,7 @@
         background-repeat: no-repeat;
         background-position: 100%;
     }
-    .faqHeaderSearch input{
+    .faqHeaderSearch .inputBlog input{
         padding-left: 15px;
     }
     .faqHeaderButton{
@@ -146,7 +170,9 @@
          display: none;
     }
     .faqGroupItemBody span{
-         font-size: 12px;
+        font-size: 12px;
+        display: inline-block;
+        width: 92%;
     }
     .sectionButton, .sectionsButton{
         display: inline-block;
@@ -186,7 +212,7 @@
         .faqHeaderDogIcon{
             position: relative;
             margin-top: -67px;
-            margin-left: 0px;
+            margin-left: -54px;
             float: left;
         }
         .faqHeaderContent{
@@ -196,7 +222,7 @@
             width: 100%;
             text-align: center;
         }
-        .faqHeaderSearch input{
+        .faqHeaderSearch .inputBlog{
             width: 71%;
         }
         .faqHeaderButtonItem{
@@ -211,6 +237,7 @@
             margin-top: -3px;
             width: 40px;
             height: 40px;
+            /*display: none;*/
         }
         .calc a{
             display: none;

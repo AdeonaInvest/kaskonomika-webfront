@@ -122,11 +122,9 @@ function setFilterListValue(){
     };
 }
 setFilterListValue();
-
 window.onresize = function(event) {
     setFilterListValue();
 };
-
 function filtrationEndResult(){
     filtersList.width = 6*3;
     for (var j=6; j>=0;j--){
@@ -272,154 +270,6 @@ function addFilter(value, type, id) {
             $(".searchInput, .searchInputEF").css("display", "none");
             break;
     };
-    //
-    //$(".close").click(function(){
-    //
-    //    $('.selectInputBody, .selectInputBodyEF').css('padding-bottom', '40px');
-    //    $('.selectInputBody, .selectInputBodyEF').css('padding-top', '15px');
-    //
-    //    var q = 0;
-    //    switch ($(this).parent().attr('id')){
-    //        case 'selectedExperiance':
-    //            getPilotExYearData();
-    //            $('.selectedExperiance, .selectedExperianceEF').remove();
-    //            filtersList.width =(filtersList.words[5].symbols + 3) + (filtersList.words[4].symbols + 3) + (filtersList.words[3].symbols + 3) + (filtersList.words[2].symbols + 3) + (filtersList.words[1].symbols + 3) + (filtersList.words[0].symbols + 3);
-    //            q=6;
-    //            break;
-    //        case 'selectedExperianceEF':
-    //
-    //            getPilotExYearData();
-    //            $('.selectedExperiance, .selectedExperianceEF').remove();
-    //            filtersList.width =(filtersList.words[5].symbols + 3) + (filtersList.words[4].symbols + 3) + (filtersList.words[3].symbols + 3) + (filtersList.words[2].symbols + 3) + (filtersList.words[1].symbols + 3) + (filtersList.words[0].symbols + 3);
-    //            q=6;
-    //            break;
-    //        case 'selectedAge':
-    //            getPilotAgeData();
-    //            $('.selectedExperiance, .selectedExperianceEF').remove();
-    //            $('.selectedAge, .selectedAgeEF').remove();
-    //            filtersList.width =(filtersList.words[4].symbols + 3) + (filtersList.words[3].symbols + 3) + (filtersList.words[2].symbols + 3) + (filtersList.words[1].symbols + 3) + (filtersList.words[0].symbols + 3);
-    //            q=5;
-    //            break;
-    //        case 'selectedAgeEF':
-    //            getPilotAgeData();
-    //            $('.selectedExperiance, .selectedExperianceEF').remove();
-    //            $('.selectedAge, .selectedAgeEF').remove();
-    //            filtersList.width =(filtersList.words[4].symbols + 3) + (filtersList.words[3].symbols + 3) + (filtersList.words[2].symbols + 3) + (filtersList.words[1].symbols + 3) + (filtersList.words[0].symbols + 3);
-    //            q=5;
-    //            break;
-    //        case 'selectedPilot':
-    //            getPilotsData();
-    //            $('.selectedExperiance, .selectedExperianceEF').remove();
-    //            $('.selectedAge, .selectedAgeEF').remove();
-    //            $('.selectedPilot, .selectedPilotEF').remove();
-    //            filtersList.width =(filtersList.words[3].symbols + 3) + (filtersList.words[2].symbols + 3) + (filtersList.words[1].symbols + 3) + (filtersList.words[0].symbols + 3);
-    //            q=4;
-    //            break;
-    //        case 'selectedPilotEF':
-    //            getPilotsData();
-    //            $('.selectedExperiance, .selectedExperianceEF').remove();
-    //            $('.selectedAge, .selectedAgeEF').remove();
-    //            $('.selectedPilot, .selectedPilotEF').remove();
-    //            filtersList.width =(filtersList.words[3].symbols + 3) + (filtersList.words[2].symbols + 3) + (filtersList.words[1].symbols + 3) + (filtersList.words[0].symbols + 3);
-    //            q=4;
-    //            break;
-    //        case 'selectedModification':
-    //            getModificationsData(SearchString +'/'+ filtersList.words[0].value +'/'+ filtersList.words[1].value +'/'+ filtersList.words[2].value);
-    //            $('.selectedExperiance, .selectedExperianceEF').remove();
-    //            $('.selectedPilot, .selectedPilotEF').remove();
-    //            $('.selectedAge, .selectedAgeEF').remove();
-    //            $('.selectedModification, .selectedModificationEF').remove();
-    //            filtersList.width =(filtersList.words[2].symbols + 3) + (filtersList.words[1].symbols + 3) + (filtersList.words[0].symbols + 3);
-    //            q=3;
-    //            break;
-    //        case 'selectedModificationEF':
-    //            getModificationsData(SearchString +'/'+ filtersList.words[0].value +'/'+ filtersList.words[1].value +'/'+ filtersList.words[2].value);
-    //            $('.selectedExperiance, .selectedExperianceEF').remove();
-    //            $('.selectedPilot, .selectedPilotEF').remove();
-    //            $('.selectedAge, .selectedAgeEF').remove();
-    //            $('.selectedModification, .selectedModificationEF').remove();
-    //            filtersList.width =(filtersList.words[2].symbols + 3) + (filtersList.words[1].symbols + 3) + (filtersList.words[0].symbols + 3);
-    //            q=3;
-    //            break;
-    //        case 'selectedModel':
-    //            getModelsData(SearchString +'/'+ filtersList.words[0].value +'/'+ filtersList.words[1].value);
-    //            $('.selectedExperiance, .selectedExperianceEF').remove();
-    //            $('.selectedAge, .selectedAgeEF').remove();
-    //            $('.selectedPilot, .selectedPilotEF').remove();
-    //            $('.selectedModification, .selectedModificationEF').remove();
-    //            $('.selectedModel, .selectedModelEF').remove();
-    //            filtersList.width =(filtersList.words[1].symbols + 3) + (filtersList.words[0].symbols + 3);
-    //            q=2;
-    //            break;
-    //        case 'selectedModelEF':
-    //            getModelsData(SearchString +'/'+ filtersList.words[0].value +'/'+ filtersList.words[1].value);
-    //            $('.selectedExperiance, .selectedExperianceEF').remove();
-    //            $('.selectedAge, .selectedAgeEF').remove();
-    //            $('.selectedPilot, .selectedPilotEF').remove();
-    //            $('.selectedModification, .selectedModificationEF').remove();
-    //            $('.selectedModel, .selectedModelEF').remove();
-    //            filtersList.width =(filtersList.words[1].symbols + 3) + (filtersList.words[0].symbols + 3);
-    //            q=2;
-    //            break;
-    //        case 'selectedYear':
-    //            getYearsData(SearchString +'/'+ filtersList.words[0].value);
-    //            $('.selectedExperiance, .selectedExperianceEF').remove();
-    //            $('.selectedAge, .selectedAgeEF').remove();
-    //            $('.selectedPilot, .selectedPilotEF').remove();
-    //            $('.selectedModification, .selectedModificationEF').remove();
-    //            $('.selectedModel, .selectedModelEF').remove();
-    //            $('.selectedYear, .selectedYearEF').remove();
-    //            filtersList.width =(filtersList.words[0].symbols + 3);
-    //            q=1;
-    //            break;
-    //        case 'selectedYearEF':
-    //            getYearsData(SearchString +'/'+ filtersList.words[0].value);
-    //            $('.selectedExperiance, .selectedExperianceEF').remove();
-    //            $('.selectedAge, .selectedAgeEF').remove();
-    //            $('.selectedPilot, .selectedPilotEF').remove();
-    //            $('.selectedModification, .selectedModificationEF').remove();
-    //            $('.selectedModel, .selectedModelEF').remove();
-    //            $('.selectedYear, .selectedYearEF').remove();
-    //            filtersList.width =(filtersList.words[0].symbols + 3);
-    //            q=1;
-    //            break;
-    //        case 'selectedMark':
-    //            getMarksData(SearchString);
-    //            $('.selectedExperiance, .selectedExperianceEF').remove();
-    //            $('.selectedAge, .selectedAgeEF').remove();
-    //            $('.selectedPilot, .selectedPilotEF').remove();
-    //            $('.selectedModification, .selectedModificationEF').remove();
-    //            $('.selectedModel, .selectedModelEF').remove();
-    //            $('.selectedYear, .selectedYearEF').remove();
-    //            $('.selectedMark, .selectedMarkEF').remove();
-    //            filtersList.width =0;
-    //            q=0;
-    //            break;
-    //        case 'selectedMarkEF':
-    //            getMarksData(SearchString);
-    //            $('.selectedExperiance, .selectedExperianceEF').remove();
-    //            $('.selectedAge, .selectedAgeEF').remove();
-    //            $('.selectedPilot, .selectedPilotEF').remove();
-    //            $('.selectedModification, .selectedModificationEF').remove();
-    //            $('.selectedModel, .selectedModelEF').remove();
-    //            $('.selectedYear, .selectedYearEF').remove();
-    //            $('.selectedMark, .selectedMarkEF').remove();
-    //            filtersList.width =0;
-    //            q=0;
-    //            break;
-    //    }
-    //
-    //    $(".searchInput, .searchInputEF").css("display", "inline-block");
-    //    $(".selectInputBody, .selectInputBodyEF").css("display", "inline-block");
-    //    $(".openListIcon, .openListIconEF").css("display", "inline-block");
-    //    $(".filterButton").removeClass('getAction'); $(".filterButtonEF").removeClass('getActionEF');
-    //    filtrationExample(q - 1);
-    //    $(".applicationStraight").removeClass("stepStraight"); $(".applicationStraightEF").removeClass("stepStraightEF");
-    //    $(".applicationRound").removeClass("stepRound"); $(".applicationRoundEF").removeClass("stepRoundEF");
-    //    $(".applicationStraight").addClass("straight"); $(".applicationStraightEF").addClass("straightEF");
-    //    $(".applicationRound").addClass("round"); $(".applicationRoundEF").addClass("roundEF");
-    //});
-
     filtrationExample(type);
 }
 function getPilotExYearData() {

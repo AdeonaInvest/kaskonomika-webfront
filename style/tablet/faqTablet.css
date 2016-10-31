@@ -15,7 +15,7 @@
 }
 
 @media screen and (min-width: 700px) and (max-width: 720px){
-    .faqHeaderSearch input{
+    .faqHeaderSearch .inputBlog{
         width: 55%
     }
     .calc{
@@ -23,13 +23,17 @@
     }
 }
 @media screen and (min-width: 720px){
-    .faqHeaderSearch input{
+    .faqHeaderSearch .inputBlog{
         width: 65%
     }
 }
 
 
 @media screen and (min-width: 700px){
+
+    .faqHeaderSearch{
+        margin-top: 22px;
+    }
 
     .faqGroupsContext, .textAboutButton{
         display: inline-block;
@@ -111,15 +115,16 @@
     .faqHeaderTitleText{
         font-size: 35px;
     }
-    .faqHeaderDogIcon{
-        background-image: url('../../images/faq/search_dog_icon_tablet.png');
-        margin-top: -108px;
-        width: 139px;
-        position: relative;
-        float: left;
-        margin-left: -82%;
-    }
-    .faqHeaderSearch input{
+    /*.faqHeaderDogIcon{*/
+        /*background-image: url('../../images/faq/search_dog_icon_tablet.png');*/
+        /*margin-top: -108px;*/
+        /*width: 139px;*/
+        /*position: relative;*/
+        /*float: left;*/
+        /*margin-left: -82%;*/
+
+    /*}*/
+    .faqHeaderSearch .inputBlog{
             margin-top: 12px;
             margin-left: 117px;
     }
@@ -195,11 +200,15 @@
     }
     .faqHeaderDogIcon{
         background-image: url('../../images/faq/search_dog_icon_tablet.png');
-        margin-top: -42px;
         width: 139px;
         position: relative;
         float: left;
-        margin-left: -81%;
+        margin-top: -96px;
+        margin-left: -123px;
+    }
+    .faqGroupItemBody span{
+        display: inline-block;
+        width: 94%;
     }
 
     .calc {
