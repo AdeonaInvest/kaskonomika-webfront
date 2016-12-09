@@ -30,8 +30,8 @@ $( document ).ready(function() {
     });
 
     document.querySelector('.faqBody').style.minHeight = window.innerHeight+'px';
-    var urlSection = 'http://sitetest.kaskonomika.ru/faq/section/list';
-    var urlNotice = 'http://sitetest.kaskonomika.ru/faq/notice/list';
+    var urlSection = 'http://sitelaravel.kaskonomika.ru/faq/section/list';
+    var urlNotice = 'http://sitelaravel.kaskonomika.ru/faq/notice/list';
     var dateJson={};
     function getJsonDate(dateUrl){
         $.ajax({
