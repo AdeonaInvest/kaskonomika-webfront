@@ -44,16 +44,7 @@ var jsPaths = [
     'bower_components/angular-translate-storage-local/angular-translate-storage-local.min.js',
     'bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js',
     'bower_components/angular-translate-handler-log/angular-translate-handler-log.min.js',
-    'bower_components/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.min.js',
     'bower_components/angular-jquery/dist/angular-jquery.min.js',
-    'bower_components/angular-bootstrap-affix/dist/angular-bootstrap-affix.min.js',
-    'bower_components/angularjs-slider/dist/rzslider.min.js',
-    'bower_components/angular-wysiwyg/dist/angular-wysiwyg.min.js',
-    /*'bower_components/atmosphere.js/atmosphere.min.js',*/
-    /*'bower_components/ngQuickDate/dist/ng-quick-date.min.js',*/
-    /*'bower_components/angular-noty/dist/angular-noty.dist.js',
-    'bower_components/noty/js/noty/packaged/jquery.noty.packaged.js',
-    'bower_components/ng-img-crop/compile/minified/ng-img-crop.js',*/
     'sites/src/js/lib/intercom.min.js',
     'sites/src/js/lib/LockableStorage.js',
     'sites/src/js/lib/reconnecting-websocket.js'
@@ -62,8 +53,7 @@ var jsPaths = [
 /**
  * Сборка всего JS
  */
-var jsGen = function(name, target){
-    target = target||name;
+var jsGen = function(name){
     return function(){
         return gulp.src(['./assets/'+name+'/**/*.js'])
             .pipe(angularFilesort())
@@ -73,7 +63,11 @@ var jsGen = function(name, target){
             .pipe(livereload(server));
     };
 };
-gulp.task('js-stream', jsGen('kasko'));
+gulp.task('js-stream', jsGen('kaskonomika'));
+
+/**
+ * Сборка Vendor JS
+ */
 gulp.task('js-vendor', ['bower'], function(){
     return gulp.src(jsPaths)
         .pipe(expect(jsPaths))
@@ -89,45 +83,46 @@ gulp.task('js-vendor', ['bower'], function(){
 var lessGen = function(name){
     return function (){
         return gulp.src('./assets/'+name+'/core/styles/_common.less')
-            .pipe(less())
+            .pipe(less({
+                compress: true
+            }))
             .pipe(autoprefixer())
             .pipe(concat('style.css'))
-            .pipe(cleanCSS())
             .pipe(lec({eolc: 'LF', encoding:'utf8'}))
             .pipe(gulp.dest('./sites/'+name+'/css'))
             .pipe(livereload(server));
     };
 };
-gulp.task('less-stream', lessGen('kasko'));
+gulp.task('less-stream', lessGen('kaskonomika'));
 
 /**
  * Сборка всего HTML
  */
 gulp.task('html-stream',['js-stream', 'templates'], function() {
-    return gulp.src(['./assets/stream/index.html'])
+    return gulp.src(['./assets/kaskonomika/modules/index.html'])
         .pipe(fileinclude({
             prefix: '@@',
             basepath: '@file'
         }))
         .pipe(revHash({assetsDir: './sites'}))
-        .pipe(hash_src({build_dir: "./sites/stream", src_path: "./assets/stream"}))
-        .pipe(gulp.dest('./sites/stream'));
+        .pipe(hash_src({build_dir: "./sites/kaskonomika", src_path: "./assets/kaskonomika/modules"}))
+        .pipe(gulp.dest('./sites/kaskonomika'));
 });
 
 /**
  * Сборка всех шаблонов в JS файл
  */
 gulp.task('templates-stream', [], function () {
-    return gulp.src(['./assets/stream/modules/**/*.html'])
+    return gulp.src(['./assets/kaskonomika/modules/**/*.html'])
         .pipe(htmlmin({
             collapseWhitespace: true,
             conservativeCollapse: true
         }))
         .pipe(templateCache('templates.js', {
-            module: 'streampub',
+            module: 'kaskonomika',
             root: '/'
         }))
-        .pipe(gulp.dest('./sites/stream/js'))
+        .pipe(gulp.dest('./sites/kaskonomika/js'))
         .pipe(livereload(server));
 });
 
@@ -139,21 +134,21 @@ gulp.task('bower', ['bower-prune'], function() {
 });
 
 gulp.task('bower-prune', function() {
-    return bower({ cmd: 'prune'});
+    return bower({cmd: 'prune'});
 });
 
-gulp.task('kasko', ['js-stream', 'less-stream', 'html-stream']);
+gulp.task('kaskonomika', ['js-stream', 'less-stream', 'html-stream']);
 gulp.task('templates', ['templates-stream']);
 gulp.task('html', ['html-stream']);
 
-gulp.task('build', ['kasko']);
+gulp.task('build', ['kaskonomika']);
 
 var taskWatch = function(){
     gulp.run('build');
 
-    gulp.watch(['./assets/stream/**/*.html'], ['html-stream']);
-    gulp.watch(['./assets/stream/**/*.less'],['less-stream']);
-    gulp.watch(['./assets/stream/**/*.js'],['js-stream', 'html-stream']);
+    gulp.watch(['./assets/kaskonomika/**/*.html'], ['html-stream']);
+    gulp.watch(['./assets/kaskonomika/**/*.less'],['less-stream']);
+    gulp.watch(['./assets/kaskonomika/**/*.js'],['js-stream']);
 };
 
 // Watch
@@ -165,18 +160,9 @@ gulp.task('watch', function() {
     gulp.run('local-serverRu');
 });
 
-// Watch
-gulp.task('watchProd', function() {
-    server.listen(35729, function(err) {
-        if (err) return console.log(err);
-        taskWatch()
-    });
-    gulp.run('local-serverNet');
-});
-
 // configure proxy middleware options
 var options = {
-    target: 'http://onlinekiller.ru', // target host
+    target: 'http://api.kaskonomika.ru', // target host
     changeOrigin: true,               // needed for virtual hosted sites
     ws: true,                         // proxy websockets
     secure: false,                   //for https
@@ -185,63 +171,32 @@ var options = {
 
         if(cook!=undefined ) {
             if (cook[0].indexOf('PLAY_SESSION')>-1) {
-                proxyRes.headers['set-cookie'] = cook[0].replace('Domain=.onlinekiller.ru','Domain=.stream.local');
+                proxyRes.headers['set-cookie'] = cook[0].replace('Domain=.kaskonomika.ru','Domain=.kaskonomika.local');
                 console.log('cookie created successfully');
             }
         }
     }
 };
 
-var optionsProd = {
-    target: 'http://streampub.net', // target host
-    changeOrigin: true,               // needed for virtual hosted sites
-    ws: true,                         // proxy websockets
-    secure: false,                   //for https
-    onProxyRes: function(proxyRes, req, res) {
-        var cook = proxyRes.headers['set-cookie'];
-
-        if(cook!=undefined ) {
-            if (cook[0].indexOf('PLAY_SESSION')>-1) {
-                proxyRes.headers['set-cookie'] = cook[0].replace('Domain=.streampub.net','Domain=.stream.local');
-                console.log('cookie created successfully');
-            }
-        }
-    }
-};
-
-var proxy = proxyMiddleware(['/api','/stream'], options);
-var proxyProd = proxyMiddleware(['/api','/stream'], optionsProd);
+var proxy = proxyMiddleware(['/api','/kaskonomika'], options);
 
 var serverGen = function(proxy1, cb){
-
-    var streamapp = express().use(express.static('./sites/stream')).get('/*', function(req, res, next){
+    var streamapp = express().use(express.static('./sites/kaskonomika')).get('/*', function(req, res, next){
         if ( req.path.indexOf('/src')>-1) return next();
-        res.sendFile("index.html", {"root": __dirname + '/sites/stream'});
+        res.sendFile("index.html", {"root": __dirname + '/sites/kaskonomika'});
     });
-
     return function() {
         express()
             .use('/src', express.static('./sites/src'))
             .use(proxy1).on('upgrade', proxy1.upgrade)//
-            .use(vhost('stream.local', streamapp))
+            .use(vhost('kaskonomika.local', streamapp))
             .listen(9360);
-
         cb()
     }
 };
 
-
 // Local server
-gulp.task('local-serverRu', serverGen(proxy, function(){
-        console.log('Server listening on http://onlinekiller.ru with remote back');
-    })
-);
-
-// Prod server
-gulp.task('local-serverNet', serverGen(proxyProd, function(){
-        console.log('Server listening on http://streampub.net with remote back');
-    })
-);
+gulp.task('local-serverRu', serverGen(proxy, function(){}));
 
 // Default
 gulp.task('default', function() {
