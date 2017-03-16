@@ -61,7 +61,7 @@
             };
 
             if (action && action == 'autoLogin') {
-                //TODO............................
+                
             } else {
                 return $http.post('/api/signup', data)
                     .then(function(){

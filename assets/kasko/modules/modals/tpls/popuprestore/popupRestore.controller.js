@@ -19,7 +19,7 @@
                     vm.email = '';
                 })
                 .catch(function(response){
-                    ///TODO...
+                    
                     vm.email = '';
                     /*if () {
 
