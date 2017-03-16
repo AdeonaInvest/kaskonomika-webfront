@@ -5,9 +5,9 @@
         .module('streampub')
         .controller('popupRestoreController', popupRestoreController);
 
-    popupRestoreController.$inject = ['authenticationService', 'modalService'];
+    popupRestoreController.$inject = ['authenticationService'];
 
-    function popupRestoreController(authenticationService, modalService) {
+    function popupRestoreController(authenticationService) {
         var vm = this;
         vm.step = 'form';
         vm.restorePassword = restorePassword;
@@ -18,12 +18,8 @@
                     vm.step = 'ok';
                     vm.email = '';
                 })
-                .catch(function(response){
-                    
+                .catch(function(){
                     vm.email = '';
-                    /*if () {
-
-                    }*/
                 })
         }
     }
