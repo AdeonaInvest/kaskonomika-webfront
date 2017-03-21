@@ -46,8 +46,8 @@ var jsPaths = [
     'bower_components/angular-translate-handler-log/angular-translate-handler-log.min.js',
     'bower_components/angular-jquery/dist/angular-jquery.min.js',
     'sites/src/js/lib/intercom.min.js',
-    'sites/src/js/lib/LockableStorage.js',
-    'sites/src/js/lib/reconnecting-websocket.js'
+    'sites/src/js/lib/echarts.js',
+    'sites/src/js/lib/ngecharts.js'
 ];
 
 /**
@@ -64,6 +64,7 @@ var jsGen = function(name){
     };
 };
 gulp.task('js-stream', jsGen('kaskonomika'));
+gulp.task('js-partners', jsGen('partners'));
 
 /**
  * Сборка Vendor JS
@@ -94,9 +95,10 @@ var lessGen = function(name){
     };
 };
 gulp.task('less-stream', lessGen('kaskonomika'));
+gulp.task('less-partners', lessGen('partners'));
 
 /**
- * Сборка всего HTML
+ * Сборка всего HTML - kaskonomika
  */
 gulp.task('html-stream',['js-stream', 'templates'], function() {
     return gulp.src(['./assets/kaskonomika/modules/index.html'])
@@ -110,7 +112,21 @@ gulp.task('html-stream',['js-stream', 'templates'], function() {
 });
 
 /**
- * Сборка всех шаблонов в JS файл
+ * Сборка всего HTML - partners
+ */
+gulp.task('html-partners',['js-partners', 'templates'], function() {
+    return gulp.src(['./assets/partners/index.html'])
+        .pipe(fileinclude({
+            prefix: '@@',
+            basepath: '@file'
+        }))
+        .pipe(revHash({assetsDir: './sites'}))
+        .pipe(hash_src({build_dir: "./sites/partners", src_path: "./assets/partners"}))
+        .pipe(gulp.dest('./sites/partners'));
+});
+
+/**
+ * Сборка всех шаблонов в JS файл - kaskonokika
  */
 gulp.task('templates-stream', [], function () {
     return gulp.src(['./assets/kaskonomika/modules/**/*.html'])
@@ -127,6 +143,23 @@ gulp.task('templates-stream', [], function () {
 });
 
 /**
+ * Сборка всех шаблонов в JS файл - partners
+ */
+gulp.task('templates-partners', [], function () {
+    return gulp.src(['./assets/partners/modules/**/*.html'])
+        .pipe(htmlmin({
+            collapseWhitespace: true,
+            conservativeCollapse: true
+        }))
+        .pipe(templateCache('templates.js', {
+            module: 'partners',
+            root: '/'
+        }))
+        .pipe(gulp.dest('./sites/partners/js'))
+        .pipe(livereload(server));
+});
+
+/**
  * Запуск bower install перед сборкой, что бы у всех всегда совпадали версии либ.
  */
 gulp.task('bower', ['bower-prune'], function() {
@@ -137,9 +170,9 @@ gulp.task('bower-prune', function() {
     return bower({cmd: 'prune'});
 });
 
-gulp.task('kaskonomika', ['js-stream', 'less-stream', 'html-stream']);
-gulp.task('templates', ['templates-stream']);
-gulp.task('html', ['html-stream']);
+gulp.task('kaskonomika', ['js-stream', 'less-stream', 'html-stream','js-partners','less-partners','html-partners']);
+gulp.task('templates', ['templates-stream','templates-partners']);
+gulp.task('html', ['html-stream','html-partners']);
 
 gulp.task('build', ['kaskonomika']);
 
@@ -149,6 +182,9 @@ var taskWatch = function(){
     gulp.watch(['./assets/kaskonomika/**/*.html'], ['html-stream']);
     gulp.watch(['./assets/kaskonomika/**/*.less'],['less-stream']);
     gulp.watch(['./assets/kaskonomika/**/*.js'],['js-stream']);
+    gulp.watch(['./assets/partners/**/*.js'],['html-partners']);
+    gulp.watch(['./assets/partners/**/*.js'],['less-partners']);
+    gulp.watch(['./assets/partners/**/*.js'],['js-partners']);
 };
 
 // Watch
@@ -185,11 +221,17 @@ var serverGen = function(proxy1, cb){
         if ( req.path.indexOf('/src')>-1) return next();
         res.sendFile("index.html", {"root": __dirname + '/sites/kaskonomika'});
     });
+
+    var partnersapp = express().use(express.static('./sites/partners')).get('/*', function(req, res, next){
+        if ( req.path.indexOf('/src')>-1) return next();
+        res.sendFile("index.html", {"root": __dirname + '/sites/partners'});
+    });
     return function() {
         express()
             .use('/src', express.static('./sites/src'))
             .use(proxy1).on('upgrade', proxy1.upgrade)//
             .use(vhost('kaskonomika.local', streamapp))
+            .use(vhost('partners.kaskonomika.local', partnersapp))
             .listen(9360);
         cb()
     }
