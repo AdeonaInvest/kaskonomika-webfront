@@ -29,7 +29,7 @@ lsof | grep 35729
 kill -9  {proccedID}
 
 ### Сборка JS компонентов(из bower) происходит через команду: ###
-gulp js-vendor // --> ./public/vendor.js 
+gulp js-vendor // --> ./sites/src/js/vendor.js
 
 ### Фронты работают теперь на kaskonomika.local:9360
 
