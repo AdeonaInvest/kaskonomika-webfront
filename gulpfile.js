@@ -115,13 +115,13 @@ gulp.task('html-stream',['js-stream', 'templates'], function() {
  * Сборка всего HTML - partners
  */
 gulp.task('html-partners',['js-partners', 'templates'], function() {
-    return gulp.src(['./assets/partners/index.html'])
+    return gulp.src(['./assets/partners/modules/index.html'])
         .pipe(fileinclude({
             prefix: '@@',
             basepath: '@file'
         }))
         .pipe(revHash({assetsDir: './sites'}))
-        .pipe(hash_src({build_dir: "./sites/partners", src_path: "./assets/partners"}))
+        .pipe(hash_src({build_dir: "./sites/partners", src_path: "./assets/partners/modules"}))
         .pipe(gulp.dest('./sites/partners'));
 });
 
@@ -182,8 +182,8 @@ var taskWatch = function(){
     gulp.watch(['./assets/kaskonomika/**/*.html'], ['html-stream']);
     gulp.watch(['./assets/kaskonomika/**/*.less'],['less-stream']);
     gulp.watch(['./assets/kaskonomika/**/*.js'],['js-stream']);
-    gulp.watch(['./assets/partners/**/*.js'],['html-partners']);
-    gulp.watch(['./assets/partners/**/*.js'],['less-partners']);
+    gulp.watch(['./assets/partners/**/*.html'],['html-partners']);
+    gulp.watch(['./assets/partners/**/*.less'],['less-partners']);
     gulp.watch(['./assets/partners/**/*.js'],['js-partners']);
 };
 

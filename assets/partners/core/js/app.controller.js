@@ -9,14 +9,8 @@
 
     function appController() {
         var vm = this;
-
-        activate();
-
-        ////////////////
-
-        function activate() {
-        }
-
+        
+        
     }
 
 })();
