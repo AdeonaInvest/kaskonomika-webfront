@@ -1,5 +1,18 @@
+/**
+ * Created by Ravy on 22.03.2017.
+ */
 $(function () {
     "use strict";
+
+    /**
+     * Скрытие sidebar при клике на wrapper на мобиьных устройствах
+     */
+    $(".content-wrapper").click(function () {
+        //Enable hide menu when clicking on the content-wrapper on small screens
+        if ($(window).width() <= (767) && $("body").hasClass("sidebar-open")) {
+            $("body").removeClass('sidebar-open');
+        }
+    });
     
     /**
      * Анимация и сворачивание меню
