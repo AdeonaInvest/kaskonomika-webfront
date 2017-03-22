@@ -8,4 +8,4 @@
 /sites/**/css/style.css
 /sites/**/index.html
 
-!/sites/src/js/vendor.js
+/sites/src/js/vendor.js
