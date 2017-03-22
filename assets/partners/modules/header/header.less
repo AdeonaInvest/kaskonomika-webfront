@@ -111,8 +111,9 @@
     margin-bottom: 0;
     margin-right: 0;
     >li {
-      display: inline-block;
+      display: block;
       position: relative;
+      float: left;
       >a {
         display: block;
         padding: 10px 15px;
@@ -120,12 +121,25 @@
         padding-bottom: 15px;
         line-height: 20px;
       }
+      >.user-profile {
+        padding: 5px 15px;
+        text-decoration: none;
+        img {
+          height: 40px;
+          width: 40px;
+          margin: 0 10px 0 0;
+        }
+        &:hover,&:focus {
+          text-decoration: none;
+          outline: none;
+        }
+      }
     }
     .settings-menu {
       li {
         a {
           font-weight: 500;
-          text-transform: uppercase;
+          text-transform: none;
         }
       }
     }

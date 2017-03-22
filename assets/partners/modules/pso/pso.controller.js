@@ -2,22 +2,18 @@
     'use strict';
 
     angular.module('partners')
-        .controller('sidebarController', sidebarController);
+        .controller('pagePsoController', pagePsoController);
 
-    sidebarController.$inject = [];
+    pagePsoController.$inject = [];
 
-    function sidebarController() {
+    function pagePsoController() {
         var vm = this;
-        
-        
 
         activate();
         /////////////////////
         function activate() {
 
         }
-
-        
 
     }
 })();

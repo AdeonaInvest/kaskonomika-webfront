@@ -5,7 +5,8 @@
         .module('partners', [
             'ngRoute',
             'ngSanitize',
-            'ngCookies'
+            'ngCookies',
+            'ui.bootstrap'
         ])
         .constant('config', {
             version: '0.0.1', //Текущая версия сайта

@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <link rel="shortcut icon" href="/src/img/base/favicon.png">
-
     <link href="css/style.css" rel="stylesheet" type="text/css"/>
-
+    <title>Каскономика</title>
     <script src="/src/js/vendor.js"></script>
     <script src="js/script.js"></script>
     <script src="js/templates.js"></script>
@@ -20,7 +19,7 @@
 
     @@include('../modules/sidebar/sidebar.html')
 
-    <div class="content-wrapper">
+    <div class="content-wrapper" ng-class="{'wrapper-clean' : isIndexPage}">
         <ng-view autoscroll="true"></ng-view>
     </div>
 </div>

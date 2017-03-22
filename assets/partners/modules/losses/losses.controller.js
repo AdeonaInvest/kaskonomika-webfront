@@ -2,22 +2,18 @@
     'use strict';
 
     angular.module('partners')
-        .controller('sidebarController', sidebarController);
+        .controller('pageLossesController', pageLossesController);
 
-    sidebarController.$inject = [];
+    pageLossesController.$inject = [];
 
-    function sidebarController() {
+    function pageLossesController() {
         var vm = this;
-        
-        
 
         activate();
         /////////////////////
         function activate() {
 
         }
-
-        
 
     }
 })();
