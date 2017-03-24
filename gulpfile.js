@@ -47,7 +47,8 @@ var jsPaths = [
     'bower_components/angular-jquery/dist/angular-jquery.min.js',
     'sites/src/js/lib/intercom.min.js',
     'sites/src/js/lib/echarts.js',
-    'sites/src/js/lib/ngecharts.js'
+    'sites/src/js/lib/ngecharts.js',
+    'sites/src/js/lib/xlog.app.js'
 ];
 
 /**

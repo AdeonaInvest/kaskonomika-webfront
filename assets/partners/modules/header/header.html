@@ -18,12 +18,12 @@
                         <li class="not-footer"><a href="#">See all notifications.</a></li>
                     </ul>
                 </li><li class="dropdown">
-                <a class="dropdown-toggle user-profile" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <img class="img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg" alt="User Image"> Росгосстрах</a>
+                <a ng-if="user" class="dropdown-toggle user-profile" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <img class="img-circle" ng-src="{{user.avatar}}" alt="Аватар пользователя"/> {{user.login}}</a>
                     <ul class="dropdown-menu settings-menu">
-                        <li><a href="page-user.html"><i class="fa fa-cog fa-lg"></i> Настройки</a></li>
-                        <li><a href="page-user.html"><i class="fa fa-user fa-lg"></i> Профиль</a></li>
-                        <li><a href="/"><i class="fa fa-sign-out fa-lg"></i> Выйти</a></li>
+                        <!--<li><a href="page-user.html"><i class="fa fa-cog fa-lg"></i> Настройки</a></li>
+                        <li><a href="page-user.html"><i class="fa fa-user fa-lg"></i> Профиль</a></li>-->
+                        <li><a href ng-click="vm.logout()"><i class="fa fa-sign-out fa-lg"></i> Выйти</a></li>
                     </ul>
                 </li>
             </ul>

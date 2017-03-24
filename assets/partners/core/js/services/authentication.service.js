@@ -5,22 +5,43 @@
         .module('partners')
         .service('authenticationService', authenticationService);
 
-    authenticationService.$inject = ['$http', 'intercomService', 'userService'];
+    authenticationService.$inject = ['$http', 'intercomService', 'userService','config','$rootScope'];
 
-    function authenticationService($http, intercomService, userService) {
+    function authenticationService($http, intercomService, userService,config,$rootScope) {
         this.login = login;
         this.logout = logout;
         this.registration = registration;
         this.restorePswrd = restorePswrd;
 
+        var api = config.api;
+
         ////////////////
 
+        /*{
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+            }
+        }*/
+
         // Авториязация по логину / паролю
-        function login(email, password) {
+        function login(email, password, redirect, remember) {
             return $http
-                .post('/api/login', {email: email, password: password})
-                .then(function () {
-                    intercomService.emit('authentication.login');
+                .post(api+'/authorization', {username: email, password: password,'meta-stop':true})
+                .then(function (response) {
+                    if (response.data.result) {
+                        localStorage.setItem('token', response.data.token);
+                        $rootScope.token = response.data.token;
+                        xlog('Token:', $rootScope.token);
+                        $rootScope.user = response.data.response;
+                        intercomService.emit('user-login-success',{
+                            remember: remember || null, 
+                            url: redirect
+                            }
+                        );
+
+                    } else {
+                        intercomService.emit('user-login-error', response.data);
+                    }
                 })
         }
 

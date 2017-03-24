@@ -5,53 +5,60 @@
         .module('partners')
         .service('userService', userService);
 
-    userService.$inject = ['$http', '$q'];
+    userService.$inject = ['$http', '$q','config','$rootScope','$location'];
 
-    function userService($http, $q) {
+    function userService($http, $q, config,$rootScope,$location) {
+        var api = config.api;
 
-        var userProfile = undefined; //хранение данных текущего пользователя
-        var loaderPromise = null; //Статус загрузки данных пользователя
-
-        this.loadUserProfile = loadUserProfile;
-        this.getUserProfile = getUserProfile;
-        this.resetUserProfile = resetUserProfile;
+        this.checkUser = checkUser; //Проверка пользователя на авторизацию
+        this.getUserProfile = getUserProfile; //Получение профиля пользователя
+        this.removeUserProfile = removeUserProfile; //Удаление просроченного токена и возврат на страницу логина
 
 
-        ////////////////
-
-        // Загрузка данных пользователя
-        function loadUserProfile() {
-            // предотвращение параллельных запросов
-            if (!loaderPromise) {
-                loaderPromise = $http
-                    .get('/api/profile')
-                    .then(loadUserProfileComplete)
-                    .catch(loadUserProfileFailed);
+        /**
+         * Проверка пользователя на авторизацию
+         */
+        function checkUser() {
+            if ($rootScope.token) {
+                $http.get(api + '/isTokenAuthorized/' + $rootScope.token + '?token='+$rootScope.token)
+                    .then(function(response) {
+                        xlog('Проверка токена на авторизацию: ', response.data);
+                        if (response.data.response){
+                            getUserProfile(); //Получение профиля пользователя
+                        } else {
+                            removeUserProfile(); //Удаление просроченного токена и возврат на страницу логина
+                        }
+                    })
+            } else {
+                removeUserProfile(); //Удаление просроченного токена и возврат на страницу логина
             }
-
-            return loaderPromise;
         }
 
-        function loadUserProfileComplete(response) {
-            userProfile = response.data.data;
-            loaderPromise = $q.when(userProfile);
-            return userProfile;
+        /**
+         * Получение профиля пользователя
+         */
+        function getUserProfile(){
+            xlog('Делаю запрос профайла');
+            $http.post(api + '/users/info', {token: $rootScope.token})
+                .then(function(user) {
+                    xlog('Получил профайл пользователя при обновлении. ', user.data);
+                    $rootScope.user = null;
+                    $rootScope.user = user.data.response;
+                })
         }
 
-        function loadUserProfileFailed(error) {
-            loaderPromise = null;
-            return $q.reject(error);
+        /**
+         * Удаление просроченного токена и возврат на страницу логина
+         */
+        function removeUserProfile() {
+            $rootScope.user = null;
+            $rootScope.token = null;
+            localStorage.removeItem('token');
+            $location.url('/');
+            xlog('Пользователь не авторизован, адресую на страницу входа.');
+            xlog('Токен:', $rootScope.token || 'не существует');
         }
 
-        // Обновление профайла
-        function resetUserProfile() {
-            userProfile = undefined;
-            loaderPromise = null;
-        }
-
-        function getUserProfile() {
-            return userProfile;
-        }
 
     }
 

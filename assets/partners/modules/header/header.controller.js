@@ -7,15 +7,25 @@
     angular.module('partners')
         .controller('headerController', headerController);
 
-    headerController.$inject = ['$rootScope'];
+    headerController.$inject = ['userService'];
 
-    function headerController($rootScope) {
+    function headerController(userService) {
         var vm = this;
 
-        vm.toggleSideBar = toggleSideBar;
+        vm.logout = logout; //Выход из системы
+        vm.toggleSideBar = toggleSideBar; //Функция управление отоюражением и скрытием сайдбара
 
+        /**
+         * Выход из системы
+         */
+        function logout(){
+            userService.removeUserProfile();
+        }
+
+        /**
+         * Функция управление отоюражением и скрытием сайдбара
+         */
         function toggleSideBar() {
-
             //Enable sidebar push menu
             if ($(window).width() > (767)) {
                 if ($("body").hasClass('sidebar-collapse')) {

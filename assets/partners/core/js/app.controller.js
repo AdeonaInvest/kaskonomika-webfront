@@ -13,20 +13,32 @@
 
         function activate(){
             onChangePath();
+            checkUserStatus(); //Проверка авторизованности пользователя
             
-            //Реакция на вход / выход на любой вкладке
-            intercomService.on('authentication.login', _onLogin);
+            
+            getResponses(); //Реакция на вход пользователя
         }
 
-        //Событие, если пользователь вошел в аккаунт
-        function _onLogin() {
-            return userService
-                .loadUserProfile()
-                .then(function () {
-                    $rootScope.user = userService.getUserProfile();
-                })
-
+        function getResponses(){
+            intercomService.on('user-login-success', userLoginSuccess);
+            
         }
+
+        /**
+         * Проверка авторизованности пользователя
+         */
+        function checkUserStatus(){
+            userService.checkUser();
+        }
+
+        function userLoginSuccess(data) {
+            if (data.remember)  {
+                localStorage.setItem('userAuthRemember', data.remember);
+            }
+            $location.url(data.url);
+        }
+
+
 
         /**
          * Отслежинивае измнения текущего URL

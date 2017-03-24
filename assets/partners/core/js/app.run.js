@@ -5,10 +5,13 @@
         .module('partners')
         .run(run);
 
-        run.$inject = [];
+        run.$inject = ['$rootScope'];
 
-    function run () {
+    function run ($rootScope) {
         
-
+        var token = localStorage.getItem('token');
+        $rootScope.token = token || null;
+        xlog('Токен:', $rootScope.token || 'не существует');
+        
     }
 })();
