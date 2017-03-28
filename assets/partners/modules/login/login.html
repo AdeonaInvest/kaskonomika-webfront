@@ -38,23 +38,20 @@
                 <p class="semibold-text mb-0"><a id="toFlip" href ng-click="vm.lookAtRestoreAddress()">Забыли пароль?</a></p>
             </div>
         </form>
-        <form class="forget-form" action="index.html">
+        <form class="forget-form">
             <h3 class="login-head"><i class="fa fa-lg fa-fw fa-lock"></i>Забыли пароль?</h3>
             <div class="form-group"
                  uib-tooltip="{{vm.restoreTextError}}"
                  tooltip-enable="vm.restoreTextError"
-                 tooltip-is-open="vm.restoreTextError.length > 0">
+                 tooltip-is-open="vm.restoreTextError">
                 <label class="control-label">Электронная почта или телефон</label>
                 <input class="form-control"
                        type="text"
                        ng-model="vm.restoreEmail"
                        placeholder="79581234567">
             </div>
-            <div class="form-group btn-container" ng-if="vm.restoreBtnReady && vm.restoreBtnType === 'mobile'">
-                <button class="btn btn-primary btn-block" ng-lick="vm.restore()">Отправить пароль по СМС <i class='fa fa-mobile fa-lg'></i></button>
-            </div>
-            <div class="form-group btn-container" ng-if="vm.restoreBtnReady && vm.restoreBtnType === 'mail'">
-                <button class="btn btn-primary btn-block" ng-lick="vm.restore()">Отправить пароль на почту <i class='fa fa-envelope-o fa-lg'></i></button>
+            <div class="form-group btn-container">
+                <button class="btn btn-primary btn-block" ng-disabled="!vm.restoreBtnReady" ng-click="vm.restore()">Восстановить пароль <i class='fa fa-unlock fa-lg'></i></button>
             </div>
             <div class="form-group mt-20">
                 <p class="semibold-text mb-0"><a id="noFlip" href="#"><i class="fa fa-angle-left fa-fw"></i> Назад ко входу</a></p>

@@ -11,7 +11,7 @@
         this.login = login;
         this.logout = logout;
         this.registration = registration;
-        this.restorePswrd = restorePswrd;
+        this.restorePass = restorePass;
 
         var api = config.api;
 
@@ -81,11 +81,8 @@
         }
 
         // Восстановление пароля на почту
-        function restorePswrd(email) {
-            var data = {
-              email: email
-            };
-            return $http.post('/api/accounts/password/reset', data)
+        function restorePass(email) {
+            return $http.post(api+'/users/restorePasswordByEmail', {email: email})
         }
     }
 

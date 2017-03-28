@@ -7,9 +7,9 @@
     angular.module('partners')
         .controller('loginController', loginController);
 
-    loginController.$inject = ['authenticationService','intercomService','$scope'];
+    loginController.$inject = ['authenticationService','intercomService','$scope','$http'];
 
-    function loginController(authenticationService,intercomService,$scope) {
+    function loginController(authenticationService,intercomService,$scope,$http) {
         var vm = this;
         vm.loginEmail = null;
         vm.loginPass = null;
@@ -59,21 +59,15 @@
          * Слежение за вводимыми данными в поле для восстановления пароля
          */
         function lookAtRestoreAddress() {
-            console.log('переключился');
-            $scope.$watch('vm.restoreEmail',function(){
-                console.log('vm.restoreEmail',vm.restoreEmail, vm.restoreBtnReady, vm.restoreEmail, vm.restoreBtnType);
-                if (vm.restoreEmail) {
-                    if (vm.restoreEmail.length > 0 && ((vm.restoreEmail.length == 11 && vm.restoreEmail/2) || (vm.restoreEmail.indexOf('@') > 0 && vm.restoreEmail.indexOf('.') > 0))) {
-                        if (vm.restoreEmail / 2) {
-                            vm.restoreBtnType = 'phone'
-                        } else {
-                            vm.restoreBtnType = 'mail'
-                        }
+            $scope.$watch('vm.restoreEmail',function(val){
+                if (val) {
+                    if (val.toString().length > 0 && ((val.length == 11 && val/2) || (val.indexOf('@') > 0 && val.indexOf('.') > 0))) {
                         vm.restoreBtnReady = true;
                     } else {
                         vm.restoreBtnReady = false;
-                        vm.restoreTextError = 'Некорректно указан адрес почты или телефон введен неверно'
                     }
+                } else {
+                    vm.restoreBtnReady = false;
                 }
             })
 
@@ -84,6 +78,14 @@
          * Восстановление доступа к аккаунту
          */
         function restore() {
+            authenticationService.restorePass(vm.restoreEmail)
+                .then(function(response){
+                    if (response.data.result) {
+
+                    } else {
+                        alert('Ошибка');
+                    }
+                })
 
         }
 
