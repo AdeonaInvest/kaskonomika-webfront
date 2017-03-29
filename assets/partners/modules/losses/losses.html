@@ -1,4 +1,4 @@
-<losses id="pso-page">
+<div id="losses-page">
     <div class="page-title">
         <div>
             <h1><i class="fa fa-dashboard"></i> Просчет убытков</h1>
@@ -12,5 +12,25 @@
     </div>
     <div class="row card">
         <h1>Убытки и все, что с ними связано</h1>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Name</td>
+                        <td>lock_changes</td>
+                        <td>is_deleted</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="(key,row) in vm.lossesList">
+                        <td>{{row.id}}</td>
+                        <td>{{row.name}}</td>
+                        <td>{{row.lock_changes}}</td>
+                        <td>{{row.is_deleted}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-</losses>
+</div>
