@@ -9,8 +9,6 @@
 
     function authenticationService($http, intercomService, userService,config,$rootScope) {
         this.login = login;
-        this.logout = logout;
-        this.registration = registration;
         this.restorePass = restorePass;
 
         var api = config.api;
@@ -44,42 +42,7 @@
                     }
                 })
         }
-
-        // Регистрация пользователя
-        function registration(email, action) {
-            preloader.act('authenticationService-registration');
-            var data = {
-                email: email,
-                password: 'passwordpassword'
-            };
-
-            if (action && action == 'autoLogin') {
-                //TODO............................
-            } else {
-                return $http.post('/api/signup', data)
-                    .then(function(){
-                        /*$window.location.reload();*/
-                    })
-                    .finally(function(){
-                        preloader.dis('authenticationService-registration');
-                    })
-            }
-        }
-
-        // Выход из аккаунта
-        function logout() {
-            preloader.act('authenticationService-logout');
-            $http.get('/api/logout')
-                .then(function () {
-                    userService.resetUserProfile();
-                    window.location.href = '/';
-                    preloader.dis('authenticationService-logout');
-                })
-                .finally(function(){
-                    preloader.dis('authenticationService-logout');
-                });
-        }
-
+        
         // Восстановление пароля на почту
         function restorePass(email) {
             return $http.post(api+'/users/restorePasswordByEmail', {email: email})

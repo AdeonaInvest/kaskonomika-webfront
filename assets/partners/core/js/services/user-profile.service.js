@@ -11,7 +11,6 @@
         var api = config.api;
 
         this.checkUser = checkUser; //Проверка пользователя на авторизацию
-        this.getUserProfile = getUserProfile; //Получение профиля пользователя
         this.removeUserProfile = removeUserProfile; //Удаление просроченного токена и возврат на страницу логина
 
 

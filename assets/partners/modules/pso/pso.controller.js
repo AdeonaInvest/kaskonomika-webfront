@@ -7,15 +7,27 @@
     angular.module('partners')
         .controller('pagePsoController', pagePsoController);
 
-    pagePsoController.$inject = [];
+    pagePsoController.$inject = ['$rootScope','$http','config'];
 
-    function pagePsoController() {
-        var vm = this;
+    function pagePsoController($rootScope,$http,config) {
+        var vm = this,
+        api = config.api;
 
         activate();
         /////////////////////
         function activate() {
+            getPsoList();
 
+        }
+
+        function getPsoList() {
+            $http.get(api + '/pso/applications/list?token=' + $rootScope.token)
+                .then(function(response){
+                    if (response.data.result) {
+
+                    }
+
+                })
         }
 
     }
