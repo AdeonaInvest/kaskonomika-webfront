@@ -7,7 +7,7 @@
 
     authenticationService.$inject = ['$http', 'intercomService', 'userService','config','$rootScope'];
 
-    function authenticationService($http, intercomService, userService,config,$rootScope) {
+    function authenticationService($http, intercomService,userService,config,$rootScope) {
         this.login = login;
         this.restorePass = restorePass;
 

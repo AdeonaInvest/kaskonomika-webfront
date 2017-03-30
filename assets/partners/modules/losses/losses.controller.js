@@ -7,9 +7,9 @@
     angular.module('partners')
         .controller('pageLossesController', pageLossesController);
 
-    pageLossesController.$inject = ['$http','config'];
+    pageLossesController.$inject = ['$rootScope','$http','config'];
 
-    function pageLossesController($http,config) {
+    function pageLossesController($rootScope,$http,config) {
         var vm = this;
         var api = config.api;
 
@@ -21,7 +21,7 @@
         }
 
         function getLosses() {
-            $http.get(api + '/losses/applications/statuses')
+            $http.get(api + '/losses/applications?token=' + $rootScope.token)
                 .then(function(response){
                     if (response.data.result) {
                         vm.lossesList = response.data.response;

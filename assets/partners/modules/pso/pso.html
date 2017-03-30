@@ -12,6 +12,36 @@
     </div>
     <div class="row card">
         <h1>ПСО и все, что с ним связано</h1>
-
+        <div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th sort order="'number'" by="order" reverse="reverse">Номер заявки</th>
+                    <th sort order="'policy_number'" by="order" reverse="reverse">Номер полиса</th>
+                    <th sort order="'pso_status'" by="order" reverse="reverse">Статус</th>
+                    <th sort order="'create_date'" by="order" reverse="reverse">Дата заявки</th>
+                    <th sort order="'pso_status_date'" by="order" reverse="reverse">Дата обновления</th>
+                    <th>Тип заявки</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="(key,row) in vm.psoList | orderBy:order:reverse">
+                    <td>{{key}}</td>
+                    <td>{{row.number}}</td>
+                    <td>{{row.policy_number}}</td>
+                    <td>{{row.pso_status}}</td>
+                    <td>{{row.create_date}}</td>
+                    <td>{{row.pso_status_date}}</td>
+                    <td>
+                        <span ng-if="row.is_mount">Установка </span>
+                        <span ng-if="row.is_mount && row.is_review"> / </span>
+                        <span ng-if="row.is_review"> Осмотр</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+
 </div>

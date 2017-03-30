@@ -24,7 +24,7 @@
     function config ($locationProvider,$httpProvider) {
         
         //with the provider, in the app.config():
-        $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
+        $httpProvider.defaults.headers.post['Content-Type'] = 'application/json; charset=UTF-8';
         //or directly in the $http: this header will be used also by all calls after this one:
         $httpProvider.defaults.headers.common['Content-Type'] = 'application/json; charset=utf-8';
         
