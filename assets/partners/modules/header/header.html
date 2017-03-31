@@ -20,7 +20,7 @@
                 </li>-->
                 <li class="dropdown">
                 <a ng-if="user" class="dropdown-toggle user-profile" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                    <img class="img-circle" ng-src="{{user.avatar}}" alt="Аватар пользователя"/> {{user.login}}</a>
+                    <img class="img-circle" ng-src="{{user.avatar || '/src/img/base/user.png'}}" alt="Аватар пользователя"/> {{user.login}}</a>
                     <ul class="dropdown-menu settings-menu">
                         <!--<li><a href="page-user.html"><i class="fa fa-cog fa-lg"></i> Настройки</a></li>
                         <li><a href="page-user.html"><i class="fa fa-user fa-lg"></i> Профиль</a></li>-->

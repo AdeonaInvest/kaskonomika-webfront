@@ -21,8 +21,7 @@
          * Получение моего токена, если он сохранен в локалсторедже
          */
         function getMyToken() {
-            var token = localStorage.getItem('token');
-            $rootScope.token = token || null;
+            $rootScope.token = localStorage.getItem('token') || null;
             xlog('Токен:', $rootScope.token || 'не существует');
         }
         

@@ -20,6 +20,7 @@
     @@include('../modules/sidebar/sidebar.html')
 
     <div class="content-wrapper" ng-class="{'wrapper-clean' : isIndexPage}">
+        <div ng-if="!isIndexPage" breadcrumbs></div>
         <ng-view autoscroll="true"></ng-view>
         @@include('../modules/footer/footer.html')
     </div>
