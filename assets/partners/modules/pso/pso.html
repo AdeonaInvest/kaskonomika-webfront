@@ -1,7 +1,10 @@
 <div id="pso-page">
     <div class="row card">
         <h1>ПСО и все, что с ним связано</h1>
-        <div>
+        <div class="ta-center p-20" ng-if="!vm.psoList">
+            <i class="fa fa-spin fa-circle-o-notch fa-2x"></i>
+        </div>
+        <div ng-if="vm.psoList && !vm.error">
             <table class="table table-striped">
                 <thead>
                 <tr>
@@ -31,6 +34,7 @@
                 </tbody>
             </table>
         </div>
+        <div class="ta-center httpError" ng-if="vm.error" ng-bind-html="httpError"></div>
     </div>
 
 </div>

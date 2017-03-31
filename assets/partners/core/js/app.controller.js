@@ -5,10 +5,12 @@
         .module('partners')
         .controller('appController', appController);
 
-    appController.$inject = ['$rootScope','$location','$scope','intercomService','userService'];
+    appController.$inject = ['$rootScope','$location','$scope','intercomService','userService','config'];
 
-    function appController($rootScope,$location,$scope,intercomService,userService) {
+    function appController($rootScope,$location,$scope,intercomService,userService,config) {
 
+        $rootScope.httpError = config.dictionary.httpError;
+        
         activate();
 
         function activate(){

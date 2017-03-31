@@ -14,6 +14,7 @@
         api = config.api;
         $scope.order = 'create_date';
         $scope.reverse = false;
+        vm.psoList = false;
 
         activate();
         /////////////////////
@@ -22,22 +23,14 @@
 
         }
 
-    /*<td>{{key}}</td>
-        <td>{{row.number}}</td>
-        <td>{{row.policy_number}}</td>
-        <td>{{row.pso_status}}</td>
-        <td>{{row.create_date}}</td>
-        <td>{{row.pso_status_date}}</td>
-        <td>
-        <span ng-if="row.is_mount">Установка </span>
-            <span ng-if="row.is_mount && row.is_review"> / </span>
-            <span ng-if="row.is_review"> Осмотр</span>
-            </td>*/
+        /**
+         * Получение и форматирование списка ПСО
+         */
         function getPsoList() {
             var list;
-            vm.psoList = [];
             $http.get(api + '/pso/applications/list?token=' + $rootScope.token)
                 .then(function(response){
+                    vm.psoList = [];
                     if (response.data.result) {
                         list = response.data.response;
                         list.forEach(function(f){
@@ -52,10 +45,9 @@
                             };
                             vm.psoList.push(data);
                         })
-
-
+                    } else {
+                        vm.error = true;
                     }
-
                 })
         }
 
