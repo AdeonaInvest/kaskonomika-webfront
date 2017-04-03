@@ -5,16 +5,18 @@
     'use strict';
 
     angular.module('partners')
-        .controller('pagePsoController', pagePsoController);
+        .controller('pagePsoListController', pagePsoListController);
 
-    pagePsoController.$inject = ['$rootScope','$scope','$http','config'];
+    pagePsoListController.$inject = ['$rootScope','$scope','$http','config','$location'];
 
-    function pagePsoController($rootScope,$scope,$http,config) {
+    function pagePsoListController($rootScope,$scope,$http,config,$location) {
         var vm = this,
         api = config.api;
         $scope.order = 'create_date';
         $scope.reverse = false;
         vm.psoList = false;
+        
+        vm.goToItem = goToItem;
 
         activate();
         /////////////////////
@@ -49,6 +51,14 @@
                         vm.error = true;
                     }
                 })
+        }
+
+        /**
+         * Переход на страницу с инфой о убытках
+         * @param number - ID текущей страницы убытков
+         */
+        function goToItem(number) {
+            $location.url('/pso/item/' + number);
         }
 
     }

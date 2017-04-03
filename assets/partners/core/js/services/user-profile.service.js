@@ -24,6 +24,7 @@
                         xlog('Проверка токена на авторизацию: ', response.data);
                         if (response.data.response){
                             getUserProfile(); //Получение профиля пользователя
+                            if ($location.url() == '/') $location.url('/dashboard');
                         } else {
                             removeUserProfile(); //Удаление просроченного токена и возврат на страницу логина
                         }

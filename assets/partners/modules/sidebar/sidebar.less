@@ -129,7 +129,7 @@
         }
         >i {
           &:first-of-type {
-            margin-right: 5px;
+            margin-right: 10px;
           }
         }
       }
@@ -170,12 +170,29 @@
         margin-right: 10px;
         margin-top: 3px;
         transition: all 0.3s ease;
+      };
+      >.fa-angle-down {
+        width: auto;
+        height: auto;
+        position: absolute;
+        right: 0;
+        padding: 0;
+        float: none;
+        margin-right: 10px;
+        margin-top: 3px;
+        transition: all 0.3s ease;
       }
     }
   }
   li.active {
     >a {
       >.fa-angle-right {
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+        -ms-transform-origin: center;
+        transform-origin: center;
+      };
+      >.fa-angle-down {
         -ms-transform: rotate(90deg);
         transform: rotate(90deg);
         -ms-transform-origin: center;

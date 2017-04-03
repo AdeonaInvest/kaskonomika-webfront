@@ -20,13 +20,13 @@
                 controllerAs: 'vm'
             })
             .when ('/pso', {
-                templateUrl: '/pso/pso.html',
-                controller: 'pagePsoController',
+                templateUrl: '/pso/list/pso-list.html',
+                controller: 'pagePsoListController',
                 controllerAs: 'vm'
             })
-            .when ('/pso/item', {
-                templateUrl: '/pso/pso.html',
-                controller: 'pagePsoController',
+            .when ('/pso/item/:id', {
+                templateUrl: '/pso/item/pso-item.html',
+                controller: 'pagePsoItemController',
                 controllerAs: 'vm'
             })
             .when ('/losses', {

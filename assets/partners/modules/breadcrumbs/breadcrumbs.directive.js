@@ -18,10 +18,13 @@
                             "<li>{{dict.name}}</li>"+
                             "</ul></div></div>",
                 link: function(scope) {
-                    var currentPath = $location.path();
-                    breadcrumbs.dictionary.forEach(function(f){
-                        if (f.link == currentPath) scope.dict = f;
+                    scope.$on('$routeChangeSuccess',function(){
+                        var currentPath = $location.path();
+                        breadcrumbs.dictionary.forEach(function(f){
+                            if (currentPath.indexOf(f.link) !== -1) scope.dict = f;
+                        });
                     });
+
                 }
             }
         }]);

@@ -9,10 +9,7 @@
         .directive("httpError", function () {
             return {
                 restrict: 'EA',
-                template: "",
-                link: function(scope) {
-                    
-                }
+                template: "<div class='ta-center httpError' ng-if='vm.error' ng-bind-html='httpError'></div>"
             }
         });
 })();

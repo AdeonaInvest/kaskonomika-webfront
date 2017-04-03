@@ -2,20 +2,16 @@
 <aside class="main-sidebar hidden-print" ng-controller="sidebarController as vm" ng-if="!isIndexPage">
     <section class="sidebar">
         <ul class="sidebar-menu">
-            <li ng-class="{'active' : currentUrl == '/dashboard'}">
-                <a href="/dashboard">
-                    <i class="fa fa-dashboard"></i><span>Панель управления</span>
+            <li ng-class="{'active' : currentUrl.indexOf(row.path) !== -1, 'treeview' : row.child.length > 0}" ng-repeat="row in vm.menu">
+                <a href="{{row.child.length > 0 ? '#' : row.path}}" ng-click="open = !open">
+                    <i class="fa {{row.icon}}"></i><span ng-bind="row.name"></span>
+                    <i class="fa" ng-class="{'fa-angle-right': !open, 'fa-angle-down' : open}" ng-if="row.child.length > 0"></i>
                 </a>
-            </li>
-            <li ng-class="{'active' : currentUrl == '/pso'}">
-                <a href="/pso">
-                    <i class="fa fa-car"></i><span>ПСО</span>
-                </a>
-            </li>
-            <li  ng-class="{'active' : currentUrl == '/losses'}">
-                <a href="/losses">
-                    <i class="fa fa-rub"></i><span>Убытки</span>
-                </a>
+                <ul class="treeview-menu" ng-if="row.child.length > 0">
+                    <li ng-repeat="item in row.child">
+                        <a href="{{item.path}}"><i class="fa {{item.icon}}"></i><span>{{item.name}}</span></a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </section>

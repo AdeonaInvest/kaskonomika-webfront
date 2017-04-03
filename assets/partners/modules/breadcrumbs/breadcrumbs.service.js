@@ -13,23 +13,23 @@
     function userService() {
         this.dictionary = [
             {
+                link: '/dashboard',
+                name: 'Панель управления',
+                icon: 'fa-dashboard'
+            },
+            {
                 link: '/pso',
                 name: 'ПСО',
                 icon: 'fa-car'
             },
             {
                 link: '/pso/item',
-                name: 'item',
-                icon: 'fa-cogs',
+                name: 'Заявка на псо',
+                icon: 'fa-car',
                 parent:{
                     link: '/pso',
                     name: 'ПСО',
                     icon: 'fa-car'}
-            },
-            {
-                link: '/dashboard',
-                name: 'Панель управления',
-                icon: 'fa-dashboard'
             },
             {
                 link: '/losses',

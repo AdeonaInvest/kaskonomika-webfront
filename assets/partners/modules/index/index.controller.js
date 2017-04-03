@@ -29,7 +29,7 @@
                     if (response.data.result) {
                         vm.lossesCount = response.data.response.length;
                     } else {
-                        vm.lossesCount = '! Ошибка получения списка';
+                        vm.lossesCount = '! Ошибка получения данных';
                     }
                 })
         }
@@ -43,7 +43,7 @@
                     if (response.data.result) {
                         vm.psoCount = response.data.response.length;
                     } else {
-                        vm.psoCount = '! Ошибка получения списка';
+                        vm.psoCount = '! Ошибка получения данных';
                     }
                 })
         }
