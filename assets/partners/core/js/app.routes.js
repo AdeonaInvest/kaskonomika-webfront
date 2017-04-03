@@ -29,6 +29,11 @@
                 controller: 'pagePsoItemController',
                 controllerAs: 'vm'
             })
+            .when ('/pso/search', {
+                templateUrl: '/pso/search/pso-search.html',
+                controller: 'pagePsoSearchController',
+                controllerAs: 'vm'
+            })
             .when ('/losses', {
                 templateUrl: '/losses/losses.html',
                 controller: 'pageLossesController',

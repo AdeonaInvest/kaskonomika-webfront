@@ -1,0 +1,14 @@
+<div id="pso-search-page">
+    <div class="row card">
+        <h1>Поиск заявки псо</h1>
+        <div class="row ta-center search-form">
+            <div class="input-group search-area">
+                <input class="form-control" type="text" placeholder="Введите номер заявки" ng-model="id"/>
+                  <span class="input-group-btn">
+                    <button class="btn btn-success" type="button" ng-click="vm.findPsoById(id)">Поиск по номеру</button>
+                  </span>
+            </div><!-- /input-group -->
+        </div>
+        <http-error></http-error>
+    </div>
+</div>

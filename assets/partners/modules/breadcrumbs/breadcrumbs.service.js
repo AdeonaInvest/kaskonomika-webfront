@@ -32,6 +32,15 @@
                     icon: 'fa-car'}
             },
             {
+                link: '/pso/search',
+                name: 'Поиск заявки псо',
+                icon: 'fa-search',
+                parent:{
+                    link: '/pso',
+                    name: 'ПСО',
+                    icon: 'fa-car'}
+            },
+            {
                 link: '/losses',
                 name: 'Убытки',
                 icon: 'fa-rub'

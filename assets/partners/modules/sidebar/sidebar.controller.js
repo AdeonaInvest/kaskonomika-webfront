@@ -21,7 +21,7 @@
             {
                 name: 'ПСО',
                 icon: 'fa-car',
-                path: '/pso'/*,
+                path: '/pso',
                 child: [
                     {
                         name: 'Список заявок',
@@ -29,11 +29,11 @@
                         path: '/pso'
                     },
                     {
-                        name: 'Просмотр заявки',
-                        icon: 'fa-file-text-o',
-                        path: '/pso/look-item'
+                        name: 'Поиск заявка',
+                        icon: 'fa-search',
+                        path: '/pso/search'
                     }
-                ]*/
+                ]
             },
             {
                 name: 'Убытки',

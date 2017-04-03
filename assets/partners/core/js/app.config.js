@@ -17,7 +17,7 @@
             copy: 'Каскономика &copy &year',
             debug: window.location.host === 'partners.kaskonomika.local:9360',
             dictionary: {
-                httpError: '<h3><i class="fa fa-exclamation-circle color-red"></i> Ошибка получения данных</h3>'
+                httpError: '<h4><i class="fa fa-exclamation-circle color-red"></i> Не удалось получить данные. Данные не существуют у вас нет прав для просмотра запрашиваемой информации </h4>'
             }
         })
         .config(config);
