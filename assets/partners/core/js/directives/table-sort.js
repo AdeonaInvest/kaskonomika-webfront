@@ -12,8 +12,8 @@
             transclude: true,
             template: '<a href ng-click="onClick()">' +
             '<span ng-transclude></span>' +
-            '<i class="fa ml-10" ng-class="{\'fa-sort-amount-asc\' : order === by && !reverse,  \'fa-sort-amount-desc\' : order===by && reverse}" ng-if="order === by"></i>' +
-            '<i class="fa ml-10 no-visible fa-sort-amount-asc" ng-if="order != by"></i>' +
+            '<i class="fa pull-right" ng-class="{\'fa-sort-amount-asc\' : order === by && !reverse,  \'fa-sort-amount-desc\' : order===by && reverse}" ng-if="order === by"></i>' +
+            '<i class="fa pull-right fa-sort color-grey" ng-if="order != by"></i>' +
             '</a>',
             scope: {
                 order: '=',
