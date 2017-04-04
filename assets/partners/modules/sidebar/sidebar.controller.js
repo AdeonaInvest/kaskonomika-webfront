@@ -21,12 +21,12 @@
             {
                 name: 'ПСО',
                 icon: 'fa-car',
-                path: '/pso',
+                path: '/pso/list',
                 child: [
                     {
                         name: 'Список заявок',
                         icon: 'fa-list',
-                        path: '/pso'
+                        path: '/pso/list'
                     },
                     {
                         name: 'Поиск заявка',
@@ -38,7 +38,14 @@
             {
                 name: 'Убытки',
                 icon: 'fa-rub',
-                path: '/losses'
+                path: '/losses/list',
+                child: [
+                    {
+                        name: 'Список убытков',
+                        icon: 'fa-list',
+                        path: '/losses/list'
+                    }
+                ]
             }
         ];
                

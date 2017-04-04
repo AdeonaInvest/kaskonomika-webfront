@@ -8,7 +8,7 @@
                     <i class="fa" ng-class="{'fa-angle-right': !open, 'fa-angle-down' : open}" ng-if="row.child.length > 0"></i>
                 </a>
                 <ul class="treeview-menu" ng-if="row.child.length > 0">
-                    <li ng-repeat="item in row.child">
+                    <li ng-repeat="item in row.child" ng-class="{'active' : currentUrl.indexOf(item.path) !== -1}">
                         <a href="{{item.path}}"><i class="fa {{item.icon}}"></i><span>{{item.name}}</span></a>
                     </li>
                 </ul>

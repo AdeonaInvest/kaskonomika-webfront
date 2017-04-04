@@ -18,7 +18,7 @@
                 icon: 'fa-dashboard'
             },
             {
-                link: '/pso',
+                link: '/pso/list',
                 name: 'ПСО',
                 icon: 'fa-car'
             },
@@ -27,7 +27,7 @@
                 name: 'Заявка на псо',
                 icon: 'fa-car',
                 parent:{
-                    link: '/pso',
+                    link: '/pso/list',
                     name: 'ПСО',
                     icon: 'fa-car'}
             },
@@ -36,7 +36,7 @@
                 name: 'Поиск заявки псо',
                 icon: 'fa-search',
                 parent:{
-                    link: '/pso',
+                    link: '/pso/list',
                     name: 'ПСО',
                     icon: 'fa-car'}
             },

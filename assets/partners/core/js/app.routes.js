@@ -19,7 +19,7 @@
                 controller: 'indexController',
                 controllerAs: 'vm'
             })
-            .when ('/pso', {
+            .when ('/pso/list', {
                 templateUrl: '/pso/list/pso-list.html',
                 controller: 'pagePsoListController',
                 controllerAs: 'vm'
@@ -34,8 +34,8 @@
                 controller: 'pagePsoSearchController',
                 controllerAs: 'vm'
             })
-            .when ('/losses', {
-                templateUrl: '/losses/losses.html',
+            .when ('/losses/list', {
+                templateUrl: '/losses/list/losses.html',
                 controller: 'pageLossesController',
                 controllerAs: 'vm'
             })
