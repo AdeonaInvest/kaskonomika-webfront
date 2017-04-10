@@ -50,17 +50,19 @@
                 </div>
             </div>
             <div class="row">
-                <h3>Прикрепленные файлы</h3>
-                <div class="pso-image-item" ng-repeat="(key,row) in vm.psoData.files track by $index">
-                    <a ng-href="{{row.path}}" data-lightbox="roadtrip">
-                        <img ng-src="{{row.path}}" class="pso-image-item-img"/>
-                        <div class="pso-image-item-desc">
-                            <span>{{row.category}}</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="pso-image-item plus-area">
-                    <i class="fa fa-plus fa-5x"></i>
+                <div class="col-lg-12">
+                    <h3>Прикрепленные файлы</h3>
+                    <div class="pso-image-item" ng-repeat="(key,row) in vm.psoData.files track by $index">
+                        <a ng-href="{{row.path}}" data-lightbox="roadtrip">
+                            <img ng-src="{{row.path}}" class="pso-image-item-img"/>
+                            <div class="pso-image-item-desc">
+                                <span>{{row.category}}</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="pso-image-item plus-area">
+                        <i class="fa fa-plus fa-5x"></i>
+                    </div>
                 </div>
             </div>
         </div>
