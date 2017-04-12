@@ -1,0 +1,33 @@
+<div id="losses-page">
+    <div class="row card">
+        <h1>Убытки и все, что с ними связано</h1>
+        <div class="ta-center p-20" ng-if="!vm.telemathicList && !vm.error">
+            <i class="fa fa-spin fa-circle-o-notch fa-2x"></i>
+        </div>
+        <div ng-if="vm.telemathicList && !vm.error">
+            <table class="table table-striped tr-hover table-bordered">
+                <thead>
+                <tr>
+                    <th sort order="'external_number'" by="order" reverse="reverse">Номер полиса</th>
+                    <th sort order="'losses_applications_status'" by="order" reverse="reverse">Начало действия полиса</th>
+                    <th sort order="'create_date'" by="order" reverse="reverse">Конец действия полиса</th>
+                    <th sort order="'event_date'" by="order" reverse="reverse">Марка</th>
+                    <th sort order="2" by="order" reverse="reverse">Модель</th>
+                    <th sort order="3" by="order" reverse="reverse">Рег. номер</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="(key,row) in vm.telemathicList | orderBy:order:reverse">
+                    <td>{{row.policy}}</td>
+                    <td>{{row.begin_date}}</td>
+                    <td>{{row.end_date}}</td>
+                    <td>{{row.mark}}</td>
+                    <td>{{row.model}}</td>
+                    <td>{{row.reg_number}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <http-error></http-error>
+    </div>
+</div>

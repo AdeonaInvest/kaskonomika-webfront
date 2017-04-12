@@ -5,7 +5,7 @@
             <li ng-class="{'active' : currentUrl.indexOf(row.path) !== -1, 'treeview' : row.child.length > 0}" ng-repeat="row in vm.menu">
                 <a href="{{row.child.length > 0 ? '#' : row.path}}" ng-click="open = !open">
                     <i class="fa {{row.icon}}"></i><span ng-bind="row.name"></span>
-                    <i class="fa" ng-class="{'fa-angle-right': !open, 'fa-angle-down' : open}" ng-if="row.child.length > 0"></i>
+                    <i class="fa" ng-class="{'fa-angle-left': !open, 'fa-angle-down' : open}" ng-if="row.child.length > 0"></i>
                 </a>
                 <ul class="treeview-menu" ng-if="row.child.length > 0">
                     <li ng-repeat="item in row.child" ng-class="{'active' : currentUrl.indexOf(item.path) !== -1}">

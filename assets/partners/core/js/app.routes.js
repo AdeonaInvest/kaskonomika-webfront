@@ -39,6 +39,11 @@
                 controller: 'pageLossesController',
                 controllerAs: 'vm'
             })
+            .when ('/telematics/list', {
+                templateUrl: '/telematics/list/telematics.html',
+                controller: 'pageTelematicsListController',
+                controllerAs: 'vm'
+            })
             .otherwise({
                 redirectTo: '/'
             });
