@@ -53,22 +53,6 @@ var jsPaths = [
 ];
 
 /**
- * Сборка всего JS
- */
-var jsGen = function(name){
-    return function(){
-        return gulp.src(['./assets/'+name+'/**/*.js'])
-            .pipe(angularFilesort())
-            .pipe(concat('script.js'))
-            .pipe(lec({eolc: 'LF', encoding:'utf8'}))
-            .pipe(gulp.dest('./sites/'+name+'/js'))
-            .pipe(livereload(server));
-    };
-};
-gulp.task('js-stream', jsGen('kaskonomika'));
-gulp.task('js-partners', jsGen('partners'));
-
-/**
  * Сборка Vendor JS
  */
 gulp.task('js-vendor', ['bower'], function(){
@@ -79,87 +63,95 @@ gulp.task('js-vendor', ['bower'], function(){
         .pipe(gulp.dest('./sites/src/js'))
 });
 
+/**
+ * Сборка всего JS
+ */
+var jsGen = function(name){
+    return function(){
+        var gulpUrl = './assets/' + name + '/**/*.js',
+            gulpDest = './sites/' + name + '/js';
+        return gulp.src([gulpUrl])
+            .pipe(angularFilesort())
+            .pipe(concat('script.js'))
+            .pipe(lec({eolc: 'LF', encoding:'utf8'}))
+            .pipe(gulp.dest(gulpDest))
+            .pipe(livereload(server));
+    };
+};
+gulp.task('js-stream', jsGen('kaskonomika'));
+gulp.task('js-partners', jsGen('partners'));
+gulp.task('js-lada-landing', jsGen('lada-landing'));
+
 
 /**
  * Сборка всего CSS + LESS
  */
 var lessGen = function(name){
     return function (){
-        return gulp.src('./assets/'+name+'/core/styles/_common.less')
-            .pipe(less({
-                compress: true
-            }))
+        var gulpSrc = './assets/' + name + '/core/styles/_common.less',
+            gulpDest = './sites/' + name + '/css';
+        return gulp.src(gulpSrc)
+            .pipe(less({compress: true}))
             .pipe(autoprefixer())
             .pipe(concat('style.css'))
             .pipe(lec({eolc: 'LF', encoding:'utf8'}))
-            .pipe(gulp.dest('./sites/'+name+'/css'))
+            .pipe(gulp.dest(gulpDest))
             .pipe(livereload(server));
     };
 };
 gulp.task('less-stream', lessGen('kaskonomika'));
 gulp.task('less-partners', lessGen('partners'));
+gulp.task('less-lada-landing', lessGen('lada-landing'));
+
 
 /**
- * Сборка всего HTML - kaskonomika
+ * Сборка всего HTML
  */
-gulp.task('html-stream',['js-stream', 'templates'], function() {
-    return gulp.src(['./assets/kaskonomika/modules/index.html'])
-        .pipe(fileinclude({
-            prefix: '@@',
-            basepath: '@file'
-        }))
-        .pipe(revHash({assetsDir: './sites'}))
-        .pipe(hash_src({build_dir: "./sites/kaskonomika", src_path: "./assets/kaskonomika/modules"}))
-        .pipe(gulp.dest('./sites/kaskonomika'));
-});
+var htmlGen = function(name) {
+    return function (){
+        var gulpSrc = './assets/'+name+'/modules/index.html',
+            gulpHashSrc = './sites/' + name,
+            gulpHashPath = './assets/' + name + '/modules',
+            gulpDest = './sites/' + name;
+        return gulp.src([gulpSrc])
+            .pipe(fileinclude({
+                prefix: '@@',
+                basepath: '@file'
+            }))
+            .pipe(revHash({assetsDir: './sites'}))
+            .pipe(hash_src({build_dir: gulpHashSrc, src_path: gulpHashPath}))
+            .pipe(gulp.dest(gulpDest));
+    }
+};
+gulp.task('html-stream',['js-stream', 'templates'], htmlGen('html-stream'));
+gulp.task('html-partners',['js-partners', 'templates'], htmlGen('html-partners'));
+gulp.task('html-lada-landing',['js-lada-landing', 'templates'], htmlGen('html-lada-landing'));
 
-/**
- * Сборка всего HTML - partners
- */
-gulp.task('html-partners',['js-partners', 'templates'], function() {
-    return gulp.src(['./assets/partners/modules/index.html'])
-        .pipe(fileinclude({
-            prefix: '@@',
-            basepath: '@file'
-        }))
-        .pipe(revHash({assetsDir: './sites'}))
-        .pipe(hash_src({build_dir: "./sites/partners", src_path: "./assets/partners/modules"}))
-        .pipe(gulp.dest('./sites/partners'));
-});
 
 /**
  * Сборка всех шаблонов в JS файл - kaskonokika
  */
-gulp.task('templates-stream', [], function () {
-    return gulp.src(['./assets/kaskonomika/modules/**/*.html'])
-        .pipe(htmlmin({
-            collapseWhitespace: true,
-            conservativeCollapse: true
-        }))
-        .pipe(templateCache('templates.js', {
-            module: 'kaskonomika',
-            root: '/'
-        }))
-        .pipe(gulp.dest('./sites/kaskonomika/js'))
-        .pipe(livereload(server));
-});
+function templateGen(name) {
+    return function (){
+        var gulpSrc = './assets/' + name + '/modules/**/*.html',
+            gulpDest = './sites/' + name + '/js';
+        return gulp.src([gulpSrc])
+            .pipe(htmlmin({
+                collapseWhitespace: true,
+                conservativeCollapse: true
+            }))
+            .pipe(templateCache('templates.js', {
+                module: name,
+                root: '/'
+            }))
+            .pipe(gulp.dest(gulpDest))
+            .pipe(livereload(server));
+    }
+}
+gulp.task('templates-stream', [], templateGen('templates-stream'));
+gulp.task('templates-partners', [], templateGen('templates-partners'));
+gulp.task('templates-lada-landing', [], templateGen('templates-lada-landing'));
 
-/**
- * Сборка всех шаблонов в JS файл - partners
- */
-gulp.task('templates-partners', [], function () {
-    return gulp.src(['./assets/partners/modules/**/*.html'])
-        .pipe(htmlmin({
-            collapseWhitespace: true,
-            conservativeCollapse: true
-        }))
-        .pipe(templateCache('templates.js', {
-            module: 'partners',
-            root: '/'
-        }))
-        .pipe(gulp.dest('./sites/partners/js'))
-        .pipe(livereload(server));
-});
 
 /**
  * Запуск bower install перед сборкой, что бы у всех всегда совпадали версии либ.
@@ -172,9 +164,13 @@ gulp.task('bower-prune', function() {
     return bower({cmd: 'prune'});
 });
 
-gulp.task('kaskonomika', ['js-stream', 'less-stream', 'html-stream','js-partners','less-partners','html-partners']);
-gulp.task('templates', ['templates-stream','templates-partners']);
-gulp.task('html', ['html-stream','html-partners']);
+gulp.task('kaskonomika', [
+    'js-stream', 'less-stream', 'html-stream',
+    'js-partners','less-partners','html-partners',
+    'js-lada-landing', 'less-lada-landing', 'html-lada-landing'
+]);
+gulp.task('templates', ['templates-stream','templates-partners','templates-lada-landing']);
+gulp.task('html', ['html-stream','html-partners','html-lada-landing']);
 
 gulp.task('build', ['kaskonomika']);
 
@@ -187,6 +183,9 @@ var taskWatch = function(){
     gulp.watch(['./assets/partners/**/*.html'],['html-partners']);
     gulp.watch(['./assets/partners/**/*.less'],['less-partners']);
     gulp.watch(['./assets/partners/**/*.js'],['js-partners']);
+    gulp.watch(['./assets/lada-landing/**/*.html'],['html-lada-landing']);
+    gulp.watch(['./assets/lada-landing/**/*.less'],['less-lada-landing']);
+    gulp.watch(['./assets/lada-landing/**/*.js'],['js-lada-landing']);
 };
 
 // Watch
@@ -219,21 +218,27 @@ var options = {
 var proxy = proxyMiddleware(['/api','/kaskonomika'], options);
 
 var serverGen = function(proxy1, cb){
-    var streamapp = express().use(express.static('./sites/kaskonomika')).get('/*', function(req, res, next){
+    var streamApp = express().use(express.static('./sites/kaskonomika')).get('/*', function(req, res, next){
         if ( req.path.indexOf('/src')>-1) return next();
         res.sendFile("index.html", {"root": __dirname + '/sites/kaskonomika'});
     });
 
-    var partnersapp = express().use(express.static('./sites/partners')).get('/*', function(req, res, next){
+    var partnersApp = express().use(express.static('./sites/partners')).get('/*', function(req, res, next){
         if ( req.path.indexOf('/src')>-1) return next();
         res.sendFile("index.html", {"root": __dirname + '/sites/partners'});
+    });
+
+    var ladaLandingApp = express().use(express.static('./sites/lada-landing')).get('/*', function(req, res, next){
+        if ( req.path.indexOf('/src')>-1) return next();
+        res.sendFile("index.html", {"root": __dirname + '/sites/lada-landing'});
     });
     return function() {
         express()
             .use('/src', express.static('./sites/src'))
             .use(proxy1).on('upgrade', proxy1.upgrade)//
-            .use(vhost('kaskonomika.local', streamapp))
-            .use(vhost('partners.kaskonomika.local', partnersapp))
+            .use(vhost('kaskonomika.local', streamApp))
+            .use(vhost('partners.kaskonomika.local', partnersApp))
+            .use(vhost('lada.kaskonomika.local', ladaLandingApp))
             .listen(9360);
         cb()
     }
