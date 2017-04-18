@@ -18,7 +18,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="(key,row) in vm.psoList | orderBy:order:reverse" ng-click="vm.goToItem(row.number)">
+                <tr ng-repeat="(key,row) in vm.psoList | orderBy:order:reverse" ng-click="vm.goToItem(row.id)">
                     <td>{{key}}</td>
                     <td>{{row.number}}</td>
                     <td>{{row.policy_number}}</td>

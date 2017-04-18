@@ -37,6 +37,7 @@
                         list = response.data.response;
                         list.forEach(function(f){
                             var data = {
+                                id: f.id,
                                 number: f.number,
                                 policy_number: f.policy_number,
                                 pso_status: f.pso_status,
