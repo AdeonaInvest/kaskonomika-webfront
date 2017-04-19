@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('kaskonomika')
+    angular.module('lada-landing')
         .controller('headerController', headerController);
 
     headerController.$inject = [];

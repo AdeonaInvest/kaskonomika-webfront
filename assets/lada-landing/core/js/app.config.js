@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('kaskonomika', [
+        .module('lada-landing', [
             'ngRoute',
             'ngSanitize',
             'ngCookies'
@@ -13,7 +13,7 @@
             theme: 'default', //Тема сайта
             mainUrl: window.location.protocol+ '//' + window.location.host,
             copy: 'Каскономика &copy &year',
-            debug: window.location.host == 'kaskonomika.local:9360'
+            debug: window.location.host == 'lada.kaskonomika.local:9360'
         })
         .config(config);
 

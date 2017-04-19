@@ -1,3 +1,83 @@
 #footer {
+  .container-fluid {
+    background: #59c6f2;
+    .container {
+      padding: 50px 0 30px;
+      .footer-top {
+        padding: 0 0 30px;
+        text-align: center;
+        img {
+          max-width: 60%;
+        }
+        .phone {
+          font:30px/30px @fm-main;
+          color: #fff;
+          margin-bottom: 10px;
+        }
+        .time {
+          font: 16px/16px @fm-main;
+          color: #fff;
+          margin-bottom: 30px;
+        }
+        .email {
+          font: 30px/30px @fm-main;
+          text-decoration: none;
+          color: #fff;
+          margin: 0;
+          &:hover, &:active {
+            text-decoration: underline;
+            outline: none;
+          }
+        }
+      }
+      .footer-bottom {
+        text-align: center;
+        .social {
+          padding: 0;
+          margin: 0;
+          li {
+            display: inline-block;
+            margin: 0;
+            a {
+              display: block;
+              opacity: .8;
+              color: #fff;
+              &:hover, &:active {
+                opacity: 1;
+                text-decoration: none;
+                outline: none;
+                .fa-facebook {
+                  color: @social-color-facebook;
+                }
+                .fa-vk {
+                  color: @social-color-vk;
+                }
+                .fa-twitter {
+                  color: @social-color-twitter;
+                }
+                .fa-instagram {
+                  color: @social-color-instagram;
+                }
+              }
+            }
+          }
+        }
+        p {
+          font: 14px/37px @fm-main;
+          color: #fff;
+          margin: 0;
 
+        }
+        a {
+          font: 14px/37px @fm-main;
+          text-decoration: none;
+          color: #666;
+          &:hover, &:active {
+            text-decoration: underline;
+            outline: none;
+          }
+        }
+      }
+    }
+  }
 }

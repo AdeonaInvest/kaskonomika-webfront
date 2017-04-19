@@ -75,7 +75,7 @@ var jsGen = function(name){
             .pipe(concat('script.js'))
             .pipe(lec({eolc: 'LF', encoding:'utf8'}))
             .pipe(gulp.dest(gulpDest))
-            .pipe(livereload(server));
+            //.pipe(livereload(server));
     };
 };
 gulp.task('js-stream', jsGen('kaskonomika'));
@@ -96,7 +96,7 @@ var lessGen = function(name){
             .pipe(concat('style.css'))
             .pipe(lec({eolc: 'LF', encoding:'utf8'}))
             .pipe(gulp.dest(gulpDest))
-            .pipe(livereload(server));
+            //.pipe(livereload(server));
     };
 };
 gulp.task('less-stream', lessGen('kaskonomika'));
@@ -120,12 +120,13 @@ var htmlGen = function(name) {
             }))
             .pipe(revHash({assetsDir: './sites'}))
             .pipe(hash_src({build_dir: gulpHashSrc, src_path: gulpHashPath}))
-            .pipe(gulp.dest(gulpDest));
+            .pipe(gulp.dest(gulpDest))
+            //.pipe(livereload(server));
     }
 };
-gulp.task('html-stream',['js-stream', 'templates'], htmlGen('html-stream'));
-gulp.task('html-partners',['js-partners', 'templates'], htmlGen('html-partners'));
-gulp.task('html-lada-landing',['js-lada-landing', 'templates'], htmlGen('html-lada-landing'));
+gulp.task('html-stream',['js-stream', 'templates'], htmlGen('kaskonomika'));
+gulp.task('html-partners',['js-partners', 'templates'], htmlGen('partners'));
+gulp.task('html-lada-landing',['js-lada-landing', 'templates'], htmlGen('lada-landing'));
 
 
 /**
@@ -145,12 +146,12 @@ function templateGen(name) {
                 root: '/'
             }))
             .pipe(gulp.dest(gulpDest))
-            .pipe(livereload(server));
+            //.pipe(livereload(server));
     }
 }
-gulp.task('templates-stream', [], templateGen('templates-stream'));
-gulp.task('templates-partners', [], templateGen('templates-partners'));
-gulp.task('templates-lada-landing', [], templateGen('templates-lada-landing'));
+gulp.task('templates-stream', [], templateGen('kaskonomika'));
+gulp.task('templates-partners', [], templateGen('partners'));
+gulp.task('templates-lada-landing', [], templateGen('lada-landing'));
 
 
 /**
@@ -186,11 +187,15 @@ var taskWatch = function(){
     gulp.watch(['./assets/lada-landing/**/*.html'],['html-lada-landing']);
     gulp.watch(['./assets/lada-landing/**/*.less'],['less-lada-landing']);
     gulp.watch(['./assets/lada-landing/**/*.js'],['js-lada-landing']);
+
+    //gulp.watch('./sites/**').on('change',livereload.changed);
+
 };
 
 // Watch
 gulp.task('watch', function() {
-    server.listen(35729, function(err) {
+    //livereload.listen();
+    server.listen(35729, function(err) { //35729
         if (err) return console.log(err);
         taskWatch()
     });

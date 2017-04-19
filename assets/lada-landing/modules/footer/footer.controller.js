@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('kaskonomika')
+        .module('lada-landing')
         .controller('footerController', footerController);
 
     footerController.$inject = [];

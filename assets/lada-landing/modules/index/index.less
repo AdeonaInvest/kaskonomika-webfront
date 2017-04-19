@@ -1,13 +1,64 @@
 #index-page {
   margin: 0;
   padding: 0;
-  #index-section-first {
-
+  .section {
+    .container {
+      min-height: 550px;
+    }
   }
-  #index-section-second {
-
+  #section1 {
+    background: #d4edfc;
+    .container {
+      h2 {
+        font: 36px/36px @fm-main;
+        color: #000;
+        margin: 80px auto 0;
+        text-align: left;
+      }
+      h3 {
+        font: 20px/25px @fm-main;
+        color: #000;
+        margin: 10px 0 0 0;
+        text-align: left;
+        width: 50%;
+      }
+    }
   }
-  #index-section-third {
+  #section2 {
+    background: url('/src/img/backgrounds/dog_1.png') right bottom  / 40%  no-repeat,
+    url('/src/img/backgrounds/pre_dog_3.png') right bottom / 60%  no-repeat scroll padding-box content-box #fff;
+    .container {
+      h2 {
+        font: 36px/36px @fm-main;
+        color: #000;
+        margin: 80px auto 0;
+        text-align: center;
+      }
+      h3 {
+        font: 20px/25px @fm-main;
+        color: #000;
+        margin: 50px 0 0;
+        text-align: justify;
+        width: 60%;
+      }
+    }
+  }
+  #section3 {
+    background: #e7e7e7;
+    .container {
+      min-height: 700px;
+      background-image: url('/src/img/backgrounds/phone.png');
+      background-size: 50%;
+      background-position: 100px 140px;
+      background-repeat: no-repeat;
+      background-color: transparent;
+      h2 {
+        font: 36px/36px @fm-main;
+        color: #000;
+        margin: 50px auto 0;
+        text-align: center;
+      }
 
+    }
   }
 }
