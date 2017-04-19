@@ -8,7 +8,7 @@
             <table class="table table-striped tr-hover table-bordered">
                 <thead>
                 <tr>
-                    <th>#</th>
+                    <th>ID</th>
                     <th sort order="'number'" by="order" reverse="reverse">Номер заявки</th>
                     <th sort order="'policy_number'" by="order" reverse="reverse">Номер полиса</th>
                     <th sort order="'pso_status'" by="order" reverse="reverse">Статус</th>
@@ -19,7 +19,7 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="(key,row) in vm.psoList | orderBy:order:reverse" ng-click="vm.goToItem(row.id)">
-                    <td>{{key}}</td>
+                    <td>{{row.id}}</td>
                     <td>{{row.number}}</td>
                     <td>{{row.policy_number}}</td>
                     <td>{{row.pso_status || '---'}}</td>

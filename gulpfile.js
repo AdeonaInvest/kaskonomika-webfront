@@ -74,13 +74,14 @@ var jsGen = function(name){
             .pipe(angularFilesort())
             .pipe(concat('script.js'))
             .pipe(lec({eolc: 'LF', encoding:'utf8'}))
-            .pipe(gulp.dest(gulpDest))
+            .pipe(gulp.dest(gulpDest));
             //.pipe(livereload(server));
     };
 };
 gulp.task('js-stream', jsGen('kaskonomika'));
 gulp.task('js-partners', jsGen('partners'));
-gulp.task('js-lada-landing', jsGen('lada-landing'));
+gulp.task('js-landing-lada', jsGen('landing-lada'));
+gulp.task('js-landing-kamaz', jsGen('landing-kamaz'));
 
 
 /**
@@ -95,13 +96,14 @@ var lessGen = function(name){
             .pipe(autoprefixer())
             .pipe(concat('style.css'))
             .pipe(lec({eolc: 'LF', encoding:'utf8'}))
-            .pipe(gulp.dest(gulpDest))
+            .pipe(gulp.dest(gulpDest));
             //.pipe(livereload(server));
     };
 };
 gulp.task('less-stream', lessGen('kaskonomika'));
 gulp.task('less-partners', lessGen('partners'));
-gulp.task('less-lada-landing', lessGen('lada-landing'));
+gulp.task('less-landing-lada', lessGen('landing-lada'));
+gulp.task('less-landing-kamaz', lessGen('landing-kamaz'));
 
 
 /**
@@ -126,7 +128,8 @@ var htmlGen = function(name) {
 };
 gulp.task('html-stream',['js-stream', 'templates'], htmlGen('kaskonomika'));
 gulp.task('html-partners',['js-partners', 'templates'], htmlGen('partners'));
-gulp.task('html-lada-landing',['js-lada-landing', 'templates'], htmlGen('lada-landing'));
+gulp.task('html-landing-lada',['js-landing-lada', 'templates'], htmlGen('landing-lada'));
+gulp.task('html-landing-kamaz',['js-landing-kamaz', 'templates'], htmlGen('landing-kamaz'));
 
 
 /**
@@ -145,13 +148,14 @@ function templateGen(name) {
                 module: name,
                 root: '/'
             }))
-            .pipe(gulp.dest(gulpDest))
+            .pipe(gulp.dest(gulpDest));
             //.pipe(livereload(server));
     }
 }
 gulp.task('templates-stream', [], templateGen('kaskonomika'));
 gulp.task('templates-partners', [], templateGen('partners'));
-gulp.task('templates-lada-landing', [], templateGen('lada-landing'));
+gulp.task('templates-landing-lada', [], templateGen('landing-lada'));
+gulp.task('templates-landing-kamaz', [], templateGen('landing-kamaz'));
 
 
 /**
@@ -168,10 +172,11 @@ gulp.task('bower-prune', function() {
 gulp.task('kaskonomika', [
     'js-stream', 'less-stream', 'html-stream',
     'js-partners','less-partners','html-partners',
-    'js-lada-landing', 'less-lada-landing', 'html-lada-landing'
+    'js-landing-lada', 'less-landing-lada', 'html-landing-lada',
+    'js-landing-kamaz', 'less-landing-kamaz', 'html-landing-kamaz'
 ]);
-gulp.task('templates', ['templates-stream','templates-partners','templates-lada-landing']);
-gulp.task('html', ['html-stream','html-partners','html-lada-landing']);
+gulp.task('templates', ['templates-stream','templates-partners','templates-landing-lada','templates-landing-kamaz']);
+gulp.task('html', ['html-stream','html-partners','html-landing-lada','html-landing-kamaz']);
 
 gulp.task('build', ['kaskonomika']);
 
@@ -184,9 +189,12 @@ var taskWatch = function(){
     gulp.watch(['./assets/partners/**/*.html'],['html-partners']);
     gulp.watch(['./assets/partners/**/*.less'],['less-partners']);
     gulp.watch(['./assets/partners/**/*.js'],['js-partners']);
-    gulp.watch(['./assets/lada-landing/**/*.html'],['html-lada-landing']);
-    gulp.watch(['./assets/lada-landing/**/*.less'],['less-lada-landing']);
-    gulp.watch(['./assets/lada-landing/**/*.js'],['js-lada-landing']);
+    gulp.watch(['./assets/landing-lada/**/*.html'],['html-landing-lada']);
+    gulp.watch(['./assets/landing-lada/**/*.less'],['less-landing-lada']);
+    gulp.watch(['./assets/landing-lada/**/*.js'],['js-landing-lada']);
+    gulp.watch(['./assets/landing-kamaz/**/*.html'],['html-landing-kamaz']);
+    gulp.watch(['./assets/landing-kamaz/**/*.less'],['less-landing-kamaz']);
+    gulp.watch(['./assets/landing-kamaz/**/*.js'],['js-landing-kamaz']);
 
     //gulp.watch('./sites/**').on('change',livereload.changed);
 
@@ -223,29 +231,31 @@ var options = {
 var proxy = proxyMiddleware(['/api','/kaskonomika'], options);
 
 var serverGen = function(proxy1, cb){
-    var streamApp = express().use(express.static('./sites/kaskonomika')).get('/*', function(req, res, next){
-        if ( req.path.indexOf('/src')>-1) return next();
-        res.sendFile("index.html", {"root": __dirname + '/sites/kaskonomika'});
-    });
+    var streamApp = expressFunc('kaskonomika'),
+        partnersApp = expressFunc('partners'),
+        ladaLandingApp = expressFunc('landing-lada'),
+        kamazLandingApp = expressFunc('landing-kamaz');
 
-    var partnersApp = express().use(express.static('./sites/partners')).get('/*', function(req, res, next){
-        if ( req.path.indexOf('/src')>-1) return next();
-        res.sendFile("index.html", {"root": __dirname + '/sites/partners'});
-    });
 
-    var ladaLandingApp = express().use(express.static('./sites/lada-landing')).get('/*', function(req, res, next){
-        if ( req.path.indexOf('/src')>-1) return next();
-        res.sendFile("index.html", {"root": __dirname + '/sites/lada-landing'});
-    });
     return function() {
         express()
             .use('/src', express.static('./sites/src'))
             .use(proxy1).on('upgrade', proxy1.upgrade)//
             .use(vhost('kaskonomika.local', streamApp))
-            .use(vhost('partners.kaskonomika.local', partnersApp))
-            .use(vhost('lada.kaskonomika.local', ladaLandingApp))
+            .use(vhost('partners.local', partnersApp))
+            .use(vhost('lada.local', ladaLandingApp))
+            .use(vhost('kamaz.local', kamazLandingApp))
             .listen(9360);
         cb()
+    };
+
+    function expressFunc(name) {
+        return express()
+            .use(express.static('./sites/' + name))
+            .get('/*', function(req, res, next) {
+                if (req.path.indexOf('/src') > -1) return next();
+                res.sendFile("index.html", {"root": __dirname + '/sites/' + name});
+            })
     }
 };
 

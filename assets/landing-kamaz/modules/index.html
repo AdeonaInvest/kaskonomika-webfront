@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='landing-kamaz'>
+<head>
+    <base href="/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1200">
+    <title>Каскономика / Камаз</title>
+    <link rel="shortcut icon" href="/src/img/base/favicon.png">
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <script src="/src/js/vendor.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/templates.js"></script>
+</head>
+
+<body ng-controller="appController">
+
+    <div id="wrap">
+        @@include('../modules/header/header.html')
+
+        <ng-view autoscroll="true"></ng-view>
+
+        @@include('../modules/footer/footer.html')
+    </div>
+</body>
+</html>
