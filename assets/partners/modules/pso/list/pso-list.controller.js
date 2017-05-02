@@ -22,7 +22,6 @@
         /////////////////////
         function activate() {
             getPsoList();
-
         }
 
         /**
@@ -35,14 +34,19 @@
                     vm.psoList = [];
                     if (response.data.result) {
                         list = response.data.response;
+                        xlog('list',list);
                         list.forEach(function(f){
                             var data = {
-                                id: f.id,
+                                id: Number(f.id),
                                 number: f.number,
-                                policy_number: f.policy_number,
-                                pso_status: f.pso_status,
                                 create_date: f.create_date,
+                                pso_status: f.pso_status,
+                                policy_object_mark: f.policy_object_mark,
+                                policy_object_model: f.policy_object_model,
+                                policy_object_year: f.policy_object_year,
+                                policy_object_number: f.policy_object_number,
                                 pso_status_date: f.pso_status_date,
+                                performer_contractor_name: f.performer_contractor_name,
                                 is_mount: f.is_mount || false,
                                 is_review: f.is_review || false
                             };

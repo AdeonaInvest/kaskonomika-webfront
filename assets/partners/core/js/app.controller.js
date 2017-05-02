@@ -56,11 +56,7 @@
          */
         function getCurrentPath(){
             $rootScope.currentUrl = $location.path();
-            if ($rootScope.currentUrl == '/') {
-                $rootScope.isIndexPage = true;
-            } else {
-                $rootScope.isIndexPage = false
-            }
+            $rootScope.currentUrl == '/' ? $rootScope.isIndexPage = true : $rootScope.isIndexPage = false;
         }
         
         
