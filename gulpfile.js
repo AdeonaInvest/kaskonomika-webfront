@@ -80,8 +80,6 @@ var jsGen = function(name){
 };
 gulp.task('js-stream', jsGen('kaskonomika'));
 gulp.task('js-partners', jsGen('partners'));
-gulp.task('js-landing-lada', jsGen('landing-lada'));
-gulp.task('js-landing-kamaz', jsGen('landing-kamaz'));
 
 
 /**
@@ -102,8 +100,6 @@ var lessGen = function(name){
 };
 gulp.task('less-stream', lessGen('kaskonomika'));
 gulp.task('less-partners', lessGen('partners'));
-gulp.task('less-landing-lada', lessGen('landing-lada'));
-gulp.task('less-landing-kamaz', lessGen('landing-kamaz'));
 
 
 /**
@@ -122,14 +118,11 @@ var htmlGen = function(name) {
             }))
             .pipe(revHash({assetsDir: './sites'}))
             .pipe(hash_src({build_dir: gulpHashSrc, src_path: gulpHashPath}))
-            .pipe(gulp.dest(gulpDest))
-            //.pipe(livereload(server));
+            .pipe(gulp.dest(gulpDest));
     }
 };
 gulp.task('html-stream',['js-stream', 'templates'], htmlGen('kaskonomika'));
 gulp.task('html-partners',['js-partners', 'templates'], htmlGen('partners'));
-gulp.task('html-landing-lada',['js-landing-lada', 'templates'], htmlGen('landing-lada'));
-gulp.task('html-landing-kamaz',['js-landing-kamaz', 'templates'], htmlGen('landing-kamaz'));
 
 
 /**
@@ -154,8 +147,6 @@ function templateGen(name) {
 }
 gulp.task('templates-stream', [], templateGen('kaskonomika'));
 gulp.task('templates-partners', [], templateGen('partners'));
-gulp.task('templates-landing-lada', [], templateGen('landing-lada'));
-gulp.task('templates-landing-kamaz', [], templateGen('landing-kamaz'));
 
 
 /**
@@ -171,12 +162,10 @@ gulp.task('bower-prune', function() {
 
 gulp.task('kaskonomika', [
     'js-stream', 'less-stream', 'html-stream',
-    'js-partners','less-partners','html-partners',
-    'js-landing-lada', 'less-landing-lada', 'html-landing-lada',
-    'js-landing-kamaz', 'less-landing-kamaz', 'html-landing-kamaz'
+    'js-partners','less-partners','html-partners'
 ]);
-gulp.task('templates', ['templates-stream','templates-partners','templates-landing-lada','templates-landing-kamaz']);
-gulp.task('html', ['html-stream','html-partners','html-landing-lada','html-landing-kamaz']);
+gulp.task('templates', ['templates-stream','templates-partners']);
+gulp.task('html', ['html-stream','html-partners']);
 
 gulp.task('build', ['kaskonomika']);
 
@@ -189,12 +178,6 @@ var taskWatch = function(){
     gulp.watch(['./assets/partners/**/*.html'],['html-partners']);
     gulp.watch(['./assets/partners/**/*.less'],['less-partners']);
     gulp.watch(['./assets/partners/**/*.js'],['js-partners']);
-    gulp.watch(['./assets/landing-lada/**/*.html'],['html-landing-lada']);
-    gulp.watch(['./assets/landing-lada/**/*.less'],['less-landing-lada']);
-    gulp.watch(['./assets/landing-lada/**/*.js'],['js-landing-lada']);
-    gulp.watch(['./assets/landing-kamaz/**/*.html'],['html-landing-kamaz']);
-    gulp.watch(['./assets/landing-kamaz/**/*.less'],['less-landing-kamaz']);
-    gulp.watch(['./assets/landing-kamaz/**/*.js'],['js-landing-kamaz']);
 
     //gulp.watch('./sites/**').on('change',livereload.changed);
 
@@ -232,10 +215,7 @@ var proxy = proxyMiddleware(['/api','/kaskonomika'], options);
 
 var serverGen = function(proxy1, cb){
     var streamApp = expressFunc('kaskonomika'),
-        partnersApp = expressFunc('partners'),
-        ladaLandingApp = expressFunc('landing-lada'),
-        kamazLandingApp = expressFunc('landing-kamaz');
-
+        partnersApp = expressFunc('partners');
 
     return function() {
         express()
@@ -243,8 +223,6 @@ var serverGen = function(proxy1, cb){
             .use(proxy1).on('upgrade', proxy1.upgrade)//
             .use(vhost('kaskonomika.local', streamApp))
             .use(vhost('partners.local', partnersApp))
-            .use(vhost('lada.local', ladaLandingApp))
-            .use(vhost('kamaz.local', kamazLandingApp))
             .listen(9360);
         cb()
     };
