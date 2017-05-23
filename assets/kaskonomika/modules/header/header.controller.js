@@ -8,6 +8,7 @@
 
     function headerController() {
         var vm = this;
+        vm.openOverlay = false;
 
         activate();
         /////////////////////

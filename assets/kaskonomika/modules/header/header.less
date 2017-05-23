@@ -7,6 +7,7 @@
   top: 0;
   left: 0;
   right: 0;
+  z-index: 99999;
   .sub-menu {
     padding: 0;
     ul {
@@ -29,7 +30,7 @@
         }
       }
       .sub-menu-logo {
-        width: 79%;
+        width: 78%;
         text-align: left;
         a {
           margin: 0;
@@ -48,6 +49,79 @@
         }
       }
     }
+    #header-overlay {
+      @header-height: 80px;
+      padding: 0;
+      margin: 0;
+      background: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 999999;
+      transition: .5s ease;
+      .container-fluid {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        .menu-area {
+          padding: 0;
+          height: 100%;
+          .logo-area {
+            background: #fff;
+            ul {
+              padding: 0;
+              margin: 0;
+              li {
+                height: @header-height;
+                padding: 0;
+              }
+              .sub-menu-icon {
+                width: 20%;
+                text-align: center;
+                .fa {
+                  cursor: pointer;
+                  line-height: @header-height;
+                  vertical-align: middle;
+                  &:hover {
+                    color: @color-blue-light;
+                  }
+                }
+              }
+              .sub-menu-logo {
+                width: 78%;
+                text-align: left;
+                a {
+                  margin: 0;
+                  padding: 0;
+                  display: block;
+                  line-height: @header-height;
+                  vertical-align: middle;
+                  text-decoration: none;
+                  img {
+                    width: 100%;
+                    max-width: 250px;
+                  }
+                  &:hover, &:focus, &:visited {
+                    text-decoration: none;
+                  }
+                }
+              }
+            }
+          }
+          .overlay-menu-area {
+            height: 100%;
+            background: #fff;
+          }
+
+        }
+        .click-outside-area {
+          height: 100%;
+          background: rgba(0,0,0,.3);
+        }
+      }
+    }
   }
   .main-menu {
     ul {
@@ -63,10 +137,10 @@
           font: 11px/@header-height @fm-main;
           color: #000;
           text-transform: uppercase;
-          &:hover {
+          &:hover, &:focus {
             text-decoration: underline;
           }
-          &:focus, &:visited {
+          &:visited {
             text-decoration: none;
           }
         }

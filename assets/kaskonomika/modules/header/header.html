@@ -2,12 +2,34 @@
     <div class="sub-menu pull-left col-lg-3 col-md-6 col-sm-6 col-xs-9">
         <ul class="list-inline">
             <li class="sub-menu-icon">
-                <i class="fa fa-bars fa-2x"></i>
+                <i class="fa fa-bars fa-2x noselect" ng-click="vm.openOverlay = !vm.openOverlay"></i>
             </li>
             <li class="sub-menu-logo">
-                <a href="/"><img src="/src/img/base/logo-sm.png"/></a>
+                <a href="/" class="noselect"><img src="/src/img/base/logo-sm.png"/></a>
             </li>
         </ul>
+        <!-- START : Оверлей для открывающего меню -->
+        <div id="header-overlay" ng-if="vm.openOverlay">
+            <div class="container-fluid">
+                <div class="menu-area pull-left col-lg-3 col-md-6 col-sm-6 col-xs-9">
+                    <div class="logo-area">
+                        <ul class="list-inline noselect">
+                            <li class="sub-menu-icon noselect">
+                                <i class="fa fa-times fa-2x noselect" ng-click="vm.openOverlay = !vm.openOverlay"></i>
+                            </li>
+                            <li class="sub-menu-logo noselect">
+                                <a href="/" class="noselect"><img src="/src/img/base/logo-sm.png"/></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="overlay-menu-area">
+
+                    </div>
+                </div>
+                <div class="click-outside-area pull-left col-lg-9 col-md-6 col-sm-6 col-xs-3 noselect" ng-click="vm.openOverlay = !vm.openOverlay"></div>
+            </div>
+        </div>
+        <!-- END : Оверлей для открывающего меню -->
     </div>
     <div class="main-menu pull-left col-lg-5 hidden-md hidden-sm hidden-xs">
         <ul class="list-inline">
