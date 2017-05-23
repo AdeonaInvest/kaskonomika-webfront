@@ -70,12 +70,15 @@
           height: 100%;
           .logo-area {
             background: #fff;
+            border-bottom: 1px solid #e5e5e5;
             ul {
               padding: 0;
               margin: 0;
+              height: @header-height;
               li {
                 height: @header-height;
                 padding: 0;
+                float: left;
               }
               .sub-menu-icon {
                 width: 20%;
@@ -90,8 +93,9 @@
                 }
               }
               .sub-menu-logo {
-                width: 78%;
+                width: 80%;
                 text-align: left;
+                padding-left: 3px;
                 a {
                   margin: 0;
                   padding: 0;
@@ -107,12 +111,57 @@
                     text-decoration: none;
                   }
                 }
+                .sub-menu-logo-mobile {
+                  text-align: right;
+                  line-height: @header-height;
+                  margin: 0 20px 0 0;
+                }
               }
             }
           }
           .overlay-menu-area {
             height: 100%;
             background: #fff;
+            overflow-y: auto;
+            padding-left: 20%;
+            > div {
+              width: 100%;
+              li {
+                list-style: none;
+                height: auto;
+                a {
+                  display: block;
+                  color: #000;
+                  text-decoration: none;
+                  &:hover {
+                    outline: none;
+                    text-decoration: underline;
+                  }
+                  &:visited {
+                    text-decoration: none;
+                  }
+                }
+              }
+            }
+            .overlay-main-menu {
+              margin: 0;
+              li {
+                a {
+                  text-transform: uppercase;
+                  font: 11px/50px @fm-bold;
+                }
+              }
+            }
+            .overlay-sub-menu {
+              margin: 50px 0 0 0;
+              li {
+                a {
+                  text-transform: none;
+                  font: 14px/40px @fm-web;
+                }
+              }
+
+            }
           }
 
         }
