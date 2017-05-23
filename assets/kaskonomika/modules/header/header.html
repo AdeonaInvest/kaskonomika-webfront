@@ -1,3 +1,46 @@
-<div ng-controller="headerController as vm">
-    <h1>HEADER</h1>
+<div class="container-fluid active" id="header" ng-controller="headerController as vm">
+    <div class="sub-menu pull-left col-lg-3 col-md-6 col-sm-6 col-xs-9">
+        <ul class="list-inline">
+            <li class="sub-menu-icon">
+                <i class="fa fa-bars fa-2x"></i>
+            </li>
+            <li class="sub-menu-logo">
+                <a href="/"><img src="/src/img/base/logo-sm.png"/></a>
+            </li>
+        </ul>
+    </div>
+    <div class="main-menu pull-left col-lg-5 hidden-md hidden-sm hidden-xs">
+        <ul class="list-inline">
+            <li>
+                <a href>Умное страхование</a>
+            </li>
+            <li>
+                <a href>Как это работает</a>
+            </li>
+            <li>
+                <a href>Вопросы и ответы</a>
+            </li>
+            <li>
+                <a href>Скачать приложение</a>
+            </li>
+        </ul>
+    </div>
+    <div class="user-menu pull-right col-lg-4 col-md-6 col-sm-6 col-xs-3">
+        <ul class="list-inline">
+            <li class="hidden-sm hidden-xs">
+                <div class="user-dashboard-area">
+                    <i class="fa fa-user fa-2x"></i>
+                </div>
+            </li>
+            <li class="phone-area hidden-sm hidden-xs">
+                <span>+7 499 550-00-09</span>
+            </li>
+            <li class="calc-area">
+                <div class="header-calc">
+                    <i class="fa fa-calculator"></i>
+                    <span class="hidden-xs">Рассчитать Каско</span>
+                </div>
+            </li>
+        </ul>
+    </div>
 </div>

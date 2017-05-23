@@ -1,4 +1,163 @@
 #header {
+  @header-height: 80px;
+  height: @header-height;
+  padding: 0;
+  background: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  .sub-menu {
+    padding: 0;
+    ul {
+      padding: 0;
+      margin: 0;
+      li {
+        height: @header-height;
+        padding: 0;
+      }
+      .sub-menu-icon {
+        width: 20%;
+        text-align: center;
+        .fa {
+          cursor: pointer;
+          line-height: @header-height;
+          vertical-align: middle;
+          &:hover {
+            color: @color-blue-light;
+          }
+        }
+      }
+      .sub-menu-logo {
+        width: 79%;
+        text-align: left;
+        a {
+          margin: 0;
+          padding: 0;
+          display: block;
+          line-height: @header-height;
+          vertical-align: middle;
+          text-decoration: none;
+          img {
+            width: 100%;
+            max-width: 250px;
+          }
+          &:hover, &:focus, &:visited {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+  .main-menu {
+    ul {
+      margin: auto;
+      padding: 0;
+      width: 530px;
+      li {
+        line-height: @header-height;
+        margin: 0 10px;
+        padding: 0;
+        a {
+          display: block;
+          font: 11px/@header-height @fm-main;
+          color: #000;
+          text-transform: uppercase;
+          &:hover {
+            text-decoration: underline;
+          }
+          &:focus, &:visited {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+  .user-menu {
+    line-height: @header-height;
+    ul {
+      float: right;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      li {
+        margin: 0 10px;
+        padding: 0;
+        height: @header-height;
+        line-height: @header-height;
+        vertical-align: top;
+        float: right;
+      }
+      .calc-area {
+        display: none;
+        .header-calc {
+          @header-calc-height: 40px;
+          @currentHeight: (@header-height - @header-calc-height) / 2;
+          margin-top: @currentHeight;
+          background: @color-blue-dark;
+          border-radius: 20px;
+          height: @header-calc-height;
+          text-align: center;
+          line-height: @header-calc-height;
+          cursor: pointer;
+          padding: 0 13px;
+          i {
+            font-size: 14px;
+            color: #fff;
+          }
+          span {
+            margin: 0 0 0 10px;
+            font: 14px/@header-calc-height @fm-main;
+            color: #fff;
+          }
+          &:hover {
+            background: @color-blue-dark-hover;
+          }
+        }
+      }
+      .phone-area {
+        span {
+          display: block;
+          font: 12px/@header-height @fm-web;
+          color: #000;
+        }
+      }
+      .user-dashboard-area {
+        @header-user-height: 40px;
+        @currentHeight: (@header-height - @header-user-height) / 2;
+        margin-top: @currentHeight;
+        width: @header-user-height;
+        height: @header-user-height;
+        line-height: @header-user-height;
+        vertical-align: middle;
+        border-radius: 50%;
+        background: #fff;
+        cursor: pointer;
+        text-align: center;
+        i {
+          color: #000;
+          font-size: 20px;
+          line-height: @header-user-height;
+        }
+        &:hover {
+          background: @color-blue-light;
+        }
+      }
+    }
+  }
+  &.active {
+    background: #fff;
+    .user-menu {
+      .calc-area {
+        display: inline-block;
+      }
+      .user-dashboard-area {
+        background: @color-blue;
+        &:hover {
+          background: @color-blue-light;
+        }
+      }
 
-
+    }
+  }
 }
