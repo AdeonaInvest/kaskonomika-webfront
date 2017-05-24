@@ -128,18 +128,188 @@
     display: block;
     width: 100%;
     padding: 150px 0;
-    background: url('/src/img/backgrounds/index-section5-bg.png') bottom right / 40% no-repeat #e76363;
+    background: url('/src/img/backgrounds/index-section5-bg.png') bottom right / 40% no-repeat #efefef;
     h2 {
       margin: 0 auto 40px;
       font: 54px/69px @fm-bold;
       width: 700px;
     }
-    p {
-      margin: 0 auto;
-      padding: 0;
+    .faq-box {
       width: 700px;
-      font: 20px/40px @fm-web;
-
+      margin: 0 auto;
+      .panel-default {
+        border: 1px solid transparent;
+        background: none;
+        border-radius: 8px;
+        .panel-heading {
+          background: none;
+          border: none;
+          border-radius: 8px;
+          padding: 10px 15px 10px 50px;
+          .panel-title {
+            a {
+              span {
+                display: block;
+                position: relative;
+                font: 20px/30px @fm-main;
+                color: #000;
+                &:before {
+                  display: block;
+                  position: absolute;
+                  left: -30px;
+                  color: #000;
+                  transition: .2s ease;
+                }
+              }
+              &:focus{
+                text-decoration: none
+              }
+            }
+          }
+          &:hover {
+            .panel-title {
+              a {
+                text-decoration: none;
+                span {
+                  color: #59c6f2;
+                  &:before {
+                    left: -20px;
+                    color: #59c6f2;
+                    transition: .2s ease;
+                  }
+                }
+                &:focus{
+                  text-decoration: none
+                }
+              }
+            }
+          }
+          &:focus {
+            .panel-title {
+              a {
+                text-decoration: none;
+                span {
+                  color: #59c6f2;
+                  &:before {
+                    left: -20px;
+                    color: #59c6f2;
+                    transition: .2s ease;
+                  }
+                }
+                &:focus{
+                  text-decoration: none
+                }
+              }
+            }
+          }
+          &:visited {
+            .panel-title {
+              a {
+                text-decoration: none;
+                span {
+                  color: #000;
+                  &:before {
+                    left: -30px;
+                    color: #000;
+                    transition: .2s ease;
+                  }
+                }
+                &:focus{
+                  text-decoration: none
+                }
+              }
+            }
+          }
+        }
+        .panel-collapse {
+          .panel-body {
+            border: none;
+            padding: 0 20px 20px;
+            font: 20px/30px @fm-web;
+            color: #000;
+          }
+        }
+        &:hover {
+          background: #fff;
+          border: 1px solid #ddd;
+          .panel-heading {
+            background: #fff;
+          }
+        }
+      }
+      .title1 {
+        .panel-heading {
+          .panel-title {
+            a {
+              span {
+                &:before {
+                  content: '1';
+                }
+              }
+            }
+          }
+        }
+      }
+      .title2 {
+        .panel-heading {
+          .panel-title {
+            a {
+              span {
+                &:before {
+                  content: '2';
+                }
+              }
+            }
+          }
+        }
+      }
+      .title3 {
+        .panel-heading {
+          .panel-title {
+            a {
+              span {
+                &:before {
+                  content: '3';
+                }
+              }
+            }
+          }
+        }
+      }
+      .title4 {
+        .panel-heading {
+          .panel-title {
+            a {
+              span {
+                &:before {
+                  content: '4';
+                }
+              }
+            }
+          }
+        }
+      }
+      .panel-open {
+        box-shadow: 0 5px 13px rgba(0, 0, 0, .2);
+        background: #fff;
+        border: 1px solid #ddd;
+        .panel-heading {
+          background: #fff;
+          .panel-title {
+            a {
+              text-decoration: none;
+              span {
+                color: #59c6f2;
+                &:before {
+                  left: -20px;
+                  color: #59c6f2;
+                  transition: .2s ease;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
   #index-section6-slider {

@@ -45,6 +45,7 @@
             }
         ]
         vm.accordeon = true;
+        vm.accordeonOpen = true;
         
     }
 })();
