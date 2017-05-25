@@ -5,16 +5,18 @@
         .module('kaskonomika')
         .controller('indexController', indexController);
 
-    indexController.$inject = [];
+    indexController.$inject = ['$scope'];
 
-    function indexController() {
+    function indexController($scope) {
         var vm = this;
-        
+        vm.swiperIndex = 0;
+
         activate();
         ///////////////////
         function activate() {
-            
+
         }
+        
 
         // Список партнеров
         vm.partnersList = [
@@ -43,9 +45,46 @@
                 url: '//http://ergo.ru/',
                 alt: 'Страховая кампания ERGO'
             }
-        ]
+        ];
         vm.accordeon = true;
         vm.accordeonOpen = true;
+        vm.indexSlides = [
+            {
+                index: 1,
+                text: 'Введите полные данные об автомобиле и водителях для расчета итоговой стоимости и формирования электронного полиса. Оплатить страховку можно банковской картой.'
+            },
+            {
+                index: 2,
+                text: 'После оформления электронного полиса мы свяжемся с вами, чтобы договориться об осмотре автомобиля и установке трекера. Мы подъедем в удобное для вас место и время и сама процедура займет не более получаса.'
+            },
+            {
+                index: 3,
+                text: 'Используйте максимум возможностей нашего приложения! Анализируйте поездки и совершенствуйте свою манеру вождения, следите за техническим состоянием вашего автомобиля. Накапливайте бонусные баллы и получайте скидки на Каско'
+            },
+            {
+                index: 4,
+                text: 'После ввода первичных данных мы предоставим вам предварительный расчет стоимости страховки. Сравнивайте, конфигурируйте наполнение и условия, выбирайте наиболее подходящий вам вариант.'
+            }
+        ];
+
+        $scope.onReadySwiper = function (swiper) {
+            xlog('Init',swiper);
+
+            
+
+            vm.slideTo = slideTo;
+            
+            function slideTo(index) {
+                swiper.slideTo(index);
+            }
+            
+            swiper.on('onSlideChangeEnd',function(){
+                vm.swiperIndex = swiper.activeIndex;
+                $scope.$digest();
+            })
+
+            
+        };
         
     }
 })();

@@ -6,7 +6,8 @@
             'ngRoute',
             'ngSanitize',
             'ngCookies',
-            'ui.bootstrap'
+            'ui.bootstrap',
+            'ksSwiper'
         ])
         .constant('config', {
             version: '0.0.1', //Текущая версия сайта
