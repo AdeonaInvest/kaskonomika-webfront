@@ -4,10 +4,11 @@
     angular.module('kaskonomika')
         .controller('headerController', headerController);
 
-    headerController.$inject = [];
+    headerController.$inject = ['$scope','$window'];
 
-    function headerController() {
+    function headerController($scope,$window) {
         var vm = this;
+        vm.scrollFromTop = false;
         vm.openOverlay = false;
         vm.mainMenu = [
             {
@@ -53,6 +54,16 @@
 
         }
 
+        angular.element($window).bind("scroll", function() {
+            if (this.pageYOffset > 0) {
+                vm.scrollFromTop = true;
+                console.log('Scrolled below header.');
+            } else {
+                vm.scrollFromTop = false;
+                console.log('Header is in view.');
+            }
+            $scope.$apply();
+        });
     }
 })();
 
