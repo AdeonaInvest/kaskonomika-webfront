@@ -14,8 +14,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     fileinclude = require('gulp-file-include'),
     bower = require('gulp-bower'),
-    angularFilesort = require('gulp-angular-filesort')
-    ;
+    angularFilesort = require('gulp-angular-filesort');
 
 var express = require('express');
 var vhost = require('vhost');

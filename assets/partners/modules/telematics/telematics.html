@@ -42,12 +42,14 @@
             <uib-accordion close-others="true">
                 <div uib-accordion-group class="panel-default" ng-repeat="event in vm.eventsList">
                     <uib-accordion-heading>
-                        <img src="/src/img/icons/icon_avto_parking.png" ng-if="false"/>
-                        <img src="/src/img/icons/icon_avto_trip.png" ng-if="true"/>
-                        <span>с 9:45 по 10:23, </span>
-                        <span> 14.5 км., </span>
-                        <span> скоринг: 53</span>
-                        <img src="/src/img/icons/weather/sun.png"/>
+                        <div ng-click="vm.createMap()">
+                            <img src="/src/img/icons/icon_avto_parking.png" ng-if="false"/>
+                            <img src="/src/img/icons/icon_avto_trip.png" ng-if="true"/>
+                            <span>с 9:45 по 10:23, </span>
+                            <span> 14.5 км., </span>
+                            <span> скоринг: 53</span>
+                            <img src="/src/img/icons/weather/sun.png"/>
+                        </div>
                     </uib-accordion-heading>
                     <div ng-if="event.type == 'trip'" class="trip-area">
                         <div class="row top-area">
@@ -76,7 +78,7 @@
                     <div ng-if="event.type == 'parking'" class="parking-area">
                         <div class="row top-area">
                             <div class="col-lg-4 map-area">
-                                MAP
+                                <ui-gmap-google-map center='vm.map.center' zoom='vm.map.zoom'></ui-gmap-google-map>
                             </div>
                             <div class="col-lg-8 parking-address">
                                 <span class="position-title">Дом</span>

@@ -7,9 +7,9 @@
     angular.module('partners')
         .controller('pageTelematicsController', pageTelematicsController);
 
-    pageTelematicsController.$inject = ['$rootScope','$http','config'];
+    pageTelematicsController.$inject = ['$rootScope','$http','config','$window'];
 
-    function pageTelematicsController($rootScope,$http,config) {
+    function pageTelematicsController($rootScope,$http,config, $window) {
         var vm = this;
         var api = config.api;
         vm.telemathicList = false;
@@ -42,6 +42,8 @@
 
         vm.getNewResult = getNewResult;
 
+        vm.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+
         activate();
         /////////////////////
         function activate() {
@@ -53,6 +55,8 @@
             xlog('берем новые резултатыт',key)
 
         }
+
+        
 
 
     }
