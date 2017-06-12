@@ -6,7 +6,8 @@
             'ngRoute',
             'ngSanitize',
             'ngCookies',
-            'ui.bootstrap'
+            'ui.bootstrap',
+            'chart.js'
         ])
         .constant('config', {
             api: 'https://api.kaskonomika.ru/v1',

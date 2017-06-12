@@ -1,0 +1,95 @@
+<div id="telematics-page">
+    <div class="row card">
+        <div class="ta-center p-20 waiter" ng-if="vm.lossesList">
+            <i class="fa fa-spin fa-circle-o-notch fa-2x"></i>
+        </div>
+        <div class="row cars-tabs">
+            <uib-tabset active="vm.currentCar">
+                <uib-tab ng-repeat="(key,row) in vm.cars" heading="{{row.title}}" ng-click="vm.getNewResult(key)" ></uib-tab>
+            </uib-tabset>
+        </div>
+        <div class="row main-area">
+            <div class="col-lg-4">
+                <div class="scoring">
+                    <span class="score">50<br/>
+                    <small>Scoring</small></span>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <canvas id="mounth-bar" class="chart chart-bar"
+                        chart-data="vm.data" chart-labels="[1,2,3,4,5,6,7,8,9,10,11,12]" chart-series="vm.series" chart-hover="none">
+                </canvas>
+            </div>
+            <div class="col-lg-4">
+                <canvas id="year-bar" class="chart chart-bar"
+                        chart-data="vm.data" chart-labels="vm.monthCalendar" chart-series="vm.series" chart-hover="none">
+                </canvas>
+            </div>
+        </div>
+        <div class="row calendar-area">
+            <uib-tabset active="vm.currentMonth">
+                <uib-tab ng-repeat="(key,row) in vm.monthCalendar" heading="{{row}}'{{vm.currentYear}}"></uib-tab>
+            </uib-tabset>
+        </div>
+        <div class="row trips-parking-area">
+            <uib-accordion close-others="true">
+                <div uib-accordion-group class="panel-default" heading="{{event.title}} rrrrr" ng-repeat="event in vm.eventsList">
+                    <div ng-if="event.type == 'trip'" class="trip-area">
+                        <div class="row top-area">
+                            <div class="col-lg-4">
+                                MAP
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="scoring">
+                                    <span class="score">50</span>
+                                    <span class="title">Scoring </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="weather-area">
+                                    <img src="/src/img/icons/weather/sun.png"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row bottom-area">
+                            <span>Пробег</span>
+                            <span>19,2 км.</span>
+                            <span>Время в пути:</span>
+                            <span>3 ч. 42 мин.</span>
+                        </div>
+                    </div>
+                    <div ng-if="event.type == 'parking'" class="parking-area">
+                        <div class="row top-area">
+                            <div class="col-lg-4 map-area">
+                                MAP
+                            </div>
+                            <div class="col-lg-8 parking-address">
+                                <span class="position-title">Дом</span>
+                                <span class="parking-title">с 19:32, 11 Марта</span>
+                                <span class="position-title">по 08:11, 12 Марта</span>
+                                <span class="position-address">Кожевническая улица 10 с 2, Москва, Россия</span>
+                            </div>
+                        </div>
+                        <div class="row bottom-area">
+                            <div class="col-lg-6 interests-area">
+                                <p>Точки интереса в области стоянки:</p>
+                                <ul>
+                                    <li>Азбука вкуса (Продукты), 25 м</li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6 category-area">
+                                <p class="category-area-title">Предпочтительные категории текущего водителя:</p>
+                                <canvas id="base"
+                                        class="chart-horizontal-bar"
+                                        chart-data="[43,32,85,23]"
+                                        chart-labels="['Хавка','Прогулки','Траты','Авто']">
+                                </canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </uib-accordion>
+        </div>
+        <http-error></http-error>
+    </div>
+</div>

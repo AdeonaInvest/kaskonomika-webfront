@@ -39,9 +39,9 @@
                 controller: 'pageLossesController',
                 controllerAs: 'vm'
             })
-            .when ('/telematics/list', {
-                templateUrl: '/telematics/list/telematics.html',
-                controller: 'pageTelematicsListController',
+            .when ('/telematics', {
+                templateUrl: '/telematics/telematics.html',
+                controller: 'pageTelematicsController',
                 controllerAs: 'vm'
             })
             .otherwise({

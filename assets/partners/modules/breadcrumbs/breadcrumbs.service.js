@@ -44,6 +44,11 @@
                 link: '/losses',
                 name: 'Убытки',
                 icon: 'fa-rub'
+            },
+            {
+                link: '/telematics',
+                name: 'Телематика',
+                icon: 'fa-map-marker'
             }
         ]
     }

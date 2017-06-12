@@ -41,7 +41,7 @@
             xlog('Делаю запрос профайла');
             $http.post(api + '/users/info', {token: $rootScope.token})
                 .then(function(user) {
-                    xlog('Получил профайл пользователя при обновлении. ', user.data);
+                    xlog('Получил профайл пользователя при обновлении. ', user.data.response);
                     $rootScope.user = null;
                     $rootScope.user = user.data.response;
                 })

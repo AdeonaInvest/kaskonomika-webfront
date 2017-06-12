@@ -48,6 +48,8 @@ var jsPaths = [
     'bower_components/lightbox2/src/js/lightbox.js',
     'bower_components/swiper/dist/js/swiper.js',
     'bower_components/angular-swiper/dist/angular-swiper.js',
+    'node_modules/chart.js/dist/Chart.min.js',
+    'node_modules/angular-chart.js/dist/angular-chart.min.js',
     'sites/src/js/lib/intercom.min.js',
     'sites/src/js/lib/echarts.js',
     'sites/src/js/lib/ngecharts.js',

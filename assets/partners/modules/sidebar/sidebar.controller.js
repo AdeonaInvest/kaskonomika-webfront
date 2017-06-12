@@ -46,18 +46,6 @@
                         path: '/losses/list'
                     }
                 ]
-            },
-            {
-                name: 'Телематика',
-                icon: 'fa-map-marker',
-                path: '/telematics/list',
-                child: [
-                    {
-                        name: 'Список авто',
-                        icon: 'fa-list',
-                        path: '/telematics/list'
-                    }
-                ]
             }
         ];
                
