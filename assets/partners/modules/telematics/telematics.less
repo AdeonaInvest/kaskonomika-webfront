@@ -10,16 +10,16 @@
     .cars-tabs {
       margin: 0 -20px;
       padding: 10px 5px 0;
-      background: lightblue;
+      background: #d3edfc;
       ul {
         li {
           margin-right: 5px;
           a {
-            background: @color_11;
+            background: #54b5e0;
             color: #fff;
             padding: 15px;
             &:hover {
-              border: 1px solid @color_11;
+              border: 1px solid #54b5e0;
             }
           }
         }
@@ -34,10 +34,16 @@
           }
         }
       }
-
     }
     .main-area {
       padding: 20px 0;
+      .main-area-title {
+        font: 14px/14px @fm-bold;
+        color: #000;
+        text-align: center;
+        display: block;
+        margin: 0 0 20px;
+      }
       .scoring {
         width: 200px;
         height: 200px;
@@ -64,24 +70,58 @@
       }
     }
     .calendar-area {
+      margin: 0 -20px;
+      padding: 10px 5px 0;
+      background: #d3edfc;
+      border-top: 1px solid #d4d4d4;
       ul {
         li {
+          margin-right: 5px;
           a {
-
+            background: #54b5e0;
+            color: #fff;
+            padding: 15px;
+            &:hover {
+              border: 1px solid #54b5e0;
+            }
           }
         }
         .active {
           a {
-
+            background: #fff;
+            color: #000;
+            border: 1px solid #fff;
+            &:hover {
+              border: 1px solid #fff;
+            }
           }
         }
       }
 
     }
     .trips-parking-area {
+      padding: 20px 20px 0;
       .panel-group {
         .panel {
           .panel-heading {
+            h4 {
+              a {
+                display: block;
+                height: 100%;
+                width: 100%;
+                &:hover {
+                  text-decoration: none;
+                }
+                &:focus {
+                  outline: none;
+                  text-decoration: none;
+                }
+                img {
+                  max-height: 30px;
+                  margin: 0 10px;
+                }
+              }
+            }
 
           }
           .panel-collapse {

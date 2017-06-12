@@ -10,30 +10,45 @@
         </div>
         <div class="row main-area">
             <div class="col-lg-4">
+                <span class="main-area-title">Скоринг <i class="fa fa-question-circle-o color-grey"></i></span>
                 <div class="scoring">
                     <span class="score">50<br/>
                     <small>Scoring</small></span>
                 </div>
             </div>
             <div class="col-lg-4">
+                <span class="main-area-title">Пробег за месяц <i class="fa fa-question-circle-o color-grey"></i></span>
                 <canvas id="mounth-bar" class="chart chart-bar"
-                        chart-data="vm.data" chart-labels="[1,2,3,4,5,6,7,8,9,10,11,12]" chart-series="vm.series" chart-hover="none">
+                        chart-data="vm.data"
+                        chart-labels="[1,2,3,4,5,6,7,8,9,10,11,12]"
+                        chart-series="vm.series">
                 </canvas>
             </div>
             <div class="col-lg-4">
+                <span class="main-area-title">Пробег за год <i class="fa fa-question-circle-o color-grey"></i></span>
                 <canvas id="year-bar" class="chart chart-bar"
-                        chart-data="vm.data" chart-labels="vm.monthCalendar" chart-series="vm.series" chart-hover="none">
+                        chart-data="vm.data"
+                        chart-labels="vm.monthCalendar"
+                        chart-series="vm.series">
                 </canvas>
             </div>
         </div>
         <div class="row calendar-area">
             <uib-tabset active="vm.currentMonth">
-                <uib-tab ng-repeat="(key,row) in vm.monthCalendar" heading="{{row}}'{{vm.currentYear}}"></uib-tab>
+                <uib-tab ng-repeat="(key,row) in vm.monthCalendar" heading="{{row}} ' {{vm.currentYear}}"></uib-tab>
             </uib-tabset>
         </div>
         <div class="row trips-parking-area">
             <uib-accordion close-others="true">
-                <div uib-accordion-group class="panel-default" heading="{{event.title}} rrrrr" ng-repeat="event in vm.eventsList">
+                <div uib-accordion-group class="panel-default" ng-repeat="event in vm.eventsList">
+                    <uib-accordion-heading>
+                        <img src="/src/img/icons/icon_avto_parking.png" ng-if="false"/>
+                        <img src="/src/img/icons/icon_avto_trip.png" ng-if="true"/>
+                        <span>с 9:45 по 10:23, </span>
+                        <span> 14.5 км., </span>
+                        <span> скоринг: 53</span>
+                        <img src="/src/img/icons/weather/sun.png"/>
+                    </uib-accordion-heading>
                     <div ng-if="event.type == 'trip'" class="trip-area">
                         <div class="row top-area">
                             <div class="col-lg-4">
