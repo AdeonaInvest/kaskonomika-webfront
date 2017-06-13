@@ -66,7 +66,6 @@
             color: #999;
           }
         }
-
       }
     }
     .calendar-area {
@@ -129,8 +128,8 @@
               .parking-area {
                 .top-area {
                   .map-area {
-                    #map {
-                      height: 400px;
+                    .map {
+                      height: 300px;
                       width: 100%;
                     }
                     .angular-google-map-container {
@@ -139,33 +138,49 @@
                   }
                   .parking-address {
                     .position-title {
-
+                      font: 62px/62px @fm-bold;
+                      color: #000;
+                      display: block;
+                      text-align: right;
+                      margin: 30px 0;
                     }
-                    .parking-title {
-
+                    .parking-title-from {
+                      font: 26px/52px @fm-main;
+                      color: #000;
+                      display: block;
+                      text-align: right;
                     }
-                    .position-title {
-
+                    .parking-title-to {
+                      font: 26px/52px @fm-main;
+                      color: #000;
+                      display: block;
+                      text-align: right;
                     }
                     .position-address {
-
+                      font: 26px/52px @fm-main;
+                      color: #000;
+                      display: block;
+                      text-align: right;
                     }
                   }
                 }
                 .bottom-area {
                   .interests-area {
                     p {
-
+                      font: 18px/18px @fm-main;
+                      color: #000;
                     }
                     ul {
                       li {
+                        list-style: none;
 
                       }
                     }
                   }
                   .category-area {
                     .category-area-title {
-
+                      font: 18px/18px @fm-main;
+                      color: #000;
                     }
                   }
                 }
@@ -173,17 +188,41 @@
               .trip-area {
                 .top-area {
                   .scoring {
-
+                    width: 200px;
+                    height: 200px;
+                    display: block;
+                    margin: 50px auto;
+                    border-radius: 50%;
+                    border: 10px solid @color_11;
+                    text-align: center;
+                    span {
+                      display: block;
+                    }
+                    .score {
+                      font: 60px/60px @fm-bold;
+                      color: #000;
+                      margin: 30% auto;
+                      small {
+                        vertical-align: top;
+                        text-transform: uppercase;
+                        font: 18px/18px @fm-bold;
+                        color: #999;
+                      }
+                    }
                   }
                   .weather-area {
+                    text-align: center;
                     img {
-
+                      width: 50%;
+                      margin: 50px auto;
                     }
                   }
                 }
                 .bottom-area {
+                  padding: 0 20px;
                   span {
-
+                    font: 18px/18px @fm-main;
+                    color: #000;
                   }
                 }
               }
@@ -194,5 +233,4 @@
 
     }
   }
-
 }

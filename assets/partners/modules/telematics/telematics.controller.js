@@ -32,17 +32,21 @@
         vm.eventsList = [
             {
                 title: 'Dynamic Group Header - 1',
-                type: 'parking'
+                type: 'trip',
+                id: 1
             },
             {
                 title: 'Dynamic Group Header - 2',
-                type: 'trip'
+                type: 'trip',
+                id: 2
             }
         ];
 
-        vm.getNewResult = getNewResult;
 
-        vm.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+        vm.getNewResult = getNewResult;
+        vm.initMap = initMap;
+
+        vm.currentMap = undefined;
 
         activate();
         /////////////////////
@@ -55,6 +59,25 @@
             xlog('берем новые резултатыт',key)
 
         }
+
+        function initMap(id,openTab) {
+            if (openTab) {
+                $http.get('https://maps.googleapis.com/maps/api/js?key=AIzaSyBxrJsPPf5hKLa3dVmIZkO8D-Qg2UbPJUU')
+                    .then(function(){
+                        vm.currentMap = new google.maps.Map(document.getElementById('map'+id), {
+                            center: {lat: -34.397, lng: 150.644},
+                            zoom: 8
+                        });
+                        console.log('vm.currentMap', vm.currentMap);
+                    });
+            } else {
+                $('#scriptArea').empty();
+                vm.currentMap = undefined;
+                console.log('vm.currentMap2', vm.currentMap);
+            }
+
+        }
+
 
         
 

@@ -42,9 +42,9 @@
             <uib-accordion close-others="true">
                 <div uib-accordion-group class="panel-default" ng-repeat="event in vm.eventsList">
                     <uib-accordion-heading>
-                        <div ng-click="vm.createMap()">
-                            <img src="/src/img/icons/icon_avto_parking.png" ng-if="false"/>
-                            <img src="/src/img/icons/icon_avto_trip.png" ng-if="true"/>
+                        <div ng-click="openTab = !openTab; vm.initMap(event.id,openTab)">
+                            <img src="/src/img/icons/icon_avto_parking.png" ng-if="true"/>
+                            <img src="/src/img/icons/icon_avto_trip.png" ng-if="false"/>
                             <span>с 9:45 по 10:23, </span>
                             <span> 14.5 км., </span>
                             <span> скоринг: 53</span>
@@ -54,20 +54,28 @@
                     <div ng-if="event.type == 'trip'" class="trip-area">
                         <div class="row top-area">
                             <div class="col-lg-4">
-                                MAP
+                                <iframe
+                                        width="100%"
+                                        height="300"
+                                        frameborder="0" style="border:0"
+                                        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDR7lYrfjX9vtetK8NwJc-QYNLo_5ECs44
+    &q=Space+Needle,Seattle+WA" allowfullscreen>
+                                </iframe>
                             </div>
                             <div class="col-lg-4">
                                 <div class="scoring">
-                                    <span class="score">50</span>
-                                    <span class="title">Scoring </span>
+                                    <span class="score">50<br/>
+                                        <small>Scoring</small>
+                                    </span>
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <div class="weather-area">
-                                    <img src="/src/img/icons/weather/sun.png"/>
+                                    <img src="/src/img/icons/weather/sun_big.png"/>
                                 </div>
                             </div>
                         </div>
+                        <hr/>
                         <div class="row bottom-area">
                             <span>Пробег</span>
                             <span>19,2 км.</span>
@@ -77,21 +85,28 @@
                     </div>
                     <div ng-if="event.type == 'parking'" class="parking-area">
                         <div class="row top-area">
-                            <div class="col-lg-4 map-area">
-                                <ui-gmap-google-map center='vm.map.center' zoom='vm.map.zoom'></ui-gmap-google-map>
+                            <div class="col-lg-6 map-area">
+                                <iframe
+                                        width="100%"
+                                        height="400"
+                                        frameborder="0" style="border:0"
+                                        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDR7lYrfjX9vtetK8NwJc-QYNLo_5ECs44
+    &q=Space+Needle,Seattle+WA" allowfullscreen>
+                                </iframe>
                             </div>
-                            <div class="col-lg-8 parking-address">
+                            <div class="col-lg-6 parking-address">
                                 <span class="position-title">Дом</span>
-                                <span class="parking-title">с 19:32, 11 Марта</span>
-                                <span class="position-title">по 08:11, 12 Марта</span>
+                                <span class="parking-title-from">с 19:32, 11 Марта</span>
+                                <span class="parking-title-to">по 08:11, 12 Марта</span>
                                 <span class="position-address">Кожевническая улица 10 с 2, Москва, Россия</span>
                             </div>
                         </div>
+                        <hr/>
                         <div class="row bottom-area">
                             <div class="col-lg-6 interests-area">
                                 <p>Точки интереса в области стоянки:</p>
                                 <ul>
-                                    <li>Азбука вкуса (Продукты), 25 м</li>
+                                    <li>- Азбука вкуса (Продукты), 25 м</li>
                                 </ul>
                             </div>
                             <div class="col-lg-6 category-area">
@@ -109,4 +124,5 @@
         </div>
         <http-error></http-error>
     </div>
+    <div id="scriptArea"></div>
 </div>
