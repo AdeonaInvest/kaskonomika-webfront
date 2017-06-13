@@ -11,5 +11,5 @@
                 restrict: 'EA',
                 template: "<div class='ta-center httpError' ng-if='vm.error' ng-bind-html='httpError'></div>"
             }
-        });
+        })
 })();

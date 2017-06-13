@@ -7,9 +7,9 @@
     angular.module('partners')
         .controller('pageTelematicsController', pageTelematicsController);
 
-    pageTelematicsController.$inject = ['$rootScope','$http','config','$filter'];
+    pageTelematicsController.$inject = ['$rootScope','$http','config','$filter','$sce'];
 
-    function pageTelematicsController($rootScope,$http,config, $filter) {
+    function pageTelematicsController($rootScope,$http,config, $filter,$sce) {
         var vm = this;
         var api = config.api;
         vm.telemathicList = false;
@@ -104,12 +104,22 @@
             };
             $http.post(api + '/telematic/citymaster/scoring/get', data)
                 .then(function(response){
+                    var otherScoringArray = [];
+                    vm.popoverHtml = '';
                     if (response.data.response.response) {
                         response.data.response.response.forEach(function(f){
                             if (f.param === null) {
                                 vm.dashboardData = f;
+                            } else {
+                                otherScoringArray.push(f);
                             }
                         });
+                        otherScoringArray.forEach(function(a){
+                            vm.popoverHtml = vm.popoverHtml + '<li>' + a.param + ':' + ' ' +  a.score + '</li>';
+                        });
+                        vm.popoverHtml = '<ul>' + vm.popoverHtml + '</ul>';
+                        vm.popoverHtml = $sce.trustAsHtml(vm.popoverHtml);
+
                         xlog('vm.dashboardData',vm.dashboardData)
                     }
                 })

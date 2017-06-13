@@ -10,14 +10,14 @@
         </div>
         <div class="row main-area">
             <div class="col-lg-4">
-                <span class="main-area-title">Скоринг <i class="fa fa-question-circle-o color-grey"></i></span>
+                <span class="main-area-title">Скоринг <i class="fa fa-question-circle-o color-grey" uib-popover-html="vm.popoverHtml" popover-placement="bottom"></i></span>
                 <div class="scoring">
                     <span class="score">{{vm.dashboardData.score}}<br/>
                     <small>Scoring</small></span>
                 </div>
             </div>
             <div class="col-lg-4">
-                <span class="main-area-title">Пробег за месяц <i class="fa fa-question-circle-o color-grey"></i></span>
+                <span class="main-area-title">Пробег за месяц</span>
                 <canvas id="mounth-bar" class="chart chart-bar"
                         chart-data="vm.newMounthcalendar"
                         chart-labels="vm.newMounthcalendarLabels"
@@ -27,7 +27,7 @@
                 </canvas>
             </div>
             <div class="col-lg-4">
-                <span class="main-area-title">Пробег за год <i class="fa fa-question-circle-o color-grey"></i></span>
+                <span class="main-area-title">Пробег за год</span>
                 <canvas id="year-bar" class="chart chart-bar"
                         chart-data="vm.yearsCalendarPerMounth"
                         chart-labels="vm.monthCalendar"
@@ -53,30 +53,24 @@
                                 <img src="/src/img/icons/icon_avto_trip.png" ng-if="event.type=='trip'"/>
                                 <span>с {{event.time_start | date:'dd.MM HH:mm'}} по {{event.time_end | date:'dd.MM HH:mm'}}, </span>
                                 <span ng-if="event.mileage"> {{event.mileage}} км., </span>
-                                <span ng-if="event.scoring"> скоринг: 53</span>
+                                <span ng-if="event.score"> скоринг: {{event.score}}</span>
                                 <img src="/src/img/icons/weather/sun.png"  ng-if="event.weather"/>
                             </div>
                         </uib-accordion-heading>
                         <div ng-if="event.type == 'trip'" class="trip-area">
                             <div class="row top-area">
                                 <div class="col-lg-4">
-                                    <iframe
-                                            width="100%"
-                                            height="300"
-                                            frameborder="0" style="border:0"
-                                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDR7lYrfjX9vtetK8NwJc-QYNLo_5ECs44
-    &q=Space+Needle,Seattle+WA" allowfullscreen>
-                                    </iframe>
+                                    <div id="map{{event.time_start}}" class="map"></div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="scoring">
-                                    <span class="score">50<br/>
+                                    <span class="score" ng-if="event.score">{{event.score}}<br/>
                                         <small>Scoring</small>
                                     </span>
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
-                                    <div class="weather-area">
+                                    <div class="weather-area" ng-if="event.weather">
                                         <img src="/src/img/icons/weather/sun_big.png"/>
                                     </div>
                                 </div>
@@ -84,9 +78,9 @@
                             <hr/>
                             <div class="row bottom-area">
                                 <span>Пробег</span>
-                                <span>19,2 км.</span>
+                                <span>{{event.mileage}} км.</span>
                                 <span>Время в пути:</span>
-                                <span>3 ч. 42 мин.</span>
+                                <span>{{event.time_start-event.time_end | date:'HH.mm'}}</span>
                             </div>
                         </div>
                         <div ng-if="event.type == 'parking'" class="parking-area">
