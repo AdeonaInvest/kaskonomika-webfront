@@ -38,7 +38,6 @@
          * Получение профиля пользователя
          */
         function getUserProfile(){
-            xlog('Делаю запрос профайла');
             $http.post(api + '/users/info', {token: $rootScope.token})
                 .then(function(user) {
                     xlog('Получил профайл пользователя при обновлении. ', user.data.response);
