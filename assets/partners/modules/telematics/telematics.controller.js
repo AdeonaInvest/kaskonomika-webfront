@@ -70,14 +70,17 @@
                 })
             }
         }
+        
 
+        /**
+         * Очистка всех данных при переключении машины
+         */
         function clearData(){
             vm.popoverHtml = null;
             vm.dashboardData = [];
             vm.newMounthcalendar = [];
             vm.yearsCalendar = [];
             vm.yearsCalendarPerMounth = [[0,0,0,0,0,0,0,0,0,0,0,0]];
-            vm.eventListToShow = [];
             vm.currentMonth = null;
             vm.eventsList = [];
             vm.regionChart = [];
@@ -85,6 +88,7 @@
             vm.otherScoringTrip = [];
             vm.waypoints = [];
             vm.waypointsList = [];
+            vm.eventListToShow = [];
         }
 
         /**
@@ -315,6 +319,8 @@
          */
         function showEventList(mounth) {
             if (vm.eventsList.length > 0) {
+                vm.eventListToShow = undefined;
+                vm.eventListToShow = [];
                 vm.eventsList.forEach(function(f){
                     var getMounth = parseInt($filter('date')(f.time_start,'MM','GMT+3'));
                     if (getMounth == mounth) {
