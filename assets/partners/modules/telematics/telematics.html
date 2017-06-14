@@ -5,15 +5,18 @@
         </div>
         <div class="row cars-tabs">
             <uib-tabset active="vm.currentCar">
-                <uib-tab ng-repeat="(key,row) in vm.cars | limitTo: 9" heading="{{row.title}}" ng-click="vm.getNewResult(row.object_id)" ></uib-tab>
+                <uib-tab ng-repeat="(key,row) in vm.cars" heading="{{row.title}}" ng-click="vm.getNewResult(row.object_id)" ></uib-tab>
             </uib-tabset>
         </div>
         <div class="row main-area">
             <div class="col-lg-4">
                 <span class="main-area-title">Скоринг <i class="fa fa-question-circle-o color-grey" uib-popover-html="vm.popoverHtml" popover-placement="bottom"></i></span>
                 <div class="scoring">
-                    <span class="score">{{vm.dashboardData.score}}<br/>
-                    <small>Scoring</small></span>
+                    <span class="score">
+                        <red ng-if="vm.dashboardData.score">{{vm.dashboardData.score}}</red>
+                        <i ng-if="!vm.dashboardData.score" class="fa fa-spin fa-circle-o-notch fa-2x"></i><br/>
+                        <small>Scoring</small>
+                    </span>
                 </div>
             </div>
             <div class="col-lg-4">
