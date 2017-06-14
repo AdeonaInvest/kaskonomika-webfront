@@ -7,9 +7,9 @@
     angular.module('partners')
         .controller('pageTelematicsController', pageTelematicsController);
 
-    pageTelematicsController.$inject = ['$rootScope','$http','config','$filter','$sce'];
+    pageTelematicsController.$inject = ['$window','$http','config','$filter','$sce'];
 
-    function pageTelematicsController($rootScope,$http,config, $filter,$sce) {
+    function pageTelematicsController($window,$http,config, $filter,$sce) {
         var vm = this;
         var api = config.api;
         vm.telemathicList = false;
@@ -119,8 +119,6 @@
                         });
                         vm.popoverHtml = '<ul>' + vm.popoverHtml + '</ul>';
                         vm.popoverHtml = $sce.trustAsHtml(vm.popoverHtml);
-
-                        xlog('vm.dashboardData',vm.dashboardData)
                     }
                 })
         }
@@ -247,8 +245,7 @@
                 carId: carData.object_id,
                 dateBegin: newBeginData+'.'+newBeginYearMounth[1]+'.'+newBeginYearMounth[0],
                 dateEnd: newEndData+'.'+newEndYearMounth[1]+'.'+newEndYearMounth[0],
-                pageNumber: 0,
-                pageSize: 20
+                pageNumber: 0
             };
             $http.post(api + '/telematic/citymaster/trip/get', data)
                 .then(function(response){
@@ -301,12 +298,13 @@
         }
         
         function showMoreinfo(event) {
+            console.log('event',event);
             vm.eventMore = event;
             vm.eventMorePoi = event.poi;
             var data = {
                 token: vm.token,
                 carId: event.carId,
-                'regionList[0]': event.regionId
+                regionList: event.regionId
             };
             $http.post(api + '/telematic/citymaster/region/get',data)
                 .then(function(response){
@@ -316,7 +314,7 @@
         }
 
         function createCurrentMap(event){
-            if (event.type='parking') {
+            if (event.type == 'parking') {
                 var location = {lat: event.latitude, lng: event.longitude},
                     id = 'map' + event.time_start;
                 var map = new google.maps.Map(document.getElementById(id), {
@@ -328,27 +326,68 @@
                     map: map
                 });
             } else if (event.type == 'trip') {
-                var directionsDisplay = new google.maps.DirectionsRenderer();
-
-                var request = {
-                    origin: new google.maps.LatLng(60.023539414725356,30.283663272857666), //точка старта
-                    destination: new google.maps.LatLng(59.79530896374892,30.410317182540894), //точка финиша
-                    travelMode: google.maps.DirectionsTravelMode.DRIVING //режим прокладки маршрута
+                var data = {
+                    token: vm.token,
+                    tripId: event.id
                 };
+                $http.post(api+'/telematic/citymaster/track/get',data)
+                        .then(function(response) {
+                            vm.waypoints = [];
+                            vm.waypointsList = [];
+                            vm.waypointsServer = response.data.response.tracker.p;
+                            var waypointsCounter = Math.floor(vm.waypointsServer.length / 21);
+                            for (var i = 0; i < 22; i = i + waypointsCounter) {
+                                vm.waypointsList.push(vm.waypointsServer[i])
+                            }
+                            vm.waypointsList.forEach(function(f){
+                                var location = new google.maps.LatLng(f.pt.gps.lat,f.pt.gps.lon);
+                                var a = {
+                                    location: location,
+                                    stopover: false
+                                };
+                                vm.waypoints.push(a);
+                            });
 
-                directionsService.route(request, function(response, status) {
-                    if (status == google.maps.DirectionsStatus.OK) {
-                        directionsDisplay.setDirections(response);
-                    }
-                });
+                            console.log('vm.waypointsList',vm.waypoints);
 
-                directionsDisplay.setMap(map);
+                            var request = {
+                                origin: new google.maps.LatLng(60.023539414725356,30.283663272857666), //точка старта
+                                destination: new google.maps.LatLng(59.79530896374892,30.410317182540894), //точка финиша
+                                waypoints: vm.waypoints,
+                                optimizeWaypoints: true,
+                                travelMode: 'DRIVING'
+                            };
+
+                            console.log('request',request);
+
+                            var directionsDisplay = new google.maps.DirectionsRenderer();
+                            var directionsService = new google.maps.DirectionsService();
+                            var map;
+                            var id = 'map' + event.time_start;
+
+                            var mapOptions = {
+                                zoom:7,
+                                center: request.destination
+                            };
+                            map = new google.maps.Map(document.getElementById(id), mapOptions);
+                            directionsDisplay.setMap(map);
+
+                            directionsService.route(request, function(result, status) {
+                                if (status == 'OK') {
+                                    directionsDisplay.setDirections(result);
+                                } else {
+                                    window.alert('Directions request failed due to ' + status);
+                                }
+                            });
+                        });
+
             }
 
         }
 
+
         function compareNumbers(a, b) {
-            return a.time_end - b.time_start;
+            return ((a.time_end-100) - b.time_start);
         }
     }
 
