@@ -367,7 +367,7 @@
                                         case 'bus_station':
                                             f.type = 'Автобусные остановки';
                                             break;
-                                        case 'florists':
+                                        case 'florist':
                                             f.type = 'Цветы';
                                             break;
                                         case 'furniture_store':
@@ -415,12 +415,35 @@
                                         case 'jewelry_store':
                                             f.type = 'Ювелирный одежды';
                                             break;
+                                        case 'travel_agency':
+                                            f.type = 'Путешествия';
+                                            break;
+                                        case 'beauty_salon':
+                                            f.type = 'Салон красоты';
+                                            break;
+                                        case 'liquor_store':
+                                            f.type = 'Алкогольный магазин';
+                                            break;
+                                        case 'laundry':
+                                            f.type = 'Прачечная';
+                                            break;
+                                        case 'night_club':
+                                            f.type = 'Ночные клубы';
+                                            break;
+                                        case 'restaurant':
+                                            f.type = 'Рестораны';
+                                            break;
                                     }
                                     vm.regionChart.push(f.weight);
                                     vm.regionChartLabel.push(f.type);
                                 });
-                                console.log('vm.regionChart',vm.regionChart)
-                                console.log('vm.regionChartLabel',vm.regionChartLabel)
+                                if (vm.region.type == 'HOME') {
+                                    vm.region.type = 'Дом'
+                                } else if (vm.region.type == 'WORK') {
+                                    vm.region.type = 'Работа'
+                                } else if (vm.region.type == null) {
+                                    vm.region.type = vm.regionChartLabel[0];
+                                }
                                 createCurrentMap(event);
                             }
 

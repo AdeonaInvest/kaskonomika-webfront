@@ -90,8 +90,7 @@
                                     <div id="map{{::event.time_start}}" class="map"></div>
                                 </div>
                                 <div class="col-lg-6 parking-address">
-                                    <span class="position-title" ng-if="vm.region.type == 'WORK'">Работа</span>
-                                    <span class="position-title" ng-if="vm.region.type == 'HOME'">Дом</span>
+                                    <span class="position-title">{{vm.region.type}}</span>
                                     <span class="parking-title-from">с {{::vm.eventMore.time_start | date:'HH:mm dd.MM'}}</span>
                                     <span class="parking-title-to">по {{::vm.eventMore.time_end | date:'HH:mm dd.MM'}}</span>
                                     <span class="position-address">{{vm.region.name}}</span>
