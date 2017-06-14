@@ -58,6 +58,7 @@
         }
 
         function getNewResult(carId) {
+            vm.carID = carId;
             vm.sampleCars.forEach(function(f){
                 if (f.object_id == carId) {
                     getScoringByCar(f);
@@ -297,23 +298,161 @@
             }
         }
         
-        function showMoreinfo(event) {
-            console.log('event',event);
-            vm.eventMore = event;
-            vm.eventMorePoi = event.poi;
-            var data = {
-                token: vm.token,
-                carId: event.carId,
-                regionList: event.regionId
-            };
-            $http.post(api + '/telematic/citymaster/region/get',data)
-                .then(function(response){
-                    xlog(response.data);
+        function showMoreinfo(event, open) {
+            if (open){
+                console.log('event',event);
+                vm.eventMore = event;
+                if (event.type == 'parking') {
+                    vm.eventMorePoi = event.poi;
+                    var region = [event.regionId];
+                    var data = {
+                        token: vm.token,
+                        carId: event.carId,
+                        regionIdList: region
+                    };
+                    $http.post(api + '/telematic/citymaster/region/get',data)
+                        .then(function(response){
+                            if (response.data.result) {
+                                vm.region = response.data.response.response[0];
+                                vm.regionChart = [];
+                                vm.regionChartLabel = [];
+                                vm.region.poiWeight.sort(compareWeight);
+                                vm.region.poiWeight.forEach(function(f){
+                                    switch (f.type) {
+                                        case 'home_goods_store':
+                                            f.type = 'Товары для дома';
+                                            break;
+                                        case 'school':
+                                            f.type = 'Школа';
+                                            break;
+                                        case 'point_of_interest':
+                                            f.type = 'Без категории';
+                                            break;
+                                        case 'food':
+                                            f.type = 'Еда';
+                                            break;
+                                        case 'general_contractor':
+                                            f.type = 'Контрагент';
+                                            break;
+                                        case 'shopping_mall':
+                                            f.type = 'Торговые центры';
+                                            break;
+                                        case 'store':
+                                            f.type = 'Магазин';
+                                            break;
+                                        case 'lawyer':
+                                            f.type = 'Закон';
+                                            break;
+                                        case 'shoe_store':
+                                            f.type = 'Магазин обуви';
+                                            break;
+                                        case 'finance':
+                                            f.type = 'Финансы';
+                                            break;
+                                        case 'establishment':
+                                            f.type = 'Творчество';
+                                            break;
+                                        case 'accounting':
+                                            f.type = 'Финансы';
+                                            break;
+                                        case 'moving_company':
+                                            f.type = 'Перевозки';
+                                            break;
+                                        case 'health':
+                                            f.type = 'Здоровье';
+                                            break;
+                                        case 'transit_station':
+                                            f.type = 'Общественный транспорт';
+                                            break;
+                                        case 'bus_station':
+                                            f.type = 'Автобусные остановки';
+                                            break;
+                                        case 'florists':
+                                            f.type = 'Цветы';
+                                            break;
+                                        case 'furniture_store':
+                                            f.type = 'Мебельный магазин';
+                                            break;
+                                        case 'atm':
+                                            f.type = 'Банкоматы';
+                                            break;
+                                        case 'hair_care':
+                                            f.type = 'Парикмахерская';
+                                            break;
+                                        case 'locksmith':
+                                            f.type = 'Слесарь';
+                                            break;
+                                        case 'place_of_worship':
+                                            f.type = 'Памятники';
+                                            break;
+                                        case 'bank':
+                                            f.type = 'Банк';
+                                            break;
+                                        case 'book_store':
+                                            f.type = 'Книжный магазин';
+                                            break;
+                                        case 'parking':
+                                            f.type = 'Парковка';
+                                            break;
+                                        case 'grocery_or_supermarket':
+                                            f.type = 'Супермаркет';
+                                            break;
+                                        case 'car_repair':
+                                            f.type = 'Автомастерская';
+                                            break;
+                                        case 'car_dealer':
+                                            f.type = 'Автосалон';
+                                            break;
+                                        case 'dentist':
+                                            f.type = 'Дантист';
+                                            break;
+                                        case 'real_estate_agency':
+                                            f.type = 'Агенство недвижимости';
+                                            break;
+                                        case 'clothing_store':
+                                            f.type = 'Магазин одежды';
+                                            break;
+                                        case 'jewelry_store':
+                                            f.type = 'Ювелирный одежды';
+                                            break;
+                                    }
+                                    vm.regionChart.push(f.weight);
+                                    vm.regionChartLabel.push(f.type);
+                                });
+                                console.log('vm.regionChart',vm.regionChart)
+                                console.log('vm.regionChartLabel',vm.regionChartLabel)
+                                createCurrentMap(event);
+                            }
+
+                        })
+                } else if (event.type == 'trip') {
+                    var data = {
+                        token: vm.token,
+                        carId: vm.carID,
+                        tripId: event.id,
+                        periodType: 'TRIP'
+                    };
+                    $http.post(api + '/telematic/citymaster/scoring/get', data)
+                        .then(function(response){
+                            vm.otherScoringTrip = [];
+                            if (response.data.response.response) {
+                                response.data.response.response.forEach(function (f) {
+                                    if (f.param === null) {
+                                        vm.tripScoringData = f;
+                                    } else {
+                                        vm.otherScoringTrip.push(f);
+                                    }
+                                });
+                            }
+                        });
                     createCurrentMap(event);
-                })
+                }
+
+            }
         }
 
         function createCurrentMap(event){
+            console.log('рисую карту')
             if (event.type == 'parking') {
                 var location = {lat: event.latitude, lng: event.longitude},
                     id = 'map' + event.time_start;
@@ -335,10 +474,13 @@
                             vm.waypoints = [];
                             vm.waypointsList = [];
                             vm.waypointsServer = response.data.response.tracker.p;
-                            var waypointsCounter = Math.floor(vm.waypointsServer.length / 21);
-                            for (var i = 0; i < 22; i = i + waypointsCounter) {
+                            var waypointsCounter = Math.floor(vm.waypointsServer.length / Math.floor(vm.waypointsServer.length / 21));
+
+                            // Создание массива ключевых точек
+                            for (var i = 0; i < 21; i = i + waypointsCounter) {
                                 vm.waypointsList.push(vm.waypointsServer[i])
                             }
+
                             vm.waypointsList.forEach(function(f){
                                 var location = new google.maps.LatLng(f.pt.gps.lat,f.pt.gps.lon);
                                 var a = {
@@ -348,27 +490,23 @@
                                 vm.waypoints.push(a);
                             });
 
-                            console.log('vm.waypointsList',vm.waypoints);
-
+                            //Отображение карты с маршрутом
                             var request = {
-                                origin: new google.maps.LatLng(60.023539414725356,30.283663272857666), //точка старта
-                                destination: new google.maps.LatLng(59.79530896374892,30.410317182540894), //точка финиша
+                                origin: new google.maps.LatLng(event.start_point.lat,event.start_point.lon), //точка старта
+                                destination: new google.maps.LatLng(event.end_point.lat,event.end_point.lon), //точка финиша
                                 waypoints: vm.waypoints,
                                 optimizeWaypoints: true,
                                 travelMode: 'DRIVING'
                             };
-
-                            console.log('request',request);
-
                             var directionsDisplay = new google.maps.DirectionsRenderer();
                             var directionsService = new google.maps.DirectionsService();
                             var map;
                             var id = 'map' + event.time_start;
-
                             var mapOptions = {
                                 zoom:7,
                                 center: request.destination
                             };
+
                             map = new google.maps.Map(document.getElementById(id), mapOptions);
                             directionsDisplay.setMap(map);
 
@@ -388,6 +526,10 @@
 
         function compareNumbers(a, b) {
             return ((a.time_end-100) - b.time_start);
+        }
+
+        function compareWeight(a, b) {
+            return (b.weight - a.weight);
         }
     }
 

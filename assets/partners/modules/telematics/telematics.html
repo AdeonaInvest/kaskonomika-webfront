@@ -48,39 +48,40 @@
                 <uib-accordion close-others="true">
                     <div uib-accordion-group class="panel-default" ng-repeat="event in vm.eventListToShow track by $index | limitTo: 20">
                         <uib-accordion-heading>
-                            <div ng-click="vm.showMoreinfo(event)">
+                            <div ng-click="open = !open; vm.showMoreinfo(event,open)">
                                 <img src="/src/img/icons/icon_avto_parking.png" ng-if="::event.type=='parking'"/>
                                 <img src="/src/img/icons/icon_avto_trip.png" ng-if="::event.type=='trip'"/>
-                                <span>с {{::event.time_start | date:'dd.MM HH:mm'}} по {{::event.time_end | date:'dd.MM HH:mm'}}, </span>
-                                <span ng-if="event.mileage"> {{::event.mileage}} км., </span>
+                                <span>с {{::event.time_start | date:'dd.MM HH:mm'}} по {{::event.time_end | date:'dd.MM HH:mm'}}</span>
+                                <span ng-if="event.mileage">,</span>
+                                <span ng-if="event.mileage"> {{::event.mileage | number: 1}} км.</span>
                                 <span ng-if="event.score"> скоринг: {{::event.score}}</span>
-                                <img src="/src/img/icons/weather/sun.png"  ng-if="::event.weather"/>
+                                <!--<img src="/src/img/icons/weather/sun.png" ng-if="::event.weather"/>-->
                             </div>
                         </uib-accordion-heading>
                         <div ng-if="event.type == 'trip'" class="trip-area">
                             <div class="row top-area">
-                                <div class="col-lg-4">
+                                <div class="col-lg-6">
                                     <div id="map{{::event.time_start}}" class="map"></div>
                                 </div>
-                                <div class="col-lg-4">
+                                <div class="col-lg-3">
                                     <div class="scoring">
-                                    <span class="score" ng-if="event.score">{{::event.score}}<br/>
+                                    <span class="score" ng-if="vm.tripScoringData.score">{{::vm.tripScoringData.score}}<br/>
                                         <small>Scoring</small>
                                     </span>
                                     </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    <div class="weather-area" ng-if="event.weather">
+                                <div class="col-lg-3">
+                                    <!--<div class="weather-area" ng-if="event.weather">
                                         <img src="/src/img/icons/weather/sun_big.png"/>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                             <hr/>
                             <div class="row bottom-area">
-                                <span>Пробег</span>
-                                <span>{{::event.mileage}} км.</span>
+                                <span>Пробег:</span>
+                                <span>{{::event.mileage | number: 1}} км.,</span>
                                 <span>Время в пути:</span>
-                                <span>{{::event.time_start-event.time_end | date:'HH.mm'}}</span>
+                                <span>{{::event.time_start-event.time_end | date:'HH ч. mm м.'}}</span>
                             </div>
                         </div>
                         <div ng-if="event.type == 'parking'" class="parking-area">
@@ -89,10 +90,11 @@
                                     <div id="map{{::event.time_start}}" class="map"></div>
                                 </div>
                                 <div class="col-lg-6 parking-address">
-                                    <span class="position-title">Стоянка</span>
+                                    <span class="position-title" ng-if="vm.region.type == 'WORK'">Работа</span>
+                                    <span class="position-title" ng-if="vm.region.type == 'HOME'">Дом</span>
                                     <span class="parking-title-from">с {{::vm.eventMore.time_start | date:'HH:mm dd.MM'}}</span>
                                     <span class="parking-title-to">по {{::vm.eventMore.time_end | date:'HH:mm dd.MM'}}</span>
-                                    <span class="position-address ng-hide">Кожевническая улица 10 с 2, Москва, Россия</span>
+                                    <span class="position-address">{{vm.region.name}}</span>
                                 </div>
                             </div>
                             <hr/>
@@ -107,8 +109,8 @@
                                     <p class="category-area-title">Предпочтительные категории текущего водителя:</p>
                                     <canvas id="base"
                                             class="chart-horizontal-bar"
-                                            chart-data="[40,21,14,9,9,7]"
-                                            chart-labels="['Развлечения','Продукты','Финансовые услуги','Здоровье','Спорт','Детские товары']">
+                                            chart-data="vm.regionChart"
+                                            chart-labels="vm.regionChartLabel">
                                     </canvas>
                                 </div>
                             </div>
