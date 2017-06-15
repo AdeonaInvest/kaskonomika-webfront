@@ -5,9 +5,9 @@
         .module('partners')
         .controller('appController', appController);
 
-    appController.$inject = ['$rootScope','$location','$scope','intercomService','userService','config'];
+    appController.$inject = ['$rootScope','$location','$scope','intercomService','userService','config','$window'];
 
-    function appController($rootScope,$location,$scope,intercomService,userService,config) {
+    function appController($rootScope,$location,$scope,intercomService,userService,config,$window) {
 
         $rootScope.httpError = config.dictionary.httpError;
         
@@ -49,6 +49,14 @@
                 getCurrentPath();
             });
         }
+
+        /**
+         * Получение версии для сборки
+         * @returns {string}
+         */
+        $window.v = function(){
+            return new Date().getUTCDay() + '' + new Date().getUTCMonth() + '/' + new Date().getHours() + '-' + new Date().getMinutes();
+        };
 
         /**
          * Отслеживание текущего URL сайта

@@ -24,7 +24,6 @@ var hash_src = require("gulp-hash-src");
 var templateCache = require('gulp-angular-templatecache');
 var htmlmin = require('gulp-htmlmin');
 var https = require('https');
-var fs = require('fs');
 
 var jsPaths = [
     'bower_components/jquery/dist/jquery.min.js',
@@ -81,6 +80,7 @@ var jsGen = function(name){
             //.pipe(livereload(server));
     };
 };
+
 gulp.task('js-stream', jsGen('kaskonomika'));
 gulp.task('js-partners', jsGen('partners'));
 
