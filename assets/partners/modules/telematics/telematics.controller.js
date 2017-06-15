@@ -7,9 +7,9 @@
     angular.module('partners')
         .controller('pageTelematicsController', pageTelematicsController);
 
-    pageTelematicsController.$inject = ['$window','$http','config','$filter','$sce'];
+    pageTelematicsController.$inject = ['$scope','$http','config','$filter','$sce'];
 
-    function pageTelematicsController($window,$http,config, $filter,$sce) {
+    function pageTelematicsController($scope,$http,config, $filter,$sce) {
         var vm = this;
         var api = config.api;
         vm.telemathicList = false;
@@ -57,8 +57,9 @@
          * Обновление данных по всем машинам
          * @param carId
          */
-        function getNewResult(carId) {
+        function getNewResult(carId,id) {
             vm.carID = carId;
+            vm.currentCar = id;
             clearData();
             if (vm.sampleCars) {
                 vm.sampleCars.forEach(function(f){
@@ -70,7 +71,7 @@
                 })
             }
         }
-        
+
 
         /**
          * Очистка всех данных при переключении машины
@@ -108,7 +109,7 @@
                                 };
                                 vm.cars.push(a)
                             });
-                            getNewResult(vm.sampleCars[0].object_id)
+                            getNewResult(vm.sampleCars[2].object_id,2)
                         }
                     })
             }
@@ -294,6 +295,10 @@
                                                 afterParse = beforeParse[0].split('.');
                                                 newDate = afterParse[2]+'-'+afterParse[1]+'-'+afterParse[0]+' ' + beforeParse[1];
                                             f.time_end = Date.parse(newDate);
+                                            var sec = f.duration*60;
+                                            var h = sec/3600 ^ 0;
+                                            var m = (sec-h*3600)/60 ^ 0;
+                                            f.hhmm = (h<10 ? '0'+h : h) + " ч. "+(m<10 ? '0'+ m:m) + " мин.";
 
                                             f.type = 'parking';
                                             vm.eventsList.push(f);
@@ -302,6 +307,10 @@
                                             f.type = 'trip';
                                             f.time_end = f.time_end*1000;
                                             f.time_start = f.time_start*1000;
+                                            var sec = f.duration*60;
+                                            var h = sec/3600 ^ 0;
+                                            var m = (sec-h*3600)/60 ^ 0;
+                                            f.hhmm = (h<10 ? '0'+h : h) + " ч. "+(m<10 ? '0'+ m:m) + " мин.";
                                             vm.eventsList.push(f);
                                         });
                                         vm.currentMonth = 2;
@@ -328,6 +337,7 @@
                     }
                 });
                 vm.eventListToShow.sort(compareNumbers);
+                console.log('отображаю список')
             }
         }
 
@@ -507,7 +517,6 @@
                         });
                     createCurrentMap(event);
                 }
-
             }
         }
 
@@ -534,50 +543,54 @@
                 };
                 $http.post(api+'/telematic/citymaster/track/get',data)
                         .then(function(response) {
+                            vm.waypointsList = [];
+                            vm.waypoints = [];
                             vm.waypointsServer = response.data.response.tracker.p;
-                            var waypointsCounter = Math.floor(vm.waypointsServer.length / Math.floor(vm.waypointsServer.length / 21));
-
-                            // Создание массива ключевых точек
-                            for (var i = 0; i < 21; i = i + waypointsCounter) {
-                                vm.waypointsList.push(vm.waypointsServer[i])
-                            }
-
-                            vm.waypointsList.forEach(function(f){
+                            vm.waypointsServer.forEach(function(f){
                                 var location = new google.maps.LatLng(f.pt.gps.lat,f.pt.gps.lon);
-                                var a = {
-                                    location: location,
-                                    stopover: false
-                                };
-                                vm.waypoints.push(a);
+                                vm.waypoints.push(location);
                             });
+
+                            var wayLength = vm.waypoints.length - 1;
 
                             //Отображение карты с маршрутом
                             var request = {
                                 origin: new google.maps.LatLng(event.start_point.lat,event.start_point.lon), //точка старта
-                                destination: new google.maps.LatLng(event.end_point.lat,event.end_point.lon), //точка финиша
-                                waypoints: vm.waypoints,
-                                optimizeWaypoints: true,
-                                travelMode: 'DRIVING'
+                                destination: new google.maps.LatLng(event.end_point.lat,event.end_point.lon) //точка финиша
                             };
-                            var directionsDisplay = new google.maps.DirectionsRenderer();
-                            var directionsService = new google.maps.DirectionsService();
                             var map;
                             var id = 'map' + event.time_start;
                             var mapOptions = {
-                                zoom:7,
+                                zoom:11,
                                 center: request.destination
                             };
 
                             map = new google.maps.Map(document.getElementById(id), mapOptions);
-                            directionsDisplay.setMap(map);
 
-                            directionsService.route(request, function(result, status) {
-                                if (status == 'OK') {
-                                    directionsDisplay.setDirections(result);
-                                } else {
-                                    window.alert('Directions request failed due to ' + status);
-                                }
+                            var flightPath = new google.maps.Polyline({
+                                path: vm.waypoints,
+                                geodesic: true,
+                                strokeColor: '#FF0000',
+                                strokeOpacity: 1.0,
+                                strokeWeight: 4
                             });
+
+                            var marker1 = new google.maps.Marker({
+                                position: vm.waypoints[0],
+                                map: map,
+                                title: 'Start point',
+                                label: 'A'
+                            });
+
+
+                            var marker2 = new google.maps.Marker({
+                                position: vm.waypoints[wayLength],
+                                map: map,
+                                title: 'End point',
+                                label: 'B'
+
+                            });
+                            flightPath.setMap(map);
                         });
 
             }

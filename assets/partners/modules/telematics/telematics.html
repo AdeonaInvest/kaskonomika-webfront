@@ -49,7 +49,9 @@
             </div>
             <div ng-if="vm.eventListToShow.length > 0">
                 <uib-accordion close-others="true">
-                    <div uib-accordion-group class="panel-default" ng-repeat="event in vm.eventListToShow track by $index | limitTo: 20">
+                    <div uib-accordion-group
+                         class="panel-default"
+                         ng-repeat="(key,event) in vm.eventListToShow track by $index | limitTo: 20">
                         <uib-accordion-heading>
                             <div ng-click="open = !open; vm.showMoreinfo(event,open)">
                                 <img src="/src/img/icons/icon_avto_parking.png" ng-if="event.type=='parking'"/>
@@ -74,6 +76,14 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
+                                    <ul ng-if="event.weather" class="list-group">
+                                        <li class="list-group-item" ng-if="event.weather.conditions[0]">Погода: {{event.weather.conditions[0]}}</li>
+                                        <li class="list-group-item" ng-if="event.weather.pressure">Давление: {{event.weather.pressure}} мм.рт.ст.</li>
+                                        <li class="list-group-item" ng-if="event.weather.temperature">Температура: {{event.weather.temperature | number:0}} гр. Цельсия</li>
+                                        <li class="list-group-item" ng-if="event.weather.humidity">Влажность: {{event.weather.humidity | number:0}} %</li>
+                                        <li class="list-group-item" ng-if="event.weather.windSpeed">Скорость ветра: {{event.weather.windSpeed | number:0}} м/с</li>
+                                        <li class="list-group-item" ng-if="event.weather.visibility">Видимость: {{event.weather.visibility}} м.</li>
+                                    </ul>
                                     <!--<div class="weather-area" ng-if="event.weather">
                                         <img src="/src/img/icons/weather/sun_big.png"/>
                                     </div>-->
@@ -84,7 +94,7 @@
                                 <span>Пробег:</span>
                                 <span>{{event.mileage | number: 1}} км.,</span>
                                 <span>Время в пути:</span>
-                                <span>{{event.time_start-event.time_end | date:'HH ч. mm м.'}}</span>
+                                <span>{{event.hhmm}}</span>
                             </div>
                         </div>
                         <div ng-if="event.type == 'parking'" class="parking-area">
