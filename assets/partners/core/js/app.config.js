@@ -11,7 +11,7 @@
         ])
         .constant('config', {
             api: 'https://api.kaskonomika.ru/v1',
-            version: '0.0.1', //Текущая версия сайта
+            version: new Date().getUTCDay() + '' + new Date().getUTCMonth() + '/' + new Date().getHours() + '-' + new Date().getMinutes(), //Текущая версия сайта
             template: 'partners', //Шаблон сайта
             theme: 'default', //Тема сайта
             mainUrl: window.location.protocol+ '//' + window.location.host,

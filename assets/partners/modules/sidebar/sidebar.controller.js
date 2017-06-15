@@ -7,10 +7,11 @@
     angular.module('partners')
         .controller('sidebarController', sidebarController);
 
-    sidebarController.$inject = [];
+    sidebarController.$inject = ['config'];
 
-    function sidebarController() {
+    function sidebarController(config) {
         var vm = this;
+        vm.config = config;
         
         vm.menu = [
             {
