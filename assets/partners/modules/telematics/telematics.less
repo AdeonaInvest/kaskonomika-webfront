@@ -14,15 +14,36 @@
       ul {
         margin-bottom: 5px;
         li {
+          transition: .2s ease;
           margin: 3px;
           a {
+            transition: .2s ease;
             background: #54b5e0;
             color: #fff;
             padding: 15px;
             margin: 0;
             border-radius: 4px;
-            &:hover {
+          }
+          &:hover {
+            transition: .2s ease;
+            a {
+              transition: .2s ease;
               border: 1px solid #54b5e0;
+              background: #4494b7;
+            }
+
+          }
+        }
+        .disabled {
+          cursor: wait!important;
+          a {
+            background: lightslategrey;
+            border: 1px solid lightslategrey;
+          }
+          &:hover {
+            a {
+              border: 1px solid lightslategrey;
+              background: lightslategrey;
             }
           }
         }
@@ -32,6 +53,7 @@
             color: #000;
             border: 1px solid #fff;
             &:hover {
+              background: #fff;
               border: 1px solid #fff;
             }
           }
@@ -87,12 +109,19 @@
       ul {
         li {
           margin-right: 5px;
+          transition: .2s ease;
           a {
             background: #54b5e0;
             color: #fff;
             padding: 15px;
-            &:hover {
+            transition: .2s ease;
+          }
+          &:hover {
+            transition: .2s ease;
+            a {
+              transition: .2s ease;
               border: 1px solid #54b5e0;
+              background: #4494b7;
             }
           }
         }
@@ -102,6 +131,7 @@
             color: #000;
             border: 1px solid #fff;
             &:hover {
+              background: #fff;
               border: 1px solid #fff;
             }
           }

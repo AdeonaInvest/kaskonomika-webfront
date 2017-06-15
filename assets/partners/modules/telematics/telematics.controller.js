@@ -40,6 +40,8 @@
 
         vm.currentYear = 17;
 
+        vm.waiter = false;
+
         vm.getNewResult = getNewResult;
         vm.showEventList = showEventList;
         vm.showMoreinfo = showMoreinfo;
@@ -61,14 +63,16 @@
             vm.carID = carId;
             vm.currentCar = id;
             clearData();
-            if (vm.sampleCars) {
-                vm.sampleCars.forEach(function(f){
-                    if (f.object_id == carId) {
-                        getScoringByCar(f);
-                        getMileage(f);
-                        getTrips(f);
-                    }
-                })
+            if (vm.eventListToShow.length == 0) {
+                if (vm.sampleCars) {
+                    vm.sampleCars.forEach(function(f){
+                        if (f.object_id == carId) {
+                            getScoringByCar(f);
+                            getMileage(f);
+                            getTrips(f);
+                        }
+                    })
+                }
             }
         }
 
@@ -123,7 +127,6 @@
             var data = {
                 token: vm.token,
                 carId: carData.object_id,
-                policyId: carData.policy_id,
                 contractId: carData.contract_id,
                 periodType: 'CONTRACT'
             };
@@ -261,65 +264,71 @@
          * @param carData - информация по машине из "/telematic/cars_with_devices"
          */
         function getTrips(carData) {
+            if (!vm.waiter) {
+                vm.waiter = true;
+                var newBeginYearMounth = carData.begin_date.split('-');
+                var newBeginData = newBeginYearMounth[2].split(' ')[0];
 
-            var newBeginYearMounth = carData.begin_date.split('-');
-            var newBeginData = newBeginYearMounth[2].split(' ')[0];
+                // End date
+                var newEndYearMounth = carData.end_date.split('-');
+                var newEndData = newBeginYearMounth[2].split(' ')[0];
 
-            // End date
-            var newEndYearMounth = carData.end_date.split('-');
-            var newEndData = newBeginYearMounth[2].split(' ')[0];
-
-            var data = {
-                token: vm.token,
-                carId: carData.object_id,
-                dateBegin: newBeginData+'.'+newBeginYearMounth[1]+'.'+newBeginYearMounth[0],
-                dateEnd: newEndData+'.'+newEndYearMounth[1]+'.'+newEndYearMounth[0],
-                pageNumber: 0
-            };
-            $http.post(api + '/telematic/citymaster/trip/get', data)
-                .then(function(response){
-                    if (response.data.result) {
-                        var trips = response.data.response.trips;
-                        $http.post(api + '/telematic/citymaster/parking/get', data)
-                            .then(function(response){
-                                if (response.data.result) {
-                                    var parking = response.data.response.response;
-                                    if (parking) {
-                                        parking.forEach(function(f){
-                                            var beforeParse = f.dateBegin.split(' '),
-                                                afterParse = beforeParse[0].split('.'),
-                                                newDate = afterParse[2]+'-'+afterParse[1]+'-'+afterParse[0]+' ' + beforeParse[1];
-                                            f.time_start = Date.parse(newDate);
+                var data = {
+                    token: vm.token,
+                    carId: carData.object_id,
+                    dateBegin: newBeginData+'.'+newBeginYearMounth[1]+'.'+newBeginYearMounth[0],
+                    dateEnd: newEndData+'.'+newEndYearMounth[1]+'.'+newEndYearMounth[0],
+                    pageNumber: 0
+                };
+                $http.post(api + '/telematic/citymaster/trip/get', data)
+                    .then(function(response){
+                        if (response.data.result) {
+                            var trips = response.data.response.trips;
+                            $http.post(api + '/telematic/citymaster/parking/get', data)
+                                .then(function(response){
+                                    if (response.data.result) {
+                                        var parking = response.data.response.response;
+                                        if (parking) {
+                                            vm.waiter = false;
+                                            parking.forEach(function(f){
+                                                var beforeParse = f.dateBegin.split(' '),
+                                                    afterParse = beforeParse[0].split('.'),
+                                                    newDate = afterParse[2]+'-'+afterParse[1]+'-'+afterParse[0]+' ' + beforeParse[1];
+                                                f.time_start = Date.parse(newDate);
 
                                                 beforeParse = f.dateEnd.split(' ');
                                                 afterParse = beforeParse[0].split('.');
                                                 newDate = afterParse[2]+'-'+afterParse[1]+'-'+afterParse[0]+' ' + beforeParse[1];
-                                            f.time_end = Date.parse(newDate);
-                                            var sec = f.duration*60;
-                                            var h = sec/3600 ^ 0;
-                                            var m = (sec-h*3600)/60 ^ 0;
-                                            f.hhmm = (h<10 ? '0'+h : h) + " ч. "+(m<10 ? '0'+ m:m) + " мин.";
+                                                f.time_end = Date.parse(newDate);
+                                                var sec = f.duration*60;
+                                                var h = sec/3600 ^ 0;
+                                                var m = (sec-h*3600)/60 ^ 0;
+                                                f.hhmm = (h<10 ? '0'+h : h) + " ч. "+(m<10 ? '0'+ m:m) + " мин.";
 
-                                            f.type = 'parking';
-                                            vm.eventsList.push(f);
-                                        });
-                                        trips.forEach(function(f){
-                                            f.type = 'trip';
-                                            f.time_end = f.time_end*1000;
-                                            f.time_start = f.time_start*1000;
-                                            var sec = f.duration*60;
-                                            var h = sec/3600 ^ 0;
-                                            var m = (sec-h*3600)/60 ^ 0;
-                                            f.hhmm = (h<10 ? '0'+h : h) + " ч. "+(m<10 ? '0'+ m:m) + " мин.";
-                                            vm.eventsList.push(f);
-                                        });
-                                        vm.currentMonth = 2;
-                                        showEventList(6);
-                                    }
-                                }
-                            })
-                    }
-                })
+                                                f.type = 'parking';
+                                                vm.eventsList.push(f);
+                                            });
+                                            trips.forEach(function(f){
+                                                f.type = 'trip';
+                                                f.time_end = f.time_end*1000;
+                                                f.time_start = f.time_start*1000;
+                                                var sec = f.duration*60;
+                                                var h = sec/3600 ^ 0;
+                                                var m = (sec-h*3600)/60 ^ 0;
+                                                f.hhmm = (h<10 ? '0'+h : h) + " ч. "+(m<10 ? '0'+ m:m) + " мин.";
+                                                vm.eventsList.push(f);
+                                            });
+                                            vm.currentMonth = 2;
+                                            showEventList(6);
+                                        }
+                                        else vm.waiter = false;
+                                    } else vm.waiter = false;
+                                })
+                        }
+                    })
+            }
+
+
         }
 
         /**
@@ -327,18 +336,19 @@
          * @param mounth - цифра, обозначающая порядковый номер месяца в году
          */
         function showEventList(mounth) {
-            if (vm.eventsList.length > 0) {
-                vm.eventListToShow = undefined;
-                vm.eventListToShow = [];
-                vm.eventsList.forEach(function(f){
-                    var getMounth = parseInt($filter('date')(f.time_start,'MM','GMT+3'));
-                    if (getMounth == mounth) {
-                        vm.eventListToShow.push(f);
-                    }
-                });
-                vm.eventListToShow.sort(compareNumbers);
-                console.log('отображаю список')
+            vm.eventListToShow = undefined;
+            vm.eventListToShow = [];
+            vm.eventsList.forEach(function(f){
+                var getMounth = parseInt($filter('date')(f.time_start,'MM','GMT+3'));
+                if (getMounth == mounth) {
+                    vm.eventListToShow.push(f);
+                }
+            });
+            if (vm.eventListToShow.length == 0) {
+                var error = {error:'Нет данных о поездах за этот месяц.'};
+                vm.eventListToShow.push(error);
             }
+            vm.eventListToShow.sort(compareNumbers);
         }
 
         /**

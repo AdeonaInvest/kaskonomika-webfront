@@ -5,7 +5,7 @@
         </div>
         <div class="row cars-tabs">
             <uib-tabset active="vm.currentCar">
-                <uib-tab ng-repeat="(key,row) in vm.cars" heading="{{row.title}}" ng-click="vm.getNewResult(row.object_id)" ></uib-tab>
+                <uib-tab ng-repeat="(key,row) in vm.cars" heading="{{row.title}}" select="vm.getNewResult(row.object_id)" disable="vm.eventListToShow.length == 0"></uib-tab>
             </uib-tabset>
         </div>
         <div class="row main-area">
@@ -51,9 +51,10 @@
                 <uib-accordion close-others="true">
                     <div uib-accordion-group
                          class="panel-default"
-                         ng-repeat="(key,event) in vm.eventListToShow track by event.id | limitTo: 20">
+                         ng-repeat="(key,event) in vm.eventListToShow track by $index | limitTo: 20"
+                         is-disabled="event.error">
                         <uib-accordion-heading>
-                            <div ng-click="open = !open; vm.showMoreinfo(event,open)">
+                            <div ng-click="open = !open; vm.showMoreinfo(event,open)"  ng-if="!event.error">
                                 <img src="/src/img/icons/icon_avto_parking.png" ng-if="event.type=='parking'"/>
                                 <img src="/src/img/icons/icon_avto_trip.png" ng-if="event.type=='trip'"/>
                                 <span>с {{event.time_start | date:'dd.MM HH:mm'}} по {{event.time_end | date:'dd.MM HH:mm'}}</span>
@@ -61,6 +62,9 @@
                                 <span ng-if="event.mileage"> {{event.mileage | number: 1}} км.</span>
                                 <span ng-if="event.score"> скоринг: {{event.score}}</span>
                                 <!--<img src="/src/img/icons/weather/sun.png" ng-if="::event.weather"/>-->
+                            </div>
+                            <div ng-if="event.error" class="ta-center">
+                                <h4>{{event.error}}</h4>
                             </div>
                         </uib-accordion-heading>
                         <div ng-if="event.type == 'trip'" class="trip-area">
