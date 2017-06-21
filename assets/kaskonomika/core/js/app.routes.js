@@ -10,23 +10,43 @@
     function config ($routeProvider) {
         $routeProvider
             .when ('/', {
-                templateUrl: '/index/index.html',
+                templateUrl: '/pages/index/index.html',
                 controller: 'indexController',
                 controllerAs: 'vm'
             })
             .when ('/how-it-work', {
-                templateUrl: '/how-it-work/how-it-work.html',
+                templateUrl: '/pages/how-it-work/how-it-work.html',
                 controller: 'indexController',
                 controllerAs: 'vm'
             })
             .when ('/faq', {
-                templateUrl: '/faq/faq.html',
+                templateUrl: '/pages/faq/faq.html',
                 controller: 'faqController',
                 controllerAs: 'vm'
             })
             .when ('/download', {
-                templateUrl: '/download/download.html',
+                templateUrl: '/pages/download/download.html',
                 controller: 'downloadController',
+                controllerAs: 'vm'
+            })
+            .when ('/requisites', {
+                templateUrl: '/pages/requisites/requisites.html',
+                controller: 'requisitesController',
+                controllerAs: 'vm'
+            })
+            .when ('/payment-and-delivery', {
+                templateUrl: '/pages/payment-and-delivery/payment-and-delivery.html',
+                controller: 'paymentAndDeliveryController',
+                controllerAs: 'vm'
+            })
+            .when ('/privacy-policy', {
+                templateUrl: '/pages/private-policy/private-policy.html',
+                controller: 'privatePolicyController',
+                controllerAs: 'vm'
+            })
+            .when ('/contacts', {
+                templateUrl: '/pages/contacts/contacts.html',
+                controller: 'contactsController',
                 controllerAs: 'vm'
             })
             .otherwise({
