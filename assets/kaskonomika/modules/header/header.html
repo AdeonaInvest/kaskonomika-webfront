@@ -1,6 +1,6 @@
 <div class="container-fluid" id="header" ng-class="{'active' : vm.scrollFromTop}" ng-controller="headerController as vm">
     <div class="sub-menu pull-left col-lg-3 col-md-6 col-sm-6 col-xs-9">
-        <ul class="list-inline">
+        <ul class="list-inline animated fadeInLeftBig">
             <li class="sub-menu-icon">
                 <i class="fa fa-bars fa-2x noselect" ng-click="vm.openOverlay = !vm.openOverlay"></i>
             </li>
@@ -13,16 +13,16 @@
         <!-- END : Оверлей для открывающего меню -->
     </div>
     <div class="main-menu pull-left col-lg-5 hidden-md hidden-sm hidden-xs">
-        <ul class="list-inline">
+        <ul class="list-inline animated fadeInDownBig">
             <li ng-repeat="item in vm.mainMenu track by $index">
                 <a href="{{::item.url}}">{{::item.text}}</a>
             </li>
         </ul>
     </div>
     <div class="user-menu pull-right col-lg-4 col-md-6 col-sm-6 col-xs-3">
-        <ul class="list-inline">
+        <ul class="list-inline animated fadeInRightBig">
             <li class="hidden-sm hidden-xs">
-                <div class="user-dashboard-area">
+                <div class="user-dashboard-area animated" ng-if="vm.view" ng-class="{bounceInRight: vm.view, bounceOutRight: !vm.view}">
                     <i class="fa fa-user fa-2x" ng-click="vm.openUserMenu = !vm.openUserMenu"></i>
                     <!-- START : Всплывающее меню личного кабинета -->
                     <ng-include src="'/header/header-user-menu.html'" id="header-user-menu" class="dashboard-menu" ng-if="vm.openUserMenu"></ng-include>
@@ -32,7 +32,7 @@
             <li class="phone-area hidden-sm hidden-xs">
                 <span>+7 499 550-00-09</span>
             </li>
-            <li class="calc-area">
+            <li class="calc-area animated" ng-class="{slideInDown: vm.scrollFromTop, fadeOut: !vm.scrollFromTop}">
                 <div class="header-calc">
                     <i class="fa fa-calculator"></i>
                     <span class="hidden-xs">Рассчитать Каско</span>

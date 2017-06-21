@@ -16,7 +16,7 @@
             })
             .when ('/how-it-work', {
                 templateUrl: '/pages/how-it-work/how-it-work.html',
-                controller: 'indexController',
+                controller: 'howItWorkController',
                 controllerAs: 'vm'
             })
             .when ('/faq', {

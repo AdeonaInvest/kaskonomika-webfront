@@ -5,17 +5,19 @@
         .module('kaskonomika')
         .controller('paymentAndDeliveryController', paymentAndDeliveryController);
 
-    paymentAndDeliveryController.$inject = [];
+    paymentAndDeliveryController.$inject = ['$scope'];
 
-    function paymentAndDeliveryController() {
-        var vm = this;
-
-
-        activate();
+    function paymentAndDeliveryController($scope) {
         ///////////////////
+        var vm = this;
+        vm.view = false; //Статус готовности отображения
+        activate();
         function activate() {
-
+            $scope.$on('cfpLoadingBar:completed',function(){
+                vm.view = true;
+            });
         }
+        //////////////////
         
     }
 })();

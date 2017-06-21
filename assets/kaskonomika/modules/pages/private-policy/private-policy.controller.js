@@ -5,17 +5,19 @@
         .module('kaskonomika')
         .controller('privatePolicyController', privatePolicyController);
 
-    privatePolicyController.$inject = [];
+    privatePolicyController.$inject = ['$scope'];
 
-    function privatePolicyController() {
-        var vm = this;
-
-
-        activate();
+    function privatePolicyController($scope) {
         ///////////////////
+        var vm = this;
+        vm.view = false; //Статус готовности отображения
+        activate();
         function activate() {
-
+            $scope.$on('cfpLoadingBar:completed',function(){
+                vm.view = true;
+            });
         }
+        //////////////////
         
     }
 })();

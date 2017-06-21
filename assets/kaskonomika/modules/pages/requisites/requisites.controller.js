@@ -5,17 +5,19 @@
         .module('kaskonomika')
         .controller('requisitesController', requisitesController);
 
-    requisitesController.$inject = [];
+    requisitesController.$inject = ['$scope'];
 
-    function requisitesController() {
-        var vm = this;
-
-
-        activate();
+    function requisitesController($scope) {
         ///////////////////
+        var vm = this;
+        vm.view = false; //Статус готовности отображения
+        activate();
         function activate() {
-
+            $scope.$on('cfpLoadingBar:completed',function(){
+                vm.view = true;
+            });
         }
+        //////////////////
         
     }
 })();

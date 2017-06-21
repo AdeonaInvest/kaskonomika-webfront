@@ -4,12 +4,12 @@
     angular.module('kaskonomika')
         .controller('headerController', headerController);
 
-    headerController.$inject = ['$scope','$window'];
+    headerController.$inject = ['$scope','$window','$timeout'];
 
-    function headerController($scope,$window) {
+    function headerController($scope,$window,$timeout) {
         var vm = this;
-        vm.scrollFromTop = false;
-        vm.openOverlay = false;
+        vm.scrollFromTop = false; //Состояние скролла - отодвинут ли скролл сверху.
+        vm.openOverlay = false; //Состояние оверлея. false - закрыт
         vm.mainMenu = [
             {
                 text: 'Умное страхование',
@@ -27,8 +27,7 @@
                 text: 'Скачать приложение',
                 url: '/download'
             }
-        ];
-
+        ]; //Пункты главного меню
         vm.subMenu = [
             {
                 text: 'Реквизиты',
@@ -46,21 +45,29 @@
                 text: 'Контакты',
                 url: '/contacts'
             }
-        ];
+        ]; //Пункты меню оверлея
 
+        ///////////////////
         activate();
-        /////////////////////
         function activate() {
+            $scope.$on('cfpLoadingBar:completed',function(){
+                vm.view = true;
+            });
 
+            $timeout(function(){
+                vm.view = true;
+            },3000)
         }
+        ///////////////////
 
+        /**
+         * Отслеживание прокрутки скролла документа
+         */
         angular.element($window).bind("scroll", function() {
             if (this.pageYOffset > 0) {
                 vm.scrollFromTop = true;
-                console.log('Scrolled below header.');
             } else {
                 vm.scrollFromTop = false;
-                console.log('Header is in view.');
             }
             $scope.$apply();
         });

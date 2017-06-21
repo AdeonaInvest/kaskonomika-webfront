@@ -61,7 +61,6 @@
       right: 0;
       bottom: 0;
       z-index: 999999;
-      transition: .5s ease;
       .container-fluid {
         padding: 0;
         margin: 0;
@@ -213,8 +212,7 @@
         float: right;
       }
       .calc-area {
-        display: none;
-        transition: .5s ease;
+        opacity: 0;
 
         .header-calc {
           @header-calc-height: 40px;
@@ -260,16 +258,19 @@
         background: #fff;
         cursor: pointer;
         text-align: center;
-        transition: .5s ease;
         position: relative;
         i {
           color: #000;
           font-size: 20px;
           line-height: @header-user-height;
         }
+        .dashboard-menu {
+
+        }
         &:hover {
           background: @color-blue-light;
         }
+
       }
     }
   }
@@ -278,8 +279,7 @@
     background: #fff;
     .user-menu {
       .calc-area {
-        transition: .5s ease;
-        display: inline-block;
+        opacity: 1;
       }
       .user-dashboard-area {
         transition: .5s ease;

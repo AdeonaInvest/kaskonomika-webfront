@@ -4,10 +4,13 @@
     angular
         .module('kaskonomika', [
             'ngRoute',
+            'ngAnimate',
             'ngSanitize',
             'ngCookies',
             'ui.bootstrap',
-            'ksSwiper'
+            'ksSwiper',
+            'angular-loading-bar',
+            'cfp.loadingBar'
         ])
         .constant('config', {
             version: '0.0.1', //Текущая версия сайта
@@ -19,10 +22,21 @@
         })
         .config(config);
 
-    config.$inject = ['$locationProvider'];
+    config.$inject = ['$locationProvider','cfpLoadingBarProvider'];
 
-    function config ($locationProvider) {
+    function config ($locationProvider,cfpLoadingBarProvider) {
+        
+        /**
+         * Включение HTML5 навигации для сайта
+         */
         $locationProvider.html5Mode(true);
+        
+        /**
+         * Настройки прелоадера
+         */
+        cfpLoadingBarProvider.includeSpinner = false; //Включение и отключение спиннера при загрузке
+        cfpLoadingBarProvider.includeBar = true; //Включение и отключение полосы загрузки
+        cfpLoadingBarProvider.latencyThreshold = 500; //Длительсность отключения прелоадера
     }
 
 })();

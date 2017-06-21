@@ -8,16 +8,18 @@
     indexController.$inject = ['$scope'];
 
     function indexController($scope) {
-        var vm = this;
-        vm.swiperIndex = 0;
-
-        activate();
         ///////////////////
+        var vm = this;
+        vm.view = false; //Статус готовности отображения
+        activate();
         function activate() {
-
+            $scope.$on('cfpLoadingBar:completed',function(){
+                vm.view = true;
+            });
         }
+        //////////////////
+        vm.swiperIndex = 0;
         
-
         // Список партнеров
         vm.partnersList = [
             {
@@ -68,9 +70,7 @@
         ];
 
         $scope.onReadySwiper = function (swiper) {
-            xlog('Init',swiper);
-
-            
+            xlog('indexController-onReadySwiper',swiper);
 
             vm.slideTo = slideTo;
             

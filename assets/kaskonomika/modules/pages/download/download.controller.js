@@ -5,17 +5,19 @@
         .module('kaskonomika')
         .controller('downloadController', downloadController);
 
-    downloadController.$inject = [];
+    downloadController.$inject = ['$scope'];
 
-    function downloadController() {
-        var vm = this;
-
-
-        activate();
+    function downloadController($scope) {
         ///////////////////
+        var vm = this;
+        vm.view = false; //Статус готовности отображения
+        activate();
         function activate() {
-
+            $scope.$on('cfpLoadingBar:completed',function(){
+                vm.view = true;
+            });
         }
+        //////////////////
         
     }
 })();
