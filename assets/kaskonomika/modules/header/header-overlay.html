@@ -15,14 +15,14 @@
             <div class="overlay-main-menu hidden-lg">
                 <ul>
                     <li ng-repeat="item in vm.mainMenu track by $index" class="animated" ng-class="{slideInLeft: vm.openOverlay, slideOutLeft: !vm.openOverlay}">
-                        <a href="{{::item.url}}">{{::item.text}}</a>
+                        <a href="{{::item.url}}" ng-click="vm.openOverlay = !vm.openOverlay">{{::item.text}}</a>
                     </li>
                 </ul>
             </div>
             <div class="overlay-sub-menu animated" ng-class="{slideInLeft: vm.openOverlay, slideOutLeft: !vm.openOverlay}">
                 <ul>
                     <li ng-repeat="item in vm.subMenu track by $index">
-                        <a href="{{::item.url}}">{{::item.text}}</a>
+                        <a href="{{::item.url}}" ng-click="vm.openOverlay = !vm.openOverlay">{{::item.text}}</a>
                     </li>
                 </ul>
             </div>

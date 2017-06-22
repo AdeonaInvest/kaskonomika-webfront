@@ -1,5 +1,146 @@
 #how-it-work-page {
   margin: 0;
   padding: 80px 0 0 0;
-  background: #e4f3fc;
+  background: #fff;
+  .cirlce-number {
+    @circle-number: 34px;
+    width: @circle-number;
+    height: @circle-number;
+    line-height: @circle-number;
+    text-align: center;
+    font: 16px/30px @fm-bold;
+    border: 3px solid #53b4de;
+    border-radius: 50%;
+    color: #53b4de;
+  }
+  p {
+     text-align: left;
+     padding: 0;
+     font: 16px/24px @fm-light;
+  }
+  h1 {
+    text-align: center;
+    margin: 0 auto 100px;
+    font: 36px/50px @fm-bold;
+    width: 70%;
+  }
+  h3 {
+    text-align: left;
+    font: 20px/20px @fm-web;
+  }
+  #how-it-work-page-section-1 {
+    display: block;
+    width: 100%;
+    padding: 150px 0;
+    background: url('/src/img/backgrounds/how-it-work-section1.png') bottom right / 50% no-repeat #b2dcf6;
+    .container-fluid {
+      .container {
+        p {
+          width: 70%;
+        }
+      }
+    }
+
+  }
+  #how-it-work-page-section-2 {
+    display: block;
+    width: 100%;
+    padding: 150px 0;
+    background: #fff;
+    .container-fluid {
+      .container {
+        .left-col {
+          padding-right: 100px;
+        }
+        p {
+          width: 100%;
+        }
+        img {
+          width: 100%;
+          margin-bottom: 30px;
+        }
+      }
+    }
+  }
+  #how-it-work-page-section-3 {
+    display: block;
+    width: 100%;
+    padding: 150px 0 0;
+    background: #efefef;
+    .container-fluid {
+      .container {
+        .padding-heigth {
+          height: 200px;
+          position: relative;
+          .absolut-img {
+            position: absolute;
+            top: -350px;
+            left: 0;
+            width: 440px;
+
+          }
+        }
+        p {
+          width: 100%;
+        }
+        img {
+          width: 100%;
+          margin-bottom: 30px;
+        }
+      }
+    }
+  }
+  #how-it-work-page-section-4 {
+    display: block;
+    width: 100%;
+    padding: 50px 0;
+    background: #efefef;
+    .container-fluid {
+      .container {
+        h2 {
+          text-align: center;
+          margin: 0 auto 100px;
+          font: 36px/50px @fm-web;
+          width: 70%;
+        }
+        .sub-decs {
+          padding-top: 50px;
+          ul {
+            padding: 0;
+            li {
+              margin: 28px 0 0 0;
+              list-style: none;
+              .dot {
+                display: inline-block;
+                width: 8px;
+                height: 8px;
+                background: #e76363;
+                margin: 0 10px 0 0;
+                border-radius: 50%;
+              }
+              .text {
+                font: 16px/16px @fm-web;
+                color: #000;
+              }
+            }
+          }
+        }
+        .bottom-decs {
+          padding-top: 30px;
+          p {
+            text-align: center;
+            width: 70%;
+            display: block;
+            margin: auto;
+          }
+        }
+        .left-col-decs {
+          margin: 100px 0 0 0;
+        }
+        .phone-area {
+          text-align: center;
+        }
+      }
+    }
+  }
 }

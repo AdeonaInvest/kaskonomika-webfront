@@ -1,17 +1,21 @@
-<div class="section1-calc-top-area">
-    <h1>Экономьте до 40% на стоимости КАСКО с умной страховкой от Каскономики</h1>
-    <div class="calc-module"></div>
-</div>
-<div class="section1-calc-bottom-area">
-    <h3>Подбирайте тариф среди множества предложений</h3>
-    <div class="partners-logos">
-        <ul class="list-inline">
-            <li ng-repeat="item in vm.partnersList track by $index">
-                <a href="{{item.url}}" target="_blank" alt="{{item.alt}}">
-                    <img ng-src="{{item.src}}" alt="{{item.alt}}" />
-                </a>
-            </li>
-        </ul>
+<div class="container-fluid section1-calc-top-area">
+    <div class="container">
+        <h1 class="m-width-90">Экономьте до 40% на стоимости КАСКО с умной страховкой от Каскономики</h1>
+        <div class="calc-module m-width-100"></div>
     </div>
-
 </div>
+<div class="container-fluid section1-calc-bottom-area">
+    <div class="container">
+        <h3 class="m-width-90">Подбирайте тариф среди множества предложений</h3>
+        <div class="partners-logos m-width-100">
+            <ul class="list-inline">
+                <li ng-repeat="item in vm.partnersList track by $index">
+                    <a href="{{item.url}}" target="_blank" alt="{{item.alt}}">
+                        <img ng-src="{{item.src}}" alt="{{item.alt}}" />
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
