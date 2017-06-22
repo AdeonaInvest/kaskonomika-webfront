@@ -186,12 +186,18 @@
           font: 11px/@header-height @fm-main;
           color: #000;
           text-transform: uppercase;
-          &:hover, &:focus {
+          &:hover {
             text-decoration: underline;
           }
-          &:visited {
+          &:focus, &:visited {
             text-decoration: none;
           }
+        }
+        &:hover {
+          text-decoration: underline;
+        }
+        &:focus, &:visited {
+          text-decoration: none;
         }
       }
     }

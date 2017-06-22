@@ -1,5 +1,152 @@
 #faq-page {
   margin: 0;
   padding: 80px 0 0 0;
-  background: #e4f3fc;
+  background: #fff;
+  #faq-search-area {
+    .container-fluid {
+      padding: 60px 0 30px;
+      background: #59c6f2;
+      .container {
+        position: relative;
+        h1 {
+          text-align: center;
+          margin: 0 auto 50px;
+          font: 36px/50px 'geometria-bold';
+          width: 70%;
+          color: #000;
+        }
+        .search-input {
+          width: 100%;
+          height: 34px;
+          @media (min-width: 990px) {
+            padding-left: 100px;
+          }
+          @media (max-width: 990px) {
+            padding-left: 0;
+          }
+          .form-group {
+            margin-bottom: 30px;
+            input {
+              width: 100%;
+              font: 16px/40px @fm-web;
+              color: #000;
+              height: 40px;
+              border-radius: 6px;
+              padding-left: 40px;
+            }
+          }
+          .btn-area {
+            text-align: center;
+            button {
+              height: 40px;
+              font: 16px/40px @fm-web;
+              color: #fff;
+              border-radius: 20px;
+              width: 102px;
+              background: #263c75;
+              padding: 0;
+              border: 1px solid transparent;
+              &:hover {
+                background: #241e46;
+                outline: none;
+              }
+              &:focus {
+                background: #263c75;
+                outline: none;
+              }
+            }
+          }
+        }
+        .dog-with-glass {
+          position: absolute;
+          bottom: -30px;
+          left: -50px;
+        }
+      }
+    }
+  }
+  #faq-questions-area {
+    h3 {
+      margin: 40px 0;
+      text-align: left;
+      color: #000;
+      font: 20px/20px @fm-web;
+    }
+    .panel-default {
+      box-shadow: none;
+      border-radius: 5px;
+      .panel-heading {
+        background: #fff;
+        padding: 0;
+        border: 1px solid transparent;
+        border-radius: 5px;
+        h4 {
+          margin: 0;
+          a {
+            span {
+              font: 16px/16px @fm-web;
+              color: #000;
+            }
+            border-radius: 5px;
+            display: block;
+            width: 100%;
+            height: 100%;
+            padding: 20px 20px 20px 30px;
+          }
+        }
+      }
+      .panel-collapse {
+        .panel-body {
+          font: 16px/24px @fm-web;
+          color: #000;
+        }
+      }
+      &:hover, &:focus {
+        .panel-heading {
+          background: #59c6f2;
+          text-decoration: none;
+          outline: none;
+          h4 {
+            text-decoration: none;
+            outline: none;
+            a {
+              span {
+                color: #fff;
+                text-decoration: none;
+                outline: none;
+              }
+              color: #fff;
+              text-decoration: none;
+              outline: none;
+            }
+          }
+        }
+      }
+    }
+    .panel-open {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      .panel-heading {
+        background: #59c6f2;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        h4 {
+          margin: 0;
+          a {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            color: #fff;
+            text-decoration: none;
+            outline: none;
+            span {
+              color: #fff;
+              text-decoration: none;
+              outline: none;
+            }
+          }
+        }
+      }
+    }
+
+  }
 }
