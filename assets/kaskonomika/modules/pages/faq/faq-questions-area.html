@@ -1,7 +1,7 @@
 <div class="container-fluid search-area">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 left-col">
                 <div ng-if="vm.view">
                     <div ng-repeat="quest in vm.questionsResp track by $index">
                         <h3>{{quest.title}}</h3>
@@ -19,8 +19,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-4 hidden-sm hidden-xs right-col">
+                <div class="floating-menu animated" data-spy="affix" data-offset-top="60" data-offset-bottom="200"">
 
+                </div>
             </div>
         </div>
     </div>
