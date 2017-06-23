@@ -21,9 +21,8 @@
         //////////////////
         vm.accordeonClose = true;
         vm.tabsVision = true;
-        vm.tab = [];
 
-        vm.filterResults = filterResults;
+        vm.filterResults = filterResults; //Поиск и фильтр по вопросам и ответам.
 
         /**
          * Получение вопросов из JSON файла. Расположение: /src/common/json
