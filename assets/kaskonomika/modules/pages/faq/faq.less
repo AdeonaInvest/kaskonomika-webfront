@@ -92,6 +92,14 @@
               span {
                 font: 16px/16px @fm-web;
                 color: #000;
+                p {
+                  margin: 0;
+                  b {
+                    padding: 0;
+                    color: #000;
+                    background: yellow;
+                  }
+                }
               }
               border-radius: 5px;
               display: block;
@@ -105,6 +113,13 @@
           .panel-body {
             font: 16px/24px @fm-web;
             color: #000;
+            p {
+              b {
+                padding: 0;
+                color: #000;
+                background: yellow;
+              }
+            }
           }
         }
         &:hover, &:focus {
@@ -120,6 +135,14 @@
                   color: #fff;
                   text-decoration: none;
                   outline: none;
+                  p {
+                    margin: 0;
+                    b {
+                      padding: 0;
+                      color: #000;
+                      background: yellow;
+                    }
+                  }
                 }
                 color: #fff;
                 text-decoration: none;
@@ -157,12 +180,52 @@
     .right-col {
       padding-top: 100px;
       .floating-menu {
-        height: 200px;
         width: 300px;
         max-width: 300px;
-        background: #e6e6e6;
+        background: #f4f4f4;
         transition: .5s ease;
+        padding: 20px;
+        h3 {
+          margin: 0;
+          color: #000;
+          font: 20px/20px @fm-web;
+          @media (min-width:990px){
+            text-align: left;
+          }
+          @media (max-width:990px){
+            text-align: center;
+          }
+        }
+        ul {
+          padding: 0 0 0 10px;
+          margin: 10px 0 0 0;
+          li {
+            list-style: none;
+            a {
+              color: #000;
+              display: block;
+              width: 100%;
+              padding: 15px 0;
+              font: 14px/14px @fm-light;
+            }
+            &:hover {
+              a {
+                text-decoration: underline;
+                outline: none;
+              }
+            }
+            &:focus, &:visited {
+              a {
+                text-decoration: none;
+                outline: none;
+              }
+            }
+          }
+        }
       }
+    }
+    .noSearchResult {
+      margin: 50px;
     }
   }
 }
