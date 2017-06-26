@@ -5,10 +5,11 @@
         .module('kaskonomika')
         .controller('appController', appController);
 
-    appController.$inject = [];
+    appController.$inject = ['$rootScope'];
 
-    function appController() {
+    function appController($rootScope) {
         var vm = this;
+        $rootScope.carFinder = false;
 
         activate();
 

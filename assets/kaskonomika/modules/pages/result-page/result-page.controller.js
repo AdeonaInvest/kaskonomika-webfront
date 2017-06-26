@@ -3,11 +3,11 @@
 
     angular
         .module('kaskonomika')
-        .controller('contactsController', contactsController);
+        .controller('resultPageController', resultPageController);
 
-    contactsController.$inject = ['$rootScope','$scope','$http'];
+    resultPageController.$inject = ['$scope'];
 
-    function contactsController($rootScope,$scope,$http) {
+    function resultPageController($scope) {
         ///////////////////
         var vm = this;
         vm.view = false; //Статус готовности отображения
