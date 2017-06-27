@@ -4,9 +4,9 @@
     angular.module('kaskonomika')
         .controller('headerController', headerController);
 
-    headerController.$inject = ['$scope','$window','$timeout'];
+    headerController.$inject = ['$rootScope','$scope','$window','$timeout'];
 
-    function headerController($scope,$window,$timeout) {
+    function headerController($rootScope,$scope,$window,$timeout) {
         var vm = this;
         vm.scrollFromTop = false; //Состояние скролла - отодвинут ли скролл сверху.
         vm.openOverlay = false; //Состояние оверлея. false - закрыт
@@ -46,6 +46,8 @@
                 url: '/contacts'
             }
         ]; //Пункты меню оверлея
+        vm.showCalc = $rootScope.showCalc;
+
 
         ///////////////////
         activate();

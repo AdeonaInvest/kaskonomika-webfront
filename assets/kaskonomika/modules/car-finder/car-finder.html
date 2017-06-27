@@ -8,13 +8,13 @@
                 <div class="row title-area">
                     <div class="col-xs-3">
                         <span class="active"
-                              ng-click="vm.findData.step > 4 ? vm.resetFinder({mark:' ',year:' ',model:' ',mod:' ',driver:' ',age:' ', exp:' '},1) : null">
+                              ng-click="findData.step > 4 ? vm.resetFinder({mark:' ',year:' ',model:' ',mod:' ',driver:' ',age:' ', exp:' '},1) : null">
                             Автомобиль
                         </span>
                     </div>
                     <div class="col-xs-3">
-                        <span ng-class="{active: vm.findData.step > 4}"
-                              ng-click="vm.findData.step > 4 && vm.findData.step < 9 ? vm.resetFinder({driver:' ',age:' ', exp:' '},5) : null">
+                        <span ng-class="{active: findData.step > 4}"
+                              ng-click="findData.step > 4 && findData.step < 9 ? vm.resetFinder({driver:' ',age:' ', exp:' '},5) : null">
                             Водители
                         </span>
                     </div>
@@ -33,7 +33,7 @@
                             <span class="circle active"></span>
                         </div>
                         <div class="col-xs-4 circle-area">
-                            <span class="circle" ng-class="{active: vm.findData.step > 4}"></span>
+                            <span class="circle" ng-class="{active: findData.step > 4}"></span>
                         </div>
                         <div class="col-xs-4 circle-area">
                             <span class="circle"></span>
@@ -48,116 +48,113 @@
     </div>
     <div class="input-area">
         <div class="form-inline noselect">
-            <div class="input-line" ng-click="vm.findData.step !== 8 ? vm.findData.is_open = true : null">
-                <div ng-show="vm.findData.step < 5">
-                    <div class="tag mark" ng-if="vm.findData.mark">
-                        {{vm.findData.mark.mark}}
+            <div class="input-line" ng-click="findData.step !== 8 ? findData.is_open = true : null">
+                <div ng-show="findData.step < 5">
+                    <div class="tag mark" ng-if="findData.mark">
+                        {{findData.mark.mark}}
                         <i class="fa fa-close" ng-click="vm.resetFinder({mark:' ',year:' ',model:' ',mod:' '},1)"></i>
                     </div>
-                    <div class="tag year" ng-if="vm.findData.year">
-                        {{vm.findData.year}}
+                    <div class="tag year" ng-if="findData.year">
+                        {{findData.year}}
                         <i class="fa fa-close" ng-click="vm.resetFinder({year:' ',model:' ',mod:' '},2)"></i>
                     </div>
-                    <div class="tag model" ng-if="vm.findData.model">
-                        {{vm.findData.model.model}}
+                    <div class="tag model" ng-if="findData.model">
+                        {{findData.model.model}}
                         <i class="fa fa-close" ng-click="vm.resetFinder({model:' ',mod:' '},3)"></i>
                     </div>
-                    <div class="tag mod" ng-if="vm.findData.mod">
-                        {{vm.findData.mod.modification}}
+                    <div class="tag mod" ng-if="findData.mod">
+                        {{findData.mod.modification}}
                         <i class="fa fa-close" ng-click="vm.resetFinder({mod:' '},4)"></i>
                     </div>
                 </div>
-                <div ng-show="vm.findData.step >= 5">
-                    <div class="tag driver" ng-if="vm.findData.driver">
-                        {{vm.findData.driver.name}}
+                <div ng-show="findData.step >= 5">
+                    <div class="tag driver" ng-if="findData.driver">
+                        {{findData.driver.name}}
                         <i class="fa fa-close" ng-click="vm.resetFinder({driver:' ',age:' ',exp:' '},5)"></i>
                     </div>
-                    <div class="tag age" ng-if="vm.findData.age">
-                        {{vm.findData.age}} {{::vm.ageTitle(vm.findData.age)}}
+                    <div class="tag age" ng-if="findData.age">
+                        {{findData.age}} {{::vm.ageTitle(findData.age)}}
                         <i class="fa fa-close" ng-click="vm.resetFinder({age:' ',exp:' '},6)"></i>
                     </div>
-                    <div class="tag exp" ng-if="vm.findData.exp">
-                        {{::vm.expTitle(vm.findData.exp)}}
+                    <div class="tag exp" ng-if="findData.exp">
+                        {{::vm.expTitle(findData.exp)}}
                         <i class="fa fa-close" ng-click="vm.resetFinder({exp:' '},7)"></i></div>
                 </div>
                 <div class="tag title" ng-if="!vm.wait">
-                    <span ng-if="vm.findData.step == 1">Марка автомобиля...</span>
-                    <span ng-if="vm.findData.step == 2">Год выпуска...</span>
-                    <span ng-if="vm.findData.step == 3">Модель...</span>
-                    <span ng-if="vm.findData.step == 4">Модификаци...</span>
-                    <span ng-if="vm.findData.step == 5">Количество водителей...</span>
-                    <span ng-if="vm.findData.step == 6">Возраст...</span>
-                    <span ng-if="vm.findData.step == 7">Стаж с...</span>
-                    <span ng-if="vm.findData.step == 8"></span>
+                    <span ng-if="findData.step == 1">Марка автомобиля...</span>
+                    <span ng-if="findData.step == 2">Год выпуска...</span>
+                    <span ng-if="findData.step == 3">Модель...</span>
+                    <span ng-if="findData.step == 4">Модификаци...</span>
+                    <span ng-if="findData.step == 5">Количество водителей...</span>
+                    <span ng-if="findData.step == 6">Возраст...</span>
+                    <span ng-if="findData.step == 7">Стаж с...</span>
+                    <span ng-if="findData.step == 8"></span>
                 </div>
                 <div class="tag waiter" ng-if="vm.wait">
                     <i class="fa fa-spin fa-refresh"></i>
                 </div>
             </div>
             <div class="button-line">
-                <button class="btn btn-result" ng-click="vm.findResults()">
-                    <span class="visible-lg visible-md">Рассчитать каско</span>
-                    <span class="visible-sm visible-xs">Рассчитать</span>
+                <button class="btn btn-result" ng-disabled="!findData.ready" ng-click="vm.findResults()">
+                    <span class="btn-title-1">Рассчитать каско</span>
+                    <span class="btn-title-2">Рассчитать</span>
                 </button>
             </div>
         </div>
-        <div class="row popover-area" ng-show="vm.findData.is_open">
-            <div class="popover-text popover-mark" ng-if="vm.findData.step === 1">
+        <div class="row popover-area" ng-show="findData.is_open">
+            <div class="popover-text popover-mark" ng-if="findData.step === 1">
                 <div class="block-inline"
-                     ng-repeat="row in vm.allData.marks track by $index"
+                     ng-repeat="row in allData.marks track by $index"
                      ng-if="row.is_popular_mark == 1 || showAll"
-                     ng-click="vm.getYear(row.mark); vm.findData.mark = row">
+                     ng-click="vm.getYear(row.mark); findData.mark = row">
                     {{row.mark}}
                 </div>
                 <div class="show-more" ng-show="!showAll">
                     <span ng-click="showAll = !showAll">Показать все марки</span>
                 </div>
             </div>
-            <div class="popover-text popover-year" ng-if="vm.findData.step === 2">
+            <div class="popover-text popover-year" ng-if="findData.step === 2">
                 <div class="block-inline"
-                     ng-repeat="row in vm.allData.year track by $index"
-                     ng-click="vm.getModels(row); vm.findData.year = row">
+                     ng-repeat="row in allData.year track by $index"
+                     ng-click="vm.getModels(row); findData.year = row">
                     {{row}}
                 </div>
             </div>
-            <div class="popover-text popover-model" ng-if="vm.findData.step === 3">
+            <div class="popover-text popover-model" ng-if="findData.step === 3">
                 <div class="block-inline"
-                     ng-repeat="row in vm.allData.models track by $index"
-                     ng-click="vm.getModification(row.model); vm.findData.model = row">
+                     ng-repeat="row in allData.models track by $index"
+                     ng-click="vm.getModification(row.model); findData.model = row">
                     {{row.model}}
                 </div>
             </div>
-            <div class="row popover-text popover-mod" ng-if="vm.findData.step === 4">
+            <div class="row popover-text popover-mod" ng-if="findData.step === 4">
                 <div class="block-list"
-                     ng-repeat="row in vm.allData.mods track by $index"
-                     ng-click="vm.getDrivers(); vm.findData.mod = row">
+                     ng-repeat="row in allData.mods track by $index"
+                     ng-click="vm.getDrivers(); findData.mod = row">
                     {{row.modification}} / {{row.generation}}
                 </div>
             </div>
-            <div class="popover-text popover-driver" ng-if="vm.findData.step === 5">
+            <div class="popover-text popover-driver" ng-if="findData.step === 5">
                 <div class="block-list"
-                     ng-repeat="row in vm.allData.drivers track by $index"
-                     ng-click="vm.getAges(); vm.findData.driver = row">
+                     ng-repeat="row in allData.drivers track by $index"
+                     ng-click="vm.getAges(); findData.driver = row">
                     {{row.name}}
                 </div>
             </div>
-            <div class="popover-text popover-age" ng-if="vm.findData.step === 6">
+            <div class="popover-text popover-age" ng-if="findData.step === 6">
                 <div class="block-inline"
-                     ng-repeat="row in vm.allData.age track by $index"
-                     ng-click="vm.getExp(row); vm.findData.age = row">
+                     ng-repeat="row in allData.age track by $index"
+                     ng-click="vm.getExp(row); findData.age = row">
                     {{row}}
                 </div>
             </div>
-            <div class="popover-text popover-exp" ng-if="vm.findData.step === 7">
+            <div class="popover-text popover-exp" ng-if="findData.step === 7">
                 <div class="block-inline"
-                     ng-repeat="row in vm.allData.exp track by $index"
-                     ng-click="vm.finalStep(); vm.findData.exp = row">
+                     ng-repeat="row in allData.exp track by $index"
+                     ng-click="vm.finalStep(); findData.exp = row">
                     {{row}}
                 </div>
             </div>
         </div>
-    </div>
-    <div class="debug">
-        {{vm.findData}}
     </div>
 </div>
