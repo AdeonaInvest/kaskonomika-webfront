@@ -5,18 +5,27 @@
         .module('kaskonomika')
         .controller('appController', appController);
 
-    appController.$inject = ['$rootScope'];
+    appController.$inject = ['$rootScope','$scope'];
 
-    function appController($rootScope) {
+    function appController($rootScope,$scope) {
         var vm = this;
-        $rootScope.carFinder = false;
 
         activate();
 
         ////////////////
 
         function activate() {
-            
+            clearScopeCashe();
+        }
+
+        /**
+         * Событие очистки кеша событий
+         */
+        function clearScopeCashe(){
+            $scope.$on("$routeChangeSuccess", function() {
+                xlog('Очищаю scope cache');
+                $rootScope.carFinder = false;
+            });
         }
 
     }

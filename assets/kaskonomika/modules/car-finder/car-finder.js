@@ -29,7 +29,9 @@
         vm.getExp = getExp;
         vm.resetFinder = resetFinder;
         vm.finalStep = finalStep;
-        
+        vm.ageTitle = ageTitle;
+        vm.expTitle = expTitle;
+        vm.progressWidth = progressWidth;
         vm.findResults = findResults;
 
 
@@ -56,8 +58,6 @@
                 getMarks();
                 $scope.$on('cfpLoadingBar:completed',function(){
                     vm.view = true;
-                    xlog('vm.allData',vm.allData)
-                    xlog('vm.findData',vm.findData)
                 });
             }
         }
@@ -79,12 +79,14 @@
          */
         function getYear(mark){
             vm.findData.is_open = false;
+            vm.wait = true;
             $http.get('https://api.kaskonomika.ru/v1/dictionaries/marks/' + mark)
                 .then(function(response){
                     if (response.data.result) {
+                        vm.allData.year = response.data.response;
                         vm.findData.step = 2;
                         vm.findData.is_open = true;
-                        vm.allData.year = response.data.response;
+                        vm.wait = false;
                     }
                 })
         }
@@ -94,12 +96,14 @@
          */
         function getModels(year){
             vm.findData.is_open = false;
+            vm.wait = true;
             $http.get('https://api.kaskonomika.ru/v1/dictionaries/marks/' + vm.findData.mark.mark + '/' + year)
                 .then(function(response){
                     if (response.data.result) {
+                        vm.allData.models = response.data.response;
                         vm.findData.step = 3;
                         vm.findData.is_open = true;
-                        vm.allData.models = response.data.response;
+                        vm.wait = false;
                     }
                 })
         }
@@ -109,12 +113,14 @@
          */
         function getModification(model){
             vm.findData.is_open = false;
+            vm.wait = true;
             $http.get('https://api.kaskonomika.ru/v1/dictionaries/marks/' + vm.findData.mark.mark + '/' + vm.findData.year + '/' + model)
                 .then(function(response){
                     if (response.data.result) {
+                        vm.allData.mods = response.data.response;
                         vm.findData.step = 4;
                         vm.findData.is_open = true;
-                        vm.allData.mods = response.data.response;
+                        vm.wait = false;
                     }
                 })
         }
@@ -124,12 +130,14 @@
          */
         function getDrivers(){
             vm.findData.is_open = false;
+            vm.wait = true;
             $http.get('https://api.kaskonomika.ru/v1/dictionaries/drivers/options')
                 .then(function(response){
                     if (response.data.result) {
+                        vm.allData.drivers = response.data.response;
                         vm.findData.step = 5;
                         vm.findData.is_open = true;
-                        vm.allData.drivers = response.data.response;
+                        vm.wait = false;
                     }
                 })
         }
@@ -160,25 +168,78 @@
             vm.findData.step = 7;
             vm.findData.is_open = true;
         }
-        
+
+        /**
+         * Финальный шаг, после которого уходим на перерасчет
+         */
         function finalStep() {
+            vm.findData.step = 8;
             vm.findData.is_open = false;
         }
 
+        /**
+         * Очистка фильтра поиска
+         * @param data - Obj - что именно нужно очистить
+         * @param step - Int - на какой шаг перейти после очистки
+         */
         function resetFinder(data, step) {
             if (data.mark) vm.findData.mark = undefined;
             if (data.year) vm.findData.year = undefined;
             if (data.model) vm.findData.model = undefined;
-            if (data.mods) vm.findData.mods = undefined;
+            if (data.mod) vm.findData.mod = undefined;
             if (data.driver) vm.findData.driver = undefined;
             if (data.age) vm.findData.age = undefined;
             if (data.exp) vm.findData.exp = undefined;
 
             console.log('vm.findData',vm.findData);
             console.log('data',data);
-            
+
             vm.findData.step = step;
-            vm.findData.is_open = true
+            vm.findData.is_open = true;
+
+            $scope.$digest; // Принудительное обновление данных фильтра
+        }
+
+        /**
+         * Форматирование вывода возраста водителя
+         * @param age - Int - возраст водителя
+         * @returns {*} - "XX года"
+         */
+        function ageTitle(age) {
+            if (age) {
+                age = age.toString();
+                var last = age.length,
+                key = parseInt(age[last-1]);
+                console.log('age',age,'last',last,'age.length',age.length,'key',key);
+                if (key == 1) {
+                    return ' год';
+                } else if (key == 2 || key == 3 || key == 4) {
+                    return ' года';
+                } else {
+                    return ' лет';
+                }
+            }
+        }
+
+        /**
+         * Форматирование стажа водителя
+         * @param exp - стаж водителя - указывается год
+         * @returns {string} - "с 2000 года"
+         */
+        function expTitle(exp) {
+            if (exp) {
+                return 'c' + ' ' + exp + ' года';
+            }
+        }
+
+        function progressWidth(){
+            if (vm.findData) {
+                if (vm.findData.step < 5) {
+                    return 0;
+                } else if (vm.findData.step > 4) {
+                    return 33;
+                }
+            }
         }
 
 
@@ -186,6 +247,7 @@
          * Переход на страницу результатов
          */
         function findResults(){
+            console.log('dsfsdf');
             $location.url('/result');
         }
 

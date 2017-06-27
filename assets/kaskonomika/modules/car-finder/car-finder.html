@@ -7,10 +7,16 @@
             <div class="steps-area">
                 <div class="row title-area">
                     <div class="col-xs-3">
-                        <span class="active">Автомобиль</span>
+                        <span class="active"
+                              ng-click="vm.findData.step > 4 ? vm.resetFinder({mark:' ',year:' ',model:' ',mod:' ',driver:' ',age:' ', exp:' '},1) : null">
+                            Автомобиль
+                        </span>
                     </div>
                     <div class="col-xs-3">
-                        <span>Водители</span>
+                        <span ng-class="{active: vm.findData.step > 4}"
+                              ng-click="vm.findData.step > 4 && vm.findData.step < 9 ? vm.resetFinder({driver:' ',age:' ', exp:' '},5) : null">
+                            Водители
+                        </span>
                     </div>
                     <div class="col-xs-3">
                         <span>Предложения</span>
@@ -21,13 +27,13 @@
                 </div>
                 <div class="row steps-progress">
                     <!-- 0% - 33% -- 66% --- 100% -->
-                    <progress class="progress" max="100" value="0"></progress>
+                    <progress class="progress" max="100" value="{{vm.progressWidth()}}"></progress>
                     <div class="pointers">
                         <div class="col-xs-2 circle-area">
                             <span class="circle active"></span>
                         </div>
                         <div class="col-xs-4 circle-area">
-                            <span class="circle"></span>
+                            <span class="circle" ng-class="{active: vm.findData.step > 4}"></span>
                         </div>
                         <div class="col-xs-4 circle-area">
                             <span class="circle"></span>
@@ -40,47 +46,56 @@
             </div>
         </div>
     </div>
-    {{vm.findData}}
     <div class="input-area">
         <div class="form-inline noselect">
-            <div class="input-line" ng-click="vm.findData.step !== 7 ? vm.findData.is_open = true : null">
+            <div class="input-line" ng-click="vm.findData.step !== 8 ? vm.findData.is_open = true : null">
                 <div ng-show="vm.findData.step < 5">
-                    <div class="tag mark" ng-show="vm.findData.mark">
+                    <div class="tag mark" ng-if="vm.findData.mark">
                         {{vm.findData.mark.mark}}
                         <i class="fa fa-close" ng-click="vm.resetFinder({mark:' ',year:' ',model:' ',mod:' '},1)"></i>
                     </div>
-                    <div class="tag year" ng-show="vm.findData.year">
+                    <div class="tag year" ng-if="vm.findData.year">
                         {{vm.findData.year}}
                         <i class="fa fa-close" ng-click="vm.resetFinder({year:' ',model:' ',mod:' '},2)"></i>
                     </div>
-                    <div class="tag model" ng-show="vm.findData.model">
+                    <div class="tag model" ng-if="vm.findData.model">
                         {{vm.findData.model.model}}
                         <i class="fa fa-close" ng-click="vm.resetFinder({model:' ',mod:' '},3)"></i>
                     </div>
-                    <div class="tag mod" ng-show="vm.findData.mod">
+                    <div class="tag mod" ng-if="vm.findData.mod">
                         {{vm.findData.mod.modification}}
                         <i class="fa fa-close" ng-click="vm.resetFinder({mod:' '},4)"></i>
                     </div>
                 </div>
                 <div ng-show="vm.findData.step >= 5">
-                    <div class="tag driver" ng-show="vm.findData.driver">
+                    <div class="tag driver" ng-if="vm.findData.driver">
                         {{vm.findData.driver.name}}
                         <i class="fa fa-close" ng-click="vm.resetFinder({driver:' ',age:' ',exp:' '},5)"></i>
                     </div>
-                    <div class="tag age" ng-show="vm.findData.age">
-                        {{vm.findData.age}}
+                    <div class="tag age" ng-if="vm.findData.age">
+                        {{vm.findData.age}} {{::vm.ageTitle(vm.findData.age)}}
                         <i class="fa fa-close" ng-click="vm.resetFinder({age:' ',exp:' '},6)"></i>
                     </div>
-                    <div class="tag exp" ng-show="vm.findData.exp">
-                        {{vm.findData.exp}}
+                    <div class="tag exp" ng-if="vm.findData.exp">
+                        {{::vm.expTitle(vm.findData.exp)}}
                         <i class="fa fa-close" ng-click="vm.resetFinder({exp:' '},7)"></i></div>
                 </div>
-                <div class="tag title">
-                    <span>Марка автомобиля</span>
+                <div class="tag title" ng-if="!vm.wait">
+                    <span ng-if="vm.findData.step == 1">Марка автомобиля...</span>
+                    <span ng-if="vm.findData.step == 2">Год выпуска...</span>
+                    <span ng-if="vm.findData.step == 3">Модель...</span>
+                    <span ng-if="vm.findData.step == 4">Модификаци...</span>
+                    <span ng-if="vm.findData.step == 5">Количество водителей...</span>
+                    <span ng-if="vm.findData.step == 6">Возраст...</span>
+                    <span ng-if="vm.findData.step == 7">Стаж с...</span>
+                    <span ng-if="vm.findData.step == 8"></span>
+                </div>
+                <div class="tag waiter" ng-if="vm.wait">
+                    <i class="fa fa-spin fa-refresh"></i>
                 </div>
             </div>
             <div class="button-line">
-                <button class="btn btn-result" ng-click="">
+                <button class="btn btn-result" ng-click="vm.findResults()">
                     <span class="visible-lg visible-md">Рассчитать каско</span>
                     <span class="visible-sm visible-xs">Рассчитать</span>
                 </button>
@@ -142,5 +157,7 @@
             </div>
         </div>
     </div>
-
+    <div class="debug">
+        {{vm.findData}}
+    </div>
 </div>
