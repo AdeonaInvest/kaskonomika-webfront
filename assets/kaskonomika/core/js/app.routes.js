@@ -49,6 +49,11 @@
                 controller: 'contactsController',
                 controllerAs: 'vm'
             })
+            .when ('/result-page', {
+                templateUrl: '/pages/result-page/result-page.html',
+                controller: 'resultPageController',
+                controllerAs: 'vm'
+            })
             .otherwise({
                 redirectTo: '/'
             });

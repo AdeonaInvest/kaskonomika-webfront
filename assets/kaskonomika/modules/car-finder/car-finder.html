@@ -101,7 +101,7 @@
                 </button>
             </div>
         </div>
-        <div class="row popover-area" ng-show="findData.is_open">
+        <div class="row popover-area animated" ng-class="{flipInX: findData.is_open, bounceOut: !findData.is_open}" ng-show="findData.is_open" click-outside="findData.is_open = !findData.is_open">
             <div class="popover-text popover-mark" ng-if="findData.step === 1">
                 <div class="block-inline"
                      ng-repeat="row in allData.marks track by $index"

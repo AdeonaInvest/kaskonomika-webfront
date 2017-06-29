@@ -8,7 +8,7 @@
 
     function headerController($rootScope,$scope,$window,$timeout) {
         var vm = this;
-        vm.scrollFromTop = false; //Состояние скролла - отодвинут ли скролл сверху.
+        $rootScope.scrollFromTop = false; //Состояние скролла - отодвинут ли скролл сверху.
         vm.openOverlay = false; //Состояние оверлея. false - закрыт
         vm.mainMenu = [
             {
@@ -67,9 +67,9 @@
          */
         angular.element($window).bind("scroll", function() {
             if (this.pageYOffset > 0) {
-                vm.scrollFromTop = true;
+                $rootScope.scrollFromTop = true;
             } else {
-                vm.scrollFromTop = false;
+                $rootScope.scrollFromTop = false;
             }
             $scope.$apply();
         });

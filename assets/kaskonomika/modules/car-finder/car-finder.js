@@ -5,9 +5,9 @@
         .module('kaskonomika')
         .controller('carFinderController', carFinderController);
 
-    carFinderController.$inject = ['$rootScope','$scope','$http','$location'];
+    carFinderController.$inject = ['$rootScope','$scope','$http','$location','$timeout'];
 
-    function carFinderController($rootScope,$scope,$http,$location) {
+    function carFinderController($rootScope,$scope,$http,$location,$timeout) {
         
         ///////////////////
         var vm = this;
@@ -152,8 +152,11 @@
             for (var i = 18; i < 69; ++i) {
                 $rootScope.allData.age.push(i);
             }
-            $rootScope.findData.step = 6;
-            $rootScope.findData.is_open = true;
+            $timeout(function(){
+                $rootScope.findData.step = 6;
+                $rootScope.findData.is_open = true;
+            })
+
         }
 
         /**
@@ -166,8 +169,11 @@
             for (var i = start; i < 2017; ++i) {
                 $rootScope.allData.exp.push(i);
             }
-            $rootScope.findData.step = 7;
-            $rootScope.findData.is_open = true;
+            $timeout(function(){
+                $rootScope.findData.step = 7;
+                $rootScope.findData.is_open = true;
+            })
+
         }
 
         /**
@@ -248,7 +254,7 @@
          * Переход на страницу результатов
          */
         function findResults(){
-            $location.url('/result');
+            $location.url('/result-page');
         }
 
         function disableBtnResult(){
