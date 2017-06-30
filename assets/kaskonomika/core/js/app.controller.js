@@ -8,14 +8,16 @@
     appController.$inject = ['$rootScope','$scope'];
 
     function appController($rootScope,$scope) {
-        var vm = this;
-
+        
+        $rootScope.calcCount = [];
+        
         activate();
 
         ////////////////
 
         function activate() {
             clearScopeCashe();
+            waitContentIncludes();
         }
 
         /**
@@ -26,6 +28,12 @@
                 xlog('Очищаю scope cache');
                 $rootScope.carFinder = false; //Обнуление данных поиска авто
                 $rootScope.showCalc = false; //Обновление отображения поиска в хедере
+            });
+        }
+        
+        function waitContentIncludes() {
+            $rootScope.$on('$includeContentLoaded',function(){
+                $rootScope.pageLoaded = true;
             });
         }
 

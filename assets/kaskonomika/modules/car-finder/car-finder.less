@@ -7,6 +7,7 @@
   min-width: 100%;
   min-height: 100%;
 }
+
 /* Калькулятор в слайдера на главной странице сайта */
 #car-finder-type-2 {
   min-width: 100%;
@@ -66,6 +67,7 @@
     }
   }
 }
+
 /* Калькулятор в шапке сайта */
 #car-finder-type-3 {
   min-width: 100%;
@@ -115,6 +117,76 @@
     }
   }
 }
+
+/* Калькулятор в результатах поиска */
+#car-finder-type-4 {
+  min-width: 100%;
+  min-height: 100%;
+  background: none;
+  .car-finder-area {
+    width: 80%;
+    margin: auto;
+    .region-steps {
+      .region-area {
+        display: none
+      }
+      .col-lg-7 {
+        min-width: 100%;
+        width: 100%;
+        .steps-area {
+          margin: auto;
+          width: 60%;
+          .title-area {
+            .col-xs-3 {
+              span {
+                color: #A3A1B1;
+              }
+              .active {
+                color: #50b2d9;
+
+              }
+            }
+          }
+          .steps-progress {
+            .progress {
+              &::-webkit-progress-bar {
+                background: #A3A1B1;
+              }
+              &::-webkit-progress-value {
+                background: #50b2d9;
+              }
+            }
+            .pointers {
+              .circle-area {
+                .circle {
+                  border: 2px solid #A3A1B1;
+                  background: #A3A1B1;
+                }
+                .active {
+                  border-color: #50b2d9;
+                  background: #50b2d9;
+                }
+              }
+            }
+          }
+          //rgba(36,30,70,.4)
+        }
+      }
+    }
+    .title-h1-area {
+      display: block;
+      h1 {
+        text-align: center;
+        font: 36px/36px @fm-bold;
+        color: #000;
+      }
+    }
+    .input-area {
+
+    }
+  }
+}
+
 
 .car-finder-area {
   padding: 20px 20px 0;
@@ -220,10 +292,12 @@
               }
             }
           }
-
         }
       }
     }
+  }
+  .title-h1-area {
+    display: none;
   }
   .input-area {
     height: 40px;

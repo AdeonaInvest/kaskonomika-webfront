@@ -14,15 +14,15 @@
                     </div>
                     <div class="col-xs-3">
                         <span ng-class="{active: findData.step > 4}"
-                              ng-click="findData.step > 4 && findData.step < 9 ? vm.resetFinder({driver:' ',age:' ', exp:' '},5) : null">
+                              ng-click="findData.step >= 5 && findData.step <= 8 ? vm.resetFinder({driver:' ',age:' ', exp:' '},5) : null">
                             Водители
                         </span>
                     </div>
                     <div class="col-xs-3">
-                        <span>Предложения</span>
+                        <span ng-class="{active: findData.step > 8}">Предложения</span>
                     </div>
                     <div class="col-xs-3">
-                        <span>Оформление</span>
+                        <span ng-class="{active: findData.step > 9}">Оформление</span>
                     </div>
                 </div>
                 <div class="row steps-progress">
@@ -36,19 +36,22 @@
                             <span class="circle" ng-class="{active: findData.step > 4}"></span>
                         </div>
                         <div class="col-xs-4 circle-area">
-                            <span class="circle"></span>
+                            <span class="circle" ng-class="{active: findData.step > 8}"></span>
                         </div>
                         <div class="col-xs-2 circle-area">
-                            <span class="circle"></span>
+                            <span class="circle" ng-class="{active: findData.step > 9}"></span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="row title-h1-area">
+        <h1>Результаты расчета Каско</h1>
+    </div>
     <div class="input-area">
         <div class="form-inline noselect">
-            <div class="input-line" ng-click="findData.step !== 8 ? findData.is_open = true : null">
+            <div class="input-line" ng-click="findData.step < 8 ? findData.is_open = true : null">
                 <div ng-show="findData.step < 5">
                     <div class="tag mark" ng-if="findData.mark">
                         {{findData.mark.mark}}
@@ -88,7 +91,7 @@
                     <span ng-if="findData.step == 5">Количество водителей...</span>
                     <span ng-if="findData.step == 6">Возраст...</span>
                     <span ng-if="findData.step == 7">Стаж с...</span>
-                    <span ng-if="findData.step == 8"></span>
+                    <span ng-if="findData.step > 7"></span>
                 </div>
                 <div class="tag waiter" ng-if="vm.wait">
                     <i class="fa fa-spin fa-refresh"></i>
@@ -101,7 +104,9 @@
                 </button>
             </div>
         </div>
-        <div class="row popover-area animated" ng-class="{flipInX: findData.is_open, bounceOut: !findData.is_open}" ng-show="findData.is_open" click-outside="findData.is_open = !findData.is_open">
+        <div class="row popover-area animated"
+             ng-class="{flipInX: findData.is_open, bounceOut: !findData.is_open}"
+             ng-show="findData.is_open" click-outside="vm.hidePopover()">
             <div class="popover-text popover-mark" ng-if="findData.step === 1">
                 <div class="block-inline"
                      ng-repeat="row in allData.marks track by $index"

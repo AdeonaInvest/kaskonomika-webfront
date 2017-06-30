@@ -23,8 +23,11 @@
         <div class="user-menu pull-right col-lg-4 col-md-6 col-sm-6 col-xs-3">
             <ul class="list-inline animated fadeInRightBig">
                 <li class="hidden-sm hidden-xs">
-                    <div class="user-dashboard-area animated" ng-if="vm.view" ng-class="{bounceInRight: vm.view, bounceOutRight: !vm.view}">
-                        <i class="fa fa-user fa-2x" ng-click="vm.openUserMenu = !vm.openUserMenu"></i>
+                    <div class="user-dashboard-area animated"
+                         ng-if="vm.view"
+                         ng-class="{bounceInRight: vm.view, bounceOutRight: !vm.view}"
+                         ng-click="vm.openUserMenu = !vm.openUserMenu">
+                        <i class="fa fa-user fa-2x"></i>
                         <!-- START : Всплывающее меню личного кабинета -->
                         <ng-include src="'/header/header-user-menu.html'" id="header-user-menu" class="dashboard-menu" ng-if="vm.openUserMenu"></ng-include>
                         <!--END : Всплывающее меню личного кабинета -->

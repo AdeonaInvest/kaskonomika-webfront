@@ -12,8 +12,15 @@
         ///////////////////
         var vm = this;
         vm.view = false; //Статус готовности отображения
-        
-        activate();
+
+
+
+        $rootScope.$watch('pageLoaded',function(){
+            if ($rootScope.pageLoaded) {
+                activate();
+            }
+        });
+
         function activate() {
             checkInitFinder(); //Проверка модуля на синглтон
         }
@@ -28,7 +35,6 @@
             exp: ''
         };
         $rootScope.findData = {
-            is_open: false,
             step: 1
         };
 
@@ -79,6 +85,7 @@
          * Получение списка годов выпуска автомобилей
          */
         function getYear(mark){
+            xlog('getYear');
             $rootScope.findData.is_open = false;
             vm.wait = true;
             $http.get('https://api.kaskonomika.ru/v1/dictionaries/marks/' + mark)
@@ -86,6 +93,7 @@
                     if (response.data.result) {
                         $rootScope.allData.year = response.data.response;
                         $rootScope.findData.step = 2;
+                        xlog('getYear1');
                         $rootScope.findData.is_open = true;
                         vm.wait = false;
                     }
@@ -95,7 +103,8 @@
         /**
          * Получение списка моделей автомобилей
          */
-        function getModels(year){
+        function getModels(year) {
+            xlog('getModels');
             $rootScope.findData.is_open = false;
             vm.wait = true;
             $http.get('https://api.kaskonomika.ru/v1/dictionaries/marks/' + $rootScope.findData.mark.mark + '/' + year)
@@ -103,6 +112,7 @@
                     if (response.data.result) {
                         $rootScope.allData.models = response.data.response;
                         $rootScope.findData.step = 3;
+                        xlog('getModels1');
                         $rootScope.findData.is_open = true;
                         vm.wait = false;
                     }
@@ -113,6 +123,7 @@
          * Получение списка модификаций автомобилей
          */
         function getModification(model){
+            xlog('getModification');
             $rootScope.findData.is_open = false;
             vm.wait = true;
             $http.get('https://api.kaskonomika.ru/v1/dictionaries/marks/' + $rootScope.findData.mark.mark + '/' + $rootScope.findData.year + '/' + model)
@@ -120,6 +131,7 @@
                     if (response.data.result) {
                         $rootScope.allData.mods = response.data.response;
                         $rootScope.findData.step = 4;
+                        xlog('getModification1');
                         $rootScope.findData.is_open = true;
                         vm.wait = false;
                     }
@@ -130,6 +142,7 @@
          * Получение списка модификаций типов водителей
          */
         function getDrivers(){
+            xlog('getDrivers');
             $rootScope.findData.is_open = false;
             vm.wait = true;
             $http.get('https://api.kaskonomika.ru/v1/dictionaries/drivers/options')
@@ -137,23 +150,32 @@
                     if (response.data.result) {
                         $rootScope.allData.drivers = response.data.response;
                         $rootScope.findData.step = 5;
+                        xlog('getDrivers1');
                         $rootScope.findData.is_open = true;
                         vm.wait = false;
                     }
                 })
         }
 
+
+
+        $rootScope.$watch('findData.is_open', function(){
+            console.log('$rootScope.findData.is_open',$rootScope.findData.is_open)
+        })
+
         /**
          * Получение списка годов рождения
          */
         function getAges(){
+            xlog('getAges');
             $rootScope.findData.is_open = false;
-            $rootScope.allData.age = [];
-            for (var i = 18; i < 69; ++i) {
-                $rootScope.allData.age.push(i);
-            }
             $timeout(function(){
+                $rootScope.allData.age = [];
+                for (var i = 18; i < 69; ++i) {
+                    $rootScope.allData.age.push(i);
+                }
                 $rootScope.findData.step = 6;
+                xlog('getAges1');
                 $rootScope.findData.is_open = true;
             })
 
@@ -163,14 +185,16 @@
          * Получение списка опыта
          */
         function getExp(year){
+            xlog('getExp');
             $rootScope.findData.is_open = false;
-            $rootScope.allData.exp = [];
-            var start = 2017-year+18;
-            for (var i = start; i < 2017; ++i) {
-                $rootScope.allData.exp.push(i);
-            }
             $timeout(function(){
+                $rootScope.allData.exp = [];
+                var start = 2017-year+17;
+                for (var i = start; i < 2017; ++i) {
+                    $rootScope.allData.exp.push(i);
+                }
                 $rootScope.findData.step = 7;
+                xlog('getExp1');
                 $rootScope.findData.is_open = true;
             })
 
@@ -180,6 +204,7 @@
          * Финальный шаг, после которого уходим на перерасчет
          */
         function finalStep() {
+            xlog('finalStep');
             $rootScope.findData.step = 8;
             $rootScope.findData.is_open = false;
             $rootScope.findData.ready = true;
@@ -191,6 +216,7 @@
          * @param step - Int - на какой шаг перейти после очистки
          */
         function resetFinder(data, step) {
+            xlog('resetFinder');
             if (data.mark) $rootScope.findData.mark = undefined;
             if (data.year) $rootScope.findData.year = undefined;
             if (data.model) $rootScope.findData.model = undefined;
@@ -199,14 +225,11 @@
             if (data.age) $rootScope.findData.age = undefined;
             if (data.exp) $rootScope.findData.exp = undefined;
 
-            console.log('vm.findData',$rootScope.findData);
-            console.log('data',data);
-
             $rootScope.findData.step = step;
             $rootScope.findData.is_open = true;
             $rootScope.findData.ready = false;
 
-            $rootScope.$digest; // Принудительное обновление данных фильтра
+            //$rootScope.$digest; // Принудительное обновление данных фильтра
         }
 
         /**
@@ -240,12 +263,18 @@
             }
         }
 
+        /**
+         * Ширина прогресс-бара
+         * @returns {number}
+         */
         function progressWidth(){
             if ($rootScope.findData) {
                 if ($rootScope.findData.step < 5) {
                     return 0;
-                } else if ($rootScope.findData.step > 4) {
+                } else if ($rootScope.findData.step >= 5 && $rootScope.findData.step <= 8) {
                     return 33;
+                } else if ($rootScope.findData.step > 8 && $rootScope.findData.step < 10) {
+                    return 66;
                 }
             }
         }
@@ -254,15 +283,32 @@
          * Переход на страницу результатов
          */
         function findResults(){
-            $location.url('/result-page');
+            localStorage.setItem('findData', JSON.stringify($rootScope.findData));
+            localStorage.setItem('allData', JSON.stringify($rootScope.allData));
+            var url = '?mark=' + $rootScope.findData.mark.mark +
+                '&year=' + $rootScope.findData.year +
+                '&model=' + $rootScope.findData.model.model +
+                '&mod=' + $rootScope.findData.mod.modification +
+                '&driver=' + $rootScope.findData.driver.id +
+                '&age=' + $rootScope.findData.age +
+                '&exp=' + $rootScope.findData.exp;
+            $location.url('/result-page' + url);
         }
 
+        /**
+         * Обновление данных калькулятора
+         * @returns {boolean}
+         */
         function disableBtnResult(){
             var a = $rootScope.findData;
             console.log('a',a);
             if (a.mark!='' && a.year!='' && a.model!='' && a.mod!='' && a.driver!='' && a.age!='' && a.exp!='') return true
         }
 
-
+        vm.hidePopover = hidePopover;
+        function hidePopover() {
+            xlog('hidePopover')
+            $rootScope.findData.is_open = false
+        }
     }
 })();
