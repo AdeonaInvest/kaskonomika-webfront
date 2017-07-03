@@ -1,17 +1,17 @@
 <div class="block-area">
-    <span>Страховая сумма</span>
-    <input type="text" ng-model="vm.filter.sum"/>
+    <span class="block-title">Страховая сумма</span>
+    <input type="text" class="form-control" ng-model="vm.filter.sum"/>
 </div>
 <div class="block-area">
-    <span>Водители</span>
+    <span class="block-title">Водители</span>
     <div class="driver-row">
         <div class="col-lg-6">
             <span>Возраст:</span>
-            <input type="text" ng-model="vm.filter.age"/>
+            <input type="text" class="form-control" ng-model="vm.filter.age"/>
         </div>
         <div class="col-lg-6">
             <span>Стаж с:</span>
-            <input type="text" ng-model="vm.filter.exp"/>
+            <input type="text" class="form-control" ng-model="vm.filter.exp"/>
         </div>
     </div>
     <div class="driver-add-more">
@@ -40,7 +40,7 @@
     </div>
 </div>
 <div class="block-area">
-    <span>Страховая сумма</span>
+    <span class="block-title">Урегулирование убытков</span>
     <div class="checkbox-area">
         <input class="checkbox-input" type="checkbox" ng-model="vm.filter.glass">
         <label class="checkbox-check">Выплаты без справок по стеклянным элементам</label>
@@ -103,7 +103,7 @@
     </div>
 </div>
 <div class="block-area">
-    <span>Сервисный пакет</span>
+    <span class="block-title">Сервисный пакет</span>
     <div class="checkbox-area">
         <input class="checkbox-input" type="checkbox" ng-model="vm.filter.evacuation_ss">
         <label class="checkbox-check">Эвакуация при ДТП</label>
@@ -118,7 +118,7 @@
     </div>
 </div>
 <div class="block-area">
-    <span>Формат полиса</span>
+    <span class="block-title">Формат полиса</span>
     <div class="checkbox-area">
         <input class="checkbox-input" type="checkbox" ng-model="vm.filter.epolicy">
         <label class="checkbox-check">Полис в электронном виде</label>
