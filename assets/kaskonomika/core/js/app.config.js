@@ -10,7 +10,8 @@
             'ui.bootstrap',
             'ksSwiper',
             'angular-loading-bar',
-            'cfp.loadingBar'
+            'cfp.loadingBar',
+            'rzModule'
         ])
         .constant('config', {
             version: '0.0.1', //Текущая версия сайта
@@ -30,6 +31,7 @@
          * Включение HTML5 навигации для сайта
          */
         $locationProvider.html5Mode(true);
+        $locationProvider.hashPrefix('!');
         
         /**
          * Настройки прелоадера

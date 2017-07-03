@@ -10,7 +10,7 @@
             restrict: 'A',
             link: function(scope, elem, attr) {
 
-                $document.on('click', function(event){
+                /*$document.on('click', function(event){
                     var isChild = $(elem).has(event.target).length > 0;
                     var isSelf = elem[0] == event.target;
                     var isInside = isChild || isSelf;
@@ -27,7 +27,7 @@
 
 
                     if (!isInside) scope.$apply(attr.clickOutside);
-                });
+                });*/
             }
         };
     }

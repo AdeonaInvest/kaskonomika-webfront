@@ -13,4 +13,182 @@
       padding:0 80px 80px;
     }
   }
+  .result-body {
+    background: #fff;
+    .result-area {
+      padding: 0;
+      margin: auto;
+      .results-list {
+        padding: 0;
+        margin: auto;
+        #result-page-list {
+          .item {
+            border: 1px solid #dadada;
+            border-radius: 5px;
+            width: 100%;
+            position: relative;
+            margin: 0 auto 5px;
+            .col {
+              margin: 0;
+            }
+            .top-area {
+              margin: 0;
+              .issure-logo {
+                margin: 55px auto 0;
+                display: block;
+                width: 90%;
+                max-width: 90%;
+              }
+              .p-top-n {
+                margin: 40px 0;
+                .item-title-area {
+                  width: 100%;
+                  span {
+                    letter-spacing: .7px;
+                    font: 11px/25px @fm-bold;
+                    text-transform: uppercase;
+                    color: rgba(0,0,0,.4);
+                  }
+                }
+                .item-cost-area {
+                  width: 100%;
+                  .cost-item {
+                    float: left;
+                    margin: 0 50px 0 0;
+                    h3 {
+                      margin: 0;
+                      font: 16px/20px @fm-web;
+                      color: #000;
+                      i {
+                        font-size: 15px;
+                      }
+                      span {
+                        display: block;
+                        text-align: center;
+                        font: 14px/15px @fm-web;
+                        color: #b2b2b2;
+                      }
+                    }
+                  }
+                }
+                .issure-price {
+                  text-align: right;
+                  font: 20px/40px @fm-bold;
+                  color: #000;
+                  margin: 0;
+                  padding: 0;
+                  i {
+                    font-size: 18px;
+                  }
+                  .cost-item-type {
+                    display: block;
+                    text-align: right;
+                    font: 14px/15px @fm-main;
+                    color: #b2b2b2;
+                  }
+                }
+              }
+              .issue-btn {
+                background: #263c75;
+                color: #fff;
+                height: 40px;
+                font: 14px/40px @fm-web;
+                text-align: center;
+                text-decoration: none;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+                outline: none;
+                transition: .2s ease;
+                width: 100%;
+                display: block;
+                margin: 60px auto 0;
+                &:hover {
+                  outline: none;
+                  border: none;
+                  background: #241e46;
+                  transition: .2s ease;
+                }
+              }
+              hr {
+                color: #dadada;
+                width: 95%;
+                margin: auto;
+
+              }
+            }
+            .bottom-area {
+              text-align: right;
+              padding: 0 15px;
+              button {
+                background: none;
+                border: none;
+                outline: none;
+                span {
+                  color: @color-blue;
+                  font: 14px/50px @fm-web;
+                  i {
+                    margin: 0 0 0 5px;
+                  }
+                }
+                &:hover {
+                  span {
+                    text-decoration: underline;
+                  }
+                }
+              }
+            }
+            .popover-area {
+              background: #d4edfc;
+              padding: 0 30px 10px;
+              .popover-item {
+                width: 49%;
+                margin: 20px 0 0 0;
+                display: inline-block;
+                vertical-align: top;
+                .popover-item-title {
+                  margin: 0 0 10px 0;
+                  padding: 0;
+                  font: 11px/15px @fm-bold;
+                  text-transform: uppercase;
+                  text-align: left;
+                }
+                ul {
+                  padding: 0;
+                  width: 95%;
+                  li {
+                    margin-bottom: 5px;
+                    list-style: none;
+                    .color-blue {
+                      color: @color-blue;
+                    }
+                    .color-grey {
+                      color: @color-semi;
+                    }
+                    span {
+                      font: 14px/25px @fm-web;
+                    }
+                  }
+                  .active {
+                    span {
+                      color: #000;
+                    }
+                  }
+                  .inactive {
+                    span {
+                      color: rgba(0,0,0,.5);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        #result-page-sidebar {
+
+        }
+
+      }
+    }
+  }
 }
