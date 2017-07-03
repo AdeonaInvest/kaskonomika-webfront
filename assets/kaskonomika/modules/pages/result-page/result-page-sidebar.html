@@ -1,82 +1,126 @@
-<div class="row">
-    <div class="block-area">
-        <span>Страховая сумма</span>
-        <input type="text" ng-model="vm.filter.sum"/>
-    </div>
-    <div class="block-area">
-        <span>Водители</span>
-        <div class="driver-row">
-            <div class="col-lg-6">
-                <span>Возраст:</span>
-                <input type="text" ng-model="vm.filter.age"/>
-            </div>
-            <div class="col-lg-6">
-                <span>Стаж с:</span>
-                <input type="text" ng-model="vm.filter.exp"/>
-            </div>
+<div class="block-area">
+    <span>Страховая сумма</span>
+    <input type="text" ng-model="vm.filter.sum"/>
+</div>
+<div class="block-area">
+    <span>Водители</span>
+    <div class="driver-row">
+        <div class="col-lg-6">
+            <span>Возраст:</span>
+            <input type="text" ng-model="vm.filter.age"/>
         </div>
-        <div class="driver-add-more">
-            <div class="plus-btn">+</div>
-            <div class="plus-title">Добавить новогого водителя</div>
+        <div class="col-lg-6">
+            <span>Стаж с:</span>
+            <input type="text" ng-model="vm.filter.exp"/>
         </div>
     </div>
-    <div class="block-area">
-        <div class="checkbox-area">
-            <input class="checkbox-input" type="checkbox" ng-model="vm.filter.franchise">
-            <label class="checkbox-check checkbox-check-title">Франшиза</label>
-        </div>
-        <div class="show-slider-franchise">
-            <span class="big-title">от {{'0'}} до {{'70 000'}} <i class="fa fa-rub"></i></span>
-            <rzslider rz-slider-model="vm.filter.franchiseSilder.min" rz-slider-high="vm.filter.franchiseSilder.max" rz-slider-options="vm.filter.franchiseSilder.options"></rzslider>
-        </div>
+    <div class="driver-add-more">
+        <div class="plus-btn">+</div>
+        <div class="plus-title">Добавить новогого водителя</div>
     </div>
-    <div class="block-area">
-        <div class="checkbox-area">
-            <input class="checkbox-input" type="checkbox" ng-model="vm.filter.mileage_limit">
-            <label class="checkbox-check checkbox-check-title">Ограничение пробега</label>
-        </div>
-        <div class="show-slider-franchise">
-            <span class="big-title">от {{'0'}} до {{'70 000'}} км.</i></span>
-            <rzslider rz-slider-model="vm.filter.milageSlider.min" rz-slider-high="vm.filter.milageSlider.max" rz-slider-options="vm.filter.milageSlider.options"></rzslider>
-        </div>
+</div>
+<div class="block-area">
+    <div class="checkbox-area">
+        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.franchise">
+        <label class="checkbox-check checkbox-check-title">Франшиза</label>
     </div>
-    <div class="block-area">
-        <span>Страховая сумма</span>
-        <div class="checkbox-area">
-            <input class="checkbox-input" type="checkbox" ng-model="vm.filter.glass">
-            <label class="checkbox-check">Выплаты без справок по стеклянным элементам</label>
-        </div>
-        <div class="checkbox-area">
-            <input class="checkbox-input" type="checkbox" ng-model="vm.filter.bodywork">
-            <label class="checkbox-check">Выплаты без справок по кузовным элементам</label>
-        </div>
-        <div class="checkbox-area">
-            <input class="checkbox-input" type="checkbox" ng-model="vm.filter.bodywork">
-            <label class="checkbox-check">Выплаты без справок по кузовным элементам</label>
-        </div>
-        <div class="checkbox-area">
-            <input class="checkbox-input" type="checkbox" ng-model="vm.filter.max_telematic_discount_box">
-            <label class="checkbox-check">Максимальная скидка при пролонгации</label>
-        </div>
-        <div class="show-slider-franchise">
-            <span class="small-title">Размер скидки: {{'20'}}%</span>
-            <rzslider rz-slider-model="vm.filter.discountSlider.value" rz-slider-options="vm.filter.discountSlider.options"></rzslider>
-        </div>
-        <div class="checkbox-area">
-            <input class="checkbox-input" type="checkbox" ng-model="vm.filter.cashback">
-            <label class="checkbox-check">Возврат части страховой премии за хорошее вождение</label>
-        </div>
-        <div class="checkbox-area">
-            <input class="checkbox-input" type="checkbox" ng-model="vm.filter.premium_decrease">
-            <label class="checkbox-check">Снижение стоимости полиса во время его действия</label>
-        </div>
-        <div class="checkbox-area">
-            <input class="checkbox-input" type="checkbox" ng-model="vm.filter.max_prod_year_box">
-            <label class="checkbox-check">Максимальный возраст (год выпуска) ТС</label>
-        </div>
-        <div class="show-slider-franchise">
-            <span class="small-title">Максимальный возраст: {{'6'}} лет.</span>
-            <rzslider rz-slider-model="vm.filter.yearSlider.value" rz-slider-options="vm.filter.yearSlider.options"></rzslider>
-        </div>
+    <div class="show-slider-franchise">
+        <span class="big-title">от {{'0'}} до {{'70 000'}} <i class="fa fa-rub"></i></span>
+        <rzslider rz-slider-model="vm.filter.franchiseSilder.min" rz-slider-high="vm.filter.franchiseSilder.max" rz-slider-options="vm.filter.franchiseSilder.options"></rzslider>
+    </div>
+</div>
+<div class="block-area">
+    <div class="checkbox-area">
+        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.mileage_limit">
+        <label class="checkbox-check checkbox-check-title">Ограничение пробега</label>
+    </div>
+    <div class="show-slider-franchise">
+        <span class="big-title">от {{'0'}} до {{'70 000'}} км.</i></span>
+        <rzslider rz-slider-model="vm.filter.milageSlider.min" rz-slider-high="vm.filter.milageSlider.max" rz-slider-options="vm.filter.milageSlider.options"></rzslider>
+    </div>
+</div>
+<div class="block-area">
+    <span>Страховая сумма</span>
+    <div class="checkbox-area">
+        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.glass">
+        <label class="checkbox-check">Выплаты без справок по стеклянным элементам</label>
+    </div>
+    <div class="checkbox-area">
+        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.bodywork">
+        <label class="checkbox-check">Выплаты без справок по кузовным элементам</label>
+    </div>
+    <div class="checkbox-area">
+        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.bodywork">
+        <label class="checkbox-check">Выплаты без справок по кузовным элементам</label>
+    </div>
+    <div class="checkbox-area">
+        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.max_telematic_discount_box">
+        <label class="checkbox-check">Максимальная скидка при пролонгации</label>
+    </div>
+    <div class="show-slider-franchise">
+        <span class="small-title">Размер скидки: {{'20'}}%</span>
+        <rzslider rz-slider-model="vm.filter.discountSlider.value" rz-slider-options="vm.filter.discountSlider.options"></rzslider>
+    </div>
+    <div class="checkbox-area">
+        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.cashback">
+        <label class="checkbox-check">Возврат части страховой премии за хорошее вождение</label>
+    </div>
+    <div class="checkbox-area">
+        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.premium_decrease">
+        <label class="checkbox-check">Снижение стоимости полиса во время его действия</label>
+    </div>
+    <div class="checkbox-area">
+        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.max_prod_year_box">
+        <label class="checkbox-check">Максимальный возраст (год выпуска) ТС</label>
+    </div>
+    <div class="show-slider-franchise">
+        <span class="small-title">Максимальный возраст: {{'6'}} лет.</span>
+        <rzslider rz-slider-model="vm.filter.yearSlider.value" rz-slider-options="vm.filter.yearSlider.options"></rzslider>
+    </div>
+    <div class="checkbox-area">
+        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.multidrive">
+        <label class="checkbox-check">Мультидрайв</label>
+    </div>
+    <div class="checkbox-area">
+        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.traditional_policy">
+        <label class="checkbox-check">Бумажный полис</label>
+    </div>
+    <div class="checkbox-area">
+        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.policy_delivery">
+        <label class="checkbox-check">Доставка полиса</label>
+    </div>
+    <div class="checkbox-area">
+        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.milage_limits">
+        <label class="checkbox-check">Возможность ограничения пробега</label>
+    </div>
+    <div class="checkbox-area">
+        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.other_service">
+        <label class="checkbox-check">Иной сервис</label>
+    </div>
+    <div class="checkbox-area">
+        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.repair_options">
+        <label class="checkbox-check">Условие возмещения по риску</label>
+    </div>
+</div>
+<div class="block-area">
+    <span>Сервисный пакет</span>
+    <div class="checkbox-area">
+        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.evacuation_ss">
+        <label class="checkbox-check">Эвакуация при ДТП</label>
+    </div>
+    <div class="checkbox-area">
+        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.tech_support">
+        <label class="checkbox-check">Помощь на дороге</label>
+    </div>
+    <div class="checkbox-area">
+        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.komissar">
+        <label class="checkbox-check">Аварийный комиссар</label>
+    </div>
+</div>
+<div class="block-area">
+    <span>Формат полиса</span>
+    <div class="checkbox-area">
+        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.epolicy">
+        <label class="checkbox-check">Полис в электронном виде</label>
     </div>
 </div>
