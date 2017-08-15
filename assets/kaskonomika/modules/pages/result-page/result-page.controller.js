@@ -32,7 +32,6 @@
                     $rootScope.findData = JSON.parse(data);
                     $rootScope.allData = JSON.parse(all);
                     $rootScope.findData.step = 9;
-                    console.log('vm.find',$rootScope.findData);
                 }
             }
         });
