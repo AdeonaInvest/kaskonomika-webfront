@@ -1,126 +1,60 @@
-<div class="block-area">
-    <span class="block-title">Страховая сумма</span>
-    <input type="text" class="form-control" ng-model="vm.filter.sum"/>
+<div class="row block-area">
+    <span class="block-title">Страховая сумма (руб.)</span>
+    <input type="text" class="form-control" ng-model="vm.filter.sum" placeholder="100 000"/>
 </div>
 <div class="block-area">
-    <span class="block-title">Водители</span>
+    <span class="block-title">Допущенные водители</span>
     <div class="driver-row">
-        <div class="col-lg-6">
+        <div class="col-lg-6 left-side">
             <span>Возраст:</span>
-            <input type="text" class="form-control" ng-model="vm.filter.age"/>
+            <input type="text" class="form-control" ng-model="vm.filter.age" placeholder="с 18 лет"/>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 right-side">
             <span>Стаж с:</span>
-            <input type="text" class="form-control" ng-model="vm.filter.exp"/>
+            <input type="text" class="form-control" ng-model="vm.filter.exp" placeholder="какого года?"/>
         </div>
     </div>
-    <div class="driver-add-more">
+    <div class="driver-add-more" ng-click="vm.addDriver()">
         <div class="plus-btn">+</div>
         <div class="plus-title">Добавить новогого водителя</div>
     </div>
 </div>
 <div class="block-area">
-    <div class="checkbox-area">
+    <span class="block-title">Поиск по параметрам</span>
+    <div class="checkbox-area" ng-class="{'active':vm.filter.franchise}">
         <input class="checkbox-input" type="checkbox" ng-model="vm.filter.franchise">
-        <label class="checkbox-check checkbox-check-title">Франшиза</label>
+        <label class="checkbox-check checkbox-check-title" ng-click="vm.filter.franchise = !vm.filter.franchise">Франшиза</label>
     </div>
-    <div class="show-slider-franchise">
+    <div class="show-slider-franchise" ng-show="vm.filter.franchise">
         <span class="big-title">от {{'0'}} до {{'70 000'}} <i class="fa fa-rub"></i></span>
         <rzslider rz-slider-model="vm.filter.franchiseSilder.min" rz-slider-high="vm.filter.franchiseSilder.max" rz-slider-options="vm.filter.franchiseSilder.options"></rzslider>
     </div>
-</div>
-<div class="block-area">
-    <div class="checkbox-area">
+    <div class="checkbox-area" ng-class="{'active':vm.filter.mileage_limit}">
         <input class="checkbox-input" type="checkbox" ng-model="vm.filter.mileage_limit">
-        <label class="checkbox-check checkbox-check-title">Ограничение пробега</label>
+        <label class="checkbox-check checkbox-check-title" ng-click="vm.filter.mileage_limit = !vm.filter.mileage_limit">Ограничение пробега</label>
     </div>
-    <div class="show-slider-franchise">
+    <div class="show-slider-franchise" ng-show="vm.filter.mileage_limit">
         <span class="big-title">от {{'0'}} до {{'70 000'}} км.</i></span>
         <rzslider rz-slider-model="vm.filter.milageSlider.min" rz-slider-high="vm.filter.milageSlider.max" rz-slider-options="vm.filter.milageSlider.options"></rzslider>
     </div>
-</div>
-<div class="block-area">
-    <span class="block-title">Урегулирование убытков</span>
-    <div class="checkbox-area">
-        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.glass">
-        <label class="checkbox-check">Выплаты без справок по стеклянным элементам</label>
-    </div>
-    <div class="checkbox-area">
-        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.bodywork">
-        <label class="checkbox-check">Выплаты без справок по кузовным элементам</label>
-    </div>
-    <div class="checkbox-area">
-        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.bodywork">
-        <label class="checkbox-check">Выплаты без справок по кузовным элементам</label>
-    </div>
-    <div class="checkbox-area">
-        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.max_telematic_discount_box">
-        <label class="checkbox-check">Максимальная скидка при пролонгации</label>
-    </div>
-    <div class="show-slider-franchise">
-        <span class="small-title">Размер скидки: {{'20'}}%</span>
-        <rzslider rz-slider-model="vm.filter.discountSlider.value" rz-slider-options="vm.filter.discountSlider.options"></rzslider>
-    </div>
-    <div class="checkbox-area">
-        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.cashback">
-        <label class="checkbox-check">Возврат части страховой премии за хорошее вождение</label>
-    </div>
-    <div class="checkbox-area">
-        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.premium_decrease">
-        <label class="checkbox-check">Снижение стоимости полиса во время его действия</label>
-    </div>
-    <div class="checkbox-area">
-        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.max_prod_year_box">
-        <label class="checkbox-check">Максимальный возраст (год выпуска) ТС</label>
-    </div>
-    <div class="show-slider-franchise">
-        <span class="small-title">Максимальный возраст: {{'6'}} лет.</span>
-        <rzslider rz-slider-model="vm.filter.yearSlider.value" rz-slider-options="vm.filter.yearSlider.options"></rzslider>
-    </div>
-    <div class="checkbox-area">
-        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.multidrive">
-        <label class="checkbox-check">Мультидрайв</label>
-    </div>
-    <div class="checkbox-area">
-        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.traditional_policy">
-        <label class="checkbox-check">Бумажный полис</label>
-    </div>
-    <div class="checkbox-area">
-        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.policy_delivery">
-        <label class="checkbox-check">Доставка полиса</label>
-    </div>
-    <div class="checkbox-area">
-        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.milage_limits">
-        <label class="checkbox-check">Возможность ограничения пробега</label>
-    </div>
-    <div class="checkbox-area">
-        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.other_service">
-        <label class="checkbox-check">Иной сервис</label>
-    </div>
-    <div class="checkbox-area">
-        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.repair_options">
-        <label class="checkbox-check">Условие возмещения по риску</label>
-    </div>
-</div>
-<div class="block-area">
-    <span class="block-title">Сервисный пакет</span>
-    <div class="checkbox-area">
+    <div class="checkbox-area" ng-class="{'active':vm.filter.evacuation_ss}">
         <input class="checkbox-input" type="checkbox" ng-model="vm.filter.evacuation_ss">
-        <label class="checkbox-check">Эвакуация при ДТП</label>
+        <label class="checkbox-check checkbox-check-title" ng-click="vm.filter.evacuation_ss = !vm.filter.evacuation_ss">Эвакуация при ДТП</label>
     </div>
-    <div class="checkbox-area">
+    <div class="checkbox-area" ng-class="{'active':vm.filter.evacuation_all}">
+        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.evacuation_all">
+        <label class="checkbox-check checkbox-check-title" ng-click="vm.filter.evacuation_all = !vm.filter.evacuation_all">Эвакуация по любой причине</label>
+    </div>
+    <div class="checkbox-area" ng-class="{'active':vm.filter.collect_paper}">
+        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.collect_paper">
+        <label class="checkbox-check checkbox-check-title" ng-click="vm.filter.collect_paper = !vm.filter.collect_paper">Сбор справок</label>
+    </div>
+    <div class="checkbox-area" ng-class="{'active':vm.filter.tech_support}">
         <input class="checkbox-input" type="checkbox" ng-model="vm.filter.tech_support">
-        <label class="checkbox-check">Помощь на дороге</label>
+        <label class="checkbox-check checkbox-check-title" ng-click="vm.filter.tech_support = !vm.filter.tech_support">Помощь на дороге</label>
     </div>
-    <div class="checkbox-area">
+    <div class="checkbox-area" ng-class="{'active':vm.filter.komissar}">
         <input class="checkbox-input" type="checkbox" ng-model="vm.filter.komissar">
-        <label class="checkbox-check">Аварийный комиссар</label>
-    </div>
-</div>
-<div class="block-area">
-    <span class="block-title">Формат полиса</span>
-    <div class="checkbox-area">
-        <input class="checkbox-input" type="checkbox" ng-model="vm.filter.epolicy">
-        <label class="checkbox-check">Полис в электронном виде</label>
+        <label class="checkbox-check checkbox-check-title" ng-click="vm.filter.komissar = !vm.filter.komissar">Аварийный комиссар</label>
     </div>
 </div>
