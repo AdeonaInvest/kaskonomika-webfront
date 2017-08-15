@@ -16,14 +16,14 @@
         ////////////////
 
         function activate() {
-            clearScopeCashe();
+            clearScopeCaсhe();
             waitContentIncludes();
         }
 
         /**
          * Событие очистки кеша событий
          */
-        function clearScopeCashe(){
+        function clearScopeCaсhe(){
             $scope.$on("$routeChangeSuccess", function() {
                 xlog('Очищаю scope cache');
                 $rootScope.carFinder = false; //Обнуление данных поиска авто

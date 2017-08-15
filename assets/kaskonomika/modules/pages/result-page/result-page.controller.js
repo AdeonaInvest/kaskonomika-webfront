@@ -12,6 +12,10 @@
         var vm = this;
         vm.view = false; //Статус готовности отображения
         vm.routeParams = $routeParams;
+
+        vm.addDriver = addDriver;
+        vm.removeDriver = removeDriver;
+        
         activate();
         function activate() {
             $scope.$on('cfpLoadingBar:completed',function(){
@@ -33,49 +37,64 @@
             }
         });
 
+        /**
+         * Хранение всех данных по фильтрам, поискам и со всеми параметрами
+         */
         vm.filter = {
             franchiseSilder: {
                 min: 100,
-                max: 180,
+                max: 50000,
                 options: {
                     floor: 0,
-                    ceil: 450
+                    ceil: 200000,
+                    step: 5000
                 }
-            },
+            }, // Слайдер для франшизы
             milageSlider: {
-                min: 100,
-                max: 180,
+                min: 0,
+                max: 10000,
                 options: {
                     floor: 0,
-                    ceil: 450
-            }
-            },
-            discountSlider: {
-                value: 150,
-                options: {
-                    floor: 0,
-                    ceil: 450
+                    ceil: 30000,
+                    step: 500
                 }
-            },
-            yearSlider: {
-                value: 150,
-                options: {
-                    floor: 0,
-                    ceil: 450
+            }, // сладйер для пограничения пробега
+            drivers: [
+                {
+                    age: '',
+                    exp: ''
                 }
-            }
+            ], // Массив водителей
+            maxDriversCount: 5 // Орраничение количества водителей
         };
 
 
-        /*$scope.slider = {
-            minValue: 10,
-            maxValue: 90,
-            options: {
-                floor: 0,
-                ceil: 100,
-                step: 1
+        /**
+         * Добавление водителя в список допущенных для вождения
+         */
+        function addDriver() {
+            if (vm.filter.drivers.length < vm.filter.maxDriversCount) {
+                // Анимирование нажатия кнопки "добавить водителя"
+                if (!vm.addDriverClicked) {
+                    vm.addDriverClicked = true;
+                    setTimeout(function(){
+                        vm.addDriverClicked = false;
+                        $scope.$digest();
+                    },1000)
+                }
+                // добавление пустого водителя в массив
+                vm.filter.drivers.push({age:'',exp:''});
             }
-        };*/
+        }
+
+        /**
+         * Удаление водителя из списка допущенных из vm.filter.drivers
+         * @param key - порядковый номер водителя в vm.filter.drivers
+         */
+        function removeDriver(key) {
+            vm.filter.drivers.splice(key,1);
+        }
+
 
 
     }

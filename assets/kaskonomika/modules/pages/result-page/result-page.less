@@ -258,10 +258,41 @@
               }
             }
           }
+          .show-slider-franchise {
+            margin: 0 0 10px 0;
+            animation-delay: 0s;
+            animation-duration: 0s;
+            .big-title {
+              font: 16px/16px @fm-bold;
+              color: #000;
+              display: block;
+            }
+            .rzslider {
+              @pointer-size: 14px;
+              .rz-pointer {
+                width: @pointer-size;
+                height: @pointer-size;
+                top: -5px;
+                &:after {
+                  content: none;
+                }
+                &:focus {
+                  outline: none;
+                }
+                &:hover {
+                  background: @color-blue-hover;
+                }
 
+              }
+            }
+          }
+          .bounceIn {
+            animation-duration: 1s;
+          }
           .driver-row {
             display: table;
             margin: 0 0 10px 0;
+            position: relative;
             .col-lg-6 {
               padding: 0;
               span {
@@ -275,6 +306,19 @@
             .right-side {
               padding: 0 0 0 5px;
             }
+            .fa-trash-o {
+              position: absolute;
+              top: 26px;
+              right: -20px;
+              font-size: 15px;
+              cursor: pointer;
+              &:hover {
+                color: darkred;
+              }
+            }
+          }
+          .ng-leave {
+            animation-duration: 0s;
           }
           .driver-add-more {
             @btn-width: 25px;
