@@ -238,6 +238,9 @@
                     if (vm.filter.drivers[key].age > 80) {
                         vm.filter.drivers[key].age = 80;
                     }
+                    if (vm.filter.drivers[key].exp < vm.currentYear - vm.filter.drivers[key].age + 18) {
+                        vm.filter.drivers[key].exp = vm.currentYear - vm.filter.drivers[key].age + 18
+                    }
                 } else {
                     vm.filter.drivers[key].age = 18; // Set default value
                 }
