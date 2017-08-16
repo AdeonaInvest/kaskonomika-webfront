@@ -5,14 +5,27 @@
         .module('kaskonomika')
         .controller('carFinderController', carFinderController);
 
-    carFinderController.$inject = ['$rootScope','$scope','$http','$location','$timeout'];
+    carFinderController.$inject = ['$rootScope','$scope','$http','$location','$timeout','config'];
 
-    function carFinderController($rootScope,$scope,$http,$location,$timeout) {
+    function carFinderController($rootScope,$scope,$http,$location,$timeout,config) {
         
         ///////////////////
         var vm = this;
         vm.view = false; //Статус готовности отображения
 
+        $rootScope.allData = {
+            marks: '',
+            models: '',
+            year: '',
+            mods: '',
+            drivers: '',
+            old: '',
+            exp: ''
+        };
+
+        $rootScope.findData = {
+            step: 1
+        };
 
 
         $rootScope.$watch('pageLoaded',function(){
@@ -25,18 +38,6 @@
             checkInitFinder(); //Проверка модуля на синглтон
         }
         //////////////////
-        $rootScope.allData = {
-            marks: '',
-            models: '',
-            year: '',
-            mods: '',
-            drivers: '',
-            old: '',
-            exp: ''
-        };
-        $rootScope.findData = {
-            step: 1
-        };
 
 
         vm.getMarks = getMarks;
@@ -73,7 +74,7 @@
          * Получение списка марок автомобилей
          */
         function getMarks(){
-            $http.get('https://api.kaskonomika.ru/v1/dictionaries/marks')
+            $http.get(config.api + 'dictionaries/marks')
                 .then(function(response){
                     if (response.data.result) {
                         $rootScope.allData.marks = response.data.response;
@@ -88,7 +89,7 @@
             xlog('getYear');
             $rootScope.findData.is_open = false;
             vm.wait = true;
-            $http.get('https://api.kaskonomika.ru/v1/dictionaries/marks/' + mark)
+            $http.get(config.api + 'dictionaries/marks/' + mark)
                 .then(function(response){
                     if (response.data.result) {
                         $rootScope.allData.year = response.data.response;
@@ -107,7 +108,7 @@
             xlog('getModels');
             $rootScope.findData.is_open = false;
             vm.wait = true;
-            $http.get('https://api.kaskonomika.ru/v1/dictionaries/marks/' + $rootScope.findData.mark.mark + '/' + year)
+            $http.get(config.api + 'dictionaries/marks/' + $rootScope.findData.mark.mark + '/' + year)
                 .then(function(response){
                     if (response.data.result) {
                         $rootScope.allData.models = response.data.response;
@@ -126,7 +127,7 @@
             xlog('getModification');
             $rootScope.findData.is_open = false;
             vm.wait = true;
-            $http.get('https://api.kaskonomika.ru/v1/dictionaries/marks/' + $rootScope.findData.mark.mark + '/' + $rootScope.findData.year + '/' + model)
+            $http.get(config.api + 'dictionaries/marks/' + $rootScope.findData.mark.mark + '/' + $rootScope.findData.year + '/' + model)
                 .then(function(response){
                     if (response.data.result) {
                         $rootScope.allData.mods = response.data.response;
@@ -145,7 +146,7 @@
             xlog('getDrivers');
             $rootScope.findData.is_open = false;
             vm.wait = true;
-            $http.get('https://api.kaskonomika.ru/v1/dictionaries/drivers/options')
+            $http.get(config.api + 'dictionaries/drivers/options')
                 .then(function(response){
                     if (response.data.result) {
                         $rootScope.allData.drivers = response.data.response;
@@ -157,11 +158,9 @@
                 })
         }
 
-
-
-        $rootScope.$watch('findData.is_open', function(){
+        /*$rootScope.$watch('findData.is_open', function(){
             console.log('$rootScope.findData.is_open',$rootScope.findData.is_open)
-        })
+        });*/
 
         /**
          * Получение списка годов рождения
@@ -180,7 +179,7 @@
             })
 
         }
-
+        
         /**
          * Получение списка опыта
          */

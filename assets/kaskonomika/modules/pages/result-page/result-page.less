@@ -114,6 +114,7 @@
                 color: #dadada;
                 width: 95%;
                 margin: auto;
+                border-color: #e5e5e5;
 
               }
             }
@@ -168,6 +169,9 @@
                     span {
                       font: 14px/25px @fm-web;
                     }
+                    i {
+                      width: 12px;
+                    }
                   }
                   .active {
                     span {
@@ -176,13 +180,20 @@
                   }
                   .inactive {
                     span {
-                      color: rgba(0,0,0,.5);
+                      color: rgba(0,0,0,.2);
                     }
                   }
                 }
               }
             }
           }
+        }
+      }
+      .loader-area {
+        text-align: center;
+        margin: 50px;
+        i {
+          color: @color-blue;
         }
       }
       #result-page-sidebar {

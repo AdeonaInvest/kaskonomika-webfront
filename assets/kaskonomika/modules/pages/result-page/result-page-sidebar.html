@@ -1,17 +1,17 @@
 <div class="row block-area">
     <span class="block-title">Страховая сумма (руб.)</span>
-    <input type="text" class="form-control" ng-model="vm.filter.sum" placeholder="100 000"/>
+    <input type="text" class="form-control" ng-model="vm.filter.sum" placeholder="1,000,000"/>
 </div>
 <div class="block-area">
     <span class="block-title">Допущенные водители</span>
     <div class="driver-row animated bounceInRight" ng-repeat="(key,row) in vm.filter.drivers">
         <div class="col-lg-6 left-side">
             <span>Возраст:</span>
-            <input type="text" class="form-control" ng-model="vm.filter.drivers[key].age" placeholder="с 18 лет"/>
+            <input type="text" class="form-control" ng-model="vm.filter.drivers[key].age" ng-change="vm.checkValidAge(key)" placeholder="*полных лет"/>
         </div>
         <div class="col-lg-6 right-side">
             <span>Стаж с:</span>
-            <input type="text" class="form-control" ng-model="vm.filter.drivers[key].exp" placeholder="какого года?"/>
+            <input type="text" class="form-control" ng-disabled="!vm.filter.drivers[key].age" ng-change="vm.checkValidExp(key)" ng-model="vm.filter.drivers[key].exp" placeholder="*с какого года?"/>
         </div>
         <i class="fa fa-trash-o" ng-if="key != 0" ng-click="vm.removeDriver(key)"></i>
     </div>
