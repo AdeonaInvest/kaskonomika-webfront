@@ -10,25 +10,23 @@
     function resultPageController($rootScope,$scope,$routeParams,$location,$http,config,$timeout) {
         ///////////////////
         var vm = this;
-        vm.view = false; //Статус готовности отображения
+        vm.view = false; // View ready status
         vm.routeParams = $routeParams;
         vm.executeTimer = 1000; // Duration for $http POST execute
         vm.execute = []; // Execute results array
         vm.resultList = []; // Results list
-
 
         vm.addDriver = addDriver;
         vm.removeDriver = removeDriver;
         vm.checkValidAge = checkValidAge;
         vm.checkValidExp = checkValidExp;
 
+        //////////////////
         activate();
         function activate() {
             $scope.$on('cfpLoadingBar:completed',function(){
                 vm.view = true;
             });
-            getCurrentYear(); //Get current year : YYYY
-            checkRootScopeChange(); // Watch for change $rootScope.findData && vm.filter
 
             /**
              * Получение результатов расчетов из LocalStorage
@@ -49,18 +47,55 @@
                     }
                 }
             });
+
+            /**
+             * Хранение всех данных по фильтрам, поискам и со всеми параметрами
+             */
+            vm.filter = {
+                franchiseSilder: {
+                    min: 100,
+                    max: 50000,
+                    options: {
+                        floor: 0,
+                        ceil: 200000,
+                        step: 5000
+                    }
+                }, // Слайдер для франшизы
+                milageSlider: {
+                    min: 0,
+                    max: 10000,
+                    options: {
+                        floor: 0,
+                        ceil: 30000,
+                        step: 500
+                    }
+                }, // сладйер для пограничения пробега
+                drivers: [
+                    {
+                        age: '',
+                        exp: ''
+                    }
+                ], // Массив водителей
+                maxDriversCount: 5, // Орраничение количества водителей
+                sum: 1000000
+            };
+
+            getCurrentYear(); //Get current year : YYYY
         }
         //////////////////
 
         /**
+         * STEP 1
          * Get current year : YYYY
          */
         function getCurrentYear() {
             var date = new Date();
             vm.currentYear = date.getFullYear();
+            checkRootScopeChange(); // Watch for change $rootScope.findData && vm.filter
         }
 
         /**
+         * STEP 2
          * Watch for change $rootScope.findData && vm.filter
          */
         function checkRootScopeChange() {
@@ -89,38 +124,7 @@
         }
 
         /**
-         * Хранение всех данных по фильтрам, поискам и со всеми параметрами
-         */
-        vm.filter = {
-            franchiseSilder: {
-                min: 100,
-                max: 50000,
-                options: {
-                    floor: 0,
-                    ceil: 200000,
-                    step: 5000
-                }
-            }, // Слайдер для франшизы
-            milageSlider: {
-                min: 0,
-                max: 10000,
-                options: {
-                    floor: 0,
-                    ceil: 30000,
-                    step: 500
-                }
-            }, // сладйер для пограничения пробега
-            drivers: [
-                {
-                    age: '',
-                    exp: ''
-                }
-            ], // Массив водителей
-            maxDriversCount: 5, // Орраничение количества водителей
-            sum: 1000000
-        };
-
-        /**
+         * STEP 3
          * Запрос на получение результатов списка страховок по заданным параметрам
          */
         function getExecute() {
@@ -174,6 +178,7 @@
         }
 
         /**
+         * STEP 4
          * Get results from executions list
          */
         function getResults(execute) {
@@ -192,7 +197,6 @@
                     })
             });
         }
-
 
         /**
          * Добавление водителя в список допущенных для вождения
