@@ -44,11 +44,11 @@
                 controller: 'privatePolicyController',
                 controllerAs: 'vm'
             })
-            .when ('/contacts', {
+            /*.when ('/contacts', {
                 templateUrl: '/pages/contacts/contacts.html',
                 controller: 'contactsController',
                 controllerAs: 'vm'
-            })
+            })*/
             .when ('/result-page', {
                 templateUrl: '/pages/result-page/result-page.html',
                 controller: 'resultPageController',
