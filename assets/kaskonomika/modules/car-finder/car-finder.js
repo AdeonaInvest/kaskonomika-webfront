@@ -86,7 +86,6 @@
          * Получение списка годов выпуска автомобилей
          */
         function getYear(mark){
-            xlog('getYear');
             $rootScope.findData.is_open = false;
             vm.wait = true;
             $http.get(config.api + 'dictionaries/marks/' + mark)
@@ -94,7 +93,6 @@
                     if (response.data.result) {
                         $rootScope.allData.year = response.data.response;
                         $rootScope.findData.step = 2;
-                        xlog('getYear1');
                         $rootScope.findData.is_open = true;
                         vm.wait = false;
                     }
@@ -105,7 +103,6 @@
          * Получение списка моделей автомобилей
          */
         function getModels(year) {
-            xlog('getModels');
             $rootScope.findData.is_open = false;
             vm.wait = true;
             $http.get(config.api + 'dictionaries/marks/' + $rootScope.findData.mark.mark + '/' + year)
@@ -113,7 +110,6 @@
                     if (response.data.result) {
                         $rootScope.allData.models = response.data.response;
                         $rootScope.findData.step = 3;
-                        xlog('getModels1');
                         $rootScope.findData.is_open = true;
                         vm.wait = false;
                     }
@@ -124,7 +120,6 @@
          * Получение списка модификаций автомобилей
          */
         function getModification(model){
-            xlog('getModification');
             $rootScope.findData.is_open = false;
             vm.wait = true;
             $http.get(config.api + 'dictionaries/marks/' + $rootScope.findData.mark.mark + '/' + $rootScope.findData.year + '/' + model)
@@ -132,7 +127,6 @@
                     if (response.data.result) {
                         $rootScope.allData.mods = response.data.response;
                         $rootScope.findData.step = 4;
-                        xlog('getModification1');
                         $rootScope.findData.is_open = true;
                         vm.wait = false;
                     }
@@ -143,7 +137,6 @@
          * Получение списка модификаций типов водителей
          */
         function getDrivers(){
-            xlog('getDrivers');
             $rootScope.findData.is_open = false;
             vm.wait = true;
             $http.get(config.api + 'dictionaries/drivers/options')
@@ -151,7 +144,6 @@
                     if (response.data.result) {
                         $rootScope.allData.drivers = response.data.response;
                         $rootScope.findData.step = 5;
-                        xlog('getDrivers1');
                         $rootScope.findData.is_open = true;
                         vm.wait = false;
                     }
@@ -166,7 +158,6 @@
          * Получение списка годов рождения
          */
         function getAges(){
-            xlog('getAges');
             $rootScope.findData.is_open = false;
             $timeout(function(){
                 $rootScope.allData.age = [];
@@ -174,7 +165,6 @@
                     $rootScope.allData.age.push(i);
                 }
                 $rootScope.findData.step = 6;
-                xlog('getAges1');
                 $rootScope.findData.is_open = true;
             })
 
@@ -184,7 +174,6 @@
          * Получение списка опыта
          */
         function getExp(year){
-            xlog('getExp');
             $rootScope.findData.is_open = false;
             $timeout(function(){
                 $rootScope.allData.exp = [];
@@ -193,7 +182,6 @@
                     $rootScope.allData.exp.push(i);
                 }
                 $rootScope.findData.step = 7;
-                xlog('getExp1');
                 $rootScope.findData.is_open = true;
             })
 
@@ -203,7 +191,6 @@
          * Финальный шаг, после которого уходим на перерасчет
          */
         function finalStep() {
-            xlog('finalStep');
             $rootScope.findData.step = 8;
             $rootScope.findData.is_open = false;
             $rootScope.findData.ready = true;
@@ -215,7 +202,6 @@
          * @param step - Int - на какой шаг перейти после очистки
          */
         function resetFinder(data, step) {
-            xlog('resetFinder');
             if (data.mark) $rootScope.findData.mark = undefined;
             if (data.year) $rootScope.findData.year = undefined;
             if (data.model) $rootScope.findData.model = undefined;
@@ -227,8 +213,6 @@
             $rootScope.findData.step = step;
             $rootScope.findData.is_open = true;
             $rootScope.findData.ready = false;
-
-            //$rootScope.$digest; // Принудительное обновление данных фильтра
         }
 
         /**
@@ -300,14 +284,7 @@
          */
         function disableBtnResult(){
             var a = $rootScope.findData;
-            console.log('a',a);
             if (a.mark!='' && a.year!='' && a.model!='' && a.mod!='' && a.driver!='' && a.age!='' && a.exp!='') return true
-        }
-
-        vm.hidePopover = hidePopover;
-        function hidePopover() {
-            xlog('hidePopover')
-            $rootScope.findData.is_open = false
         }
     }
 })();

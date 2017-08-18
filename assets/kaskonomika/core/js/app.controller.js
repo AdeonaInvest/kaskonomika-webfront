@@ -5,9 +5,9 @@
         .module('kaskonomika')
         .controller('appController', appController);
 
-    appController.$inject = ['$rootScope','$scope'];
+    appController.$inject = ['$rootScope','$scope','$location'];
 
-    function appController($rootScope,$scope) {
+    function appController($rootScope,$scope,$location) {
         
         $rootScope.calcCount = [];
         
@@ -17,7 +17,7 @@
 
         function activate() {
             clearScopeCaсhe();
-            waitContentIncludes();
+            waitContentIncludes(); // Wait downloading content
         }
 
         /**
@@ -26,11 +26,16 @@
         function clearScopeCaсhe(){
             $scope.$on("$routeChangeSuccess", function() {
                 xlog('Очищаю scope cache');
-                $rootScope.carFinder = false; //Обнуление данных поиска авто
-                $rootScope.showCalc = false; //Обновление отображения поиска в хедере
+                $rootScope.carFinder = false; // Обнуление данных поиска авто
+                $rootScope.showCalc = false; // Обновление отображения поиска в хедере
+
+                $rootScope.currentUlr = $location.url(); // Create note for current URL
             });
         }
-        
+
+        /**
+         * Wait downloading content
+         */
         function waitContentIncludes() {
             $rootScope.$on('$includeContentLoaded',function(){
                 $rootScope.pageLoaded = true;

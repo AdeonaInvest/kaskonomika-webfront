@@ -48,7 +48,6 @@
         ]; //Пункты меню оверлея
         vm.showCalc = $rootScope.showCalc;
 
-
         ///////////////////
         activate();
         function activate() {
