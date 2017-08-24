@@ -30,7 +30,12 @@
                         path: '/pso/list'
                     },
                     {
-                        name: 'Поиск заявка',
+                        name: 'Создать заявку',
+                        icon: 'fa-pencil',
+                        path: '/pso/create'
+                    },
+                    {
+                        name: 'Поиск заявок',
                         icon: 'fa-search',
                         path: '/pso/search'
                     }

@@ -32,6 +32,15 @@
                     icon: 'fa-car'}
             },
             {
+                link: '/pso/create',
+                name: 'Создание заявки ПСО',
+                icon: 'fa-pencil',
+                parent:{
+                    link: '/pso/list',
+                    name: 'ПСО',
+                    icon: 'fa-car'}
+            },
+            {
                 link: '/pso/search',
                 name: 'Поиск заявки псо',
                 icon: 'fa-search',
