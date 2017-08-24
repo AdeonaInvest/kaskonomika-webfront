@@ -40,14 +40,13 @@
             {
                 text: 'Политика конфиденциальности',
                 url: '/privacy_policy'
-            },
+            }/*,
             {
                 text: 'Контакты',
                 url: '/contacts'
-            }
+            }*/
         ]; //Пункты меню оверлея
         vm.showCalc = $rootScope.showCalc;
-
 
         ///////////////////
         activate();

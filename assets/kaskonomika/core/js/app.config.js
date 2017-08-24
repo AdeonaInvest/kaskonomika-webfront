@@ -19,7 +19,8 @@
             theme: 'default', //Тема сайта
             mainUrl: window.location.protocol+ '//' + window.location.host,
             copy: 'Каскономика &copy &year',
-            debug: window.location.host == 'kaskonomika.local:9360'
+            debug: window.location.host == 'kaskonomika.local:9360',
+            api: 'https://api.kaskonomika.ru/v1/'
         })
         .config(config);
 

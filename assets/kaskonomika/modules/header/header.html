@@ -15,7 +15,7 @@
         </div>
         <div class="main-menu pull-left col-lg-5 hidden-md hidden-sm hidden-xs">
             <ul class="list-inline animated fadeInDownBig">
-                <li ng-repeat="item in vm.mainMenu track by $index">
+                <li ng-repeat="item in vm.mainMenu track by $index" ng-class="{'active': currentUlr === item.url}">
                     <a href="{{::item.url}}">{{::item.text}}</a>
                 </li>
             </ul>
@@ -29,7 +29,11 @@
                          ng-click="vm.openUserMenu = !vm.openUserMenu">
                         <i class="fa fa-user fa-2x"></i>
                         <!-- START : Всплывающее меню личного кабинета -->
-                        <ng-include src="'/header/header-user-menu.html'" id="header-user-menu" class="dashboard-menu" ng-if="vm.openUserMenu"></ng-include>
+                        <ng-include src="'/header/header-user-menu.html'"
+                                    id="header-user-menu"
+                                    class="dashboard-menu animated"
+                                    ng-if="vm.view"
+                                    ng-class="{'bounceOutUp':!vm.openUserMenu,'bounceInDown':vm.openUserMenu}"></ng-include>
                         <!--END : Всплывающее меню личного кабинета -->
                     </div>
                 </li>
