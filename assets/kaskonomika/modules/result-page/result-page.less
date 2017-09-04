@@ -329,6 +329,31 @@
               }
             }
           }
+          .car-price-area {
+            .big-title {
+              font: 16px/16px @fm-bold;
+              color: #000;
+              display: block;
+            }
+            .rzslider {
+              @pointer-size: 14px;
+              .rz-pointer {
+                width: @pointer-size;
+                height: @pointer-size;
+                top: -5px;
+                &:after {
+                  content: none;
+                }
+                &:focus {
+                  outline: none;
+                }
+                &:hover {
+                  background: @color-blue-hover;
+                }
+
+              }
+            }
+          }
           .ng-leave {
             animation-duration: 0s;
           }

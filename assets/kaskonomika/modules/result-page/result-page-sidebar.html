@@ -1,9 +1,10 @@
 <div class="row block-area">
     <span class="block-title">Страховая сумма (руб.)</span>
-    <div class="driver-row animated bounceInRight" ng-repeat="(key,row) in vm.filter.drivers">
-        <div class="col-lg-12 p-zero">
-            <span>от (x-x*0,15) до (x+x*0,3) руб.</span>
-            <input type="text" class="form-control" ng-model="vm.filter.sum" placeholder="1,000,000"/>
+    <div class="checkbox-area car-price-area animated bounceInRight" ng-if="vm.filter.priceSlider.val">
+            <!--<span>от (x-x*0,15) до (x+x*0,3) руб.</span>
+            <input type="text" class="form-control" ng-model="vm.filter.sum" placeholder="1,000,000"/>-->
+            <span class="big-title">{{vm.filter.priceSlider.val | number:0}} <i class="fa fa-rub"></i></span>
+            <rzslider rz-slider-model="vm.filter.priceSlider.val" rz-slider-options="vm.filter.priceSlider.options"></rzslider>
         </div>
     </div>
 </div>
@@ -35,15 +36,15 @@
         <label class="checkbox-check checkbox-check-title" ng-click="vm.filter.franchise = !vm.filter.franchise">Франшиза</label>
     </div>
     <div class="show-slider-franchise animated" ng-show="vm.filter.franchise" ng-class="{'bounceIn':vm.filter.franchise}">
-        <span class="big-title">от {{vm.filter.franchiseSilder.min}} до {{vm.filter.franchiseSilder.max}} <i class="fa fa-rub"></i></span>
-        <rzslider rz-slider-model="vm.filter.franchiseSilder.min" rz-slider-high="vm.filter.franchiseSilder.max" rz-slider-options="vm.filter.franchiseSilder.options"></rzslider>
+        <span class="big-title">от {{vm.filter.franchiseSlider.min}} до {{vm.filter.franchiseSlider.max}} <i class="fa fa-rub"></i></span>
+        <rzslider rz-slider-model="vm.filter.franchiseSlider.min" rz-slider-high="vm.filter.franchiseSlider.max" rz-slider-options="vm.filter.franchiseSlider.options"></rzslider>
     </div>
     <div class="checkbox-area" ng-class="{'active':vm.filter.mileage_limit}">
         <input class="checkbox-input" type="checkbox" ng-model="vm.filter.mileage_limit">
         <label class="checkbox-check checkbox-check-title" ng-click="vm.filter.mileage_limit = !vm.filter.mileage_limit">Ограничение пробега</label>
     </div>
     <div class="show-slider-franchise animated" ng-show="vm.filter.mileage_limit" ng-class="{'bounceIn':vm.filter.mileage_limit}">
-        <span class="big-title">от {{vm.filter.milageSlider.min}} до {{vm.filter.milageSlider.max}} км.</i></span>
+        <span class="big-title">от {{vm.filter.milageSlider.min}} до {{vm.filter.milageSlider.max}} км.</span>
         <rzslider rz-slider-model="vm.filter.milageSlider.min" rz-slider-high="vm.filter.milageSlider.max" rz-slider-options="vm.filter.milageSlider.options"></rzslider>
     </div>
     <div class="checkbox-area" ng-class="{'active':vm.filter.evacuation_ss}">

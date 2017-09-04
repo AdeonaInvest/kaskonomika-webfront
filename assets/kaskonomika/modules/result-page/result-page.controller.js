@@ -29,7 +29,7 @@
              * Хранение всех данных по фильтрам, поискам и со всеми параметрами
              */
             vm.filter = {
-                franchiseSilder: {
+                franchiseSlider: {
                     min: 100,
                     max: 50000,
                     options: {
@@ -47,6 +47,16 @@
                         step: 500
                     }
                 }, // сладйер для пограничения пробега
+                /*priceSlider: {
+                    min: 100,
+                    val: 150,
+                    max: 200,
+                    options: {
+                        floor: 100,
+                        ceil: 200,
+                        step: 10
+                    }
+                },*/
                 drivers: [
                     {
                         age: '',
@@ -79,7 +89,6 @@
                     } else {
                         vm.haveResult = false; // For singleton
                         $location.url('/'); // -> Relocate to index
-
                     }
                 }
             });
@@ -87,7 +96,7 @@
         //////////////////
 
         /**
-         * STEP 1
+         * STEP 0
          * Get current year : YYYY
          */
         function getCurrentYear() {
@@ -97,7 +106,7 @@
         }
 
         /**
-         * STEP 1.1
+         * STEP 1
          * Get current price : YYYY
          */
         function getCarPrice() {
@@ -108,14 +117,38 @@
             $http.post(config.api + 'dictionaries/car/'+ $rootScope.findData.mod.id+'/price', data)
                 .then(function(response){
                     if (response.data.result) {
-                        vm.filter.sum = response.data.response.price_avg || 1300000;
+                        vm.filter.sum = response.data.response.price_avg || 1300000; // Current price for this car
+                        vm.filter.sumAvg = response.data.response.price_avg || 1300000; // Average price for this car
+                        vm.filter.priceSlider = {
+                            min: (response.data.response.price_avg - response.data.response.price_avg * 0.15) || 850000,
+                            val: response.data.response.price_avg || 1000000,
+                            max: (response.data.response.price_avg + response.data.response.price_avg * 0.15) || 1150000,
+                            options: {
+                                floor: (response.data.response.price_avg - response.data.response.price_avg * 0.15) || 850000,
+                                ceil: (response.data.response.price_avg + response.data.response.price_avg * 0.15) || 1150000,
+                                step: 5000
+                            }
+                        };
+
+                        checkCarPrice();
                         checkRootScopeChange(); // Watch for change $rootScope.findData && vm.filter
                     } else {
                         console.log('REJECT -> getCarCost',response)
                     }
-
-
                 })
+        }
+
+        /**
+         * STEP 1.1
+         * Check valid price input
+         */
+        function checkCarPrice() {
+            $scope.$watch('vm.filter.sum',function(newValue, oldValue){
+                if ((newValue < (vm.filter.sumAvg - vm.filter.sumAvg * 0.15)) || (newValue > (vm.filter.sumAvg + vm.filter.sumAvg*0.15))) {
+                    vm.filter.sum = oldValue;
+                    console.log('oldValue',oldValue,'newValue',newValue);
+                }
+            })
 
         }
 
@@ -162,7 +195,7 @@
                     model_id: $rootScope.findData.model.model,
                     mark_model_id: $rootScope.findData.mod.id,
                     drivers_option_id: $rootScope.findData.driver.id,
-                    sum: parseInt(vm.filter.sum),
+                    sum: vm.filter.priceSlider.val,
                     promocode: '',
                     repair_glass: false,
                     repair_body: false,
@@ -171,8 +204,8 @@
                     trans_taxi: false,
                     entity: false,
                     franchises_type_id: vm.filter.franchise ? '2' : null,
-                    minimal_franchise_money: vm.filter.franchise ? vm.filter.franchiseSilder.min : null,
-                    franchise_money: vm.filter.franchise ? vm.filter.franchiseSilder.max : null,
+                    minimal_franchise_money: vm.filter.franchise ? vm.filter.franchiseSlider.min : null,
+                    franchise_money: vm.filter.franchise ? vm.filter.franchiseSlider.max : null,
                     minimal_mileage: vm.filter.mileage_limit ? vm.filter.milageSlider.min : null,
                     mileage: vm.filter.mileage_limit ? vm.filter.milageSlider.max : null,
                     age: vm.filter.drivers[0].age,
@@ -196,8 +229,6 @@
                         } else {
                             console.log('REJECT -> getExecute',response)
                         }
-
-
                     })
             }
         }
