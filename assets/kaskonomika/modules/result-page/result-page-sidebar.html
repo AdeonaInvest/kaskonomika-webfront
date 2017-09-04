@@ -1,6 +1,11 @@
 <div class="row block-area">
     <span class="block-title">Страховая сумма (руб.)</span>
-    <input type="text" class="form-control" ng-model="vm.filter.sum" placeholder="1,000,000"/>
+    <div class="driver-row animated bounceInRight" ng-repeat="(key,row) in vm.filter.drivers">
+        <div class="col-lg-12">
+            <span>от (x-x*0,15) до (x+x*0,3) руб.:</span>
+            <input type="text" class="form-control" ng-model="vm.filter.sum" placeholder="1,000,000"/>
+        </div>
+    </div>
 </div>
 <div class="block-area">
     <span class="block-title">Допущенные водители</span>

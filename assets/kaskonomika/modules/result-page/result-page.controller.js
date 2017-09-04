@@ -24,29 +24,6 @@
         //////////////////
         activate();
         function activate() {
-            $scope.$on('cfpLoadingBar:completed',function(){
-                vm.view = true;
-            });
-
-            /**
-             * Получение результатов расчетов из LocalStorage
-             */
-            $scope.$on('$includeContentLoaded',function(){
-                if (!vm.haveResult && $rootScope.findData) { // For singleton
-                    if (localStorage.getItem('findData')) {
-                        $rootScope.findData = JSON.parse(localStorage.getItem('findData'));// -> All data for search
-                        $rootScope.allData = JSON.parse(localStorage.getItem('allData')); // -> All data from server
-                        $rootScope.findData.step = 9; // Set step for stop car-finder
-                        vm.filter.drivers[0].age = $rootScope.findData.age;
-                        vm.filter.drivers[0].exp = $rootScope.findData.exp;
-                        vm.haveResult = true; // For singleton
-                    } else {
-                        vm.haveResult = false; // For singleton
-                        $location.url('/'); // -> Relocate to index
-
-                    }
-                }
-            });
 
             /**
              * Хранение всех данных по фильтрам, поискам и со всеми параметрами
@@ -80,7 +57,32 @@
                 sum: 1000000
             };
 
-            getCurrentYear(); //Get current year : YYYY
+
+            $scope.$on('cfpLoadingBar:completed',function(){
+                vm.view = true;
+            });
+
+            /**
+             * Получение результатов расчетов из LocalStorage
+             */
+            $scope.$on('$includeContentLoaded',function(){
+                if (!vm.haveResult && $rootScope.findData) { // For singleton
+                    if (localStorage.getItem('findData')) {
+                        $rootScope.findData = JSON.parse(localStorage.getItem('findData'));// -> All data for search
+                        $rootScope.allData = JSON.parse(localStorage.getItem('allData')); // -> All data from server
+                        $rootScope.findData.step = 9; // Set step for stop car-finder
+                        vm.filter.drivers[0].age = $rootScope.findData.age;
+                        vm.filter.drivers[0].exp = $rootScope.findData.exp;
+                        vm.haveResult = true; // For singleton
+                        console.log('$rootScope.findData',$rootScope.findData,'$rootScope.allData',$rootScope.allData)
+                        getCurrentYear(); //Get current year : YYYY
+                    } else {
+                        vm.haveResult = false; // For singleton
+                        $location.url('/'); // -> Relocate to index
+
+                    }
+                }
+            });
         }
         //////////////////
 
@@ -91,7 +93,30 @@
         function getCurrentYear() {
             var date = new Date();
             vm.currentYear = date.getFullYear();
-            checkRootScopeChange(); // Watch for change $rootScope.findData && vm.filter
+            getCarPrice();
+        }
+
+        /**
+         * STEP 1.1
+         * Get current price : YYYY
+         */
+        function getCarPrice() {
+            var data = {
+              year: vm.routeParams.year,
+                is_used: 0
+            };
+            $http.post(config.api + 'dictionaries/car/'+ $rootScope.findData.mod.id+'/price', data)
+                .then(function(response){
+                    if (response.data.result) {
+                        vm.filter.sum = response.data.response.price_avg || 1300000;
+                        checkRootScopeChange(); // Watch for change $rootScope.findData && vm.filter
+                    } else {
+                        console.log('REJECT -> getCarCost',response)
+                    }
+
+
+                })
+
         }
 
         /**
