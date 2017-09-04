@@ -29,6 +29,11 @@
                 controller: 'pagePsoItemController',
                 controllerAs: 'vm'
             })
+            .when ('/pso/create', {
+                templateUrl: '/pso/create/pso-create.html',
+                controller: 'pagePsoCreateController',
+                controllerAs: 'vm'
+            })
             .when ('/pso/search', {
                 templateUrl: '/pso/search/pso-search.html',
                 controller: 'pagePsoSearchController',
