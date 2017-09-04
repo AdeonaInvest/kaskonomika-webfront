@@ -117,8 +117,6 @@
             $http.post(config.api + 'dictionaries/car/'+ $rootScope.findData.mod.id+'/price', data)
                 .then(function(response){
                     if (response.data.result) {
-                        vm.filter.sum = response.data.response.price_avg || 1300000; // Current price for this car
-                        vm.filter.sumAvg = response.data.response.price_avg || 1300000; // Average price for this car
                         vm.filter.priceSlider = {
                             min: (response.data.response.price_avg - response.data.response.price_avg * 0.15) || 850000,
                             val: response.data.response.price_avg || 1000000,
@@ -129,27 +127,11 @@
                                 step: 5000
                             }
                         };
-
-                        checkCarPrice();
                         checkRootScopeChange(); // Watch for change $rootScope.findData && vm.filter
                     } else {
                         console.log('REJECT -> getCarCost',response)
                     }
                 })
-        }
-
-        /**
-         * STEP 1.1
-         * Check valid price input
-         */
-        function checkCarPrice() {
-            $scope.$watch('vm.filter.sum',function(newValue, oldValue){
-                if ((newValue < (vm.filter.sumAvg - vm.filter.sumAvg * 0.15)) || (newValue > (vm.filter.sumAvg + vm.filter.sumAvg*0.15))) {
-                    vm.filter.sum = oldValue;
-                    console.log('oldValue',oldValue,'newValue',newValue);
-                }
-            })
-
         }
 
         /**
