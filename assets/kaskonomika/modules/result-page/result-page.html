@@ -9,6 +9,7 @@
             <div class="row result-area">
                 <div class="col-lg-9 results-list">
                     <ng-include src="'/result-page/result-page-item.html'" id="result-page-list" ng-if="vm.resultList.length > 0"></ng-include>
+                    <ng-include src="'/result-page/result-page-item-default.html'" ng-if="vm.resultList.length > 0"></ng-include>
                     <div class="loader-area" ng-if="vm.resultCount != 0">
                         <i class="fa fa-4x fa-refresh fa-spin"></i>
                     </div>

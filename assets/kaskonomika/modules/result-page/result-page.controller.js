@@ -5,9 +5,9 @@
         .module('kaskonomika')
         .controller('resultPageController', resultPageController);
 
-    resultPageController.$inject = ['$rootScope','$scope','$routeParams','$location','$http','config','$timeout'];
+    resultPageController.$inject = ['$rootScope', '$scope', '$routeParams', '$location', '$http', 'config', '$timeout'];
 
-    function resultPageController($rootScope,$scope,$routeParams,$location,$http,config,$timeout) {
+    function resultPageController($rootScope, $scope, $routeParams, $location, $http, config, $timeout) {
         ///////////////////
         var vm = this;
         vm.view = false; // View ready status
@@ -15,11 +15,15 @@
         vm.executeTimer = 1000; // Duration for $http POST execute
         vm.execute = []; // Execute results array
         vm.resultList = []; // Results list
+        vm.userPhone = { // default popover Settings
+            popover: false
+        };
 
         vm.addDriver = addDriver;
         vm.removeDriver = removeDriver;
         vm.checkValidAge = checkValidAge;
         vm.checkValidExp = checkValidExp;
+        vm.switchDefaultPopover = switchDefaultPopover;
 
         //////////////////
         activate();
@@ -48,15 +52,15 @@
                     }
                 }, // сладйер для пограничения пробега
                 /*priceSlider: {
-                    min: 100,
-                    val: 150,
-                    max: 200,
-                    options: {
-                        floor: 100,
-                        ceil: 200,
-                        step: 10
-                    }
-                },*/
+                 min: 100,
+                 val: 150,
+                 max: 200,
+                 options: {
+                 floor: 100,
+                 ceil: 200,
+                 step: 10
+                 }
+                 },*/
                 drivers: [
                     {
                         age: '',
@@ -68,14 +72,14 @@
             };
 
 
-            $scope.$on('cfpLoadingBar:completed',function(){
+            $scope.$on('cfpLoadingBar:completed', function () {
                 vm.view = true;
             });
 
             /**
              * Получение результатов расчетов из LocalStorage
              */
-            $scope.$on('$includeContentLoaded',function(){
+            $scope.$on('$includeContentLoaded', function () {
                 if (!vm.haveResult && $rootScope.findData) { // For singleton
                     if (localStorage.getItem('findData')) {
                         $rootScope.findData = JSON.parse(localStorage.getItem('findData'));// -> All data for search
@@ -84,7 +88,7 @@
                         vm.filter.drivers[0].age = $rootScope.findData.age;
                         vm.filter.drivers[0].exp = $rootScope.findData.exp;
                         vm.haveResult = true; // For singleton
-                        console.log('$rootScope.findData',$rootScope.findData,'$rootScope.allData',$rootScope.allData)
+                        console.log('$rootScope.findData', $rootScope.findData, '$rootScope.allData', $rootScope.allData)
                         getCurrentYear(); //Get current year : YYYY
                     } else {
                         vm.haveResult = false; // For singleton
@@ -93,6 +97,7 @@
                 }
             });
         }
+
         //////////////////
 
         /**
@@ -111,11 +116,11 @@
          */
         function getCarPrice() {
             var data = {
-              year: vm.routeParams.year,
+                year: vm.routeParams.year,
                 is_used: 0
             };
-            $http.post(config.api + 'dictionaries/car/'+ $rootScope.findData.mod.id+'/price', data)
-                .then(function(response){
+            $http.post(config.api + 'dictionaries/car/' + $rootScope.findData.mod.id + '/price', data)
+                .then(function (response) {
                     if (response.data.result) {
                         vm.filter.priceSlider = {
                             min: (response.data.response.price_avg - response.data.response.price_avg * 0.15) || 850000,
@@ -129,7 +134,7 @@
                         };
                         checkRootScopeChange(); // Watch for change $rootScope.findData && vm.filter
                     } else {
-                        console.log('REJECT -> getCarCost',response)
+                        console.log('REJECT -> getCarCost', response)
                     }
                 })
         }
@@ -141,24 +146,24 @@
         function checkRootScopeChange() {
 
             // Watch for change $rootScope.findData
-            $scope.$watch('$rootScope.findData', function(){
+            $scope.$watch('$rootScope.findData', function () {
                 executeTimeout()
-            },true);
+            }, true);
 
             //Watch for change $rootScope.findData && vm.filter
-            $scope.$watch('vm.filter', function(){
+            $scope.$watch('vm.filter', function () {
                 executeTimeout()
-            },true);
+            }, true);
 
             // Timer for call $http POST execute
             function executeTimeout() {
                 $timeout.cancel(vm.executeTimeout); // Cancel past timeout
                 // Create new timeout
-                vm.executeTimeout = $timeout(function(){
+                vm.executeTimeout = $timeout(function () {
                     console.log('Данные в фильтре изменились', vm.filter);
                     console.log('$rootScope.findData changed', $rootScope.findData);
                     getExecute(); // Запрос на получение результатов списка страховок по заданным параметрам
-                },vm.executeTimer)
+                }, vm.executeTimer)
             }
 
         }
@@ -171,7 +176,7 @@
             // If no 'stop' execute
             if (!vm.stopExecute) {
                 var data = {
-                    token:'',
+                    token: '',
                     mark_id: $rootScope.findData.mark.mark,
                     year: $rootScope.findData.year,
                     model_id: $rootScope.findData.model.model,
@@ -202,14 +207,14 @@
                     "drivers[4]['experience_start_year']": vm.filter.drivers[4] ? vm.filter.drivers[4].exp : null
                 };
                 $http.post(config.api + 'calculations/execute', data)
-                    .then(function(response){
+                    .then(function (response) {
                         if (response.data.result) {
-                            console.log('response',response);
+                            console.log('response', response);
                             vm.execute = response.data.response.outer_ids;
                             vm.resultCount = vm.execute.length; // New results counter
                             getResults(vm.execute); //Get results from executions list
                         } else {
-                            console.log('REJECT -> getExecute',response)
+                            console.log('REJECT -> getExecute', response)
                         }
                     })
             }
@@ -221,15 +226,15 @@
          */
         function getResults(execute) {
             vm.resultList = [];
-            execute.forEach(function(f){
+            execute.forEach(function (f) {
                 var data = {
                     token: '',
                     id: f
                 };
                 $http.post(config.api + 'calculations/result', data)
-                    .then(function(r){
+                    .then(function (r) {
                         vm.resultCount--; // New results counter
-                        if (r.data.result){
+                        if (r.data.result) {
                             vm.resultList.push(r.data.response)
                         }
                     })
@@ -244,13 +249,13 @@
                 // Анимирование нажатия кнопки "добавить водителя"
                 if (!vm.addDriverClicked) {
                     vm.addDriverClicked = true;
-                    setTimeout(function(){
+                    setTimeout(function () {
                         vm.addDriverClicked = false;
                         $scope.$digest();
-                    },1000)
+                    }, 1000)
                 }
                 // добавление пустого водителя в массив
-                vm.filter.drivers.push({age:'',exp:''});
+                vm.filter.drivers.push({age: '', exp: ''});
             }
         }
 
@@ -259,7 +264,7 @@
          * @param key - порядковый номер водителя в vm.filter.drivers
          */
         function removeDriver(key) {
-            vm.filter.drivers.splice(key,1);
+            vm.filter.drivers.splice(key, 1);
         }
 
         /**
@@ -268,7 +273,7 @@
          */
         function checkValidAge(key) {
             if (vm.filter.drivers[key].age.length > 1) { // Only start input anything
-                if (vm.filter.drivers[key].age / 2 ) { // If value is number
+                if (vm.filter.drivers[key].age / 2) { // If value is number
                     if (vm.filter.drivers[key].age < 18) {
                         vm.filter.drivers[key].age = 18;
                         vm.filter.drivers[key].exp = vm.currentYear;
@@ -309,6 +314,37 @@
             }
         }
 
+        /**
+         * Open / Close default popover
+         */
+        function switchDefaultPopover(){
+            if (!vm.userPhone.popover) {
+                vm.userPhone.popover = true;
+            } else {
+                if (vm.userPhone.length > 0) {
+                    vm.userPhone.error = false;
+                    var data = {
+                        region: 'Москва и область',
+                        vendor: $rootScope.findData.mark.mark,
+                        year: $rootScope.findData.year,
+                        model: $rootScope.findData.model.model,
+                        mod: $rootScope.findData.mod.id,
+                        drivers: $rootScope.findData.driver.id,
+                        age: vm.filter.drivers[0].age,
+                        experience: vm.filter.drivers[0].exp,
+                        contact: vm.userPhone.phone
+                    };
+                    $http.post(config.api + 'calculations/site_demand',data)
+                        .then(function(){
+
+                        })
+                } else {
+                    vm.userPhone.error = true;
+
+                }
+
+            }
+        }
 
 
     }
