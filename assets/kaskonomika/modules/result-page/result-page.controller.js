@@ -321,7 +321,7 @@
             if (!vm.userPhone.popover) {
                 vm.userPhone.popover = true;
             } else {
-                if (vm.userPhone.length > 0) {
+                if (vm.userPhone.phone.length > 0) {
                     vm.userPhone.error = false;
                     var data = {
                         region: 'Москва и область',
@@ -335,14 +335,14 @@
                         contact: vm.userPhone.phone
                     };
                     $http.post(config.api + 'calculations/site_demand',data)
-                        .then(function(){
-
+                        .then(function(response){
+                            if (response.data.result) {
+                                vm.userPhone.success = true;
+                            }
                         })
                 } else {
                     vm.userPhone.error = true;
-
                 }
-
             }
         }
 
