@@ -1,10 +1,10 @@
 <div class="item animated bounceIn" ng-repeat="row in vm.resultList track by $index" ng-if="row.is_error != 1">
     <div class="row top-area">
-        <div class="col-lg-2 col">
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
             <img class="issure-logo" ng-src="{{row.insurance_company.logotype.path}}"/>
         </div>
-        <div class="col-lg-8 col">
-            <div class="col-lg-8 col p-top-n">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col">
+            <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6 col p-top-n">
                 <div class="item-title-area">
                     <span>{{row.calculations_product_name}}</span>
                 </div>
@@ -21,13 +21,13 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col p-top-n">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 col p-top-n">
                 <h3 class="issure-price">{{row.total_sum | number: 0}} <i class="fa fa-rub"></i>*<br/>
                     <span class="cost-item-type">Предварительная</br>цена</span>
                 </h3>
             </div>
         </div>
-        <div class="col-lg-2 col">
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 col">
             <button class="issue-btn">Оформить</button>
         </div>
         <hr/>

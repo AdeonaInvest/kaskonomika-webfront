@@ -10,7 +10,8 @@
     function appController($rootScope,$scope,$location) {
         
         $rootScope.calcCount = [];
-        
+        $rootScope.validateInput = validateInput;
+
         activate();
 
         ////////////////
@@ -40,6 +41,23 @@
             $rootScope.$on('$includeContentLoaded',function(){
                 $rootScope.pageLoaded = true;
             });
+        }
+
+        function validateInput(type, val) {
+            if (type == 'phone') {
+                var length = val.length;
+                if (length < 1)
+                switch (length) {
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+
+                }
+                console.log('phone', val);
+            }
         }
 
     }

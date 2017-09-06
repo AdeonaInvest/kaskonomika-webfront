@@ -11,7 +11,8 @@
             'ksSwiper',
             'angular-loading-bar',
             'cfp.loadingBar',
-            'rzModule'
+            'rzModule',
+            'cleave.js'
         ])
         .constant('config', {
             version: '0.0.1', //Текущая версия сайта

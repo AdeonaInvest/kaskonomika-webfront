@@ -16,7 +16,12 @@
         vm.execute = []; // Execute results array
         vm.resultList = []; // Results list
         vm.userPhone = { // default popover Settings
-            popover: false
+            popover: false, // default close popover
+            cleave: {
+                phone: true, // cleave.js settings for phone
+                phoneRegionCode: 'RU' // cleave.js phone country
+            },
+            phone: ''
         };
 
         vm.addDriver = addDriver;
@@ -321,7 +326,7 @@
             if (!vm.userPhone.popover) {
                 vm.userPhone.popover = true;
             } else {
-                if (vm.userPhone.phone.length > 0) {
+                if (vm.userPhone.phone.length  == 12) {
                     vm.userPhone.error = false;
                     var data = {
                         region: 'Москва и область',

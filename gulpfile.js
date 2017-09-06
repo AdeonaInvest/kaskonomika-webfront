@@ -48,6 +48,8 @@ var jsPaths = [
     'bower_components/angular-swiper/dist/angular-swiper.js',
     'bower_components/angular-loading-bar/build/loading-bar.min.js',
     'bower_components/angularjs-slider/dist/rzslider.min.js',
+    'bower_components/cleave.js/dist/cleave-angular.min.js',
+    'bower_components/cleave.js/dist/addons/cleave-phone.ru.js',
     'node_modules/chart.js/dist/Chart.min.js',
     'node_modules/angular-chart.js/dist/angular-chart.min.js',
     'sites/src/js/lib/intercom.min.js',
