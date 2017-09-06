@@ -263,23 +263,28 @@
           color: #000;
         }
       }
-      .user-dashboard-area {
-        @header-user-height: 40px;
-        @currentHeight: (@header-height - @header-user-height) / 2;
-        margin-top: @currentHeight;
-        width: @header-user-height;
-        height: @header-user-height;
-        line-height: @header-user-height;
-        vertical-align: middle;
-        border-radius: 50%;
-        background: #fff;
-        cursor: pointer;
-        text-align: center;
+      .user-dashboard-icon {
         position: relative;
-        i {
-          color: #000;
-          font-size: 20px;
+        @header-user-height: 40px;
+        .user-dashboard-area {
+          @currentHeight: (@header-height - @header-user-height) / 2;
+          margin-top: @currentHeight;
+          width: @header-user-height;
+          height: @header-user-height;
           line-height: @header-user-height;
+          vertical-align: middle;
+          border-radius: 50%;
+          background: #fff;
+          cursor: pointer;
+          text-align: center;
+          i {
+            color: #000;
+            font-size: 20px;
+            line-height: @header-user-height;
+          }
+          &:hover {
+            background: @color-blue-light;
+          }
         }
         .dashboard-menu {
           position: absolute;
@@ -335,6 +340,9 @@
                   float: left;
                   width: 22px;
                   transition: ease .2s;
+                  color: #000;
+                  font-size: 20px;
+                  line-height: @header-user-height;
                 }
                 span {
                   display: block;
@@ -409,9 +417,6 @@
             }
           }
 
-        }
-        &:hover {
-          background: @color-blue-light;
         }
       }
     }
