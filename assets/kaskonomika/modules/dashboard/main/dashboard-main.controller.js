@@ -9,6 +9,13 @@
 
     function dashboardMainController(NgMap) {
         var vm = this;
+        vm.dashboard = {
+            scoring: 20, // Scoring data
+            milage: {
+                val: 3245, // Milage distance
+                raw: 70 // Milage percent
+            }  
+        };
 
 
         activate();
@@ -20,6 +27,7 @@
                 console.log('markers', map.markers);
                 console.log('shapes', map.shapes);
             });
+
 
         }
         
