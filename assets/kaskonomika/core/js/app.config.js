@@ -12,7 +12,8 @@
             'angular-loading-bar',
             'cfp.loadingBar',
             'rzModule',
-            'cleave.js'
+            'cleave.js',
+            'ngMap'
         ])
         .constant('config', {
             version: '0.0.1', //Текущая версия сайта
