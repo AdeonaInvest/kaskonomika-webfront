@@ -556,6 +556,7 @@
             height: 17px;
             &:hover {
               cursor: pointer;
+              text-decoration: underline;
               color: @color-blue-dark;
             }
           }
@@ -595,14 +596,74 @@
       }
       .repair-title-area {
         .repair-title {
-
+          font: 25px/25px @fm-web;
+          color: #000;
+          margin: 0 auto 10px;
+          display: block;
+          width: 100%;
+        }
+        .repair-desc {
+          font: 13px/18px @fm-web;
+          color: #000;
+          margin: 0 auto 10px;
+          display: block;
+          width: 100%;
         }
         .repair-desc {
 
         }
-        .repair-desc {
-
+      }
+      .form-group {
+        width: 100%;
+        label {
+          font: 15px/15px @fm-web;
+          color: #000;
+          margin: 0 0 5px 0;
         }
+        input {
+          background: #59C6F2;
+          margin: 0 0 5px 0;
+          border-color: #4da5cc;
+          &:focus {
+            background: #fff;
+          }
+        }
+        .errors-area {
+          font: 15px/15px @fm-web;
+          color: #000;
+          margin: 0 0 5px 0;
+        }
+        .btn {
+          margin: auto;
+          height: 40px;
+          border-radius: 20px;
+          border: none;
+          background: #263C75;
+          color: #fff;
+          font-family: @fm-light;
+          cursor: pointer;
+          max-width: 240px;
+          width: 100%;
+          font-size: 16px;
+          outline: 0;
+          &:hover {
+            background: @color-blue-dark-hover;
+          }
+        }
+      }
+      .switch-method {
+        span {
+          font: 12px/12px @fm-web;
+          color: #000;
+          display: block;
+          height: 17px;
+          &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+            color: @color-blue-dark;
+          }
+        }
+
       }
     }
     .auth-footer {
