@@ -9,6 +9,7 @@
 
     function dashboardMainController(NgMap) {
         var vm = this;
+        vm.user = true; // Delete after test
         vm.dashboard = {
             scoring: 20, // Scoring data
             milage: {
@@ -29,6 +30,14 @@
             });
 
 
+        }
+
+        function isUser() {
+            if (vm.user) {
+
+            } else {
+                $location.path('/')
+            }
         }
         
     }

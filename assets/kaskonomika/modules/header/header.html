@@ -22,9 +22,9 @@
         </div>
         <div class="user-menu pull-right col-lg-4 col-md-6 col-sm-6 col-xs-3">
             <ul class="list-inline animated fadeInRightBig">
-                <li class="hidden-sm hidden-xs">
-                    <div class="user-dashboard-icon" uib-dropdown>
-                        <div class="user-dashboard-area animated"
+                <li>
+                    <div class="user-dashboard-icon"ng-if="currentUser" uib-dropdown>
+                        <div class="user-dashboard-area animated hidden-sm hidden-xs"
                              on-toggle="toggled(open)"
                              uib-dropdown-toggle
                              is-open="menuOpened"
@@ -37,6 +37,17 @@
                                     id="header-user-menu"
                                     class="dashboard-menu animated"
                                     uib-dropdown-menu></ng-include>
+                        <!--END : Всплывающее меню личного кабинета -->
+                    </div>
+                    <div class="user-dashboard-icon" ng-if="!currentUser" uib-dropdown>
+                        <div class="user-dashboard-area animated hidden-sm hidden-xs"
+                             ng-click="vm.authOpen = true"
+                             ng-if="vm.view"
+                             ng-class="{bounceInRight: vm.view, bounceOutRight: !vm.view}">
+                            <i class="fa fa-user fa-2x"></i>
+                        </div>
+                        <!-- START : Всплывающее меню личного кабинета -->
+                        <ng-include src="'/header/header-auth-menu.html'" id="header-auth-menu" class="dashboard-auth" ng-if="vm.authOpen == true"></ng-include>
                         <!--END : Всплывающее меню личного кабинета -->
                     </div>
                 </li>

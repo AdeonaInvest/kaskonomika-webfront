@@ -4,9 +4,9 @@
     angular.module('kaskonomika')
         .controller('headerController', headerController);
 
-    headerController.$inject = ['$rootScope','$scope','$window','$timeout'];
+    headerController.$inject = ['$rootScope','$scope','$window','$timeout','$location'];
 
-    function headerController($rootScope,$scope,$window,$timeout) {
+    function headerController($rootScope,$scope,$window,$timeout,$location) {
         var vm = this;
         $rootScope.scrollFromTop = false; //Состояние скролла - отодвинут ли скролл сверху.
         vm.openOverlay = false; //Состояние оверлея. false - закрыт
@@ -47,6 +47,8 @@
             }*/
         ]; //Пункты меню оверлея
         vm.showCalc = $rootScope.showCalc;
+        
+        vm.goToRegistration = goToRegistration;
 
         ///////////////////
         activate();
@@ -72,6 +74,14 @@
             }
             $scope.$apply();
         });
+
+        /**
+         * Переход на страницу регистрации
+         */
+        function goToRegistration() {
+            vm.authOpen = false;
+            $location.path('/')
+        }
     }
 })();
 
