@@ -9,11 +9,13 @@
 
     function run ($http,config,$rootScope) {
 
+        $rootScope.checkUser = checkUser;
+        checkUser();
 
         /**
          * Проверка наличия залогининного пользователя
          */
-        (function checkUser() {
+        function checkUser() {
             var token = localStorage.getItem('currentToken'),
                 user = localStorage.getItem('currentUser');
             if (token && user) {
@@ -33,8 +35,9 @@
                 $rootScope.currentUser = undefined;
                 localStorage.removeItem('currentToken');
                 localStorage.removeItem('currentUser');
+                xlog("APP.RUN : USER -> Can't check user localData");
             }
-        })()
+        }
 
 
     }

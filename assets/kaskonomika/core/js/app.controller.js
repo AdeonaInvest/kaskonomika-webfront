@@ -26,11 +26,10 @@
          */
         function clearScopeCaсhe(){
             $scope.$on("$routeChangeSuccess", function() {
-                xlog('Очищаю scope cache');
                 $rootScope.carFinder = false; // Обнуление данных поиска авто
                 $rootScope.showCalc = false; // Обновление отображения поиска в хедере
-
                 $rootScope.currentUlr = $location.url(); // Create note for current URL
+                xlog('APP : CLEAR_SCOPE_DATA -> Scope data clean');
             });
         }
 

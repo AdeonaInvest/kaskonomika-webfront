@@ -57,7 +57,6 @@
         activate();
         function activate() {
             documentReady(); //Событие при загрузке страницы
-            //parseLogin(); //Парсинг логина
         }
         ///////////////////
 
@@ -110,9 +109,9 @@
                         $rootScope.currentUser = _res.data.response;
                         localStorage.setItem('currentToken', _res.data.token);
                         localStorage.setItem('currentUser', JSON.stringify(_res.data.response));
-                        xlog('headerController : USER ->', $rootScope.currentUser);
+                        xlog('MODULE : HEADER : USER ->', $rootScope.currentUser);
                     } else {
-                        xlog('headerController : login() ->', _res.data);
+                        xlog('MODULE : HEADER : LOGIN -> Login error', _res.data);
                         vm.LoginError = true;
                         vm.userPassInput = '';
                     }
@@ -128,7 +127,7 @@
             localStorage.removeItem('currentToken');
             localStorage.removeItem('currentUser');
             $location.path('/');
-            console.warn('headerController : logOut() ->');
+            xlog('MODULE : HEADER : LOGOUT -> Logout success. Data cleaned');
         }
     }
 })();

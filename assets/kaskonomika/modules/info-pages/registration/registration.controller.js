@@ -5,9 +5,9 @@
         .module('kaskonomika')
         .controller('registrationController', registrationController);
 
-    registrationController.$inject = ['$scope','config','$http'];
+    registrationController.$inject = ['$rootScope','$scope','config','$http','$location'];
 
-    function registrationController($scope,config,$http) {
+    function registrationController($rootScope,$scope,config,$http,$location) {
         ///////////////////
         var vm = this;
         vm.view = false; //Статус готовности отображения
@@ -48,8 +48,10 @@
                     if (response.data.result) {
                         vm.user.activation_hash = response.data.response.activation_hash;
                         vm.user.user_id = response.data.response.user_id;
+                        vm.user.token = response.data.token;
                         vm.step = 2;
                         vm.user.await = false;
+                        xlog('registrationController : REGISTRATION -> Registration success');
                     } else {
                         vm.user.regError = true;
                         vm.user.errorCode = response.data.response.code;
@@ -57,6 +59,7 @@
                             vm.user.errorCode = '200.1.4'
                         }
                         vm.user.await = false;
+                        xlog('registrationController : REGISTRATION -> Registration error');
                     }
                 })
         }
@@ -75,12 +78,31 @@
                 .then(function(response){
                     if (response.data.result) {
                         vm.user.await = true;
-
+                        xlog('registrationController : CONFIRM_PHONE -> Confirm phone success');
+                        getUser();
                     } else {
                         vm.user.code = undefined;
                         vm.user.codeError = true;
                         vm.user.await = false;
+                        xlog('registrationController : CONFIRM_PHONE -> Confirm phone error');
                     }
+                })
+        }
+
+        function getUser() {
+            $http.post(config.api + 'users/info',{token: vm.user.token})
+                .then(function(response){
+                    if (response.data.result) {
+                        xlog('registrationController : USER -> Get user info success');
+                        localStorage.setItem('currentToken', vm.user.token);
+                        localStorage.setItem('currentUser', JSON.stringify(response.data.response));
+                        $rootScope.checkUser();
+                        $location.path('/');
+                    } else {
+                        alert('Server Error');
+                        xlog('registrationController : USER -> Server error');
+                    }
+
                 })
         }
 

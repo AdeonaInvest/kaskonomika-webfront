@@ -70,7 +70,7 @@
         ];
 
         $scope.onReadySwiper = function (swiper) {
-            xlog('indexController-onReadySwiper',swiper);
+            xlog('PAGE : INDEX -> Swiper Ready');
 
             vm.slideTo = slideTo;
             

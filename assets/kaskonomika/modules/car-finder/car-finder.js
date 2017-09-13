@@ -62,7 +62,7 @@
         function checkInitFinder(){
             if (!$rootScope.carFinder) {
                 $rootScope.carFinder = true;
-                xlog('carFinderController-ready');
+                xlog('MODULE : CAR-FINDER -> Finder init');
                 getMarks();
                 $scope.$on('cfpLoadingBar:completed',function(){
                     vm.view = true;
