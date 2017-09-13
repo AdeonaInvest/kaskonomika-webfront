@@ -6,25 +6,22 @@
             <i class="fa fa-close fa-2x pull-right" ng-click="vm.authOpen = false"></i>
         </div>
         <div class="forms-area">
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error':vm.LoginError}">
                 <label for="userLoginInput">Номер телефона или эл. почта</label>
                 <input type="text" class="form-control input-lg" id="userLoginInput" ng-model="vm.userLoginInput"/>
-                <div class="errors-area">
-                    <span class="error-text" ng-if="vm.userLoginInputError">Неверный номер телефона или эл. почта!</span>
-                </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-class="{'has-error':vm.LoginError}">
                 <label for="userPassInput">Пароль</label>
                 <input type="password" class="form-control input-lg" id="userPassInput" ng-model="vm.userPassInput"/>
                 <div class="errors-area">
-                    <span class="error-text"  ng-if="vm.userPassInputError">Неверно введён пароль!</span>
+                    <span class="error-text color-red" ng-if="vm.LoginError">Неверно введен номер телефона или эл. почта. Быть может, введен введён пароль!</span>
                 </div>
             </div>
             <div class="form-group fix-height-17">
                 <span class="pull-right go-repair-pass" ng-click="vm.showRecover = !vm.showRecover">Забыл пароль</span>
             </div>
             <div class="form-group">
-                <button class="btn btn-kasko" ng-click="vm.login()">Войти</button>
+                <button class="btn btn-kasko" ng-click="vm.login()" ng-disabled="!vm.userPassInput || !vm.userLoginInput">Войти</button>
             </div>
         </div>
     </div>
@@ -43,7 +40,7 @@
                 <label for="repairPhoneInput">Номер телефона</label>
                 <input type="text" class="form-control input-lg" id="repairPhoneInput" ng-model="vm.repaitPhoneInput"/>
                 <div class="errors-area">
-                    <span class="error-text">Неверный номер телефона!</span>
+                    <span class="error-text" ng-if="vm.repairPhoneError">Неверный номер телефона!</span>
                 </div>
             </div>
         </div>
@@ -52,7 +49,7 @@
                 <label for="repairEmailInput">Электронная почта</label>
                 <input type="text" class="form-control input-lg" id="repairEmailInput" ng-model="vm.repaitPhoneInput"/>
                 <div class="errors-area">
-                    <span class="error-text">Неверная электронная почта</span>
+                    <span class="error-text" ng-if="vm.repairEmailError">Неверная электронная почта</span>
                 </div>
             </div>
         </div>
@@ -67,7 +64,7 @@
     </div>
     <div class="auth-footer">
         <div class="row reg-row">
-            <a href="/registration"  ng-click="vm.goToRegistration()" class="reg-title">Зарегистрироваться</a>
+            <span ng-click="vm.goToRegistration()" class="reg-title">Зарегистрироваться</span>
         </div>
         <div class="row app-area">
             <div class="col-lg-6">

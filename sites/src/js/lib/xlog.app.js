@@ -9,7 +9,7 @@ var xlog = function(text, data) {
         for (var i=0; i < arguments.length; i++) {
             list = list + arguments[i] + ' ';
         }*/
-        console.warn(text || '', data || '');
+        console.info(text,data || '');
     }
 };
 

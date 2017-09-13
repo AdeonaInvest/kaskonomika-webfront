@@ -26,15 +26,21 @@
         })
         .config(config);
 
-    config.$inject = ['$locationProvider','cfpLoadingBarProvider'];
+    config.$inject = ['$locationProvider','cfpLoadingBarProvider','$httpProvider'];
 
-    function config ($locationProvider,cfpLoadingBarProvider) {
+    function config ($locationProvider,cfpLoadingBarProvider,$httpProvider) {
         
         /**
          * Включение HTML5 навигации для сайта
          */
         $locationProvider.html5Mode(true);
         $locationProvider.hashPrefix('!');
+
+        /**
+         * Отключение $http.OPTIONS при запросах
+         */
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
         
         /**
          * Настройки прелоадера
