@@ -1,18 +1,21 @@
 .btn-kasko {
   background: @color-blue;
-  color: #fff;
   display: block;
   border-radius: 80px;
   vertical-align: middle;
   text-align: center;
   max-width: 350px;
-  min-width: 150px;
   padding: 0 30px;
   transition: .2s ease;
   border: none;
+  height: 40px;
+  min-width: 180px;
+  color: #fff;
+  font: 16px/40px @fm-light;
+  margin: 0 auto;
   span {
     color: #fff;
-    font: 14px/40px @fm-main;
+    font: 14px/40px @fm-light;
     vertical-align: middle;
   }
   &:hover {
@@ -20,6 +23,12 @@
     background: @color-blue-hover;
     outline: none;
     border: none;
+    color: #fff;
+    span {
+      color: #fff;
+      font: 14px/40px @fm-light;
+      vertical-align: middle;
+    }
   }
   &:active {
     &:focus {
@@ -34,4 +43,49 @@
   &:disabled {
     cursor: not-allowed;
   }
+}
+
+
+.custom-checkbox {
+  label {
+    cursor: pointer;
+    span {
+      padding-left: 10px;
+      display: block;
+      font: 14px/20px @fm-web;
+    }
+    &:before {
+      content: '';
+      background-color: #DADADA;
+      width: 18px;
+      height: 18px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-radius: 5px;
+    }
+    &:after {
+      top: 7px;
+      left: 4px;
+    }
+    &:hover:before {
+      background-color: @color-blue;
+    }
+  }
+  input:checked + label:after {
+    content: '';
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 4px;
+    border-radius: 5px;
+    background-image:  data-uri('/src/img/base/tick-icon.svg');
+  }
+  input:checked + label:before {
+    background: @color-blue;
+  }
+
 }

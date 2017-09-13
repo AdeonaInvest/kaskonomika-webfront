@@ -59,6 +59,12 @@
                 controller: 'resultPageController',
                 controllerAs: 'vm'
             })
+            .when ('/registration', {
+                templateUrl: '/info-pages/registration/registration.html',
+                controller: 'registrationController',
+                controllerAs: 'vm'
+            })
+
             .otherwise({
                 redirectTo: '/'
             });

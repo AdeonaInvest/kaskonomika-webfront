@@ -1,0 +1,80 @@
+<div id="registration-page" class="animated fadeIn">
+    <div class="container-fluid">
+        <div class="row ta-center header-area">
+            <h1>Регистрация</h1>
+        </div>
+        <div class="container-fluid body-area">
+            <div class="container">
+                <div class="row bounceInRight" ng-class="{'animated': vm.step == 1}" ng-show="vm.step == 1">
+                    <form name="regForm">
+                        <div class="form-group" ng-class="{'has-error':regForm.email.$error.email}">
+                            <label for="registrationEmail">Электронная почта</label>
+                            <input type="email"
+                                   class="form-control input-lg"
+                                   id="registrationEmail"
+                                   name="email"
+                                   ng-model="vm.user.email"
+                                   ng-model-options="{ debounce: 500 }"
+                                   placeholder="email@email.com"/>
+                            <div class="errors-area">
+                                <span class="error-text" ng-if="regForm.email.$error.email">Неверная электронная почта</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="registrationPass">Пароль</label>
+                            <input type="password"
+                                   class="form-control input-lg"
+                                   id="registrationPass"
+                                   ng-model="vm.user.pass"
+                                   ng-model-options="{ debounce: 500 }"
+                                   placeholder="********"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="registrationPhone">Контактный телефон</label>
+                            <input type="text"
+                                   class="form-control input-lg"
+                                   id="registrationPhone"
+                                   ng-model="vm.user.phone"
+                                   ng-model-options="{ debounce: 500 }"
+                                   placeholder="+7 (XXX) XXX-XX-XX"
+                                   ui-br-phone-number/>
+                        </div>
+                        <div class="checkbox custom-checkbox">
+                            <input class="hidden" id="registrationAgree" type="checkbox" ng-model="vm.user.agree">
+                            <label ng-click="vm.user.agree = !vm.user.agree">
+                                <span>Согласен на обработку личных данных</span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-kasko"
+                                    type="submit"
+                                    ng-disabled="!vm.user.email || !vm.user.pass || !vm.user.phone || !vm.user.agree"
+                                    ng-click="vm.registration()">Зарегистрироваться</button>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="row animated bounceInRight" ng-if="vm.step == 2">
+                    <h2>На указанный номер телефона было отправлено СМС для подтверждения.</h2>
+                    <div class="form-group"  ng-class="{'has-error':vm.user.codeError}">
+                        <label for="registrationCode">Введите код из sms</label>
+                        <input type="text"
+                               class="form-control input-lg"
+                               id="registrationCode"
+                               ng-model="vm.user.code"
+                               ng-model-options="{ debounce: 500 }"
+                               placeholder="1234"/>
+                        <div class="errors-area">
+                            <span class="error-text" ng-if="vm.user.codeError">Код введен неверно</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-kasko" ng-disabled="!vm.user.code" ng-click="vm.confirmPhone()">Отправить код</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
