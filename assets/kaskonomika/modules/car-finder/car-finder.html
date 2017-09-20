@@ -47,9 +47,10 @@
         </div>
     </div>
     <div class="row title-h1-area">
-        <h1>Результаты расчета Каско</h1>
+        <h1 ng-if="findData.step != 11">Результаты расчета Каско</h1>
+        <h1 ng-if="findData.step == 11">Результаты расчета Каско</h1>
     </div>
-    <div class="input-area">
+    <div class="input-area" ng-if="findData.step != 11">
         <div class="form-inline noselect">
             <div class="input-line" ng-click="findData.step < 8 ? findData.is_open = true : null">
                 <div ng-show="findData.step < 5">
@@ -159,6 +160,27 @@
                      ng-click="vm.finalStep(); findData.exp = row">
                     {{row}}
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="docs-area" ng-if="findData.step == 11">
+        <h3>Сейчас вам потребуются данные из следующих документов</h3>
+        <div class="row docs-list">
+            <div class="col-lg-6 docs-item">
+                <i class="fa fa-check color-blue"></i>
+                <span>Паспорт транспортного средства или свидетельство о регистрации автомобиля</span>
+            </div>
+            <div class="col-lg-6 docs-item">
+                <i class="fa fa-check color-blue"></i>
+                <span>Паспорт лица, на которого оформляется полис</span>
+            </div>
+            <div class="col-lg-6 docs-item">
+                <i class="fa fa-check color-blue"></i>
+                <span>Паспорт собственника автомобиля (1‑я страница и прописка)</span>
+            </div>
+            <div class="col-lg-6 docs-item">
+                <i class="fa fa-check color-blue"></i>
+                <span>Водительское удостоверение лица, допущенного к управлению автомобилем</span>
             </div>
         </div>
     </div>
