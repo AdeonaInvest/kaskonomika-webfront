@@ -11,17 +11,23 @@
         ///////////////////
         var vm = this;
         vm.view = false; //Статус готовности отображения
+        vm.fill = {
+            avto: {}
+        };
 
+        vm.nextStep = nextStep;
+        vm.submitResults = submitResults;
         
         activate();
         function activate() {
             $scope.$on('cfpLoadingBar:completed',function(){
                 vm.view = true;
+                vm.fill.step = 1;
                 getFindData();
             });
         }
 
-        
+
         //////////////////
 
         /**
@@ -35,6 +41,20 @@
             } else {
                 $location.path('/')
             }
+        }
+
+        /**
+         * Go to the next step in filling
+         */
+        function nextStep() {
+            vm.fill.step++
+        }
+
+        /**
+         * Post results for create policy
+         */
+        function submitResults() {
+            
         }
         
     }
