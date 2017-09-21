@@ -95,3 +95,64 @@
   }
 
 }
+
+.custom-radio {
+  position: relative;
+  display: inline-block;
+  padding-left: 20px;
+  margin-bottom: 0;
+  vertical-align: middle;
+  font-weight: normal;
+  cursor: pointer;
+  font: 14px/20px @fm-web;
+  input {
+    display: none;
+  }
+  label {
+    padding-left: 10px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font: 14px/20px @fm-web;
+    color: #000;
+    margin: 10px 20px 0 0;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 3px;
+      width: 18px;
+      height: 18px;
+      background-color: #dadada;
+      border-radius: 50%;
+      transition: all .05s linear;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      top: 16px;
+      left: 9px;
+      width: 6px;
+      height: 6px;
+      border-radius: 2px;
+      z-index: 10;
+      background-color: #fff;
+      opacity: 0;
+      transition: all .05s linear;
+    }
+    &.active {
+      &:before {
+        background-color: #59c6f2;
+      }
+      &:after {
+        opacity: 1;
+      }
+    }
+  }
+}

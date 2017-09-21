@@ -17,14 +17,19 @@
 
         vm.nextStep = nextStep;
         vm.submitResults = submitResults;
-        
+        vm.checkStep1Correct = checkStep1Correct;
+
         activate();
         function activate() {
             $scope.$on('cfpLoadingBar:completed',function(){
                 vm.view = true;
-                vm.fill.step = 1;
+                vm.fill.step = 3;
                 getFindData();
             });
+
+            $rootScope.$watch('vm.fill',function(a){
+                console.log('vm.fill',vm.fill,a);
+            })
         }
 
 
@@ -55,6 +60,16 @@
          */
         function submitResults() {
             
+        }
+
+        function checkStep1Correct() {
+            if (vm.fill.holder.firstName &&
+                vm.fill.holder.name &&
+                vm.fill.holder.secondName &&
+                vm.fill.holder.sex &&
+                vm.fill.holder.birthday) {
+
+            }
         }
         
     }

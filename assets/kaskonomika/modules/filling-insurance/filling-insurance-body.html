@@ -1,31 +1,31 @@
 <div class="forms-area">
     <div class="forms-header">
         <div class="row">
-            <span class="numbera-area">1</span>
+            <span class="numbera-area">{{vm.fill.step}}</span>
             <span class="title-area">Данные для заключение договора</span>
         </div>
     </div>
     <hr/>
     <div ng-if="vm.fill.step == 1">
-        <form class="form">
+        <form class="form" name="formStep1">
             <h4>Данные страхователя</h4>
             <div class="row">
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Фамилия</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.holder.firstName" placeholder="Фамилия">
+                        <input type="text" name="firstName" class="form-control" ng-model="vm.fill.holder.firstName" placeholder="Фамилия" required>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Имя</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.holder.name" placeholder="Имя">
+                        <input type="text" name="name" class="form-control" ng-model="vm.fill.holder.name" placeholder="Имя" required>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Отчество</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.holder.secondName" placeholder="Отчество">
+                        <input type="text" name="secondName" class="form-control" ng-model="vm.fill.holder.secondName" placeholder="Отчество" required>
                     </div>
                 </div>
             </div>
@@ -34,22 +34,25 @@
                     <div class="form-group">
                         <label>Выберите пол</label>
                         <div>
-                            <label>
-                                <input type="radio" ng-model="vm.fill.holder.sex" value="1">
-                                Мужчина
-                            </label>
-                            <label>
-                                <input type="radio" ng-model="vm.fill.holder.sex" value="0">
-                                Женщина
-                            </label>
+                            <div class="custom-radio" ng-click="vm.fill.holder.sex = 1">
+                                <input type="radio" name="sex" ng-model="vm.fill.holder.sex" required>
+                                <label ng-class="{'active': vm.fill.holder.sex == 1}">
+                                    Мужчина
+                                </label>
+                            </div>
+                            <div class="custom-radio" ng-click="vm.fill.holder.sex = 0">
+                                <input type="radio" name="sex" ng-model="vm.fill.holder.sex" required>
+                                <label ng-class="{'active': vm.fill.holder.sex == 0}">
+                                    Женщина
+                                </label>
+                            </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Дата рождения</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.holder.birthday" placeholder="XX.XX.XXXX">
+                        <input type="date" class="form-control" name="birthday" ng-model="vm.fill.holder.birthday" placeholder="XX.XX.XXXX" required>
                     </div>
                 </div>
             </div>
@@ -57,44 +60,58 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label>Контактный телефон</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.holder.phone" placeholder="+7 (XXX) XXX-XX-XX">
+                        <input type="text"
+                               name="phone"
+                               class="form-control"
+                               ng-model="vm.fill.holder.phone"
+                               placeholder="+7 (XXX) XXX-XX-XX"
+                               ui-br-phone-number
+                               required>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label>Электронная почта</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.holder.email" placeholder="example@myemail.com">
+                        <input type="email"
+                               class="form-control"
+                               name="email"
+                               ng-model="vm.fill.holder.email"
+                               placeholder="example@myemail.com"
+                               required>
                     </div>
                 </div>
             </div>
             <hr/>
             <div class="row">
                 <div class="col-lg-4 col-lg-offset-8">
-                    <button class="btn btn-kasko" ng-click="vm.nextStep()">Продолжить</button>
+                    <button class="btn btn-kasko"
+                            type="submit"
+                            ng-click="vm.nextStep()"
+                            ng-disabled="formStep1.email.$invalid || formStep1.phone.$invalid || formStep1.birthday.$invalid || formStep1.sex.$invalid || formStep1.secondName.$invalid || formStep1.firstName.$invalid || formStep1.firstName.$invalid">Продолжить</button>
                 </div>
             </div>
         </form>
     </div>
     <div ng-if="vm.fill.step == 2">
-        <form class="form">
+        <form class="form" name="formStep2">
             <h4>Паспортные данные</h4>
             <div class="row">
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Тип документа</label>
-                        <input type="text" class="form-control" placeholder="Пасспорт" disabled="disabled">
+                        <input type="text" name="passport" class="form-control" placeholder="Пасспорт" disabled="disabled">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Серия / Номер пасспорта</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.passport.serial" placeholder="1234 567890">
+                        <input type="text" name="serial" class="form-control" ng-model="vm.fill.passport.serial" placeholder="1234 567890" required>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Дата выдачи пасспорта</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.passport.date" placeholder="XX.XX.XXXX">
+                        <input type="date" name="date" class="form-control" ng-model="vm.fill.passport.date" placeholder="XX.XX.XXXX" required>
                     </div>
                 </div>
             </div>
@@ -102,25 +119,29 @@
                 <div class="col-lg-12 ">
                     <div class="form-group">
                         <label>Кем выдан пасспорт</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.passport.owner" placeholder="Как в документе">
+                        <input type="text" name="owner" class="form-control" ng-model="vm.fill.passport.owner" placeholder="Как в документе" required>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-4">
+                    <input type="file" class="" name="file" ng-model="vm.fill.passport.img" required/>
                     <span>Загрузить скан документа</span>
                 </div>
             </div>
             <hr/>
             <div class="row">
                 <div class="col-lg-4 col-lg-offset-8">
-                    <button class="btn btn-kasko" ng-click="vm.nextStep()">Продолжить</button>
+                    <button class="btn btn-kasko"
+                            type="submit"
+                            ng-disabled="formStep2.serial.$invalid || formStep2.date.$invalid || formStep2.owner.$invalid"
+                            ng-click="vm.nextStep()">Продолжить</button>
                 </div>
             </div>
         </form>
     </div>
     <div ng-if="vm.fill.step == 3">
-        <form class="form">
+        <form class="form" name="formStep3">
             <h4>Данные выгодоприобретателя</h4>
             <div class="row">
                 <div class="checkbox custom-checkbox">
@@ -134,19 +155,19 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Фамилия</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.beneficiary.firstName" ng-disabled="vm.overlap" placeholder="Фамилия">
+                        <input type="text" name="firstName" class="form-control" ng-model="vm.fill.beneficiary.firstName" ng-disabled="vm.overlap" placeholder="Фамилия" required>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Имя</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.beneficiary.name" ng-disabled="vm.overlap" placeholder="Имя">
+                        <input type="text" name="name" class="form-control" ng-model="vm.fill.beneficiary.name" ng-disabled="vm.overlap" placeholder="Имя" required>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Отчество</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.beneficiary.secondName" ng-disabled="vm.overlap" placeholder="Отчество">
+                        <input type="text" name="secondName" class="form-control" ng-model="vm.fill.beneficiary.secondName" ng-disabled="vm.overlap" placeholder="Отчество" required>
                     </div>
                 </div>
             </div>
@@ -155,22 +176,25 @@
                     <div class="form-group">
                         <label>Выберите пол</label>
                         <div>
-                            <label>
-                                <input type="radio" ng-model="vm.fill.beneficiary.sex" ng-disabled="vm.overlap" value="1">
-                                Мужчина
-                            </label>
-                            <label>
-                                <input type="radio" ng-model="vm.fill.beneficiary.sex" ng-disabled="vm.overlap" value="0">
-                                Женщина
-                            </label>
+                            <div class="custom-radio" ng-click="vm.fill.beneficiary.sex = 1">
+                                <input type="radio" ng-model="vm.fill.beneficiary.sex" required>
+                                <label ng-class="{'active': vm.fill.beneficiary.sex == 1}">
+                                    Мужчина
+                                </label>
+                            </div>
+                            <div class="custom-radio" ng-click="vm.fill.beneficiary.sex = 0">
+                                <input type="radio" ng-model="vm.fill.holder.sex" required>
+                                <label ng-class="{'active': vm.fill.beneficiary.sex == 0}">
+                                    Женщина
+                                </label>
+                            </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Дата рождения</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.beneficiary.birthday" ng-disabled="vm.overlap" placeholder="XX.XX.XXXX">
+                        <input type="date" name="birthday" class="form-control" ng-model="vm.fill.beneficiary.birthday" ng-disabled="vm.overlap" placeholder="XX.XX.XXXX" required>
                     </div>
                 </div>
             </div>
@@ -178,13 +202,24 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label>Контактный телефон</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.beneficiary.phone" ng-disabled="vm.overlap" placeholder="+7 (XXX) XXX-XX-XX">
+                        <input type="text"
+                               name="phone"
+                               class="form-control"
+                               ng-model="vm.fill.beneficiary.phone"
+                               ng-disabled="vm.overlap"
+                               placeholder="+7 (XXX) XXX-XX-XX"
+                               mask="+9 (999) 999-99-99">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label>Электронная почта</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.beneficiary.email" ng-disabled="vm.overlap" placeholder="example@myemail.com">
+                        <input type="email"
+                               name="email"
+                               class="form-control"
+                               ng-model="vm.fill.beneficiary.email"
+                               ng-disabled="vm.overlap"
+                               placeholder="example@myemail.com">
                     </div>
                 </div>
             </div>
@@ -199,13 +234,20 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Серия / Номер пасспорта</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.beneficiary.passport.serial" ng-disabled="vm.overlap" placeholder="1234 567890">
+                        <input type="text"
+                               name="passport"
+                               class="form-control"
+                               ng-model="vm.fill.beneficiary.passport.serial"
+                               ng-disabled="vm.overlap"
+                               placeholder="1234 567890"
+                               required
+                               mask="9999 999999">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Дата выдачи пасспорта</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.beneficiary.passport.date" ng-disabled="vm.overlap" placeholder="XX.XX.XXXX">
+                        <input type="date" name="date" class="form-control" ng-model="vm.fill.beneficiary.passport.date" ng-disabled="vm.overlap" placeholder="XX.XX.XXXX" required>
                     </div>
                 </div>
             </div>
@@ -213,19 +255,25 @@
                 <div class="col-lg-12 ">
                     <div class="form-group">
                         <label>Кем выдан пасспорт</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.beneficiary.passport.owner" ng-disabled="vm.overlap" placeholder="Как в документе">
+                        <input type="text" name="owner" class="form-control" ng-model="vm.fill.beneficiary.passport.owner" ng-disabled="vm.overlap" placeholder="Как в документе" required>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-4">
+                    <input type="file" class="" name="file" ng-model="vm.fill.beneficiary.passport.img"  ng-disabled="vm.overlap" required/>
                     <span>Загрузить скан документа</span>
                 </div>
             </div>
             <hr/>
             <div class="row">
-                <div class="col-lg-4 col-lg-offset-8">
-                    <button class="btn btn-kasko" ng-click="vm.nextStep()" ng-disabled="!vm.overlap">Продолжить</button>
+                <div class="col-lg-4 col-lg-offset-8" ng-if="!vm.overlap">
+                    <button class="btn btn-kasko"
+                            ng-click="vm.nextStep()"
+                            ng-disabled="formStep3.email.$invalid || formStep3.phone.$invalid || formStep3.birthday.$invalid  || formStep3.secondName.$invalid || formStep3.firstName.$invalid || formStep3.name.$invalid || formStep3.passport.$invalid || formStep3.date.$invalid || formStep3.owner.$invalid || (vm.fill.beneficiary.sex == undefined)">Продолжить</button>
+                </div>
+                <div class="col-lg-4 col-lg-offset-8" ng-if="vm.overlap">
+                    <button class="btn btn-kasko" ng-click="vm.nextStep()">Продолжить</button>
                 </div>
             </div>
         </form>

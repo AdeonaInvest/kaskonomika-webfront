@@ -40,7 +40,7 @@
     "angularjs-slider": "^6.2.2",
     "cleave.js": "^1.0.1",
     "ngmap": "^1.0.1",
-    "angular-input-masks": "^2.6.0"
+    "angular-mask": "^3.0.16"
   },
   "resolutions": {
     "angular": "^1.6.4"
