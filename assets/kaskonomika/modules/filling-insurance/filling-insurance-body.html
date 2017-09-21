@@ -5,6 +5,7 @@
             <span class="title-area">Данные для заключение договора</span>
         </div>
     </div>
+    <hr/>
     <div ng-if="vm.fill.step == 1">
         <form class="form">
             <h4>Данные страхователя</h4>
@@ -319,6 +320,9 @@
         </form>
     </div>
     <div ng-if="vm.fill.step == 5" class="ta-center">
+        <i class="fa fa-circle-o-notch fa-spin fa-5x"></i>
+    </div>
+    <div ng-if="vm.fill.step == 6" class="ta-center">
         <span>Спасибо за ожидание.<br/>Все расчеты окончены, мы вскоре свяжемся с вами для дальнейшего оформления полиса</span>
     </div>
 
