@@ -12,51 +12,24 @@
         var vm = this;
         vm.view = false; //Статус готовности отображения
         vm.fill = {
-            avto: {},
-            passport: {
-                img: new FileUploader()
-            }
+            avto: {}
         };
-
-
-        vm.fill.passport.img.onCompleteAll(function(){
-
-        })
 
         vm.nextStep = nextStep;
         vm.submitResults = submitResults;
         vm.checkStep1Correct = checkStep1Correct;
+        vm.clearQueue1 = clearQueue1;
+        vm.clearQueue2 = clearQueue2;
 
         activate();
         function activate() {
             $scope.$on('cfpLoadingBar:completed',function(){
                 vm.view = true;
-                vm.fill.step = 2;
+                vm.fill.step = 4;
                 getFindData();
             });
-
-            /**
-             * Создание файла настроек для загрузки файлов
-             */
-            $scope.$on('user',function(){
-                vm.uploadOptions = {
-                    url: config.api + 'storage/upload',
-                    method: 'post',
-                    formData: [{
-                        token: $rootScope.currentToken,
-                        category_id: 27,
-                        owner_id: '',
-                        user_phone: '',
-                        user_email: ''
-                    }
-                    ],
-                    autoUpload : true,
-                    withCredentials: false
-                }
-            });
         }
-
-
+        
         //////////////////
 
         /**
@@ -96,5 +69,58 @@
             }
         }
         
+        //---------------------------------------------------- UPLOADER -----------------------------------------/
+
+        /**
+         * Создание настроек для загрузки файлов
+         */
+        $scope.$on('user',function(){
+            vm.uploaderOptions = {
+                url: config.api + 'storage/upload',
+                method: 'post',
+                formData: [{
+                    token: $rootScope.currentToken,
+                    category_id: 27,
+                    owner_id: '',
+                    user_phone: '',
+                    user_email: ''
+                }],
+                autoUpload : true,
+                withCredentials: false
+            };
+
+            vm.uploader1 = new FileUploader(vm.uploaderOptions);
+            vm.uploader2 = new FileUploader(vm.uploaderOptions);
+
+            vm.uploader1.onAfterAddingAll = function(res){
+                console.log('onCompleteAll',vm.uploader1.queue[0]._file);
+                //TODO здесь должен быть переход на следующий слайд при успешной загрузке картинки
+            };
+
+            vm.uploader2.onAfterAddingAll = function(res){
+                console.log('onCompleteAll',vm.uploader2.queue[0]._file);
+                //TODO здесь должен быть переход на следующий слайд при успешной загрузке картинки
+            };
+        });
+
+
+
+        /**
+         * Удаление изображения из очереди
+         */
+        function clearQueue1() {
+            vm.uploader1.destroy();
+            vm.uploader1 = new FileUploader(vm.uploaderOptions);
+        }
+
+        /**
+         * Удаление изображения из очереди
+         */
+        function clearQueue2() {
+            vm.uploader2.destroy();
+            vm.uploader2 = new FileUploader(vm.uploaderOptions);
+        }
+
+
     }
 })();

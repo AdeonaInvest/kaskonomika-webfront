@@ -158,19 +158,37 @@
 }
 
 .custom-upload {
+  margin-top: 17px;
   label {
+    width: 100%;
     cursor: pointer;
+    margin: 0;
     input {
       display: none;
     }
     span {
       display: block;
-      font: 14px/14px @fm-web;
-      text-decoration: dashed;
+      width: 100%;
+      text-decoration: none;
+      font: 14px/20px @fm-web;
     }
     &:hover {
-      span {}
-      text-decoration: underline;
+      span {
+        text-decoration: none;
+      }
+    }
+  }
+  .progress {
+    height: 34px;
+    margin: 0;
+  }
+  .btn-group {
+    width: 100%;
+    .btn-success {
+      width: 80%;
+    }
+    .btn-danger {
+      width: 20%;
     }
   }
 

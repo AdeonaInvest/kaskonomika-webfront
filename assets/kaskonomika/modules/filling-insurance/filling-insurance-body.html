@@ -125,14 +125,24 @@
             </div>
             <div class="row row-string">
                 <div class="col-lg-4">
+                    <custom-upload index="1" doc="Прикрепить скан документа"></custom-upload>
                     <div class="custom-upload">
-                        <label>
-                            <input type="file" class="btn btn-success" nv-file-select uploader="vm.fill.passport.img" options="vm.uploadOptions" required/>
-                            <span ng-if="vm.fill.passport.img.queue == 0">Загрузить скан документа</span>
-                            <span ng-if="vm.fill.passport.img.queue > 0">{{vm.fill.passport.img.queue[0].file.name}}</span>
-                        </label>
+                        <div ng-if="vm.uploader.queue.length == 0">
+                            <label class="animated zoomIn">
+                                <input type="file" nv-file-select uploader="vm.uploader" required/>
+                                <span class="btn btn-success btn-upload">Прикрепить скан документа</span>
+                            </label>
+                        </div>
+                        <div ng-if="vm.uploader.queue.length > 0 && vm.uploader.queue[0].progress < 100">
+                            <uib-progressbar class="progress-striped active" type="success" value="vm.uploader.queue[0].progress"></uib-progressbar>
+                        </div>
+                        <div ng-if="vm.uploader.queue.length > 0 && vm.uploader.queue[0].progress >= 100">
+                            <div class="btn-group animated zoomIn">
+                                <a type="button" class="btn btn-success" disabled="disabled">Файл загружен</a>
+                                <a type="button" class="btn btn-danger" ng-click="vm.clearQueue()" uib-tooltip="Удалить"><i class="fa fa-trash"></i></a>
+                            </div>
+                        </div>
                     </div>
-
                 </div>
             </div>
             <hr/>
@@ -267,8 +277,7 @@
             </div>
             <div class="row row-string">
                 <div class="col-lg-4">
-                    <input type="file" class="" name="file" ng-model="vm.fill.beneficiary.passport.img"  ng-disabled="vm.overlap" required/>
-                    <span>Загрузить скан документа</span>
+                    <custom-upload index="1" doc="ПТС"></custom-upload>
                 </div>
             </div>
             <hr/>
@@ -321,9 +330,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="form-group">
-                        <span>Загрузить скан ПТС</span>
-                    </div>
+                    <custom-upload index="1" doc="Прикрепить скан ПТС"></custom-upload>
                 </div>
             </div>
             <div class="row row-string">
@@ -340,9 +347,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="form-group">
-                        <span>Загрузить скан СТС</span>
-                    </div>
+                    <custom-upload index="2" doc="Прикрепить скан СТС"></custom-upload>
                 </div>
             </div>
             <div class="row row-string">
