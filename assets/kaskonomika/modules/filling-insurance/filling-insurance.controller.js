@@ -25,7 +25,7 @@
         function activate() {
             $scope.$on('cfpLoadingBar:completed',function(){
                 vm.view = true;
-                vm.fill.step = 4;
+                vm.fill.step = 2;
                 getFindData();
             });
         }

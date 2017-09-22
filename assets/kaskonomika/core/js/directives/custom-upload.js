@@ -6,16 +6,16 @@
 
     angular
         .module('kaskonomika')
-        .directive('customUpload', [clickOutside]);
+        .directive('customUpload', [customUpload]);
 
-    function clickOutside() {
+    function customUpload() {
         return {
             template: function(elem, attr) {
                 return '<div class="custom-upload">' +
                     '<div ng-if="vm.uploader'+attr.index+'.queue.length == 0">' +
                     '<label class="animated zoomIn">' +
                     '<input type="file" nv-file-select uploader="vm.uploader'+attr.index+'" required/>' +
-                    '<span class="btn btn-success btn-upload">'+attr.doc+'</span>' +
+                    '<span class="btn btn-primary btn-upload">'+attr.doc+'</span>' +
                     '</label>' +
                     '</div>' +
                     '<div ng-if="vm.uploader'+attr.index+'.queue.length > 0 && vm.uploader'+attr.index+'.queue[0].progress < 100">' +
