@@ -9,7 +9,7 @@
     <div ng-if="vm.fill.step == 1">
         <form class="form" name="formStep1">
             <h4>Данные страхователя</h4>
-            <div class="row">
+            <div class="row row-string">
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Фамилия</label>
@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row row-string">
                 <div class="col-lg-8">
                     <div class="form-group">
                         <label>Выберите пол</label>
@@ -56,7 +56,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row row-string">
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label>Контактный телефон</label>
@@ -65,7 +65,7 @@
                                class="form-control"
                                ng-model="vm.fill.holder.phone"
                                placeholder="+7 (XXX) XXX-XX-XX"
-                               ui-br-phone-number
+                               mask="+9 (999) 999-99-99"
                                required>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
     <div ng-if="vm.fill.step == 2">
         <form class="form" name="formStep2">
             <h4>Паспортные данные</h4>
-            <div class="row">
+            <div class="row row-string">
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Тип документа</label>
@@ -105,7 +105,7 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Серия / Номер пасспорта</label>
-                        <input type="text" name="serial" class="form-control" ng-model="vm.fill.passport.serial" placeholder="1234 567890" required>
+                        <input type="text" name="serial" class="form-control" ng-model="vm.fill.passport.serial" placeholder="1234 567890" mask="9999 999999" required>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -115,7 +115,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row row-string">
                 <div class="col-lg-12 ">
                     <div class="form-group">
                         <label>Кем выдан пасспорт</label>
@@ -123,10 +123,19 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row row-string">
                 <div class="col-lg-4">
-                    <input type="file" class="" name="file" ng-model="vm.fill.passport.img" required/>
-                    <span>Загрузить скан документа</span>
+                    <div class="custom-upload">
+                        <input type="file" nv-file-select uploader="vm.fill.passport.img" required/>
+                        <ul>
+                            <li ng-repeat="item in vm.fill.passport.img">
+                                Name: <span ng-bind="item.file.name"></span><br/>
+                                <button ng-click="item.upload()">upload</button>
+                            </li>
+                        </ul>
+                        <span>Загрузить скан документа</span>
+                    </div>
+
                 </div>
             </div>
             <hr/>
@@ -143,7 +152,7 @@
     <div ng-if="vm.fill.step == 3">
         <form class="form" name="formStep3">
             <h4>Данные выгодоприобретателя</h4>
-            <div class="row">
+            <div class="row row-string">
                 <div class="checkbox custom-checkbox">
                     <input class="hidden ng-pristine ng-untouched ng-valid ng-empty" id="registrationAgree" type="checkbox" ng-model="vm.overlap">
                     <label ng-click="vm.overlap = !vm.overlap">
@@ -151,7 +160,7 @@
                     </label>
                 </div>
             </div>
-            <div class="row">
+            <div class="row row-string">
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Фамилия</label>
@@ -171,7 +180,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row row-string">
                 <div class="col-lg-8">
                     <div class="form-group">
                         <label>Выберите пол</label>
@@ -198,7 +207,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row row-string">
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label>Контактный телефон</label>
@@ -224,7 +233,7 @@
                 </div>
             </div>
             <hr/>
-            <div class="row">
+            <div class="row row-string">
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Тип документа</label>
@@ -251,7 +260,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row row-string">
                 <div class="col-lg-12 ">
                     <div class="form-group">
                         <label>Кем выдан пасспорт</label>
@@ -259,7 +268,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row row-string">
                 <div class="col-lg-4">
                     <input type="file" class="" name="file" ng-model="vm.fill.beneficiary.passport.img"  ng-disabled="vm.overlap" required/>
                     <span>Загрузить скан документа</span>
@@ -281,7 +290,7 @@
     <div ng-if="vm.fill.step == 4">
         <form class="form">
             <h4>Данные об автобомиле</h4>
-            <div class="row">
+            <div class="row row-string">
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Марка автомобиля</label>
@@ -301,7 +310,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row row-string">
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Серия / Номер ПТС</label>
@@ -320,7 +329,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row row-string">
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Серия / Номер СТС</label>
@@ -339,7 +348,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row row-string">
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Гос. номер</label>
