@@ -258,8 +258,6 @@
                     return 33;
                 } else if ($rootScope.findData.step > 8 && $rootScope.findData.step < 10) {
                     return 66;
-                } else if ($rootScope.findData.step > 10) {
-                    return 100;
                 }
             }
         }

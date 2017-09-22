@@ -29,7 +29,6 @@
         vm.checkValidAge = checkValidAge;
         vm.checkValidExp = checkValidExp;
         vm.switchDefaultPopover = switchDefaultPopover;
-        vm.goFillingInsurance = goFillingInsurance;
 
         //////////////////
         activate();
@@ -352,15 +351,6 @@
             }
         }
 
-        /**
-         * Relocate to filling page and save pre-results
-         */
-        function goFillingInsurance(calculations_product_id, calculation_id){
-            $rootScope.findData.calculations_product_id = calculations_product_id;
-            $rootScope.findData.calculation_id = calculation_id;
-            localStorage.setItem('findData',JSON.stringify($rootScope.findData));
-            $location.path('/filling');
-        }
 
     }
 })();

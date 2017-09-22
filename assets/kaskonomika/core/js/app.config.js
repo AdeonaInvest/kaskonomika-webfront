@@ -14,7 +14,7 @@
             'rzModule',
             'cleave.js',
             'ngMap',
-            'ngMask'
+            'ui.utils.masks'
         ])
         .constant('config', {
             version: '0.0.1', //Текущая версия сайта

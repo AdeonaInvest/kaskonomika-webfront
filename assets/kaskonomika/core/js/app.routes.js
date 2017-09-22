@@ -59,11 +59,6 @@
                 controller: 'resultPageController',
                 controllerAs: 'vm'
             })
-            .when ('/filling', {
-                templateUrl: '/filling-insurance/filling-insurance.html',
-                controller: 'fillingInsuranceController',
-                controllerAs: 'vm'
-            })
             .when ('/registration', {
                 templateUrl: '/info-pages/registration/registration.html',
                 controller: 'registrationController',
