@@ -158,6 +158,20 @@
 }
 
 .custom-upload {
-  input {
+  label {
+    cursor: pointer;
+    input {
+      display: none;
+    }
+    span {
+      display: block;
+      font: 14px/14px @fm-web;
+      text-decoration: dashed;
+    }
+    &:hover {
+      span {}
+      text-decoration: underline;
+    }
   }
+
 }

@@ -5,15 +5,23 @@
         .module('kaskonomika')
         .controller('fillingInsuranceController', fillingInsuranceController);
 
-    fillingInsuranceController.$inject = ['$rootScope','$scope','$http','$location'];
+    fillingInsuranceController.$inject = ['$rootScope','$scope','$http','$location','FileUploader','config'];
 
-    function fillingInsuranceController($rootScope,$scope,$http,$location) {
+    function fillingInsuranceController($rootScope,$scope,$http,$location,FileUploader,config) {
         ///////////////////
         var vm = this;
         vm.view = false; //Статус готовности отображения
         vm.fill = {
-            avto: {}
+            avto: {},
+            passport: {
+                img: new FileUploader()
+            }
         };
+
+
+        vm.fill.passport.img.onCompleteAll(function(){
+
+        })
 
         vm.nextStep = nextStep;
         vm.submitResults = submitResults;
@@ -27,9 +35,25 @@
                 getFindData();
             });
 
-            $rootScope.$watch('vm.fill',function(a){
-                console.log('vm.fill',vm.fill,a);
-            })
+            /**
+             * Создание файла настроек для загрузки файлов
+             */
+            $scope.$on('user',function(){
+                vm.uploadOptions = {
+                    url: config.api + 'storage/upload',
+                    method: 'post',
+                    formData: [{
+                        token: $rootScope.currentToken,
+                        category_id: 27,
+                        owner_id: '',
+                        user_phone: '',
+                        user_email: ''
+                    }
+                    ],
+                    autoUpload : true,
+                    withCredentials: false
+                }
+            });
         }
 
 

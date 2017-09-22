@@ -126,14 +126,11 @@
             <div class="row row-string">
                 <div class="col-lg-4">
                     <div class="custom-upload">
-                        <input type="file" nv-file-select uploader="vm.fill.passport.img" required/>
-                        <ul>
-                            <li ng-repeat="item in vm.fill.passport.img">
-                                Name: <span ng-bind="item.file.name"></span><br/>
-                                <button ng-click="item.upload()">upload</button>
-                            </li>
-                        </ul>
-                        <span>Загрузить скан документа</span>
+                        <label>
+                            <input type="file" class="btn btn-success" nv-file-select uploader="vm.fill.passport.img" options="vm.uploadOptions" required/>
+                            <span ng-if="vm.fill.passport.img.queue == 0">Загрузить скан документа</span>
+                            <span ng-if="vm.fill.passport.img.queue > 0">{{vm.fill.passport.img.queue[0].file.name}}</span>
+                        </label>
                     </div>
 
                 </div>

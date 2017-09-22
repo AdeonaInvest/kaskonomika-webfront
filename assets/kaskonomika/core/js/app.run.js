@@ -25,6 +25,8 @@
                             $rootScope.currentUser = JSON.parse(user);
                             $rootScope.currentToken = token;
                             xlog('APP.RUN : USER ->', $rootScope.currentUser);
+                            xlog('APP.RUN : TOKEN ->', $rootScope.currentToken);
+                            $rootScope.$broadcast('user');
                         } else {
                             $rootScope.currentUser = undefined;
                             localStorage.removeItem('currentToken');
@@ -33,12 +35,12 @@
                     })
             } else {
                 $rootScope.currentUser = undefined;
+                $rootScope.demoToken = '';
                 localStorage.removeItem('currentToken');
                 localStorage.removeItem('currentUser');
                 xlog("APP.RUN : USER -> Can't check user localData");
+                $rootScope.$broadcast('!user');
             }
         }
-
-
     }
 })();

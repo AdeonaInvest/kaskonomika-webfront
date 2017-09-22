@@ -12,9 +12,9 @@
             'angular-loading-bar',
             'cfp.loadingBar',
             'rzModule',
-            'cleave.js',
             'ngMap',
-            'ngMask'
+            'ngMask',
+            'angularFileUpload'
         ])
         .constant('config', {
             version: '0.0.1', //Текущая версия сайта
