@@ -6,26 +6,26 @@
         </div>
     </div>
     <hr/>
-    <div ng-if="vm.fill.step == 1">
+    <div ng-if="vm.fill.step == 1 && !vm.regNow">
         <form class="form" name="formStep1">
             <h4>Данные страхователя</h4>
             <div class="row row-string">
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Фамилия</label>
-                        <input type="text" name="firstName" class="form-control" ng-model="vm.fill.holder.firstName" placeholder="Фамилия" required>
+                        <input name="firstName" class="form-control" ng-model="vm.fill.holder.firstName" placeholder="Фамилия" required mask="!" limit="false" restrict="reject">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Имя</label>
-                        <input type="text" name="name" class="form-control" ng-model="vm.fill.holder.name" placeholder="Имя" required>
+                        <input name="name" class="form-control" ng-model="vm.fill.holder.name" placeholder="Имя" required mask="!" limit="false" restrict="reject">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Отчество</label>
-                        <input type="text" name="secondName" class="form-control" ng-model="vm.fill.holder.secondName" placeholder="Отчество" required>
+                        <input name="secondName" class="form-control" ng-model="vm.fill.holder.secondName" placeholder="Отчество" required mask="!" limit="false" restrict="reject">
                     </div>
                 </div>
             </div>
@@ -66,6 +66,7 @@
                                ng-model="vm.fill.holder.phone"
                                placeholder="+7 (XXX) XXX-XX-XX"
                                mask="+9 (999) 999-99-99"
+                               restrict="reject"
                                required>
                     </div>
                 </div>
@@ -92,6 +93,31 @@
             </div>
         </form>
     </div>
+    <div ng-if="vm.fill.step == 1 && vm.regNow">
+        <form class="form">
+            <h4 class="ta-center">Для продолжения необходимо активировать ваш телефон</h4>
+            <div class="row">
+                <div class="col-lg-4">
+                    <span>Вам был отправлен код активации, пожалуйста введите его</span>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>Введите код активации</label>
+                        <input name="code" class="form-control" ng-model="vm.fill.confirmCode" placeholder="1234">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <button class="btn btn-kasko"
+                            type="submit"
+                            ng-click="vm.confirmCode()"
+                            ng-disabled="!vm.fill.confirmCode">Активировать</button>
+                </div>
+            </div>
+            <div class="row errors-area">
+                <h4 class="error">Неверный проверочный код. Проверьте его и попробуйте ввести еще раз.</h4>
+            </div>
+        </form>
+    </div>
     <div ng-if="vm.fill.step == 2">
         <form class="form" name="formStep2">
             <h4>Паспортные данные</h4>
@@ -99,13 +125,13 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Тип документа</label>
-                        <input type="text" name="passport" class="form-control" placeholder="Пасспорт" disabled="disabled">
+                        <input name="passport" class="form-control" placeholder="Пасспорт" disabled="disabled">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Серия / Номер пасспорта</label>
-                        <input type="text" name="serial" class="form-control" ng-model="vm.fill.passport.serial" placeholder="1234 567890" mask="9999 999999" clean="true" required>
+                        <input name="serial" class="form-control" ng-model="vm.fill.passport.serial" placeholder="1234 567890" mask="9999 999999" restrict="reject" clean="true" required>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -119,30 +145,13 @@
                 <div class="col-lg-12 ">
                     <div class="form-group">
                         <label>Кем выдан пасспорт</label>
-                        <input type="text" name="owner" class="form-control" ng-model="vm.fill.passport.owner" placeholder="Как в документе" required>
+                        <input name="owner" class="form-control" ng-model="vm.fill.passport.owner" placeholder="Как в документе" required>
                     </div>
                 </div>
             </div>
             <div class="row row-string">
                 <div class="col-lg-4">
-                    <custom-upload index="1" doc="Прикрепить скан документа"></custom-upload>
-                    <div class="custom-upload">
-                        <div ng-if="vm.uploader.queue.length == 0">
-                            <label class="animated zoomIn">
-                                <input type="file" nv-file-select uploader="vm.uploader" required/>
-                                <span class="btn btn-success btn-upload">Прикрепить скан документа</span>
-                            </label>
-                        </div>
-                        <div ng-if="vm.uploader.queue.length > 0 && vm.uploader.queue[0].progress < 100">
-                            <uib-progressbar class="progress-striped active" type="success" value="vm.uploader.queue[0].progress"></uib-progressbar>
-                        </div>
-                        <div ng-if="vm.uploader.queue.length > 0 && vm.uploader.queue[0].progress >= 100">
-                            <div class="btn-group animated zoomIn">
-                                <a type="button" class="btn btn-success" disabled="disabled">Файл загружен</a>
-                                <a type="button" class="btn btn-danger" ng-click="vm.clearQueue()" uib-tooltip="Удалить"><i class="fa fa-trash"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                    <custom-upload index="1" doc="Прикрепить скан пасспорта"></custom-upload>
                 </div>
             </div>
             <hr/>
@@ -171,19 +180,19 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Фамилия</label>
-                        <input type="text" name="firstName" class="form-control" ng-model="vm.fill.beneficiary.firstName" ng-disabled="vm.overlap" placeholder="Фамилия" required>
+                        <input name="firstName" class="form-control" ng-model="vm.fill.beneficiary.firstName" ng-disabled="vm.overlap" placeholder="Фамилия" required mask="!" limit="false" restrict="reject">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Имя</label>
-                        <input type="text" name="name" class="form-control" ng-model="vm.fill.beneficiary.name" ng-disabled="vm.overlap" placeholder="Имя" required>
+                        <input name="name" class="form-control" ng-model="vm.fill.beneficiary.name" ng-disabled="vm.overlap" placeholder="Имя" required mask="!" limit="false" restrict="reject">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Отчество</label>
-                        <input type="text" name="secondName" class="form-control" ng-model="vm.fill.beneficiary.secondName" ng-disabled="vm.overlap" placeholder="Отчество" required>
+                        <input name="secondName" class="form-control" ng-model="vm.fill.beneficiary.secondName" ng-disabled="vm.overlap" placeholder="Отчество" required mask="!" limit="false" restrict="reject">
                     </div>
                 </div>
             </div>
@@ -218,13 +227,13 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label>Контактный телефон</label>
-                        <input type="text"
-                               name="phone"
+                        <input name="phone"
                                class="form-control"
                                ng-model="vm.fill.beneficiary.phone"
                                ng-disabled="vm.overlap"
                                placeholder="+7 (XXX) XXX-XX-XX"
-                               mask="+9 (999) 999-99-99">
+                               mask="+9 (999) 999-99-99"
+                               restrict="reject">
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -244,20 +253,20 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Тип документа</label>
-                        <input type="text" class="form-control" placeholder="Пасспорт" disabled="disabled">
+                        <input class="form-control" placeholder="Пасспорт" disabled="disabled">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Серия / Номер пасспорта</label>
-                        <input type="text"
-                               name="passport"
+                        <input name="passport"
                                class="form-control"
                                ng-model="vm.fill.beneficiary.passport.serial"
                                ng-disabled="vm.overlap"
                                placeholder="1234 567890"
                                required
-                               mask="9999 999999">
+                               mask="9999 999999"
+                               restrict="reject">
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -271,13 +280,13 @@
                 <div class="col-lg-12 ">
                     <div class="form-group">
                         <label>Кем выдан пасспорт</label>
-                        <input type="text" name="owner" class="form-control" ng-model="vm.fill.beneficiary.passport.owner" ng-disabled="vm.overlap" placeholder="Как в документе" required>
+                        <input name="owner" class="form-control" ng-model="vm.fill.beneficiary.passport.owner" ng-disabled="vm.overlap" placeholder="Как в документе" required>
                     </div>
                 </div>
             </div>
             <div class="row row-string">
                 <div class="col-lg-4">
-                    <custom-upload index="1" doc="ПТС"></custom-upload>
+                    <custom-upload index="2" doc="Прикрепить скан пасспорта"></custom-upload>
                 </div>
             </div>
             <hr/>
@@ -300,19 +309,19 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Марка автомобиля</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.avto.mark" disabled="disabled">
+                        <input class="form-control" ng-model="vm.fill.avto.mark" disabled="disabled">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Модель автомобиля</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.avto.model" disabled="disabled">
+                        <input class="form-control" ng-model="vm.fill.avto.model" disabled="disabled">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Год выпуска</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.avto.year" disabled="disabled">
+                        <input class="form-control" ng-model="vm.fill.avto.year" disabled="disabled">
                     </div>
                 </div>
             </div>
@@ -320,24 +329,24 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Серия / Номер ПТС</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.avto.pts.serial" placeholder="1234 567890">
+                        <input class="form-control" ng-model="vm.fill.avto.pts.serial" placeholder="1234 567890" mask="9999 999999" restrict="reject">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Дата выдачи ПТС</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.avto.pts.date" placeholder="XX.XX.XXXX">
+                        <input type="date" class="form-control" ng-model="vm.fill.avto.pts.date" placeholder="XX.XX.XXXX">
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <custom-upload index="1" doc="Прикрепить скан ПТС"></custom-upload>
+                    <custom-upload index="3" doc="Прикрепить скан ПТС"></custom-upload>
                 </div>
             </div>
             <div class="row row-string">
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Серия / Номер СТС</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.avto.sts.serial" placeholder="1234 567890">
+                        <input class="form-control" ng-model="vm.fill.avto.sts.serial" placeholder="1234 567890" mask="9999 999999" restrict="reject">
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -347,26 +356,26 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <custom-upload index="2" doc="Прикрепить скан СТС"></custom-upload>
+                    <custom-upload index="4" doc="Прикрепить скан СТС"></custom-upload>
                 </div>
             </div>
             <div class="row row-string">
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Гос. номер</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.avto.gosNumber" placeholder="A 123 BC 456">
+                        <input class="form-control" ng-model="vm.fill.avto.gosNumber" placeholder="A 123 BC 456" mask="A 999 AA 999" restrict="reject" limit="false">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>VIN номер</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.avto.vin" placeholder="1234567890">
+                        <input class="form-control" ng-model="vm.fill.avto.vin" placeholder="1234567890"  mask="99999999999999999">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Стоимость авто</label>
-                        <input type="text" class="form-control" ng-model="vm.fill.avto.price" disabled="disabled">
+                        <input class="form-control" ng-model="vm.fill.avto.price" disabled="disabled">
                     </div>
                 </div>
             </div>

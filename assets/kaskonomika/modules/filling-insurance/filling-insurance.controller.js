@@ -15,17 +15,18 @@
             avto: {}
         };
 
-        vm.nextStep = nextStep;
         vm.submitResults = submitResults;
-        vm.checkStep1Correct = checkStep1Correct;
+        vm.nextStep = nextStep;
         vm.clearQueue1 = clearQueue1;
         vm.clearQueue2 = clearQueue2;
+        vm.clearQueue3 = clearQueue2;
+        vm.clearQueue4 = clearQueue2;
 
         activate();
         function activate() {
             $scope.$on('cfpLoadingBar:completed',function(){
                 vm.view = true;
-                vm.fill.step = 2;
+                vm.fill.step = 1;
                 getFindData();
             });
         }
@@ -45,12 +46,25 @@
             }
         }
 
+        function nextStep(step) {
+            if (step === 1) {
+                if ($rootScope.currentUser) {
+                    vm.fill.step++
+                } else {
+                    vm.regNow = true;
+                }
+            } else if (step === 2) {
+                
+            }
+
+        }
+
         /**
          * Go to the next step in filling
          */
-        function nextStep() {
+        /*function nextStep() {
             vm.fill.step++
-        }
+        }*/
 
         /**
          * Post results for create policy
@@ -59,15 +73,6 @@
             
         }
 
-        function checkStep1Correct() {
-            if (vm.fill.holder.firstName &&
-                vm.fill.holder.name &&
-                vm.fill.holder.secondName &&
-                vm.fill.holder.sex &&
-                vm.fill.holder.birthday) {
-
-            }
-        }
         
         //---------------------------------------------------- UPLOADER -----------------------------------------/
 
@@ -91,6 +96,8 @@
 
             vm.uploader1 = new FileUploader(vm.uploaderOptions);
             vm.uploader2 = new FileUploader(vm.uploaderOptions);
+            vm.uploader3 = new FileUploader(vm.uploaderOptions);
+            vm.uploader4 = new FileUploader(vm.uploaderOptions);
 
             vm.uploader1.onAfterAddingAll = function(res){
                 console.log('onCompleteAll',vm.uploader1.queue[0]._file);
@@ -101,9 +108,17 @@
                 console.log('onCompleteAll',vm.uploader2.queue[0]._file);
                 //TODO здесь должен быть переход на следующий слайд при успешной загрузке картинки
             };
+
+            vm.uploader3.onAfterAddingAll = function(res){
+                console.log('onCompleteAll',vm.uploader3.queue[0]._file);
+                //TODO здесь должен быть переход на следующий слайд при успешной загрузке картинки
+            };
+
+            vm.uploader3.onAfterAddingAll = function(res){
+                console.log('onCompleteAll',vm.uploader3.queue[0]._file);
+                //TODO здесь должен быть переход на следующий слайд при успешной загрузке картинки
+            };
         });
-
-
 
         /**
          * Удаление изображения из очереди
@@ -119,6 +134,22 @@
         function clearQueue2() {
             vm.uploader2.destroy();
             vm.uploader2 = new FileUploader(vm.uploaderOptions);
+        }
+
+        /**
+         * Удаление изображения из очереди
+         */
+        function clearQueue3() {
+            vm.uploader3.destroy();
+            vm.uploader3 = new FileUploader(vm.uploaderOptions);
+        }
+
+        /**
+         * Удаление изображения из очереди
+         */
+        function clearQueue4() {
+            vm.uploader4.destroy();
+            vm.uploader4 = new FileUploader(vm.uploaderOptions);
         }
 
 

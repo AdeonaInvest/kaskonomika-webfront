@@ -23,9 +23,9 @@
                     '</div>' +
                     '<div ng-if="vm.uploader'+attr.index+'.queue.length > 0 && vm.uploader'+attr.index+'.queue[0].progress >= 100">' +
                     '<div class="btn-group animated zoomIn">' +
-                    '<a type="button" class="btn btn-success" disabled="disabled">Файл загружен</a>' +
+                    '<a type="button" class="btn btn-success" disabled="disabled">Скан загружен</a>' +
                     '<a type="button" class="btn btn-danger" ng-click="vm.clearQueue'+attr.index+'()" uib-tooltip="Удалить">' +
-                    '<i class="fa fa-trash"></i>' +
+                    '<i class="fa fa-trash-o"></i>' +
                     '</a>' +
                     '</div>' +
                     '</div>' +
