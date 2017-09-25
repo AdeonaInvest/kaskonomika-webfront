@@ -27,6 +27,7 @@
         };
 
         vm.nextStep = nextStep;
+        vm.setNewCurrentIssue = setNewCurrentIssue;
         vm.clearQueue1 = clearQueue1;
         vm.clearQueue2 = clearQueue2;
         vm.clearQueue3 = clearQueue2;
@@ -47,8 +48,8 @@
         function getFindData() {
             vm.findData = JSON.parse(localStorage.getItem('findData'));// -> All data for search
             if (vm.findData) {
-                vm.findData.step = 11; // Установка дефолтного шага.
-                xlog('MODULE : FILLING -> Find data received',vm.findData);
+                $rootScope.findData.step = 11; // Установка дефолтного шага.
+                xlog('MODULE : FILLING -> Find data received',$rootScope.findData);
                 getExecute();
             } else {
                 $location.path('/')
@@ -245,7 +246,12 @@
                 })
         }
 
-        vm.setNewCurrentIssue = setNewCurrentIssue;
+
+        /**
+         * Set new current Tab
+         * @param issue - Obj
+         * @param key
+         */
         function setNewCurrentIssue(issue, key){
             vm.fill.activeIssue = issue;
             vm.fill.currentTab = key;
