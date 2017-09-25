@@ -7,25 +7,25 @@
     </div>
     <hr/>
     <div ng-if="vm.fill.step == 1 && !vm.regNow">
-        <form class="form" name="formStep1">
+        <form class="form">
             <h4>Данные страхователя</h4>
             <div class="row row-string">
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Фамилия</label>
-                        <input name="firstName" class="form-control" ng-model="vm.fill.holder.firstName" placeholder="Фамилия" required mask="!" limit="false" restrict="reject">
+                        <input class="form-control" ng-model="vm.fill.holder.firstName" placeholder="Фамилия" mask="!" limit="false" restrict="reject">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Имя</label>
-                        <input name="name" class="form-control" ng-model="vm.fill.holder.name" placeholder="Имя" required mask="!" limit="false" restrict="reject">
+                        <input class="form-control" ng-model="vm.fill.holder.name" placeholder="Имя" mask="!" limit="false" restrict="reject">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Отчество</label>
-                        <input name="secondName" class="form-control" ng-model="vm.fill.holder.secondName" placeholder="Отчество" required mask="!" limit="false" restrict="reject">
+                        <input class="form-control" ng-model="vm.fill.holder.secondName" placeholder="Отчество" mask="!" limit="false" restrict="reject">
                     </div>
                 </div>
             </div>
@@ -34,15 +34,15 @@
                     <div class="form-group">
                         <label>Выберите пол</label>
                         <div>
-                            <div class="custom-radio" ng-click="vm.fill.holder.sex = 1">
-                                <input type="radio" name="sex" ng-model="vm.fill.holder.sex" required>
-                                <label ng-class="{'active': vm.fill.holder.sex == 1}">
+                            <div class="custom-radio" ng-click="vm.fill.holder.sex = '1'">
+                                <input type="radio" ng-model="vm.fill.holder.sex">
+                                <label ng-class="{'active': vm.fill.holder.sex == '1'}">
                                     Мужчина
                                 </label>
                             </div>
-                            <div class="custom-radio" ng-click="vm.fill.holder.sex = 0">
-                                <input type="radio" name="sex" ng-model="vm.fill.holder.sex" required>
-                                <label ng-class="{'active': vm.fill.holder.sex == 0}">
+                            <div class="custom-radio" ng-click="vm.fill.holder.sex = '0'">
+                                <input type="radio" ng-model="vm.fill.holder.sex">
+                                <label ng-class="{'active': vm.fill.holder.sex == '0'}">
                                     Женщина
                                 </label>
                             </div>
@@ -52,33 +52,33 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Дата рождения</label>
-                        <input type="date" class="form-control" name="birthday" ng-model="vm.fill.holder.birthday" placeholder="XX.XX.XXXX" required>
+                        <input type="date" class="form-control" ng-model="vm.fill.holder.birthday" placeholder="XX.XX.XXXX" max="1999-09-25" min="1945-01-01">
                     </div>
                 </div>
             </div>
             <div class="row row-string">
                 <div class="col-lg-6">
-                    <div class="form-group">
-                        <label>Контактный телефон</label>
-                        <input type="text"
-                               name="phone"
+                    <div class="form-group" ng-class="{'has-error':vm.fill.holder.phoneError}">
+                        <label ng-if="!vm.fill.holder.phoneError">Контактный телефон</label>
+                        <label ng-if="vm.fill.holder.phoneError" class="color-red">Телефон введен неверно или уже используется</label>
+                        <input name="phone"
                                class="form-control"
                                ng-model="vm.fill.holder.phone"
                                placeholder="+7 (XXX) XXX-XX-XX"
                                mask="+9 (999) 999-99-99"
                                restrict="reject"
-                               required>
+                               clean="true">
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="form-group">
-                        <label>Электронная почта</label>
+                    <div class="form-group" ng-class="{'has-error':vm.fill.holder.emailError}">
+                        <label ng-if="!vm.fill.holder.emailError">Электронная почта</label>
+                        <label ng-if="vm.fill.holder.emailError" class="color-red">Эта электронная почта уже используется</label>
                         <input type="email"
                                class="form-control"
                                name="email"
                                ng-model="vm.fill.holder.email"
-                               placeholder="example@myemail.com"
-                               required>
+                               placeholder="example@myemail.com">
                     </div>
                 </div>
             </div>
@@ -87,18 +87,21 @@
                 <div class="col-lg-4 col-lg-offset-8">
                     <button class="btn btn-kasko"
                             type="submit"
-                            ng-click="vm.nextStep()"
-                            ng-disabled="formStep1.email.$invalid || formStep1.phone.$invalid || formStep1.birthday.$invalid || formStep1.sex.$invalid || formStep1.secondName.$invalid || formStep1.firstName.$invalid || formStep1.firstName.$invalid">Продолжить</button>
+                            ng-click="vm.nextStep(1)"
+                            ng-disabled="!vm.fill.holder.firstName || !vm.fill.holder.name || !vm.fill.holder.secondName || !vm.fill.holder.sex || !vm.fill.holder.birthday || !vm.fill.holder.phone || !vm.fill.holder.email">Продолжить</button>
                 </div>
             </div>
         </form>
     </div>
     <div ng-if="vm.fill.step == 1 && vm.regNow">
-        <form class="form">
-            <h4 class="ta-center">Для продолжения необходимо активировать ваш телефон</h4>
+        <form class="form form-confirm">
+            <h4 class="ta-center">Вы не зарегистрированы</h4>
+            <h4 class="ta-center email-confirm-text">По адресу <b>{{vm.fill.holder.email}}</b> отправлено письмо для подтверждения электронной почты и временный пароль.</h4>
+            <hr/>
+            <h4 class="ta-center">Для продолжения необходимо активировать ваш телефон.</h4>
             <div class="row">
                 <div class="col-lg-4">
-                    <span>Вам был отправлен код активации, пожалуйста введите его</span>
+                    <span class="confirm-title">Вам был отправлен код активации, пожалуйста введите его.</span>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
@@ -107,14 +110,14 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <button class="btn btn-kasko"
+                    <button class="btn btn-kasko btn-confirm"
                             type="submit"
-                            ng-click="vm.confirmCode()"
+                            ng-click="vm.nextStep('reg')"
                             ng-disabled="!vm.fill.confirmCode">Активировать</button>
                 </div>
             </div>
-            <div class="row errors-area">
-                <h4 class="error">Неверный проверочный код. Проверьте его и попробуйте ввести еще раз.</h4>
+            <div class="row errors-area" ng-if="vm.fill.confirmCodeError">
+                <h4 class="error color-red">Неверный проверочный код. Проверьте его и попробуйте ввести еще раз.</h4>
             </div>
         </form>
     </div>
@@ -180,19 +183,19 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Фамилия</label>
-                        <input name="firstName" class="form-control" ng-model="vm.fill.beneficiary.firstName" ng-disabled="vm.overlap" placeholder="Фамилия" required mask="!" limit="false" restrict="reject">
+                        <input name="firstName" class="form-control" ng-model="vm.fill.beneficiary.firstName" ng-disabled="vm.overlap" placeholder="Фамилия" mask="!" limit="false" restrict="reject">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Имя</label>
-                        <input name="name" class="form-control" ng-model="vm.fill.beneficiary.name" ng-disabled="vm.overlap" placeholder="Имя" required mask="!" limit="false" restrict="reject">
+                        <input name="name" class="form-control" ng-model="vm.fill.beneficiary.name" ng-disabled="vm.overlap" placeholder="Имя" mask="!" limit="false" restrict="reject">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Отчество</label>
-                        <input name="secondName" class="form-control" ng-model="vm.fill.beneficiary.secondName" ng-disabled="vm.overlap" placeholder="Отчество" required mask="!" limit="false" restrict="reject">
+                        <input name="secondName" class="form-control" ng-model="vm.fill.beneficiary.secondName" ng-disabled="vm.overlap" placeholder="Отчество" mask="!" limit="false" restrict="reject">
                     </div>
                 </div>
             </div>
@@ -201,15 +204,15 @@
                     <div class="form-group">
                         <label>Выберите пол</label>
                         <div>
-                            <div class="custom-radio" ng-click="vm.fill.beneficiary.sex = 1">
-                                <input type="radio" ng-model="vm.fill.beneficiary.sex" required>
-                                <label ng-class="{'active': vm.fill.beneficiary.sex == 1}">
+                            <div class="custom-radio" ng-click="vm.fill.beneficiary.sex = '1'">
+                                <input type="radio" ng-model="vm.fill.beneficiary.sex">
+                                <label ng-class="{'active': vm.fill.beneficiary.sex == '1'}">
                                     Мужчина
                                 </label>
                             </div>
-                            <div class="custom-radio" ng-click="vm.fill.beneficiary.sex = 0">
-                                <input type="radio" ng-model="vm.fill.holder.sex" required>
-                                <label ng-class="{'active': vm.fill.beneficiary.sex == 0}">
+                            <div class="custom-radio" ng-click="vm.fill.beneficiary.sex = '0'">
+                                <input type="radio" ng-model="vm.fill.holder.sex">
+                                <label ng-class="{'active': vm.fill.beneficiary.sex == '0'}">
                                     Женщина
                                 </label>
                             </div>
@@ -309,19 +312,19 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Марка автомобиля</label>
-                        <input class="form-control" ng-model="vm.fill.avto.mark" disabled="disabled">
+                        <input class="form-control" ng-model="findData.mark.mark" disabled="disabled">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Модель автомобиля</label>
-                        <input class="form-control" ng-model="vm.fill.avto.model" disabled="disabled">
+                        <input class="form-control" ng-model="findData.model.model" disabled="disabled">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Год выпуска</label>
-                        <input class="form-control" ng-model="vm.fill.avto.year" disabled="disabled">
+                        <input class="form-control" ng-model="findData.year" disabled="disabled">
                     </div>
                 </div>
             </div>
@@ -363,13 +366,13 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Гос. номер</label>
-                        <input class="form-control" ng-model="vm.fill.avto.gosNumber" placeholder="A 123 BC 456" mask="A 999 AA 999" restrict="reject" limit="false">
+                        <input class="form-control" ng-model="vm.fill.avto.gosNumber" placeholder="A 123 BC 456" mask="A 999 AA 999" restrict="reject" clear="true" limit="false">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>VIN номер</label>
-                        <input class="form-control" ng-model="vm.fill.avto.vin" placeholder="1234567890"  mask="99999999999999999">
+                        <input class="form-control" ng-model="vm.fill.avto.vin" placeholder="1234567890" clear="true" mask="99999999999999999">
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -393,5 +396,7 @@
     <div ng-if="vm.fill.step == 6" class="ta-center">
         <span>Спасибо за ожидание.<br/>Все расчеты окончены, мы вскоре свяжемся с вами для дальнейшего оформления полиса</span>
     </div>
-
+    <div class="blocker" ng-if="vm.waiter">
+        <i class="fa fa-circle-o-notch fa-spin fa-5x"></i>
+    </div>
 </div>
