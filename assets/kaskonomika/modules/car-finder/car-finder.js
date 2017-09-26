@@ -54,6 +54,7 @@
         vm.progressWidth = progressWidth;
         vm.findResults = findResults;
         vm.disableBtnResult = disableBtnResult;
+        vm.goBackToResults = goBackToResults;
 
 
         /**
@@ -62,7 +63,7 @@
         function checkInitFinder(){
             if (!$rootScope.carFinder) {
                 $rootScope.carFinder = true;
-                xlog('MODULE : CAR-FINDER -> Finder init');
+                xlog('MODULE : CAR-FINDER -> Initialisation complete');
                 getMarks();
                 $scope.$on('cfpLoadingBar:completed',function(){
                     vm.view = true;
@@ -270,14 +271,7 @@
         function findResults(){
             localStorage.setItem('findData', JSON.stringify($rootScope.findData));
             localStorage.setItem('allData', JSON.stringify($rootScope.allData));
-            var url = '?mark=' + $rootScope.findData.mark.mark +
-                '&year=' + $rootScope.findData.year +
-                '&model=' + $rootScope.findData.model.model +
-                '&mod=' + $rootScope.findData.mod.modification +
-                '&driver=' + $rootScope.findData.driver.id +
-                '&age=' + $rootScope.findData.age +
-                '&exp=' + $rootScope.findData.exp;
-            $location.url('/result-page' + url);
+            $location.url('/result-page');
         }
 
         /**
@@ -287,6 +281,13 @@
         function disableBtnResult(){
             var a = $rootScope.findData;
             if (a.mark!='' && a.year!='' && a.model!='' && a.mod!='' && a.driver!='' && a.age!='' && a.exp!='') return true
+        }
+
+        /**
+         * Comeback to results page
+         */
+        function goBackToResults() {
+            $location.path('/result-page')
         }
     }
 })();

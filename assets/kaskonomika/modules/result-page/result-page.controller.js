@@ -5,13 +5,12 @@
         .module('kaskonomika')
         .controller('resultPageController', resultPageController);
 
-    resultPageController.$inject = ['$rootScope', '$scope', '$routeParams', '$location', '$http', 'config', '$timeout'];
+    resultPageController.$inject = ['$rootScope', '$scope', '$location', '$http', 'config', '$timeout'];
 
-    function resultPageController($rootScope, $scope, $routeParams, $location, $http, config, $timeout) {
+    function resultPageController($rootScope, $scope, $location, $http, config, $timeout) {
         ///////////////////
-        var vm = this;
+        let vm = this;
         vm.view = false; // View ready status
-        vm.routeParams = $routeParams;
         vm.executeTimer = 1000; // Duration for $http POST execute
         vm.execute = []; // Execute results array
         vm.resultList = []; // Results list
@@ -94,7 +93,7 @@
                         vm.filter.drivers[0].age = $rootScope.findData.age;
                         vm.filter.drivers[0].exp = $rootScope.findData.exp;
                         vm.haveResult = true; // For singleton
-                        console.log('$rootScope.findData', $rootScope.findData, '$rootScope.allData', $rootScope.allData)
+                        xlog('MODULE : RESULT-PAGE : FindData ->',$rootScope.findData);
                         getCurrentYear(); //Get current year : YYYY
                     } else {
                         vm.haveResult = false; // For singleton
@@ -122,7 +121,7 @@
          */
         function getCarPrice() {
             var data = {
-                year: vm.routeParams.year,
+                year: $rootScope.findData.year,
                 is_used: 0
             };
             $http.post(config.api + 'dictionaries/car/' + $rootScope.findData.mod.id + '/price', data)
@@ -166,8 +165,6 @@
                 $timeout.cancel(vm.executeTimeout); // Cancel past timeout
                 // Create new timeout
                 vm.executeTimeout = $timeout(function () {
-                    console.log('Данные в фильтре изменились', vm.filter);
-                    console.log('$rootScope.findData changed', $rootScope.findData);
                     getExecute(); // Запрос на получение результатов списка страховок по заданным параметрам
                 }, vm.executeTimer)
             }
@@ -181,7 +178,7 @@
         function getExecute() {
             // If no 'stop' execute
             if (!vm.stopExecute) {
-                var data = {
+                let data = {
                     token: '',
                     mark_id: $rootScope.findData.mark.mark,
                     year: $rootScope.findData.year,
@@ -215,7 +212,6 @@
                 $http.post(config.api + 'calculations/execute', data)
                     .then(function (response) {
                         if (response.data.result) {
-                            console.log('response', response);
                             vm.execute = response.data.response.outer_ids;
                             vm.resultCount = vm.execute.length; // New results counter
                             getResults(vm.execute); //Get results from executions list
@@ -329,7 +325,7 @@
             } else {
                 if (vm.userPhone.phone.length  === 12) {
                     vm.userPhone.error = false;
-                    var data = {
+                    let data = {
                         region: 'Москва и область',
                         vendor: $rootScope.findData.mark.mark,
                         year: $rootScope.findData.year,

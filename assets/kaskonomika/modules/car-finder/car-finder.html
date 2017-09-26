@@ -19,7 +19,7 @@
                         </span>
                     </div>
                     <div class="col-xs-3">
-                        <span ng-class="{active: findData.step > 8}">Предложения</span>
+                        <span ng-class="{active: findData.step > 8}" ng-click="vm.goBackToResults()" ng-disabled="findData.step < 8">Предложения</span>
                     </div>
                     <div class="col-xs-3">
                         <span ng-class="{active: findData.step > 9}">Оформление</span>

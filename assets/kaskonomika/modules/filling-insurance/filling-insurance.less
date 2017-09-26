@@ -96,6 +96,41 @@
         }
       }
     }
+    .errors-break-area {
+      width: 100%;
+      border-radius: 5px;
+      background: #e76363;
+      text-align: center;
+      padding: 30px;
+      h4 {
+        font: 20px/20px @fm-bold;
+        color: #fff;
+        text-align: center;
+        margin: 0 auto 30px;
+        display: block;
+      }
+      a {
+        color: #cecece;
+        font: 18px/22px @fm-web;
+        border-bottom: 1px dashed #cecece;
+        text-align: center;
+        display: block;
+        margin: auto;
+        width: 100px;
+        transition: .2s ease;
+        &:hover {
+          color: #fff;
+          border-bottom: 1px solid #fff;
+          outline: none;
+          text-decoration: none;
+          transition: .2s ease;
+        }
+        &:focus {
+          outline: none;
+          text-decoration: none;
+        }
+      }
+    }
   }
   #filling-sidebar {
     .waiter {

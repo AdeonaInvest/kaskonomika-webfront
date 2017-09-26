@@ -12,11 +12,13 @@
         let vm = this;
         vm.view = false; //Статус готовности отображения
         vm.fill = {
-            avto: {},
-            issueList: [],
-            issueArray: [],
-            currentTab: 0,
-            response: {},
+            avto: {}, //Data for avto query
+            issueList: [], //Tabs array for sidebar
+            issueArray: [], //Array all issues from server
+            currentTab: 0, //Start tab in sidaber
+            response: {}, //Data from $http.posts
+            step: 1, //Start step
+            risks: [], //Array of risks from Execution -> Results
             holder: {
                 phone: '+79850846060',
                 email: 'aaaa@aaaaaaaa.aaaaa',
@@ -24,7 +26,7 @@
                 firstName: 'Привет',
                 secondName: 'Пока',
                 sex: '1'
-            }
+            } //TODO test data, delete after tests
         };
 
         vm.nextStep = nextStep;
@@ -37,7 +39,9 @@
         activate();
         function activate() {
             vm.view = true;
-            vm.fill.step = 1; //Start step
+            $scope.$on('$includeContentLoaded', function () {
+                $rootScope.findData.step = 11; // Установка дефолтного шага.
+            })
             getFindData(); //Get findData from localStorage
         }
         
@@ -49,8 +53,7 @@
         function getFindData() {
             vm.findData = JSON.parse(localStorage.getItem('findData'));// -> All data for search
             if (vm.findData) {
-                $rootScope.findData.step = 11; // Установка дефолтного шага.
-                xlog('MODULE : FILLING -> Find data received',vm.findData);
+                xlog('MODULE : FILLING -> FindData received',vm.findData);
                 getExecute();
             } else {
                 $location.path('/')
@@ -147,24 +150,67 @@
                                                                 step2ContractorEmailCreate(res).then(function(res){
                                                                         if (res.data.result) {
                                                                             step2ContractorFinallyStep(res);
-                                                                        } else breakFilling('Возникла ошибка. Обратитесь в службу поддержки');
+                                                                        } else breakFilling();
                                                                     })
-                                                            } else breakFilling('Возникла ошибка. Обратитесь в службу поддержки');
+                                                            } else breakFilling();
                                                         })
-                                                } else breakFilling('Возникла ошибка. Обратитесь в службу поддержки');
+                                                } else breakFilling();
                                             })
-                                    } else breakFilling('Возникла ошибка. Обратитесь в службу поддержки');
+                                    } else breakFilling();
                                 })
-                        } else breakFilling('Возникла ошибка. Обратитесь в службу поддержки');
+                        } else breakFilling();
                     });
             }
             else if (step === 3) {
-                vm.fill.step++; //Go to the next step
-                getExecute();
+                if (vm.overlap) {
+                    vm.fill.step++; //Go to the next step
+                    getExecute();
+                } else {
+                    step3ConstructorIsExists()
+                        .then(function(res){
+                            if (res.data.result) {
+                                step3ContractorCreate(res)
+                                    .then(function(res){
+                                        if (res.data.result) {
+                                            step3ContractorDocsCreate(res)
+                                                .then(function(res){
+                                                    if (res.data.result) {
+                                                        step3ContractorPhoneCreate(res)
+                                                            .then(function(res){
+                                                                if (res.data.result) {
+                                                                    step3ContractorEmailCreate(res)
+                                                                        .then(function(res){
+                                                                            if (res.data.result) {
+                                                                                step3ContractorFinallyStep(res);
+                                                                            } else breakFilling();
+                                                                        })
+                                                                } else breakFilling();
+                                                            })
+                                                    } else breakFilling();
+                                                })
+                                        } else breakFilling();
+                                    })
+                            } else breakFilling();
+                        })
+                }
             }
             else if (step === 4) {
-                vm.fill.step++; //Go to the next step
-                getExecute();
+                step4CheckByVin()
+                    .then(function(res){
+                        if (res.data.result) {
+                            step4AttachToUser(res)
+                                .then(function(res){
+                                    if (res.data.result) {
+                                        step4ObjectCreate(res)
+                                            .then(function(res){
+                                                if (res.data.result) {
+                                                    step4CreatePolicy(res)
+                                                } else breakFilling();
+                                            })
+                                    } else breakFilling();
+                                })
+                        } else breakFilling();
+                    })
             }
         }
 
@@ -247,7 +293,6 @@
             $http.post(config.api + 'calculations/execute',data) //Post data for execute
                 .then(function(res){
                     if (res.data.result) { //If result === true
-                        xlog('MODULE : FILLING -> Execute successfully');
                         vm.fill.issueArray = res.data.response.outer_ids; //Array ids of issues
                         vm.fill.issueList = []; //Clear isseres list
 
@@ -264,6 +309,8 @@
                                         if (res.data.response.is_canceled === 0 && res.data.response.is_error === 0 && res.data.response.is_success === 1) { //Check for disabled item
                                             if (res.data.response.calculations_product_id === vm.findData.calculations_product_id) {
                                                 res.data.response.active = true; //Set active status for current Issue to display active tab in sidebar
+                                                vm.findData.calculation_id = res.data.response.calculation_id;
+                                                xlog('MODULE : FILLING -> Current calculator:', vm.findData.calculation_id);
                                                 vm.fill.activeIssue = res.data.response; //Set active data to active issue
                                                 vm.ready = true; //Hide loader & show sidebar
                                             }
@@ -288,6 +335,7 @@
         }
 
         //---------------------------------------------------- STEPS FUNCTIONS ----------------------------------/
+        //--------------- STEP 2 --------------//
 
         /**
          * Check user for construct
@@ -317,7 +365,7 @@
                 data = {
                     token: $rootScope.currentToken,
                     is_juridical: 0,
-                    birth_date: (date.getDate()<10?'0'+date.getDate():date.getDate())+'.'+(date.getMonth()<10?'0'+date.getMonth():date.getMonth())+'.'+date.getFullYear(),
+                    birth_date: (date.getDate()<10?'0'+date.getDate():date.getDate())+'.'+(date.getMonth()<10?'0'+(date.getMonth()+1):(date.getMonth()+1))+'.'+date.getFullYear(),
                     is_primary: 1,
                     sex: vm.fill.holder.sex,
                     name: vm.fill.holder.firstName + ' ' + vm.fill.holder.name + ' ' + vm.fill.holder.secondName
@@ -342,7 +390,7 @@
                     number: vm.fill.passport.serial.toString().substring(4,10),
                     document_type_id: 1,
                     issued: vm.fill.passport.owner,
-                    issued_date: (date.getDate()<10?'0'+date.getDate():date.getDate())+'.'+(date.getMonth()<10?'0'+date.getMonth():date.getMonth())+'.'+date.getFullYear(),
+                    issued_date: (date.getDate()<10?'0'+date.getDate():date.getDate())+'.'+(date.getMonth()<10?'0'+(date.getMonth()+1):(date.getMonth()+1))+'.'+date.getFullYear(),
                     expiration_date: '01.01.2100',
                     contractor_id: vm.fill.response.contractor_id
                 };
@@ -404,13 +452,246 @@
 
         }
 
+        //--------------- STEP 3 --------------//
+
+        /**
+         * Check user for construct
+         * @returns {*} - @promise
+         */
+        function step3ConstructorIsExists() {
+            vm.waiter = true;
+            let data = {
+                token: $rootScope.currentToken,
+                is_juridical: 0,
+                name: vm.fill.beneficiary.name,
+                middle_name: vm.fill.beneficiary.firstName,
+                last_name: vm.fill.beneficiary.secondName,
+                series: vm.fill.beneficiary.passport.serial.toString().substring(0,4),
+                number: vm.fill.beneficiary.passport.serial.toString().substring(4,10),
+                document_type_id: 1
+            };
+            return $http.post(config.api + 'contractors/isExists',data)
+        }
+
+        /**
+         * Create contractor from user Data
+         * @returns {*} - @promise
+         */
+        function step3ContractorCreate (){
+            let date = new Date(vm.fill.beneficiary.birthday),
+                data = {
+                    token: $rootScope.currentToken,
+                    is_juridical: 0,
+                    birth_date: (date.getDate()<10?'0'+date.getDate():date.getDate())+'.'+(date.getMonth()<10?'0'+(date.getMonth()+1):(date.getMonth()+1))+'.'+date.getFullYear(),
+                    is_primary: 1,
+                    sex: vm.fill.beneficiary.sex,
+                    name: vm.fill.beneficiary.firstName + ' ' + vm.fill.beneficiary.name + ' ' + vm.fill.beneficiary.secondName
+                };
+            return $http.post(config.api + 'contractors/create',data)
+        }
+
+        /**
+         * Add documents to constructor
+         * @param res - response from step2ContractorCreate()
+         * @returns {*} - @promise
+         */
+        function step3ContractorDocsCreate(res){
+            vm.fill.response.beneficiary_id = res.data.response; //step2 id
+            let date = new Date(vm.fill.beneficiary.passport.date),
+                data = {
+                    token: $rootScope.currentToken,
+                    name: vm.fill.beneficiary.name,
+                    middle_name: vm.fill.beneficiary.firstName,
+                    last_name: vm.fill.beneficiary.secondName,
+                    series: vm.fill.beneficiary.passport.serial.toString().substring(0,4),
+                    number: vm.fill.beneficiary.passport.serial.toString().substring(4,10),
+                    document_type_id: 1,
+                    issued: vm.fill.beneficiary.passport.owner,
+                    issued_date: (date.getDate()<10?'0'+date.getDate():date.getDate())+'.'+(date.getMonth()<10?'0'+(date.getMonth()+1):(date.getMonth()+1))+'.'+date.getFullYear(),
+                    expiration_date: '01.01.2100',
+                    contractor_id: vm.fill.response.beneficiary_id
+                };
+            return $http.post(config.api + 'contractors/' + vm.fill.response.beneficiary_id + '/documents/create',data)
+        }
+
+        /**
+         * Add phone number to constructor
+         * @param res - response from step2ContractorDocsCreate()
+         * @returns {*} - @promise
+         */
+        function step3ContractorPhoneCreate(res){
+            vm.fill.response.beneficiary_documents_id = res.data.response; //step1 doc_id
+            let data = {
+                token: $rootScope.currentToken,
+                contact_type_id: 1,
+                content: vm.fill.beneficiary.phone,
+                is_primary: 1
+            };
+            return $http.post(config.api + 'contractors/' + vm.fill.response.beneficiary_id + '/contacts/create',data)
+        }
+
+        /**
+         * Add email number to constructor
+         * @param res - response from step2ContractorPhoneCreate()
+         * @returns {*} - @promise
+         */
+        function step3ContractorEmailCreate(res) {
+            vm.fill.response.beneficiary_phone_id = res.data.response; //step1 phone_id
+            let data = {
+                token: $rootScope.currentToken,
+                contact_type_id: 2,
+                content: vm.fill.beneficiary.email,
+                is_primary: 1
+            };
+            return $http.post(config.api + 'contractors/' + vm.fill.response.beneficiary_id + '/contacts/create',data)
+        }
+
+        /**
+         * Finally step after complete step 2
+         * @param res - response from step2ContractorEmailCreate()
+         * @returns {*} - @promise
+         */
+        function step3ContractorFinallyStep(res) {
+            vm.fill.response.beneficiary_email_id = res.data.response; //step2 email_id
+            vm.uploader2.queue[0].formData = [{
+                token: $rootScope.currentToken,
+                category_id: 27,
+                owner_id: vm.fill.response.beneficiary_documents_id,
+                user_phone: vm.fill.response.beneficiary_phone_id,
+                user_email: vm.fill.response.beneficiary_email_id
+            }];
+            vm.uploader2.uploadAll();
+            vm.uploader2.onCompleteAll = function(){
+                vm.fill.step++; //Go to the next step
+                vm.waiter = false;
+                getExecute();
+            };
+        }
+
+        //--------------- STEP 3 --------------//
+
+        /**
+         * Check avto by vin
+         * @returns {*} - @promise
+         */
+        function step4CheckByVin() {
+            vm.waiter = true;
+            return $http.get(config.api + 'policies/vehicles/checkByVin/' + vm.fill.avto.vin + '?token=' + $rootScope.currentToken)
+        }
+
+        /**
+         * Attach documents to created user
+         * @returns {*} - @promise
+         */
+        function step4AttachToUser() {
+            let data = {
+                token: $rootScope.currentToken,
+                mark_model_id: vm.findData.mod.id,
+                vin: vm.fill.avto.vin,
+                year: vm.findData.year,
+                number: vm.fill.avto.gosNumber
+            };
+            return $http.post(config.api + 'policies/vehicles/attachToUser', data)
+        }
+
+        /**
+         * Create policy object
+         * @param res - response from step4AttachToUser()
+         * @returns {*} - @promise
+         */
+        function step4ObjectCreate(res) {
+            vm.fill.response.policy_object_id = res.data.response; //step3 ID
+            let ptsDate = new Date(vm.fill.avto.pts.date),
+                stsDate = new Date(vm.fill.avto.sts.date),
+                data = {
+                    token: $rootScope.currentToken,
+                    policy_object_id: vm.fill.response.policy_object_id,
+                    policy_object_document_type_id: 1,
+                    series: vm.fill.avto.pts.serial.toString().substring(0,4),
+                    number: vm.fill.avto.pts.serial.toString().substring(4,10),
+                    issued_date: (ptsDate.getDate()<10?'0'+ptsDate.getDate():ptsDate.getDate())+'.'+(ptsDate.getMonth()<10?'0'+(ptsDate.getMonth()+1):(ptsDate.getMonth()+1))+'.'+ptsDate.getFullYear(),
+                    sts_series: vm.fill.avto.sts.serial.toString().substring(0,4),
+                    sts_number: vm.fill.avto.sts.serial.toString().substring(4,10),
+                    issued_sts_date: (stsDate.getDate()<10?'0'+stsDate.getDate():stsDate.getDate())+'.'+(stsDate.getMonth()<10?'0'+(stsDate.getMonth()+1):(stsDate.getMonth()+1))+'.'+stsDate.getFullYear(),
+                    expiration_date: '01.01.2100',
+                    value: vm.findData.filter.sum
+                };
+            return $http.post(config.api + 'policies/objects/documents/create',data)
+        }
+
+        /**
+         * Create policy on server
+         * @param res - response from step4ObjectCreate()
+         * @returns {*} - @promise
+         */
+        function step4CreatePolicy(res) {
+            vm.fill.response.owner_id = res.data.response; //step3 owner_id
+            vm.uploader3.queue[0].formData = [{
+                token: $rootScope.currentToken,
+                category_id: 24,
+                owner_id:  vm.fill.response.owner_id
+            }];
+            vm.uploader3.uploadAll();
+            vm.uploader3.onCompleteAll = function(){
+                vm.uploader4.queue[0].formData = [{
+                    token: $rootScope.currentToken,
+                    category_id: 24,
+                    owner_id:  vm.fill.response.owner_id
+                }];
+                vm.uploader4.uploadAll();
+                vm.uploader4.onCompleteAll = function(){
+                    vm.fill.activeIssue.results.forEach(function(f){
+                        vm.fill.risks.push({
+                            policies_objects_type_id: 1,
+                            policies_object_id: vm.fill.response.policy_object_id,
+                            insurance_companies_risk_id: f.calculations_risk_id
+                        })
+                    });
+                    let currentDate = new Date(),
+                        data = {
+                            token: $rootScope.currentToken,
+                            begin_date: (currentDate.getDate()<10?'0'+currentDate.getDate():currentDate.getDate())+'.'+(currentDate.getMonth()<10?'0'+(currentDate.getMonth()+1):(currentDate.getMonth()+1))+'.'+currentDate.getFullYear(),
+                            begin_time: (currentDate.getHours()<10?'0'+currentDate.getHours():currentDate.getHours())+':'+(currentDate.getMinutes()<10?'0'+currentDate.getMinutes():currentDate.getMinutes()),
+                            end_date: (currentDate.getDate()<10?'0'+currentDate.getDate():currentDate.getDate())+'.'+(currentDate.getMonth()<10?'0'+(currentDate.getMonth()+1):(currentDate.getMonth()+1))+'.'+(currentDate.getFullYear()+1),
+                            contractor_insurer_id: vm.fill.response.contractor_id,
+                            contractor_beneficiary_id: vm.fill.response.beneficiary_id ? vm.fill.response.beneficiary_id : null,
+                            insurance_company_id: vm.findData.calculations_product_id,
+                            product_id: 1,
+                            policies_type_id: 1,
+                            insurance_company_calculation_id: vm.findData.calculation_id,
+                            policy_payment_order_id: 1,
+                            objects: vm.fill.risks
+                        };
+                    $http.post(config.api + 'policies/create',data)
+                        .then(function(res){
+                            if (res.data.result) {
+                                /*vm.fill.step++; //Go to the next step
+                                getExecute();*/
+                                vm.waiter = false;
+                                console.log('ВСЕ ЗБС!!!!!!!!!!!!!!!!!!!!!')
+                            }
+                            else if (res.data.response.code === '400.20.8') {
+                                breakFilling('Полис по этому предложению уже создан')
+                            }
+                            else {
+                                breakFilling('Возникла ошибка. Обратитесь в службу поддержки')
+                            }
+                        })
+                };
+            };
+        }
+
+        //--------------- ERROR --------------//
+
         /**
          * Stop filling process and show some error
          * @param text - sample text to show in error area
          */
         function breakFilling(text) {
-            vm.breakFilling = {
-                text: 'Возникла ошибка. Обратитесь в службу поддержки'
+            if (text) {
+                vm.breakFilling = text;
+            } else {
+                vm.breakFilling = 'Возникла ошибка. Обратитесь в службу поддержки.'
             }
         }
         

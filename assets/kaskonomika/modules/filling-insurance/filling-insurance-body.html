@@ -1,4 +1,4 @@
-<div class="forms-area">
+<div class="forms-area" ng-if="!vm.breakFilling">
     <div class="forms-header">
         <div class="row">
             <span class="numbera-area">{{vm.fill.step}}</span>
@@ -168,7 +168,7 @@
         </div>
     </div>
     <div ng-if="vm.fill.step == 3">
-        <form class="form" name="formStep3">
+        <div class="form">
             <h4>Данные выгодоприобретателя</h4>
             <div class="row row-string">
                 <div class="col-lg-12">
@@ -224,7 +224,7 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Дата рождения</label>
-                        <input type="date" name="birthday" class="form-control" ng-model="vm.fill.beneficiary.birthday" ng-disabled="vm.overlap" placeholder="XX.XX.XXXX">
+                        <input type="date" name="birthday" class="form-control" ng-model="vm.fill.beneficiary.birthday" ng-disabled="vm.overlap" placeholder="XX.XX.XXXX" max="1999-09-25" min="1945-01-01">
                     </div>
                 </div>
             </div>
@@ -298,17 +298,17 @@
             <div class="row">
                 <div class="col-lg-4 col-lg-offset-8" ng-if="!vm.overlap">
                     <button class="btn btn-kasko"
-                            ng-click="vm.nextStep()"
+                            ng-click="vm.nextStep(3)"
                             ng-disabled="(!vm.fill.beneficiary.firstName || !vm.fill.beneficiary.name || !vm.fill.beneficiary.secondName || !vm.fill.beneficiary.sex || !vm.fill.beneficiary.birthday || !vm.fill.beneficiary.phone || !vm.fill.beneficiary.email || !vm.fill.beneficiary.passport.serial || !vm.fill.beneficiary.passport.date || !vm.fill.beneficiary.passport.owner || vm.uploader2.queue.length === 0) || vm.overlap">Продолжить</button>
                 </div>
                 <div class="col-lg-4 col-lg-offset-8" ng-if="vm.overlap">
                     <button class="btn btn-kasko" ng-click="vm.nextStep(3)">Продолжить</button>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
     <div ng-if="vm.fill.step == 4">
-        <form class="form">
+        <div class="form">
             <h4>Данные об автобомиле</h4>
             <div class="row row-string">
                 <div class="col-lg-4">
@@ -368,13 +368,13 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Гос. номер</label>
-                        <input class="form-control" ng-model="vm.fill.avto.gosNumber" placeholder="A 123 BC 456" mask="A 999 AA 999" restrict="reject" clear="true" limit="false">
+                        <input class="form-control" ng-model="vm.fill.avto.gosNumber" placeholder="A 123 BC 456" mask="A 999 AA 999" restrict="reject" clear="true" limit="true">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>VIN номер</label>
-                        <input class="form-control" ng-model="vm.fill.avto.vin" placeholder="1234567890" clear="true" mask="99999999999999999">
+                        <input class="form-control" ng-model="vm.fill.avto.vin" placeholder="1234567890" clear="true" mask="99999999999999999" limit="true">
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -387,18 +387,19 @@
             <hr/>
             <div class="row">
                 <div class="col-lg-4 col-lg-offset-8">
-                    <button class="btn btn-kasko" ng-click="vm.submitResults()" ng-disabled="!vm.fill.avto.pts.serial || !vm.fill.avto.pts.date || vm.uploader3.queue.length === 0 || !vm.fill.avto.sts.serial || !vm.fill.avto.sts.date || vm.uploader4.queue.length === 0 || !vm.fill.avto.gosNumber || !vm.fill.avto.vin">Продолжить</button>
+                    <button class="btn btn-kasko" ng-click="vm.nextStep(4)" ng-disabled="!vm.fill.avto.pts.serial || !vm.fill.avto.pts.date || vm.uploader3.queue.length === 0 || !vm.fill.avto.sts.serial || !vm.fill.avto.sts.date || vm.uploader4.queue.length === 0 || !vm.fill.avto.gosNumber || !vm.fill.avto.vin">Продолжить</button>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
     <div ng-if="vm.fill.step == 5" class="ta-center">
-        <i class="fa fa-circle-o-notch fa-spin fa-5x"></i>
-    </div>
-    <div ng-if="vm.fill.step == 6" class="ta-center">
         <span>Спасибо за ожидание.<br/>Все расчеты окончены, мы вскоре свяжемся с вами для дальнейшего оформления полиса</span>
     </div>
     <div class="blocker" ng-if="vm.waiter">
         <i class="fa fa-circle-o-notch fa-spin fa-5x"></i>
     </div>
+</div>
+<div class="errors-break-area" ng-if="vm.breakFilling">
+    <h4>Возникла ошибка. Обратитесь в службу поддержки.</h4>
+    <a href="/">На главную</a>
 </div>
