@@ -8,7 +8,7 @@
                 <div class="col-lg-12">
                     <p class="insuranse-title">Предложение от {{vm.fill.activeIssue.insurance_company.full_name}}</p>
                     <p class="car-title">Каско для {{vm.findData.mark.mark}} {{vm.findData.model.model}}</p>
-                    <p class="car-desc">{{vm.findData.mod.modification}} {{vm.findData.year}}, {{vm.findData.age}} год. Стаж {{2017 - parseInt(vm.findData.age)}} год(а)</p>
+                    <p class="car-desc">{{vm.findData.mod.modification}} {{vm.findData.year}}, {{vm.findData.age}} год. Стаж {{2017 - vm.findData.exp}} год(а)</p>
                 </div>
             </div>
             <div class="row filling-sidebar-middle">
@@ -33,10 +33,6 @@
         </div>
         <div class="sidebar-tabs animated fadeIn">
             <ul>
-                <!--<li class="active">
-                    <img class="tab-img" alt="Предложение от {{vm.fill.activeIssue.insurance_company.full_name}}" src="{{vm.fill.activeIssue.insurance_company.logotype.thumbnail}}">
-                    <span class="tab-price">{{vm.fill.activeIssue.total_sum | number}} <i class="fa fa-ruble"></i></span>
-                </li>-->
                 <li ng-repeat="(key,row) in vm.fill.issueList | orderBy:'active' track by $index" ng-click="vm.setNewCurrentIssue(row, key)" ng-class="{'active' : key == vm.fill.currentTab}">
                     <img class="tab-img" alt="Предложение от {{row.insurance_company.full_name}}" ng-src="{{row.insurance_company.logotype.thumbnail}}">
                     <span class="tab-price">{{row.total_sum | number}} <i class="fa fa-ruble"></i></span>

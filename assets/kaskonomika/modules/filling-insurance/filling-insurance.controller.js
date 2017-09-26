@@ -16,6 +16,7 @@
             issueList: [],
             issueArray: [],
             currentTab: 0,
+            response: {},
             holder: {
                 phone: '+79850846060',
                 email: 'aaaa@aaaaaaaa.aaaaa',
@@ -36,8 +37,8 @@
         activate();
         function activate() {
             vm.view = true;
-            vm.fill.step = 1;
-            getFindData();
+            vm.fill.step = 1; //Start step
+            getFindData(); //Get findData from localStorage
         }
         
         //////////////////
@@ -49,7 +50,7 @@
             vm.findData = JSON.parse(localStorage.getItem('findData'));// -> All data for search
             if (vm.findData) {
                 $rootScope.findData.step = 11; // Установка дефолтного шага.
-                xlog('MODULE : FILLING -> Find data received',$rootScope.findData);
+                xlog('MODULE : FILLING -> Find data received',vm.findData);
                 getExecute();
             } else {
                 $location.path('/')
@@ -60,7 +61,8 @@
         function nextStep(step) {
             if (step === 1) {
                 if ($rootScope.currentUser) {
-                    vm.fill.step++
+                    $rootScope.$broadcast('user'); //send all modules that user is login
+                    vm.fill.step++;
                 } else {
                     vm.waiter = true;
                     vm.fill.holder.phoneError = false; //reset phone error
@@ -134,7 +136,35 @@
                 }
             }
             else if (step === 2) {
-
+                step2ConstructorIsExists().then(function(res){
+                        if (res.data.result) {
+                            step2ContractorCreate(res).then(function(res){
+                                    if (res.data.result) {
+                                        step2ContractorDocsCreate(res).then(function(res){
+                                                if (res.data.result) {
+                                                    step2ContractorPhoneCreate(res).then(function(res){
+                                                            if (res.data.result) {
+                                                                step2ContractorEmailCreate(res).then(function(res){
+                                                                        if (res.data.result) {
+                                                                            step2ContractorFinallyStep(res);
+                                                                        } else breakFilling('Возникла ошибка. Обратитесь в службу поддержки');
+                                                                    })
+                                                            } else breakFilling('Возникла ошибка. Обратитесь в службу поддержки');
+                                                        })
+                                                } else breakFilling('Возникла ошибка. Обратитесь в службу поддержки');
+                                            })
+                                    } else breakFilling('Возникла ошибка. Обратитесь в службу поддержки');
+                                })
+                        } else breakFilling('Возникла ошибка. Обратитесь в службу поддержки');
+                    });
+            }
+            else if (step === 3) {
+                vm.fill.step++; //Go to the next step
+                getExecute();
+            }
+            else if (step === 4) {
+                vm.fill.step++; //Go to the next step
+                getExecute();
             }
         }
 
@@ -257,6 +287,132 @@
             vm.fill.currentTab = key;
         }
 
+        //---------------------------------------------------- STEPS FUNCTIONS ----------------------------------/
+
+        /**
+         * Check user for construct
+         * @returns {*} - @promise
+         */
+        function step2ConstructorIsExists() {
+            vm.waiter = true;
+            let data = {
+                token: $rootScope.currentToken,
+                is_juridical: 0,
+                name: vm.fill.holder.name,
+                middle_name: vm.fill.holder.firstName,
+                last_name: vm.fill.holder.secondName,
+                series: vm.fill.passport.serial.toString().substring(0,4),
+                number: vm.fill.passport.serial.toString().substring(4,10),
+                document_type_id: 1
+            };
+            return $http.post(config.api + 'contractors/isExists',data)
+        }
+
+        /**
+         * Create contractor from user Data
+         * @returns {*} - @promise
+         */
+        function step2ContractorCreate() {
+            let date = new Date(vm.fill.holder.birthday),
+                data = {
+                    token: $rootScope.currentToken,
+                    is_juridical: 0,
+                    birth_date: (date.getDate()<10?'0'+date.getDate():date.getDate())+'.'+(date.getMonth()<10?'0'+date.getMonth():date.getMonth())+'.'+date.getFullYear(),
+                    is_primary: 1,
+                    sex: vm.fill.holder.sex,
+                    name: vm.fill.holder.firstName + ' ' + vm.fill.holder.name + ' ' + vm.fill.holder.secondName
+                };
+            return $http.post(config.api + 'contractors/create',data)
+        }
+
+        /**
+         * Add documents to constructor
+         * @param res - response from step2ContractorCreate()
+         * @returns {*} - @promise
+         */
+        function step2ContractorDocsCreate(res) {
+            vm.fill.response.contractor_id = res.data.response; //step1 cont_id
+            let date = new Date(vm.fill.passport.date),
+                data = {
+                    token: $rootScope.currentToken,
+                    name: vm.fill.holder.name,
+                    middle_name: vm.fill.holder.firstName,
+                    last_name: vm.fill.holder.secondName,
+                    series: vm.fill.passport.serial.toString().substring(0,4),
+                    number: vm.fill.passport.serial.toString().substring(4,10),
+                    document_type_id: 1,
+                    issued: vm.fill.passport.owner,
+                    issued_date: (date.getDate()<10?'0'+date.getDate():date.getDate())+'.'+(date.getMonth()<10?'0'+date.getMonth():date.getMonth())+'.'+date.getFullYear(),
+                    expiration_date: '01.01.2100',
+                    contractor_id: vm.fill.response.contractor_id
+                };
+            return $http.post(config.api + 'contractors/' + vm.fill.response.contractor_id + '/documents/create',data)
+        }
+
+        /**
+         * Add phone number to constructor
+         * @param res - response from step2ContractorDocsCreate()
+         * @returns {*} - @promise
+         */
+        function step2ContractorPhoneCreate(res) {
+            vm.fill.response.contractor_documents_id = res.data.response; //step1 doc_id
+            let data = {
+                token: $rootScope.currentToken,
+                contact_type_id: 1,
+                content: vm.fill.holder.phone,
+                is_primary: 1
+            };
+            return $http.post(config.api + 'contractors/' + vm.fill.response.contractor_id + '/contacts/create',data)
+        }
+
+        /**
+         * Add email number to constructor
+         * @param res - response from step2ContractorPhoneCreate()
+         * @returns {*} - @promise
+         */
+        function step2ContractorEmailCreate(res) {
+            vm.fill.response.contractor_phone_id = res.data.response; //step1 phone_id
+            let data = {
+                token: $rootScope.currentToken,
+                contact_type_id: 2,
+                content: vm.fill.holder.email,
+                is_primary: 1
+            };
+            return $http.post(config.api + 'contractors/' + vm.fill.response.contractor_id + '/contacts/create',data)
+        }
+
+        /**
+         * Finally step after complete step 2
+         * @param res - response from step2ContractorEmailCreate()
+         * @returns {*} - @promise
+         */
+        function step2ContractorFinallyStep(res) {
+            vm.fill.response.contractor_email_id = res.data.response; //step1 email_id
+            vm.uploader1.queue[0].formData = [{
+                token: $rootScope.currentToken,
+                category_id: 27,
+                owner_id: vm.fill.response.contractor_documents_id,
+                user_phone: vm.fill.response.contractor_phone_id,
+                user_email: vm.fill.response.contractor_email_id
+            }];
+            vm.uploader1.uploadAll();
+            vm.uploader1.onCompleteAll = function(){
+                vm.fill.step++; //Go to the next step
+                vm.waiter = false;
+                getExecute();
+            };
+
+        }
+
+        /**
+         * Stop filling process and show some error
+         * @param text - sample text to show in error area
+         */
+        function breakFilling(text) {
+            vm.breakFilling = {
+                text: 'Возникла ошибка. Обратитесь в службу поддержки'
+            }
+        }
         
         //---------------------------------------------------- UPLOADER -----------------------------------------/
 
@@ -264,17 +420,11 @@
          * Создание настроек для загрузки файлов
          */
         $scope.$on('user',function(){
+            // Uploader for slide one - Contractor create
             vm.uploaderOptions = {
                 url: config.api + 'storage/upload',
                 method: 'post',
-                formData: [{
-                    token: $rootScope.currentToken,
-                    category_id: 27,
-                    owner_id: '',
-                    user_phone: '',
-                    user_email: ''
-                }],
-                autoUpload : true,
+                autoUpload : false,
                 withCredentials: false
             };
 
@@ -283,10 +433,6 @@
             vm.uploader3 = new FileUploader(vm.uploaderOptions);
             vm.uploader4 = new FileUploader(vm.uploaderOptions);
 
-            vm.uploader1.onAfterAddingAll = function(res){
-                console.log('onCompleteAll',vm.uploader1.queue[0]._file);
-                //TODO здесь должен быть переход на следующий слайд при успешной загрузке картинки
-            };
 
             vm.uploader2.onAfterAddingAll = function(res){
                 console.log('onCompleteAll',vm.uploader2.queue[0]._file);

@@ -7,7 +7,7 @@
     </div>
     <hr/>
     <div ng-if="vm.fill.step == 1 && !vm.regNow">
-        <form class="form">
+        <div class="form">
             <h4>Данные страхователя</h4>
             <div class="row row-string">
                 <div class="col-lg-4">
@@ -91,10 +91,10 @@
                             ng-disabled="!vm.fill.holder.firstName || !vm.fill.holder.name || !vm.fill.holder.secondName || !vm.fill.holder.sex || !vm.fill.holder.birthday || !vm.fill.holder.phone || !vm.fill.holder.email">Продолжить</button>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
     <div ng-if="vm.fill.step == 1 && vm.regNow">
-        <form class="form form-confirm">
+        <div class="form form-confirm">
             <h4 class="ta-center">Вы не зарегистрированы</h4>
             <h4 class="ta-center email-confirm-text">По адресу <b>{{vm.fill.holder.email}}</b> отправлено письмо для подтверждения электронной почты и временный пароль.</h4>
             <hr/>
@@ -119,10 +119,10 @@
             <div class="row errors-area" ng-if="vm.fill.confirmCodeError">
                 <h4 class="error color-red">Неверный проверочный код. Проверьте его и попробуйте ввести еще раз.</h4>
             </div>
-        </form>
+        </div>
     </div>
     <div ng-if="vm.fill.step == 2">
-        <form class="form" name="formStep2">
+        <div class="form">
             <h4>Паспортные данные</h4>
             <div class="row row-string">
                 <div class="col-lg-4">
@@ -161,24 +161,26 @@
             <div class="row">
                 <div class="col-lg-4 col-lg-offset-8">
                     <button class="btn btn-kasko"
-                            type="submit"
-                            ng-disabled="formStep2.serial.$invalid || formStep2.date.$invalid || formStep2.owner.$invalid"
-                            ng-click="vm.nextStep()">Продолжить</button>
+                            ng-disabled="!vm.fill.passport.serial || !vm.fill.passport.date || !vm.fill.passport.owner || vm.uploader1.queue.length === 0"
+                            ng-click="vm.nextStep(2)">Продолжить</button>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
     <div ng-if="vm.fill.step == 3">
         <form class="form" name="formStep3">
             <h4>Данные выгодоприобретателя</h4>
             <div class="row row-string">
-                <div class="checkbox custom-checkbox">
-                    <input class="hidden ng-pristine ng-untouched ng-valid ng-empty" id="registrationAgree" type="checkbox" ng-model="vm.overlap">
-                    <label ng-click="vm.overlap = !vm.overlap">
-                        <span>Совпадают со страхователем</span>
-                    </label>
+                <div class="col-lg-12">
+                    <div class="checkbox custom-checkbox">
+                        <input class="hidden ng-pristine ng-untouched ng-valid ng-empty" id="registrationAgree" type="checkbox" ng-model="vm.overlap">
+                        <label ng-click="vm.overlap = !vm.overlap">
+                            <span>Совпадают со страхователем</span>
+                        </label>
+                    </div>
                 </div>
             </div>
+            <hr/>
             <div class="row row-string">
                 <div class="col-lg-4">
                     <div class="form-group">
@@ -222,7 +224,7 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Дата рождения</label>
-                        <input type="date" name="birthday" class="form-control" ng-model="vm.fill.beneficiary.birthday" ng-disabled="vm.overlap" placeholder="XX.XX.XXXX" required>
+                        <input type="date" name="birthday" class="form-control" ng-model="vm.fill.beneficiary.birthday" ng-disabled="vm.overlap" placeholder="XX.XX.XXXX">
                     </div>
                 </div>
             </div>
@@ -275,7 +277,7 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Дата выдачи пасспорта</label>
-                        <input type="date" name="date" class="form-control" ng-model="vm.fill.beneficiary.passport.date" ng-disabled="vm.overlap" placeholder="XX.XX.XXXX" required>
+                        <input type="date" name="date" class="form-control" ng-model="vm.fill.beneficiary.passport.date" ng-disabled="vm.overlap" placeholder="XX.XX.XXXX">
                     </div>
                 </div>
             </div>
@@ -283,7 +285,7 @@
                 <div class="col-lg-12 ">
                     <div class="form-group">
                         <label>Кем выдан пасспорт</label>
-                        <input name="owner" class="form-control" ng-model="vm.fill.beneficiary.passport.owner" ng-disabled="vm.overlap" placeholder="Как в документе" required>
+                        <input name="owner" class="form-control" ng-model="vm.fill.beneficiary.passport.owner" ng-disabled="vm.overlap" placeholder="Как в документе">
                     </div>
                 </div>
             </div>
@@ -297,10 +299,10 @@
                 <div class="col-lg-4 col-lg-offset-8" ng-if="!vm.overlap">
                     <button class="btn btn-kasko"
                             ng-click="vm.nextStep()"
-                            ng-disabled="formStep3.email.$invalid || formStep3.phone.$invalid || formStep3.birthday.$invalid  || formStep3.secondName.$invalid || formStep3.firstName.$invalid || formStep3.name.$invalid || formStep3.passport.$invalid || formStep3.date.$invalid || formStep3.owner.$invalid || (vm.fill.beneficiary.sex == undefined)">Продолжить</button>
+                            ng-disabled="(!vm.fill.beneficiary.firstName || !vm.fill.beneficiary.name || !vm.fill.beneficiary.secondName || !vm.fill.beneficiary.sex || !vm.fill.beneficiary.birthday || !vm.fill.beneficiary.phone || !vm.fill.beneficiary.email || !vm.fill.beneficiary.passport.serial || !vm.fill.beneficiary.passport.date || !vm.fill.beneficiary.passport.owner || vm.uploader2.queue.length === 0) || vm.overlap">Продолжить</button>
                 </div>
                 <div class="col-lg-4 col-lg-offset-8" ng-if="vm.overlap">
-                    <button class="btn btn-kasko" ng-click="vm.nextStep()">Продолжить</button>
+                    <button class="btn btn-kasko" ng-click="vm.nextStep(3)">Продолжить</button>
                 </div>
             </div>
         </form>
@@ -312,19 +314,19 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Марка автомобиля</label>
-                        <input class="form-control" ng-model="findData.mark.mark" disabled="disabled">
+                        <input class="form-control" ng-model="vm.findData.mark.mark" disabled="disabled">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Модель автомобиля</label>
-                        <input class="form-control" ng-model="findData.model.model" disabled="disabled">
+                        <input class="form-control" ng-model="vm.findData.model.model" disabled="disabled">
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Год выпуска</label>
-                        <input class="form-control" ng-model="findData.year" disabled="disabled">
+                        <input class="form-control" ng-model="vm.findData.year" disabled="disabled">
                     </div>
                 </div>
             </div>
@@ -378,14 +380,14 @@
                 <div class="col-lg-4">
                     <div class="form-group">
                         <label>Стоимость авто</label>
-                        <input class="form-control" ng-model="vm.fill.avto.price" disabled="disabled">
+                        <input class="form-control" ng-model="vm.findData.filter.sum" ng-value="(vm.findData.filter.sum | number) + ' руб.'" disabled="disabled">
                     </div>
                 </div>
             </div>
             <hr/>
             <div class="row">
                 <div class="col-lg-4 col-lg-offset-8">
-                    <button class="btn btn-kasko" ng-click="vm.submitResults()" ng-disabled="!vm.overlap">Продолжить</button>
+                    <button class="btn btn-kasko" ng-click="vm.submitResults()" ng-disabled="!vm.fill.avto.pts.serial || !vm.fill.avto.pts.date || vm.uploader3.queue.length === 0 || !vm.fill.avto.sts.serial || !vm.fill.avto.sts.date || vm.uploader4.queue.length === 0 || !vm.fill.avto.gosNumber || !vm.fill.avto.vin">Продолжить</button>
                 </div>
             </div>
         </form>

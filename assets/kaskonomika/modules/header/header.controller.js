@@ -110,6 +110,7 @@
                         localStorage.setItem('currentToken', _res.data.token);
                         localStorage.setItem('currentUser', JSON.stringify(_res.data.response));
                         xlog('MODULE : HEADER : USER ->', $rootScope.currentUser);
+                        $rootScope.$broadcast('user');
                     } else {
                         xlog('MODULE : HEADER : LOGIN -> Login error', _res.data);
                         vm.LoginError = true;
