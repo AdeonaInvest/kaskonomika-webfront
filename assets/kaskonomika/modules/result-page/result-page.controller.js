@@ -5,9 +5,9 @@
         .module('kaskonomika')
         .controller('resultPageController', resultPageController);
 
-    resultPageController.$inject = ['$rootScope', '$scope', '$location', '$http', 'config', '$timeout'];
+    resultPageController.$inject = ['$rootScope', '$scope', '$location', '$http', 'config', '$timeout','$route'];
 
-    function resultPageController($rootScope, $scope, $location, $http, config, $timeout) {
+    function resultPageController($rootScope, $scope, $location, $http, config, $timeout, $route) {
         ///////////////////
         let vm = this;
         vm.view = false; // View ready status

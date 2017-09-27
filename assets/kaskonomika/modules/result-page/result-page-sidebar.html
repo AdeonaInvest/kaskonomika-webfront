@@ -12,19 +12,21 @@
     <span class="block-title">Допущенные водители</span>
     <div class="driver-row animated bounceInRight" ng-repeat="(key,row) in vm.filter.drivers">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 left-side">
-            <span>Возраст:</span>
-            <input type="text" class="form-control" ng-model="vm.filter.drivers[key].age" ng-change="vm.checkValidAge(key)" placeholder="*полных лет"/>
+            <span ng-if="findData.driver.id === '2'">Возраст:</span>
+            <span ng-if="findData.driver.id === '1'">Мин. возраст:</span>
+            <input class="form-control" ng-model="vm.filter.drivers[key].age" ng-change="vm.checkValidAge(key)" placeholder="*полных лет"/>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 right-side">
-            <span>Стаж с:</span>
-            <input type="text" class="form-control" ng-disabled="!vm.filter.drivers[key].age" ng-change="vm.checkValidExp(key)" ng-model="vm.filter.drivers[key].exp" placeholder="*с какого года?"/>
+            <span ng-if="findData.driver.id === '2'">Стаж с:</span>
+            <span ng-if="findData.driver.id === '1'">Мин. стаж:</span>
+            <input class="form-control" ng-disabled="!vm.filter.drivers[key].age" ng-change="vm.checkValidExp(key)" ng-model="vm.filter.drivers[key].exp" placeholder="*с какого года?"/>
         </div>
         <i class="fa fa-trash-o" ng-if="key != 0" ng-click="vm.removeDriver(key)"></i>
     </div>
     <div class="driver-add-more animated"
          ng-click="vm.addDriver()"
          ng-class="{'tada': vm.addDriverClicked}"
-         ng-hide="vm.filter.drivers.length >= 5">
+         ng-if="vm.filter.drivers.length < 5 && findData.driver.id !== '1'">
         <div class="plus-btn">+</div>
         <div class="plus-title">Добавить новогого водителя</div>
     </div>

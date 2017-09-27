@@ -84,7 +84,13 @@
             </div>
             <hr/>
             <div class="row">
-                <div class="col-lg-4 col-lg-offset-8">
+                <div class="col-lg-8 back-step">
+                    <a href ng-click="vm.backStep()" ng-if="vm.fill.step > 1 && vm.fill.step < 5">
+                        <i class="fa fa-arrow-left"></i>
+                        <span>Назад</span>
+                    </a>
+                </div>
+                <div class="col-lg-4">
                     <button class="btn btn-kasko"
                             type="submit"
                             ng-click="vm.nextStep(1)"
@@ -159,7 +165,13 @@
             </div>
             <hr/>
             <div class="row">
-                <div class="col-lg-4 col-lg-offset-8">
+                <div class="col-lg-8 back-step">
+                    <a href ng-click="vm.backStep()" ng-if="vm.fill.step > 1 && vm.fill.step < 5">
+                        <i class="fa fa-arrow-left"></i>
+                        <span>Назад</span>
+                    </a>
+                </div>
+                <div class="col-lg-4">
                     <button class="btn btn-kasko"
                             ng-disabled="!vm.fill.passport.serial || !vm.fill.passport.date || !vm.fill.passport.owner || vm.uploader1.queue.length === 0"
                             ng-click="vm.nextStep(2)">Продолжить</button>
@@ -296,12 +308,18 @@
             </div>
             <hr/>
             <div class="row">
-                <div class="col-lg-4 col-lg-offset-8" ng-if="!vm.overlap">
+                <div class="col-lg-8 back-step">
+                    <a href ng-click="vm.backStep()" ng-if="vm.fill.step > 1 && vm.fill.step < 5">
+                        <i class="fa fa-arrow-left"></i>
+                        <span>Назад</span>
+                    </a>
+                </div>
+                <div class="col-lg-4" ng-if="!vm.overlap">
                     <button class="btn btn-kasko"
                             ng-click="vm.nextStep(3)"
                             ng-disabled="(!vm.fill.beneficiary.firstName || !vm.fill.beneficiary.name || !vm.fill.beneficiary.secondName || !vm.fill.beneficiary.sex || !vm.fill.beneficiary.birthday || !vm.fill.beneficiary.phone || !vm.fill.beneficiary.email || !vm.fill.beneficiary.passport.serial || !vm.fill.beneficiary.passport.date || !vm.fill.beneficiary.passport.owner || vm.uploader2.queue.length === 0) || vm.overlap">Продолжить</button>
                 </div>
-                <div class="col-lg-4 col-lg-offset-8" ng-if="vm.overlap">
+                <div class="col-lg-4" ng-if="vm.overlap">
                     <button class="btn btn-kasko" ng-click="vm.nextStep(3)">Продолжить</button>
                 </div>
             </div>
@@ -309,7 +327,7 @@
     </div>
     <div ng-if="vm.fill.step == 4">
         <div class="form">
-            <h4>Данные об автобомиле</h4>
+            <h4>Данные об автомобиле</h4>
             <div class="row row-string">
                 <div class="col-lg-4">
                     <div class="form-group">
@@ -386,13 +404,22 @@
             </div>
             <hr/>
             <div class="row">
-                <div class="col-lg-4 col-lg-offset-8">
+                <div class="col-lg-8 back-step">
+                    <a href ng-click="vm.backStep()" ng-if="vm.fill.step > 1 && vm.fill.step < 5">
+                        <i class="fa fa-arrow-left"></i>
+                        <span>Назад</span>
+                    </a>
+                </div>
+                <div class="col-lg-4">
                     <button class="btn btn-kasko" ng-click="vm.nextStep(4)" ng-disabled="!vm.fill.avto.pts.serial || !vm.fill.avto.pts.date || vm.uploader3.queue.length === 0 || !vm.fill.avto.sts.serial || !vm.fill.avto.sts.date || vm.uploader4.queue.length === 0 || !vm.fill.avto.gosNumber || !vm.fill.avto.vin">Продолжить</button>
                 </div>
             </div>
         </div>
     </div>
-    <div ng-if="vm.fill.step == 5" class="ta-center">
+    <div ng-if="vm.fill.step == 5">
+        <ng-include src="'/filling-insurance/filling-insurance-drivers.html'"></ng-include>
+    </div>
+    <div ng-if="vm.fill.step == 6" class="ta-center">
         <span>Спасибо за ожидание.<br/>Все расчеты окончены, мы вскоре свяжемся с вами для дальнейшего оформления полиса</span>
     </div>
     <div class="blocker" ng-if="vm.waiter">
@@ -402,4 +429,6 @@
 <div class="errors-break-area" ng-if="vm.breakFilling">
     <h4>Возникла ошибка. Обратитесь в службу поддержки.</h4>
     <a href="/">На главную</a>
+</div>
+<div id="debug-area" class="ng-hide">
 </div>

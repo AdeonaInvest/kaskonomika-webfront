@@ -5,9 +5,9 @@
         .module('kaskonomika')
         .controller('carFinderController', carFinderController);
 
-    carFinderController.$inject = ['$rootScope','$scope','$http','$location','$timeout','config'];
+    carFinderController.$inject = ['$rootScope','$scope','$http','$location','$timeout','config','$route'];
 
-    function carFinderController($rootScope,$scope,$http,$location,$timeout,config) {
+    function carFinderController($rootScope,$scope,$http,$location,$timeout,config,$route) {
         
         ///////////////////
         var vm = this;
@@ -179,7 +179,7 @@
             $timeout(function(){
                 $rootScope.allData.exp = [];
                 var start = 2017-year+17;
-                for (var i = start; i < 2017; ++i) {
+                for (var i = start; i <= 2017; ++i) {
                     $rootScope.allData.exp.push(i);
                 }
                 $rootScope.findData.step = 7;
@@ -195,6 +195,7 @@
             $rootScope.findData.step = 8;
             $rootScope.findData.is_open = false;
             $rootScope.findData.ready = true;
+            findResults();
         }
 
         /**
@@ -271,7 +272,12 @@
         function findResults(){
             localStorage.setItem('findData', JSON.stringify($rootScope.findData));
             localStorage.setItem('allData', JSON.stringify($rootScope.allData));
-            $location.url('/result-page');
+            if ($location.path() === '/result-page') {
+                $route.reload();
+            } else {
+                $location.path('/result-page');
+            }
+
         }
 
         /**

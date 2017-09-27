@@ -60,6 +60,34 @@
           margin-top: 10px;
           margin-bottom: 10px;
         }
+        .back-step {
+          a {
+            i {
+              line-height: 40px;
+              color: @color-blue;
+              transition: .2s ease;
+            }
+            span {
+              font: 14px/40px @fm-web;
+              color: @color-blue;
+              transition: .2s ease;
+            }
+            &:hover {
+              text-decoration: none;
+              i {
+                color: @color-blue-hover;
+                transition: .2s ease;
+              }
+              span {
+                color: @color-blue-hover;
+                transition: .2s ease;
+              }
+            }
+            &:focus {
+              outline: none;
+            }
+          }
+        }
 
       }
       .form-confirm {

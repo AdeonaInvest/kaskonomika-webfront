@@ -5,9 +5,9 @@
         .module('kaskonomika')
         .controller('fillingInsuranceController', fillingInsuranceController);
 
-    fillingInsuranceController.$inject = ['$rootScope','$scope','$http','$location','FileUploader','config'];
+    fillingInsuranceController.$inject = ['$rootScope','$scope','$http','$location','FileUploader','config','$window'];
 
-    function fillingInsuranceController($rootScope,$scope,$http,$location,FileUploader,config) {
+    function fillingInsuranceController($rootScope,$scope,$http,$location,FileUploader,config,$window) {
         ///////////////////
         let vm = this;
         vm.view = false; //Статус готовности отображения
@@ -19,22 +19,14 @@
             response: {}, //Data from $http.posts
             step: 1, //Start step
             risks: [], //Array of risks from Execution -> Results
-            holder: {
-                phone: '+79850846060',
-                email: 'aaaa@aaaaaaaa.aaaaa',
-                name: 'Игорь',
-                firstName: 'Привет',
-                secondName: 'Пока',
-                sex: '1'
-            } //TODO test data, delete after tests
+            holder: {},
+            drivers: []
         };
 
         vm.nextStep = nextStep;
         vm.setNewCurrentIssue = setNewCurrentIssue;
-        vm.clearQueue1 = clearQueue1;
-        vm.clearQueue2 = clearQueue2;
-        vm.clearQueue3 = clearQueue2;
-        vm.clearQueue4 = clearQueue2;
+        vm.clearQueue = clearQueue;
+        vm.backStep = backStep;
 
         activate();
         function activate() {
@@ -195,7 +187,9 @@
                 }
             }
             else if (step === 4) {
-                step4CheckByVin()
+                vm.fill.step++; //Go to the next step
+                getExecute();
+                /*step4CheckByVin()
                     .then(function(res){
                         if (res.data.result) {
                             step4AttachToUser(res)
@@ -210,7 +204,11 @@
                                     } else breakFilling();
                                 })
                         } else breakFilling();
-                    })
+                    })*/
+            }
+            else if (step === 5) {
+                vm.fill.step++; //Go to the next step
+                getExecute();
             }
         }
 
@@ -321,6 +319,10 @@
                         })
                     }
                 })
+        }
+
+        function backStep() {
+            vm.fill.step--;
         }
 
 
@@ -709,59 +711,55 @@
                 withCredentials: false
             };
 
-            vm.uploader1 = new FileUploader(vm.uploaderOptions);
-            vm.uploader2 = new FileUploader(vm.uploaderOptions);
-            vm.uploader3 = new FileUploader(vm.uploaderOptions);
-            vm.uploader4 = new FileUploader(vm.uploaderOptions);
+            for (let i = 1; i <= 10; i++) {
+                vm['uploader'+i] = new FileUploader(vm.uploaderOptions);
 
-
-            vm.uploader2.onAfterAddingAll = function(res){
-                console.log('onCompleteAll',vm.uploader2.queue[0]._file);
-                //TODO здесь должен быть переход на следующий слайд при успешной загрузке картинки
-            };
-
-            vm.uploader3.onAfterAddingAll = function(res){
-                console.log('onCompleteAll',vm.uploader3.queue[0]._file);
-                //TODO здесь должен быть переход на следующий слайд при успешной загрузке картинки
-            };
-
-            vm.uploader3.onAfterAddingAll = function(res){
-                console.log('onCompleteAll',vm.uploader3.queue[0]._file);
-                //TODO здесь должен быть переход на следующий слайд при успешной загрузке картинки
-            };
+                vm['uploader'+i].onAfterAddingAll = function(){
+                    xlog('MODULE : FILLING : FILE-UPLOADER : File added ->',vm['uploader'+i].queue[0]._file);
+                };
+            }
         });
 
         /**
          * Удаление изображения из очереди
          */
-        function clearQueue1() {
-            vm.uploader1.destroy();
-            vm.uploader1 = new FileUploader(vm.uploaderOptions);
+        function clearQueue(index) {
+            vm['uploader'+index].destroy();
+            vm['uploader'+index] = new FileUploader(vm.uploaderOptions);
         }
 
-        /**
-         * Удаление изображения из очереди
-         */
-        function clearQueue2() {
-            vm.uploader2.destroy();
-            vm.uploader2 = new FileUploader(vm.uploaderOptions);
+        //----------------------------------------------- TEST ----------------------------------------//
+        $window.test = test;
+        function test() {
+            $scope.$apply(function(){
+                vm.fill.holder = {
+                    phone: '+79850846060',
+                    email: 'aaaa@aaaaaaaa.aaaaa',
+                    name: 'Игорь',
+                    firstName: 'Привет',
+                    secondName: 'Пока',
+                    sex: '1'
+                };
+                vm.fill.passport = {
+                    serial: '1234567890',
+                    owner: 'Управление всеми делами президента'
+                };
+                vm.fill.avto = {
+                    pts: {
+                        serial: '1234567890'
+                    },
+                    sts: {
+                        serial: '1234567890'
+                    },
+                    gosNumber: 'A123BC456',
+                    vin: '99999999999999999'
+                }
+            })
         }
 
-        /**
-         * Удаление изображения из очереди
-         */
-        function clearQueue3() {
-            vm.uploader3.destroy();
-            vm.uploader3 = new FileUploader(vm.uploaderOptions);
-        }
-
-        /**
-         * Удаление изображения из очереди
-         */
-        function clearQueue4() {
-            vm.uploader4.destroy();
-            vm.uploader4 = new FileUploader(vm.uploaderOptions);
-        }
+        $scope.$watch('vm.fill',function(){
+            xlog('vm.fill change', vm.fill);
+        })
 
 
     }
