@@ -27,7 +27,7 @@
             $scope.$on("$routeChangeSuccess", function() {
                 $rootScope.carFinder = false; // Обнуление данных поиска авто
                 $rootScope.showCalc = false; // Обновление отображения поиска в хедере
-                $rootScope.currentUlr = $location.url(); // Create note for current URL
+                $rootScope.currentUrl = $location.path(); // Create note for current URL
                 xlog('APP : CLEAR_SCOPE_DATA -> Scope data is cleared');
             });
         }

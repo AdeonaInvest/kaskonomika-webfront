@@ -97,7 +97,8 @@
          * Событие входа
          */
         function login() {
-            var data = {
+            vm.waitLogin = true;
+            let data = {
                 username: vm.userLoginInput,
                 password: vm.userPassInput
             };
@@ -106,15 +107,17 @@
                 .then(function(_res){
                     if (_res.data.result) {
                         vm.authOpen = false; //Закрытие окна входа
+                        vm.waitLogin = false;
                         $rootScope.currentUser = _res.data.response;
                         localStorage.setItem('currentToken', _res.data.token);
                         localStorage.setItem('currentUser', JSON.stringify(_res.data.response));
                         xlog('MODULE : HEADER : USER ->', $rootScope.currentUser);
                         $rootScope.$broadcast('user');
                     } else {
-                        xlog('MODULE : HEADER : LOGIN -> Login error', _res.data);
+                        vm.waitLogin = false;
                         vm.LoginError = true;
                         vm.userPassInput = '';
+                        xlog('MODULE : HEADER : LOGIN -> Login error', _res.data);
                     }
                 })
 

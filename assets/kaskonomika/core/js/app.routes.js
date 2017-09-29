@@ -54,6 +54,36 @@
                 controller: 'dashboardMainController',
                 controllerAs: 'vm'
             })
+            .when ('/dashboard/routes', {
+                templateUrl: '/dashboard/routes/dashboard-routes.html',
+                controller: 'dashboardRoutesController',
+                controllerAs: 'vm'
+            })
+            .when ('/dashboard/events', {
+                templateUrl: '/dashboard/events/dashboard-events.html',
+                controller: 'dashboardEventsController',
+                controllerAs: 'vm'
+            })
+            .when ('/dashboard/insurance/create', {
+                templateUrl: '/dashboard/insurance-create/dashboard-insurance.html',
+                controller: 'dashboardInsuranceCreateController',
+                controllerAs: 'vm'
+            })
+            .when ('/dashboard/insurance/list', {
+                templateUrl: '/dashboard/insurance-list/dashboard-insurance-list.html',
+                controller: 'dashboardInsuranceListController',
+                controllerAs: 'vm'
+            })
+            .when ('/dashboard/profile', {
+                templateUrl: '/dashboard/profile/dashboard-profile.html',
+                controller: 'dashboardProfileController',
+                controllerAs: 'vm'
+            })
+            .when ('/dashboard/profile/edit', {
+                templateUrl: '/dashboard/profile-edit/dashboard-edit.html',
+                controller: 'dashboardEditController',
+                controllerAs: 'vm'
+            })
             .when ('/result-page', {
                 templateUrl: '/result-page/result-page.html',
                 controller: 'resultPageController',

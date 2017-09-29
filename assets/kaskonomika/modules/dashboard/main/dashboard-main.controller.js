@@ -35,9 +35,9 @@
          * Проверка залогенного пользователя
          */
         function checkUser() {
-            var user = localStorage.getItem('currentUser');
-            var token = localStorage.getItem('currentToken');
-            if (!$rootScope.currentUser || !user || !token) {
+            let user = localStorage.getItem('currentUser');
+            let token = localStorage.getItem('currentToken');
+            if (!user || !token) {
                 $location.path('/')
             }
         }

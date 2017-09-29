@@ -1,5 +1,33 @@
-#index-page {
+#dashboard-profile {
   margin: 0;
   padding: 80px 0 0 0;
-  background: #e4f3fc;
+  background: #fff;
+  .container-fluid {
+    margin: 0;
+    padding: 0;
+    .row {
+      display: table;
+      width: 100%;
+      box-sizing: border-box;  /* не поддерживается в CSS2 */
+      margin-left: 0;
+      margin-right: 0;
+      & > div, noindex > div {
+        display: table-cell;
+        vertical-align: top;
+        box-sizing: border-box;  /* не поддерживается в CSS2 */
+      }
+      .dashboard-menu {
+        float: none;
+        padding: 0;
+        margin: 0;
+        border-right: 1px solid #dedede;
+        background: #f4f4f4;
+      }
+      .dashboard-body {
+        float: none;
+        padding: 0;
+        margin: 0;
+      }
+    }
+  }
 }

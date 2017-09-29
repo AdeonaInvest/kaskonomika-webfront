@@ -3,11 +3,11 @@
 
     angular
         .module('kaskonomika')
-        .controller('dashboardInsuranceController', dashboardInsuranceController);
+        .controller('dashboardInsuranceCreateController', dashboardInsuranceCreateController);
 
-    dashboardInsuranceController.$inject = [];
+    dashboardInsuranceCreateController.$inject = [];
 
-    function dashboardInsuranceController() {
+    function dashboardInsuranceCreateController() {
         var vm = this;
 
 

@@ -285,6 +285,15 @@
           &:hover {
             background: @color-blue-light;
           }
+          &.active {
+            background: @color-blue-light;
+            i {
+              color: #fff;
+            }
+            &:hover {
+              background: @color-blue-hover;
+            }
+          }
         }
         .dashboard-menu {
           position: absolute;
@@ -416,7 +425,6 @@
 
             }
           }
-
         }
       }
     }

@@ -1,5 +1,131 @@
-#index-page {
-  margin: 0;
-  padding: 80px 0 0 0;
-  background: #e4f3fc;
+#dashboard-menu {
+  @header-user-height: 40px;
+  ul {
+    clear: both;
+    margin: 0;
+    padding: 0;
+    @line-height: 60px;
+    li {
+      clear: both;
+      margin: 0;
+      list-style: none;
+      padding: 0 30px;
+      width: 100%;
+      text-align: left;
+      height: auto;
+      a {
+        display: block;
+        height: @line-height;
+        width: 100%;
+        i {
+          display: block;
+          float: left;
+          width: 22px;
+          transition: ease .2s;
+          color: #000;
+          font-size: 20px;
+          line-height: @header-user-height;
+        }
+        span {
+          display: block;
+          float: left;
+          margin: 0 0 0 10px;
+          color: #000;
+        }
+        &:hover {
+          text-decoration: none;
+          i {
+            color: @color-red-light;
+            animation-duration: 1s;
+            animation-fill-mode: both;
+            animation-name: rubberBand;
+          }
+          span {
+            text-decoration: underline;
+          }
+
+        }
+        &:focus, &:visited {
+          span {
+            outline: none;
+            text-decoration: none;
+          }
+        }
+        &.active {
+          i {
+            color: @color-red-light;
+          }
+          span {
+            color: @color-red-light;
+          }
+        }
+      }
+      &:last-child {
+        a {
+          border: none
+        }
+      }
+    }
+    .normal {
+      a {
+        border-bottom: 1px solid #dbdbdb;
+        i {
+          line-height: @line-height;
+        }
+        span {
+          font: 11px/@line-height @fm-main;
+          text-transform: uppercase;
+        }
+      }
+    }
+    .compare {
+      a {
+        padding: 0 0 0 22px;
+        height: calc(@line-height - 20px);
+        &:first-child {
+          padding: 0;
+          margin-top: 10px;
+          span {
+            font: 11px/calc(@line-height - 20px) @fm-main;
+            text-transform: uppercase;
+          }
+        }
+        &:last-child {
+          border-bottom: 1px solid #dbdbdb;
+          height: calc(@line-height - 10px);
+        }
+        i {
+          line-height: calc(@line-height - 20px);
+        }
+        span {
+          font: 14px/calc(@line-height - 20px) @fm-web;
+          text-transform: none;
+        }
+        &.semi {
+          span {
+            color: #6a6a6a;
+          }
+        }
+        &.active {
+          span {
+            color: @color-red-light;
+          }
+        }
+      }
+      &:last-child {
+        a {
+          &:last-child {
+            border: none;
+          }
+        }
+      }
+      &.active {
+        a {
+          i {
+            color: @color-red-light;
+          }
+        }
+      }
+    }
+  }
 }
