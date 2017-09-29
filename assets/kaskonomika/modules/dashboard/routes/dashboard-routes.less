@@ -5,12 +5,13 @@
   .container-fluid {
     margin: 0;
     padding: 0;
-    .row {
+     .row-db {
       display: table;
       width: 100%;
       box-sizing: border-box;  /* не поддерживается в CSS2 */
       margin-left: 0;
       margin-right: 0;
+      min-height: 700px;
       & > div, noindex > div {
         display: table-cell;
         vertical-align: top;
@@ -27,6 +28,194 @@
         float: none;
         padding: 0;
         margin: 0;
+        .cars-list-area {
+          padding: 0 70px;
+          background: linear-gradient(to top, #d3edfa, #c9e0ee);
+          overflow: hidden;
+          .car-item {
+            float: left;
+            min-width: 200px;
+            max-height: 95px;
+
+            margin: 50px 5px 0;
+            padding: 15px 20px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            background: @color-blue;
+
+            cursor: pointer;
+            transition: .2s ease;
+            span {
+              display: block;
+              color: #fff;
+            }
+            .car-number {
+              font: 11px/15px @fm-web;
+              text-transform: uppercase;
+              text-align: left;
+            }
+            .car-name {
+              font: 20px/27px @fm-bold;
+              text-align: left;
+            }
+            .car-date {
+              font: 14px/23px @fm-light;
+              text-align: left;
+            }
+            &._active {
+              cursor: default;
+              background: #fff;
+
+              span {
+                color: #000;
+              }
+              .car-date {
+                color: @color-darkgrey;
+              }
+
+              &:hover {
+                background: #fff;
+              }
+            }
+            &:hover {
+              transition: .2s ease;
+
+              background: @color-blue-hover;
+            }
+          }
+        }
+        .calendar-date-list-area {
+          .row {
+            margin: 0;
+          }
+          .calendar-area {
+            padding: 10px 0;
+            i {
+              vertical-align: middle;
+              display: inline-block;
+            }
+            span {
+              display: inline-block;
+              font: 14px/40px @fm-web;
+              color: #000;
+              vertical-align: middle;
+            }
+          }
+          .buttons-area {
+            .btn-group {
+              padding: 0 0 10px;
+              display: table;
+              margin: auto;
+
+            }
+          }
+        }
+        .routes-list-area {
+          width: 100%;
+          padding: 30px 100px;
+          .list-area-loader {
+            i {
+              color: @color-blue;
+            }
+          }
+          .list-area-items {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            h3 {
+              width: 100%;
+              font: 20px/20px @fm-bold;
+              text-align: left;
+              margin: 0 0 30px;
+              color: #000;
+            }
+            .item-block {
+              width: 100%;
+              margin: 0;
+              padding: 0;
+              .item-block-title {
+                width: 100%;
+                padding: 0;
+                height: 20px;
+                margin: 0 0 10px;
+                h4 {
+                  color: #000;
+                }
+                .item-date-milage {
+                  font: 16px/20px @fm-bold;
+                }
+                .item-car-name {
+                  font: 16px/20px @fm-web;
+                }
+              }
+              .item-block-body {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                border: 1px solid #dedede;
+                border-radius: 5px;
+                ul {
+                  padding: 0;
+                  li {
+                    list-style: none;
+                    margin: 0;
+                    padding: 10px;
+                    .item-title {
+                      width: 100%;
+                      margin: 10px 10px 0;
+                      padding: 0;
+                      cursor: pointer;
+                      transition: .2s ease;
+                      span {
+                        width: 100%;
+                        display: block;
+                        font: 16px/20px @fm-web;
+                        color: #000;
+                        transition: .2s ease;
+                        b {
+                          font: 20px/20px @fm-bold;
+                        }
+                        &.show-more {
+                          transition: 0s;
+                          font: 16px/20px @fm-web;
+                          color: @color-blue;
+                        }
+                        &.span-title {
+                          transition: 0s;
+                          color: #a4a4a4;
+                          font: 14px/14px @fm-light;
+                        }
+                      }
+                      &:hover {
+                        transition: .2s ease;
+                        background: @color-blue;
+                        span {
+                          transition: .2s ease;
+                          color: #fff;
+                          &.show-more {
+                            transition: 0s;
+                          }
+                          &.span-title {
+                            transition: 0s;
+                          }
+                        }
+
+                      }
+                    }
+                    .item-map {
+                      margin: 0;
+                      .item-map-body {
+                        ng-map {
+
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

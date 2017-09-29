@@ -1,11 +1,84 @@
 <div id="dashboard-routes">
     <div class="container-fluid">
-        <div class="row">
+        <div class="row row-db">
             <div class="col-lg-2 dashboard-menu">
                 <ng-include src="'/dashboard/menu/dashboard-menu.html'"></ng-include>
             </div>
             <div class="col-lg-10 dashboard-body">
-                dashboard-routes
+                <div class="cars-list-area">
+                    <div class="car-item animated bounceInRight _active">
+                        <span class="car-number">E 500 RF 02</span>
+                        <span class="car-name">Ravon Gentra</span>
+                        <span class="car-date">Застрахована до 20.10.2017</span>
+                    </div>
+                    <div class="car-item animated bounceInRight">
+                        <span class="car-number">E 500 RF 02</span>
+                        <span class="car-name">Ravon Gentra</span>
+                        <span class="car-date">Застрахована до 20.10.2017</span>
+                    </div>
+                    <div class="car-item animated bounceInRight">
+                        <span class="car-number">E 500 RF 02</span>
+                        <span class="car-name">Ravon Gentra</span>
+                        <span class="car-date">Застрахована до 20.10.2017</span>
+                    </div>
+                </div>
+                <div class="calendar-date-list-area animated bounceInRight">
+                    <div class="row calendar-area ta-center">
+                        <i class="fa fa-calendar fa-2x"></i>
+                        <span>Выберите месяц поездок для отображения</span>
+                    </div>
+                    <div class="row buttons-area">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-kasko">Сентябрь</button>
+                            <button type="button" class="btn btn-kasko _default">Август</button>
+                            <button type="button" class="btn btn-kasko _default">Июль</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row routes-list-area">
+                    <div class="list-area-loader ta-center" ng-if="">
+                        <i class="fa fa-circle-o-notch fa-spin fa-5x"></i>
+                    </div>
+                    <div class="row list-area-items animated bounceInRight" ng-if="!a">
+                        <h3>Сентябрь - 145,2 км</h3>
+                        <div class="row item-block">
+                            <div class="row item-block-title">
+                                <h4 class="item-date-milage pull-left">23 сентября - 63.2 км.</h4>
+                                <h4 class="item-car-name pull-right">Ravon gentra 1.5 MT (107 л.с.)</h4>
+                            </div>
+                            <div class="row item-block-body">
+                                <ul>
+                                    <li ng-repeat="row in [{active:false},{active:false}] track by $index">
+                                        <div class="row item-title" ng-click="row.active = !row.active">
+                                            <div class="col-xs-3 ta-left">
+                                                <span><b>25.1 км.</b></span>
+                                                <span ng-if="row.active" class="span-title">Дистанция</span>
+                                            </div>
+                                            <div class="col-xs-3 ta-center">
+                                                <span>09:14 - 10:04</span>
+                                                <span ng-if="row.active" class="span-title">Время поездки</span>
+                                            </div>
+                                            <div class="col-xs-3 ta-center">
+                                                <span>104 км/ч</span>
+                                                <span ng-if="row.active" class="span-title">Максимальная скорость</span>
+                                            </div>
+                                            <div class="col-xs-3 ta-right">
+                                                <span class="show-more" ng-if="!row.active">Подробнее <i class="fa fa-angle-down"></i></span>
+                                                <span class="show-more" ng-if="row.active">Скрыть <i class="fa fa-angle-up"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="row item-map" ng-class="{'active' : row.active}" ng-init="">
+                                            <div class="item-map-body" ng-if="row.active">
+                                                <!-- MAP HERE -->
+                                                <ng-map center="[40.74, -74.18]"></ng-map>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

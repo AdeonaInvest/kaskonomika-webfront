@@ -36,6 +36,35 @@
       vertical-align: middle;
     }
   }
+  &._default {
+    background: #dadada;
+    color: #000;
+    span {
+      color: #000;
+    }
+    &:hover {
+      background: @color-blue-hover;
+      color: #fff;
+      span {
+        color: #fff;
+      }
+    }
+    &:focus, &:visited, &:active {
+      outline: none;
+      border: none;
+      color: #000;
+      span {
+        color: #000;
+      }
+      &:hover {
+        background: @color-blue-hover;
+        color: #fff;
+        span {
+          color: #fff;
+        }
+      }
+    }
+  }
   &:active {
     &:focus {
       outline: none;
@@ -45,6 +74,10 @@
   &:focus, &:visited, &:active {
     outline: none;
     border: none;
+    color: #fff;
+    span {
+      color: #fff;
+    }
   }
   &:disabled {
     cursor: not-allowed;
