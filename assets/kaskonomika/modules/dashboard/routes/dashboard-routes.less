@@ -103,7 +103,7 @@
           }
           .buttons-area {
             .btn-group {
-              padding: 0 0 10px;
+              padding: 0;
               display: table;
               margin: auto;
 
@@ -131,7 +131,7 @@
             }
             .item-block {
               width: 100%;
-              margin: 0;
+              margin: 0 0 30px 0;
               padding: 0;
               .item-block-title {
                 width: 100%;
@@ -140,6 +140,7 @@
                 margin: 0 0 10px;
                 h4 {
                   color: #000;
+                  margin: 0;
                 }
                 .item-date-milage {
                   font: 16px/20px @fm-bold;
@@ -158,12 +159,12 @@
                   padding: 0;
                   li {
                     list-style: none;
-                    margin: 0;
-                    padding: 10px;
+                    margin: 10px 10px 0;
+                    padding: 0 0 10px;
                     .item-title {
                       width: 100%;
-                      margin: 10px 10px 0;
-                      padding: 0;
+                      margin: 0;
+                      padding: 10px;
                       cursor: pointer;
                       transition: .2s ease;
                       span {
@@ -209,6 +210,12 @@
 
                         }
                       }
+                    }
+                    &._bordered {
+                      &:last-child {
+                        border: none;
+                      }
+                      border-bottom: 1px solid #dedede;
                     }
                   }
                 }

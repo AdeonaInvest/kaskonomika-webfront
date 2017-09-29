@@ -6,20 +6,10 @@
             </div>
             <div class="col-lg-10 dashboard-body">
                 <div class="cars-list-area">
-                    <div class="car-item animated bounceInRight _active">
-                        <span class="car-number">E 500 RF 02</span>
-                        <span class="car-name">Ravon Gentra</span>
-                        <span class="car-date">Застрахована до 20.10.2017</span>
-                    </div>
-                    <div class="car-item animated bounceInRight">
-                        <span class="car-number">E 500 RF 02</span>
-                        <span class="car-name">Ravon Gentra</span>
-                        <span class="car-date">Застрахована до 20.10.2017</span>
-                    </div>
-                    <div class="car-item animated bounceInRight">
-                        <span class="car-number">E 500 RF 02</span>
-                        <span class="car-name">Ravon Gentra</span>
-                        <span class="car-date">Застрахована до 20.10.2017</span>
+                    <div class="car-item animated bounceInRight" ng-class="{'_active' : row.active}" ng-repeat="row in vm.carsList track by $index">
+                        <span class="car-number">{{row.number | avtoNumberMask}}</span>
+                        <span class="car-name">{{row.mark}} {{row.model}}</span>
+                        <span class="car-date">Застрахована до {{row.policies[0].end_date}}</span>
                     </div>
                 </div>
                 <div class="calendar-date-list-area animated bounceInRight">
@@ -29,26 +19,40 @@
                     </div>
                     <div class="row buttons-area">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-kasko">Сентябрь</button>
-                            <button type="button" class="btn btn-kasko _default">Август</button>
-                            <button type="button" class="btn btn-kasko _default">Июль</button>
+                            <button type="button" class="btn btn-kasko"
+                                    ng-click="vm.setCurrentMonth(month)"
+                                    ng-class="{'_default' : month != vm.currentMonth}"
+                                    ng-repeat="month in vm.smallCalendar track by $index">
+                                <span ng-if="month === '01'">Январь</span>
+                                <span ng-if="month === '02'">Февраль</span>
+                                <span ng-if="month === '03'">Март</span>
+                                <span ng-if="month === '04'">Апрель</span>
+                                <span ng-if="month === '05'">Май</span>
+                                <span ng-if="month === '06'">Июнь</span>
+                                <span ng-if="month === '07'">Июль</span>
+                                <span ng-if="month === '08'">Август</span>
+                                <span ng-if="month === '09'">Сентябрь</span>
+                                <span ng-if="month === '10'">Октябрь</span>
+                                <span ng-if="month === '11'">Ноябрь</span>
+                                <span ng-if="month === '12'">Декабрь</span>
+                            </button>
                         </div>
                     </div>
                 </div>
                 <div class="row routes-list-area">
-                    <div class="list-area-loader ta-center" ng-if="">
+                    <div class="list-area-loader ta-center" ng-if="a">
                         <i class="fa fa-circle-o-notch fa-spin fa-5x"></i>
                     </div>
                     <div class="row list-area-items animated bounceInRight" ng-if="!a">
                         <h3>Сентябрь - 145,2 км</h3>
-                        <div class="row item-block">
+                        <div class="row item-block" ng-repeat="item in [1,2,3,4]">
                             <div class="row item-block-title">
                                 <h4 class="item-date-milage pull-left">23 сентября - 63.2 км.</h4>
                                 <h4 class="item-car-name pull-right">Ravon gentra 1.5 MT (107 л.с.)</h4>
                             </div>
                             <div class="row item-block-body">
                                 <ul>
-                                    <li ng-repeat="row in [{active:false},{active:false}] track by $index">
+                                    <li ng-repeat="row in [{active:false},{active:false},{active:false},{active:false},{active:false},{active:false}] track by $index" ng-class="{'_bordered' : !row.active}">
                                         <div class="row item-title" ng-click="row.active = !row.active">
                                             <div class="col-xs-3 ta-left">
                                                 <span><b>25.1 км.</b></span>
@@ -67,7 +71,7 @@
                                                 <span class="show-more" ng-if="row.active">Скрыть <i class="fa fa-angle-up"></i></span>
                                             </div>
                                         </div>
-                                        <div class="row item-map" ng-class="{'active' : row.active}" ng-init="">
+                                        <div class="row item-map animated" ng-init="">
                                             <div class="item-map-body" ng-if="row.active">
                                                 <!-- MAP HERE -->
                                                 <ng-map center="[40.74, -74.18]"></ng-map>
@@ -82,6 +86,9 @@
             </div>
         </div>
     </div>
+</div>
+<div id="debug-area">
+    <code>{{vm.startDate | date:'dd.MM.yyyy'}} - {{vm.endDate | date:'dd.MM.yyyy'}}</code>
 </div>
 
 
