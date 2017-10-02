@@ -73,7 +73,7 @@
                                         phone: vm.fill.holder.phone,
                                         email: vm.fill.holder.email,
                                         login: vm.fill.holder.email,
-                                        birth_date: (date.getDate() < 10 ? '0'+date.getDate() : date.getDate())+'.'+(date.getMonth() < 10 ? '0'+date.getMonth() : date.getMonth())+'.'+date.getFullYear(),
+                                        birth_date: (date.getDate() < 10 ? '0'+date.getDate() : date.getDate())+'.'+((date.getMonth()+1) < 10 ? '0'+(date.getMonth()+1) : (date.getMonth()+1))+'.'+date.getFullYear(),
                                         name: vm.fill.holder.firstName + vm.fill.holder.name + vm.fill.holder.secondName,
                                         sex: vm.fill.holder.sex
                                     }; //Set post data for registration
@@ -248,26 +248,26 @@
                 firstName: vm.fill.holder ? vm.fill.holder.name : null,
                 middleName: vm.fill.holder ? vm.fill.holder.secondName : null,
                 sex: vm.fill.holder ? vm.fill.holder.sex : null,
-                birthday: date ? ((date.getDate() < 10 ? '0'+date.getDate() : date.getDate())+'.'+(date.getMonth() < 10 ? '0'+date.getMonth() : date.getMonth())+'.'+date.getFullYear()) : null,
+                birthday: date ? ((date.getDate() < 10 ? '0'+date.getDate() : date.getDate())+'.'+((date.getMonth()+1) < 10 ? '0'+(date.getMonth()+1) : (date.getMonth()+1))+'.'+date.getFullYear()) : null,
                 phone: vm.fill.holder ? vm.fill.holder.phone : null,
                 email: vm.fill.holder ? vm.fill.holder.email : null,
                 docNumber: vm.fill.passport ? vm.fill.passport.serial : null,
-                docDate: docDate ? ((docDate.getDate() < 10 ? '0'+docDate.getDate() : docDate.getDate())+'.'+(docDate.getMonth() < 10 ? '0'+docDate.getMonth() : docDate.getMonth())+'.'+docDate.getFullYear()) : null,
+                docDate: docDate ? ((docDate.getDate() < 10 ? '0'+docDate.getDate() : docDate.getDate())+'.'+((docDate.getMonth()+1) < 10 ? '0'+(docDate.getMonth()+1) : (docDate.getMonth()+1))+'.'+docDate.getFullYear()) : null,
                 docWho: vm.fill.passport ? vm.fill.passport.owner : null,
                 benLastName: vm.fill.beneficiary ? vm.fill.beneficiary.firstName : null,
                 benFirstName: vm.fill.beneficiary ? vm.fill.beneficiary.name : null,
                 benMiddleName: vm.fill.beneficiary ? vm.fill.beneficiary.secondName : null,
                 benSex: vm.fill.beneficiary ? vm.fill.beneficiary.sex : null,
-                benBirtday: benDate ? ((benDate.getDate() < 10 ? '0'+benDate.getDate() : benDate.getDate())+'.'+(benDate.getMonth() < 10 ? '0'+benDate.getMonth() : benDate.getMonth())+'.'+benDate.getFullYear()) : null,
+                benBirtday: benDate ? ((benDate.getDate() < 10 ? '0'+benDate.getDate() : benDate.getDate())+'.'+((benDate.getMonth()+1) < 10 ? '0'+(benDate.getMonth()+1) : (benDate.getMonth()+1))+'.'+benDate.getFullYear()) : null,
                 benPhone: vm.fill.beneficiary ? vm.fill.beneficiary.phone : null,
                 benEmail: vm.fill.beneficiary ? vm.fill.beneficiary.email : null,
                 benDocNumber: vm.fill.beneficiary ? vm.fill.beneficiary.passport.serial : null,
-                benDocDate: benDocDate ? ((benDocDate.getDate() < 10 ? '0'+benDocDate.getDate() : benDocDate.getDate())+'.'+(benDocDate.getMonth() < 10 ? '0'+benDocDate.getMonth() : benDocDate.getMonth())+'.'+benDocDate.getFullYear()) : null,
+                benDocDate: benDocDate ? ((benDocDate.getDate() < 10 ? '0'+benDocDate.getDate() : benDocDate.getDate())+'.'+((benDocDate.getMonth()+1) < 10 ? '0'+(benDocDate.getMonth()+1) : (benDocDate.getMonth()+1))+'.'+benDocDate.getFullYear()) : null,
                 benDocIssue: vm.fill.beneficiary ? vm.fill.beneficiary.passport.owner : null,
                 ptsNumber: vm.fill.avto.pts ? vm.fill.avto.pts.serial : null,
-                ptsDate: ptsDate ? ((ptsDate.getDate() < 10 ? '0'+ptsDate.getDate() : ptsDate.getDate())+'.'+(ptsDate.getMonth() < 10 ? '0'+ptsDate.getMonth() : ptsDate.getMonth())+'.'+ptsDate.getFullYear()) : null,
+                ptsDate: ptsDate ? ((ptsDate.getDate() < 10 ? '0'+ptsDate.getDate() : ptsDate.getDate())+'.'+((ptsDate.getMonth()+1) < 10 ? '0'+(ptsDate.getMonth()+1) : (ptsDate.getMonth()+1))+'.'+ptsDate.getFullYear()) : null,
                 stsNumber: vm.fill.avto.sts ? vm.fill.avto.sts.serial : null,
-                stsDate: stsDate ? ((stsDate.getDate() < 10 ? '0'+stsDate.getDate() : stsDate.getDate())+'.'+(stsDate.getMonth() < 10 ? '0'+stsDate.getMonth() : stsDate.getMonth())+'.'+stsDate.getFullYear()) : null,
+                stsDate: stsDate ? ((stsDate.getDate() < 10 ? '0'+stsDate.getDate() : stsDate.getDate())+'.'+((stsDate.getMonth()+1) < 10 ? '0'+(stsDate.getMonth()+1) : (stsDate.getMonth()+1))+'.'+stsDate.getFullYear()) : null,
                 gosNumber: vm.fill.avto ? vm.fill.avto.gosNumber : null,
                 autoVin: vm.fill.avto ? vm.fill.avto.vin : null,
                 driverLastName: null,
@@ -367,7 +367,7 @@
                 data = {
                     token: $rootScope.currentToken,
                     is_juridical: 0,
-                    birth_date: (date.getDate()<10?'0'+date.getDate():date.getDate())+'.'+(date.getMonth()<10?'0'+(date.getMonth()+1):(date.getMonth()+1))+'.'+date.getFullYear(),
+                    birth_date: (date.getDate()<10?'0'+date.getDate():date.getDate())+'.'+((date.getMonth()+1)<10?'0'+(date.getMonth()+1):(date.getMonth()+1))+'.'+date.getFullYear(),
                     is_primary: 1,
                     sex: vm.fill.holder.sex,
                     name: vm.fill.holder.firstName + ' ' + vm.fill.holder.name + ' ' + vm.fill.holder.secondName
@@ -392,7 +392,7 @@
                     number: vm.fill.passport.serial.toString().substring(4,10),
                     document_type_id: 1,
                     issued: vm.fill.passport.owner,
-                    issued_date: (date.getDate()<10?'0'+date.getDate():date.getDate())+'.'+(date.getMonth()<10?'0'+(date.getMonth()+1):(date.getMonth()+1))+'.'+date.getFullYear(),
+                    issued_date: (date.getDate()<10?'0'+date.getDate():date.getDate())+'.'+((date.getMonth()+1)<10?'0'+(date.getMonth()+1):(date.getMonth()+1))+'.'+date.getFullYear(),
                     expiration_date: '01.01.2100',
                     contractor_id: vm.fill.response.contractor_id
                 };
@@ -484,7 +484,7 @@
                 data = {
                     token: $rootScope.currentToken,
                     is_juridical: 0,
-                    birth_date: (date.getDate()<10?'0'+date.getDate():date.getDate())+'.'+(date.getMonth()<10?'0'+(date.getMonth()+1):(date.getMonth()+1))+'.'+date.getFullYear(),
+                    birth_date: (date.getDate()<10?'0'+date.getDate():date.getDate())+'.'+((date.getMonth()+1)<10?'0'+(date.getMonth()+1):(date.getMonth()+1))+'.'+date.getFullYear(),
                     is_primary: 1,
                     sex: vm.fill.beneficiary.sex,
                     name: vm.fill.beneficiary.firstName + ' ' + vm.fill.beneficiary.name + ' ' + vm.fill.beneficiary.secondName
@@ -509,7 +509,7 @@
                     number: vm.fill.beneficiary.passport.serial.toString().substring(4,10),
                     document_type_id: 1,
                     issued: vm.fill.beneficiary.passport.owner,
-                    issued_date: (date.getDate()<10?'0'+date.getDate():date.getDate())+'.'+(date.getMonth()<10?'0'+(date.getMonth()+1):(date.getMonth()+1))+'.'+date.getFullYear(),
+                    issued_date: (date.getDate()<10?'0'+date.getDate():date.getDate())+'.'+((date.getMonth()+1)<10?'0'+(date.getMonth()+1):(date.getMonth()+1))+'.'+date.getFullYear(),
                     expiration_date: '01.01.2100',
                     contractor_id: vm.fill.response.beneficiary_id
                 };
@@ -611,10 +611,10 @@
                     policy_object_document_type_id: 1,
                     series: vm.fill.avto.pts.serial.toString().substring(0,4),
                     number: vm.fill.avto.pts.serial.toString().substring(4,10),
-                    issued_date: (ptsDate.getDate()<10?'0'+ptsDate.getDate():ptsDate.getDate())+'.'+(ptsDate.getMonth()<10?'0'+(ptsDate.getMonth()+1):(ptsDate.getMonth()+1))+'.'+ptsDate.getFullYear(),
+                    issued_date: (ptsDate.getDate()<10?'0'+ptsDate.getDate():ptsDate.getDate())+'.'+((ptsDate.getMonth()+1)<10?'0'+(ptsDate.getMonth()+1):(ptsDate.getMonth()+1))+'.'+ptsDate.getFullYear(),
                     sts_series: vm.fill.avto.sts.serial.toString().substring(0,4),
                     sts_number: vm.fill.avto.sts.serial.toString().substring(4,10),
-                    issued_sts_date: (stsDate.getDate()<10?'0'+stsDate.getDate():stsDate.getDate())+'.'+(stsDate.getMonth()<10?'0'+(stsDate.getMonth()+1):(stsDate.getMonth()+1))+'.'+stsDate.getFullYear(),
+                    issued_sts_date: (stsDate.getDate()<10?'0'+stsDate.getDate():stsDate.getDate())+'.'+((stsDate.getMonth()+1)<10?'0'+(stsDate.getMonth()+1):(stsDate.getMonth()+1))+'.'+stsDate.getFullYear(),
                     expiration_date: '01.01.2100',
                     value: vm.findData.filter.sum
                 };
@@ -652,9 +652,9 @@
                     let currentDate = new Date(),
                         data = {
                             token: $rootScope.currentToken,
-                            begin_date: (currentDate.getDate()<10?'0'+currentDate.getDate():currentDate.getDate())+'.'+(currentDate.getMonth()<10?'0'+(currentDate.getMonth()+1):(currentDate.getMonth()+1))+'.'+currentDate.getFullYear(),
+                            begin_date: (currentDate.getDate()<10?'0'+currentDate.getDate():currentDate.getDate())+'.'+((currentDate.getMonth()+1)<10?'0'+(currentDate.getMonth()+1):(currentDate.getMonth()+1))+'.'+currentDate.getFullYear(),
                             begin_time: (currentDate.getHours()<10?'0'+currentDate.getHours():currentDate.getHours())+':'+(currentDate.getMinutes()<10?'0'+currentDate.getMinutes():currentDate.getMinutes()),
-                            end_date: (currentDate.getDate()<10?'0'+currentDate.getDate():currentDate.getDate())+'.'+(currentDate.getMonth()<10?'0'+(currentDate.getMonth()+1):(currentDate.getMonth()+1))+'.'+(currentDate.getFullYear()+1),
+                            end_date: (currentDate.getDate()<10?'0'+currentDate.getDate():currentDate.getDate())+'.'+((currentDate.getMonth()+1)<10?'0'+(currentDate.getMonth()+1):(currentDate.getMonth()+1))+'.'+(currentDate.getFullYear()+1),
                             contractor_insurer_id: vm.fill.response.contractor_id,
                             contractor_beneficiary_id: vm.fill.response.beneficiary_id ? vm.fill.response.beneficiary_id : null,
                             insurance_company_id: vm.findData.calculations_product_id,

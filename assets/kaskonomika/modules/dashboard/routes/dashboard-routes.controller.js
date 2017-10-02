@@ -14,12 +14,12 @@
 
 
         vm.setCurrentMonth = setCurrentMonth;
+        vm.getTripTrack = getTripTrack;
 
         activate();
         ///////////////////
         function activate() {
             getLocalData();
-            setLastThreeMounth();
         }
 
         /**
@@ -47,53 +47,133 @@
                                 //TODO Пустой список машин, нечего отображать. Вывести сценарий добавления машины
                                 vm.carsListIsEmpty = true;
                             }
-                        })
+                        });
+                        setLastThreeMounth();
                     }
                 })
         }
 
         /**
-         * получение полного списка поездок
+         * Получение последних трех месяцев для переключателей
          */
-        function getTrips(month) {
-            /*let data = {
-                token: vm.token,
-                offset: 0,
-                limit: 10,
-                object_id: 21, //vm.carsList car ID
-                time_start: 1504213200,
-                time_end: 1506805199
-            };
-            $http.post(config.api + 'telematic/meta/get_trips', data)
-                .then(function(res){
-
-                })*/
-            xlog('поездки', month)
-
-        }
-
         function setLastThreeMounth() {
             vm.date = new Date(); //Получение текущей даты
 
-            vm.currentMonth = (vm.date.getMonth() + 1) < 10 ? '0' + (vm.date.getMonth() + 1) : vm.date.getMonth() + 1; //Установка текущего месяца
-            getTrips(vm.currentMonth); //Получение поездок по текущему месяцу
+            vm.currentMonth = (vm.date.getMonth() + 1) < 10 ? '0' + (vm.date.getMonth() + 1) : (vm.date.getMonth() + 1)+''; //Установка текущего месяца
 
             //Кнопки для выбора ближайших месяцев
             vm.smallCalendar = [month(1),month(0),month(-1)];
 
-            /**
-             * Конструктор месяцев для кнопочек
-             * @param index - порядковый месяц со смещением от текущего (+1)
-             * @returns {string} - номер месяца по календарю (09, 08, 07...)
-             */
-            function month(index) {
-                return (vm.date.getMonth() + index) < 10 ? '0' + (vm.date.getMonth() + index) : vm.date.getMonth() + index
-            }
+            getTrips(getStartAndEndTime(month(1)).start, getStartAndEndTime(month(1)).end, vm.carsList[0].id); //Получение поездок по текущему месяцу
+        }
 
-            vm.textStartDate = vm.date.getFullYear() + '-' + ((vm.date.getMonth() + 1) < 10 ? '0' + (vm.date.getMonth() + 1) : vm.date.getMonth() + 1) + '-' + '01';
-            vm.textEndDate = vm.date.getFullYear() + '-' + ((vm.date.getMonth() + 1) < 10 ? '0' + (vm.date.getMonth() + 1) : vm.date.getMonth() + 1) + '-' + (vm.date.getDate() < 10 ? '0' + vm.date.getDate() : vm.date.getDate());
-            vm.startDate = (new Date(vm.textStartDate)).getTime();
-            vm.endDate = (new Date(vm.textEndDate)).getTime();
+        /**
+         * Полуничение datetime по любому месяцу
+         * @param month - порядковый месяц по календарю
+         * @returns {{start: number, end: number}} - объект с началом и концом для расчетов
+         */
+        function getStartAndEndTime(month) {
+            let date = new Date();
+
+            date.setMonth(month);
+
+            let start = date.getFullYear() + '-' + (date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth()) + '-' + '01',
+            end = date.getFullYear() + '-' + (date.getMonth() < 10 ? '0' + date.getMonth() : date.getMonth()) + '-' + '31';
+
+            return {
+                start: (new Date(start)).getTime(),
+                end: (new Date(end)).getTime()
+            }
+        }
+
+        /**
+         * Конструктор месяцев для кнопочек
+         * @param index - порядковый месяц со смещением от текущего (+1)
+         * @returns {string} - номер месяца по календарю (09, 08, 07...)
+         */
+        function month(index) {
+            let date = new Date();
+            return (date.getMonth() + index) < 10 ? '0' + (date.getMonth() + index) : (date.getMonth() + index) + ''
+        }
+
+        /**
+         * получение полного списка поездок
+         */
+        function getTrips(startDate, endDate, carId) {
+            vm.waiter = true;
+            vm.tripsError = undefined;
+            vm.routesMeta = {
+                days: [],
+                perDay: [],
+                allMileage: 0
+            };
+            let data = {
+                token: vm.token,
+                offset: '0',
+                limit: '1000',
+                object_id: carId, //vm.carsList car ID
+                time_start: (startDate / 1000).toString(),
+                time_end: (endDate / 1000).toString()
+            };
+            $http.post(config.api + 'telematic/meta/get_trips', data)
+                .then(function(res){
+                    if (res.data.result) {
+                        vm.routesData = res.data.response;
+                        if (vm.routesData.length !== 0) {
+                            vm.routesData.forEach(function(f){
+                                let date = new Date(f.start_date),
+                                    start_day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+
+                                if (vm.routesMeta.days.indexOf(start_day) === -1) {
+                                    vm.routesMeta.days.push(start_day);
+                                }
+
+                                if (!vm.routesMeta.perDay[start_day]) {
+                                    vm.routesMeta.perDay[start_day] = {};
+                                }
+                                if (!vm.routesMeta.perDay[start_day].array) {
+                                    vm.routesMeta.perDay[start_day] = {array: []};
+                                }
+                                vm.routesMeta.perDay[start_day].array.push(f);
+                                vm.routesMeta.allMileage = vm.routesMeta.allMileage + f.mileage;
+                            });
+                            vm.routesMeta.perDay.forEach(function(a){
+                                a.mileage = 0;
+                                a.array.forEach(function(m){
+                                    a.mileage = a.mileage + m.mileage;
+                                })
+                            });
+                            xlog('vm.routesMeta',vm.routesMeta)
+                        } else {
+                            vm.tripsError = {
+                                status: true,
+                                text: 'Данных о поездках за выбранный месяц не найдено.'
+                            };
+                        }
+                        vm.waiter = false;
+                        xlog('trips', res.data);
+                    } else {
+                        vm.tripsError = {
+                            status: true,
+                            text: 'Данные телематики временно недоступны. Приносим извинения за временные неудобства.'
+                        };
+                        vm.waiter = false;
+                        xlog('trips-ERROR');
+                    }
+                })
+        }
+
+        function getTripTrack(trip) {
+            let data = {
+                token: vm.token,
+                object_id: trip.id,
+                start_time: trip.start_date,
+                finish_time: trip.end_date
+            };
+            $http.post(config.api + 'telematic/meta/trip_track', data)
+                .then(function(res){
+                    
+                })
         }
 
         /**
@@ -102,7 +182,7 @@
          */
         function setCurrentMonth(month) {
             vm.currentMonth = month;
-            getTrips(month);
+            getTrips(getStartAndEndTime(month).start, getStartAndEndTime(month).end, vm.carsList[0].id); //Получение поездок по текущему месяцу
         }
         
     }

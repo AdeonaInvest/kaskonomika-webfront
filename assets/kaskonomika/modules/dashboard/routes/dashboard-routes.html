@@ -40,30 +40,53 @@
                     </div>
                 </div>
                 <div class="row routes-list-area">
-                    <div class="list-area-loader ta-center" ng-if="a">
+                    <div class="list-area-loader ta-center" ng-if="vm.waiter">
                         <i class="fa fa-circle-o-notch fa-spin fa-5x"></i>
                     </div>
-                    <div class="row list-area-items animated bounceInRight" ng-if="!a">
-                        <h3>Сентябрь - 145,2 км</h3>
-                        <div class="row item-block" ng-repeat="item in [1,2,3,4]">
+                    <div class="row list-area-items" ng-if="vm.routesData && !vm.tripsError.status && !vm.waiter">
+                        <h3 class="animated bounceInRight"><span ng-if="vm.currentMonth === '01'">Январь</span>
+                            <span ng-if="vm.currentMonth === '02'">Февраль</span>
+                            <span ng-if="vm.currentMonth === '03'">Март</span>
+                            <span ng-if="vm.currentMonth === '04'">Апрель</span>
+                            <span ng-if="vm.currentMonth === '05'">Май</span>
+                            <span ng-if="vm.currentMonth === '06'">Июнь</span>
+                            <span ng-if="vm.currentMonth === '07'">Июль</span>
+                            <span ng-if="vm.currentMonth === '08'">Август</span>
+                            <span ng-if="vm.currentMonth === '09'">Сентябрь</span>
+                            <span ng-if="vm.currentMonth === '10'">Октябрь</span>
+                            <span ng-if="vm.currentMonth === '11'">Ноябрь</span>
+                            <span ng-if="vm.currentMonth === '12'">Декабрь</span> - {{vm.routesMeta.allMileage | number:1}} км.</h3>
+                        <div class="row item-block animated bounceInRight" ng-repeat="day in vm.routesMeta.days">
                             <div class="row item-block-title">
-                                <h4 class="item-date-milage pull-left">23 сентября - 63.2 км.</h4>
+                                <h4 class="item-date-milage pull-left">{{day}}
+                                    <span ng-if="vm.currentMonth === '01'">Января</span>
+                                    <span ng-if="vm.currentMonth === '02'">Февраля</span>
+                                    <span ng-if="vm.currentMonth === '03'">Марта</span>
+                                    <span ng-if="vm.currentMonth === '04'">Апреля</span>
+                                    <span ng-if="vm.currentMonth === '05'">Мая</span>
+                                    <span ng-if="vm.currentMonth === '06'">Июня</span>
+                                    <span ng-if="vm.currentMonth === '07'">Июля</span>
+                                    <span ng-if="vm.currentMonth === '08'">Августа</span>
+                                    <span ng-if="vm.currentMonth === '09'">Сентября</span>
+                                    <span ng-if="vm.currentMonth === '10'">Октября</span>
+                                    <span ng-if="vm.currentMonth === '11'">Ноября</span>
+                                    <span ng-if="vm.currentMonth === '12'">Декабря</span> - {{vm.routesMeta.perDay[day].mileage | number:1}} км.</h4>
                                 <h4 class="item-car-name pull-right">Ravon gentra 1.5 MT (107 л.с.)</h4>
                             </div>
                             <div class="row item-block-body">
                                 <ul>
-                                    <li ng-repeat="row in [{active:false},{active:false},{active:false},{active:false},{active:false},{active:false}] track by $index" ng-class="{'_bordered' : !row.active}">
-                                        <div class="row item-title" ng-click="row.active = !row.active">
+                                    <li ng-repeat="row in vm.routesMeta.perDay[day].array | orderBy: 'time_start' track by $index" ng-class="{'_bordered' : !row.active}">
+                                        <div class="row item-title" ng-click="vm.getTripTrack(row); row.active = !row.active">
                                             <div class="col-xs-3 ta-left">
-                                                <span><b>25.1 км.</b></span>
+                                                <span><b>{{row.mileage | number:1}} км.</b></span>
                                                 <span ng-if="row.active" class="span-title">Дистанция</span>
                                             </div>
                                             <div class="col-xs-3 ta-center">
-                                                <span>09:14 - 10:04</span>
+                                                <span>{{row.time_start*1000 | date:'HH:mm'}} - {{row.time_end*1000 | date:'HH:mm'}}</span>
                                                 <span ng-if="row.active" class="span-title">Время поездки</span>
                                             </div>
                                             <div class="col-xs-3 ta-center">
-                                                <span>104 км/ч</span>
+                                                <span>{{row.max_speed | number:0}} км/ч</span>
                                                 <span ng-if="row.active" class="span-title">Максимальная скорость</span>
                                             </div>
                                             <div class="col-xs-3 ta-right">
@@ -74,7 +97,15 @@
                                         <div class="row item-map animated" ng-init="">
                                             <div class="item-map-body" ng-if="row.active">
                                                 <!-- MAP HERE -->
-                                                <ng-map center="[40.74, -74.18]"></ng-map>
+                                                <ng-map center="[40.74, -74.18]">
+                                                    <shape name="polyline"
+                                                           path="[[37.772323, -122.214897],[21.291982, -157.821856],[-18.142599, 178.431],[-27.46758, 153.027892]]"
+                                                           geodesic="true"
+                                                           stroke-color="#59c6f1"
+                                                           stroke-opacity="0.9"
+                                                           stroke-weight="2">
+                                                    </shape>
+                                                </ng-map>
                                             </div>
                                         </div>
                                     </li>
@@ -82,12 +113,15 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row error-routes-area ta-center" ng-if="vm.tripsError.status && !vm.waiter">
+                        <h4 ng-bind="vm.tripsError.text"></h4>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div id="debug-area">
+<div id="debug-area" ng-if="d">
     <code>{{vm.startDate | date:'dd.MM.yyyy'}} - {{vm.endDate | date:'dd.MM.yyyy'}}</code>
 </div>
 
