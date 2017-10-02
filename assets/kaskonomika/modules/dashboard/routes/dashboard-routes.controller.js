@@ -164,16 +164,28 @@
         }
 
         function getTripTrack(trip) {
-            let data = {
-                token: vm.token,
-                object_id: trip.id,
-                start_time: trip.start_date,
-                finish_time: trip.end_date
-            };
-            $http.post(config.api + 'telematic/meta/trip_track', data)
-                .then(function(res){
-                    
-                })
+            if (!trip.active && !trip.waiterMap) {
+                trip.waiterMap = true;
+                let data = {
+                    token: vm.token,
+                    object_id: vm.carsList[0].id,
+                    start_time: trip.start_date,
+                    finish_time: trip.stop_date
+                };
+                $http.post(config.api + 'telematic/meta/trip_track', data)
+                    .then(function(res){
+                        trip.waiterMap = false;
+                        trip.active = true;
+                        trip.routes = res.data;
+                        xlog('maps-trips', res.data)
+                    })
+            } else if(!trip.active && trip.waiterMap){
+                trip.routes = null;
+            } else if(trip.active && !trip.waiterMap){
+                trip.routes = null;
+                trip.waiterMap = false;
+                trip.active = false;
+            }
         }
 
         /**

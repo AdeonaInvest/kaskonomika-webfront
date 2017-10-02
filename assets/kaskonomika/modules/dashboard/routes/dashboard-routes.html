@@ -1,3 +1,4 @@
+<script src="../../../core/js/app.routes.js"></script>
 <div id="dashboard-routes">
     <div class="container-fluid">
         <div class="row row-db">
@@ -76,7 +77,7 @@
                             <div class="row item-block-body">
                                 <ul>
                                     <li ng-repeat="row in vm.routesMeta.perDay[day].array | orderBy: 'time_start' track by $index" ng-class="{'_bordered' : !row.active}">
-                                        <div class="row item-title" ng-click="vm.getTripTrack(row); row.active = !row.active">
+                                        <div class="row item-title" ng-click="vm.getTripTrack(row)" ng-disabled="row.waiterMap">
                                             <div class="col-xs-3 ta-left">
                                                 <span><b>{{row.mileage | number:1}} км.</b></span>
                                                 <span ng-if="row.active" class="span-title">Дистанция</span>
@@ -90,20 +91,22 @@
                                                 <span ng-if="row.active" class="span-title">Максимальная скорость</span>
                                             </div>
                                             <div class="col-xs-3 ta-right">
-                                                <span class="show-more" ng-if="!row.active">Подробнее <i class="fa fa-angle-down"></i></span>
-                                                <span class="show-more" ng-if="row.active">Скрыть <i class="fa fa-angle-up"></i></span>
+                                                <span class="show-more" ng-if="!row.active && !row.waiterMap">Подробнее <i class="fa fa-angle-down"></i></span>
+                                                <span class="show-more" ng-if="row.waiterMap">Получение данных... <i class="fa fa-circle-o-notch fa-spin"></i></span>
+                                                <span class="show-more" ng-if="row.active && !row.waiterMap">Скрыть <i class="fa fa-angle-up"></i></span>
                                             </div>
                                         </div>
                                         <div class="row item-map animated" ng-init="">
                                             <div class="item-map-body" ng-if="row.active">
                                                 <!-- MAP HERE -->
-                                                <ng-map center="[40.74, -74.18]">
+                                                <ng-map center="[37.772323, -122.214897]"
+                                                        zoom="9" ng-if="row.routes">
                                                     <shape name="polyline"
                                                            path="[[37.772323, -122.214897],[21.291982, -157.821856],[-18.142599, 178.431],[-27.46758, 153.027892]]"
                                                            geodesic="true"
                                                            stroke-color="#59c6f1"
                                                            stroke-opacity="0.9"
-                                                           stroke-weight="2">
+                                                           stroke-weight="4">
                                                     </shape>
                                                 </ng-map>
                                             </div>
