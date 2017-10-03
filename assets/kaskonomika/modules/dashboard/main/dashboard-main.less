@@ -199,8 +199,9 @@
                     font: 11px/16px @fm-web;
                     color: #858585;
                     text-transform: uppercase;
-                    text-align: left;
-
+                    display: block;
+                    width: 100%;
+                    text-align: center;
                   }
                 }
                 .address-area {
@@ -221,6 +222,7 @@
                   }
                   .btn-kasko {
                     margin: 0 auto;
+                    min-width: 230px;
                   }
                 }
               }
@@ -234,6 +236,8 @@
                 background: #dedede;
                 border-bottom: 1px solid #cacaca;
                 padding: 15px;
+                cursor: pointer;
+                transition: .2s ease;
                 &:last-child {
                   cursor: pointer;
                   border: none;
@@ -266,6 +270,20 @@
                   border-top-left-radius: 5px;
                   border-top-right-radius: 5px;
                 }
+                &:hover {
+                  background: #eeeeee;
+                  transition: .2s ease;
+                }
+                .item-title {
+                  height: 20px;
+                  span {
+                    width: auto;
+                    display: inline;
+                    font: 11px/20px @fm-main;
+                    color: @color-darkgrey;
+                    text-transform: uppercase;
+                  }
+                }
                 span {
                   display: block;
                   width: 100%;
@@ -282,6 +300,13 @@
                 .item-car {
                   font: 14px/20px @fm-web;
                   color: #000;
+                }
+                .item-message {
+                  font: 14px/20px @fm-web;
+                  color: #000;
+                }
+                hr {
+                  border-color: #999;
                 }
               }
             }

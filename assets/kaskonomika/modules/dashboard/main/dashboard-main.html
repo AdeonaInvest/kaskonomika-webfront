@@ -6,20 +6,13 @@
             </div>
             <div class="col-lg-10 dashboard-body">
                 <div class="row cars-list-area">
-                    <div class="car-item animated bounceInRight _active">
-                        <span class="car-number">E 500 RF 02</span>
-                        <span class="car-name">Ravon Gentra</span>
-                        <span class="car-date">Застрахована до 20.10.2017</span>
-                    </div>
-                    <div class="car-item animated bounceInRight">
-                        <span class="car-number">E 500 RF 02</span>
-                        <span class="car-name">Ravon Gentra</span>
-                        <span class="car-date">Застрахована до 20.10.2017</span>
-                    </div>
-                    <div class="car-item animated bounceInRight">
-                        <span class="car-number">E 500 RF 02</span>
-                        <span class="car-name">Ravon Gentra</span>
-                        <span class="car-date">Застрахована до 20.10.2017</span>
+                    <div class="car-item animated bounceInRight"
+                         ng-class="{'_active' : vm.activeCarTab == row.id}"
+                         ng-click="vm.setActivetab(row.id, key)"
+                         ng-repeat="(key,row) in vm.carsList track by $index">
+                        <span class="car-number">{{row.number | avtoNumberMask}}</span>
+                        <span class="car-name">{{row.mark}} {{row.model}}</span>
+                        <span class="car-date">Застрахована до {{row.policies[0].end_date}}</span>
                     </div>
                 </div>
                 <div class="row values-list-area">

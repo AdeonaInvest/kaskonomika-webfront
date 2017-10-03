@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <h3 class="area-title">Пробег сегодня</h3>
-        <span class="km-today">{{55}} км.</span>
-        <uib-progressbar value="55" max="100"></uib-progressbar>
+        <span class="km-today">{{vm.mileageOneDay}} км.</span>
+        <uib-progressbar value="vm.mileageOneDay" max="100"></uib-progressbar>
         <div class="km-title">
             <span class="pull-left">Рекомендуемый пробег</span>
             <span class="pull-right">{{25}} км.</span>
@@ -16,20 +16,33 @@
 <div class="row maps-and-on-off">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 google-map">
         <!-- MAP HERE -->
-        <ng-map center="[40.74, -74.18]"></ng-map>
+        <ng-map zoom="14" center="[{{vm.carPosition.lat}},{{vm.carPosition.lon}}]">
+            <marker position="[{{vm.carPosition.lat}},{{vm.carPosition.lon}}]"
+                    icon="{
+                    url: '/src/img/icons/map-car.png',
+                    iconsize: [28, 28],
+                    iconanchor: [12, 28]
+                    }"
+            ></marker>
+        </ng-map>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 on-off-area">
         <div class="status-area">
-            <span>Включен режим парковки</span>
-            <span>Отключен режим парковки</span>
+            <span ng-if="vm.parkingStatus">Включен режим парковки</span>
+            <span ng-if="!vm.parkingStatus">Отключен режим парковки</span>
+            <span ng-if="vm.carPosition.time" ng-bind="vm.carPosition.time | date:'dd.MM.yyyy HH:mm'"></span>
         </div>
         <div class="address-area">
             <span class="address-title">Автомобиль здесь</span>
-            <span class="address-val" ng-if="true">Адрес не найден</span>
-            <span class="address-val" ng-if="!true">{{'address'}}</span>
-            <button class="btn btn-kasko">
-                <span ng-if="true">Включить режим парковки</span>
-                <span ng-if="!true">Выключить режим парковки</span>
+            <span class="address-val" ng-if="!vm.carAddress">Адрес не найден</span>
+            <span class="address-val" ng-if="vm.carAddress">{{vm.carAddress}}</span>
+            <button class="btn btn-kasko" ng-disabled="vm.parkingPostWait">
+                <span ng-if="!vm.parkingStatus && !vm.parkingPostWait" ng-click="vm.setParking(1)">Включить режим парковки</span>
+                <span ng-if="vm.parkingStatus && !vm.parkingPostWait" ng-click="vm.setParking(0)">Выключить режим парковки</span>
+                <span ng-if="vm.parkingPostWait">
+                    <i class="fa fa-spin fa-circle-o-notch color-blue"></i>
+                </span>
+
             </button>
         </div>
     </div>

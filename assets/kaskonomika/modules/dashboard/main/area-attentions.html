@@ -1,10 +1,17 @@
 <ul class="attentions">
-    <li class="item" ng-repeat="row in [1,2,3,4,5,6]">
-        <span class="item-title">Диагностика</span>
-        <span class="item-msg">Устройство отключено!</span>
-        <span class="item-car">Ravon Gentra</span>
+    <li class="item" ng-repeat="row in vm.eventsList track by $index" ng-click="open = !open">
+        <div class="item-title">
+            <span class="pull-left" ng-bind="row.category_caption"></span>
+            <span class="pull-right" ng-bind="row.date | date: 'dd.MM.yyyy HH:mm'"></span>
+        </div>
+        <span class="item-msg" ng-bind="row.caption"></span>
+        <span class="item-car" ng-bind="row.object"></span>
+        <div ng-if="open">
+            <hr/>
+            <span class="item-message" ng-bind="row.message"></span>
+        </div>
     </li>
     <li  class="item">
-        <a class="item-last">Все уведомления <i class="fa fa-caret-right"></i></a>
+        <a href="/dashboard/events" class="item-last">Все уведомления <i class="fa fa-caret-right"></i></a>
     </li>
 </ul>

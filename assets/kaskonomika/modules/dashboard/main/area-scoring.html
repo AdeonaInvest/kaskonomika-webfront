@@ -2,17 +2,20 @@
 <div class="circle-area">
     <div class="circle">
         <!--Pie Chart -->
-        <div class="progress-pie-chart" ng-class="{'gt-50' : vm.dashboard.scoring > 50}">
+        <div class="progress-pie-chart" ng-class="{'gt-50' : vm.totalScoring > 50}" ng-if="vm.totalScoring">
             <div class="ppc-progress">
-                <div class="ppc-progress-fill" ng-style="{'transform' : 'rotate('+ 260* vm.dashboard.scoring / 100 +'deg)'}"></div>
+                <div class="ppc-progress-fill" ng-style="{'transform' : 'rotate('+ 260* vm.totalScoring / 100 +'deg)'}"></div>
             </div>
             <div class="ppc-percents">
                 <div class="pcc-percents-wrapper">
-                    <span class='value'>{{vm.dashboard.scoring}}<br/>
+                    <span class='value'>{{vm.totalScoring}}<br/>
                     <small>Нет данных об оценке вождения</small></span>
                 </div>
             </div>
         </div>
         <!--End Chart -->
+        <div class="ta-center" ng-if="!vm.totalScoring">
+            <i class="fa fa-spin fa-circle-o-notch fa-5x color-blue" style="line-height: 200px"></i>
+        </div>
     </div>
 </div>
