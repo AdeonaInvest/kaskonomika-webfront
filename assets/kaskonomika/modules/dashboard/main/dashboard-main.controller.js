@@ -31,12 +31,6 @@
         ///////////////////
         function activate() {
             checkUser(); //Проверка залогенного пользователя
-            // Work with map
-            NgMap.getMap().then(function(map) {
-                console.log('markers', map.markers);
-                console.log('shapes', map.shapes);
-            });
-            getVehicles();
         }
 
         /**
@@ -47,6 +41,8 @@
             vm.token = localStorage.getItem('currentToken');
             if (!vm.user || !vm.token) {
                 $location.path('/')
+            } else {
+                getVehicles(); //Получение списка авто с оформленными полисами
             }
         }
 
@@ -74,10 +70,20 @@
                 })
         }
 
+        /**
+         * Клик по табам. Выбор активной машины
+         * @param id
+         * @param key
+         */
         function setActiveTab(id, key){
             vm.activeCarTab = id;
             vm.policyDate = vm.carsList[key];
-            getEventList(id);
+            getEventList(id); //Получение списка событий по авто
+            getMileageOneDay(id); //Получение пробега за сегодня
+            getMileageRangedLimit(id); //Получение текущего и оставшегося пробега
+            getParkingStatus(id); //Получение данных о паркинге. Включен ли он
+            getTotalScoring(id); //Получение оценки скоринга за поездки
+            getCarPosition(id) //Получение местонахождения авто
         }
 
         /**
@@ -87,7 +93,7 @@
             let data = {
                 token: vm.token,
                 from: 0,
-                to: 10
+                to: 4
             };
             $http.post(config.api + 'communications/events/list',data)
                 .then(function(res){
@@ -98,7 +104,6 @@
                                 vm.eventsList.push(f)
                             }
                         });
-                        getMileageOneDay(id);
                     }
                 })
         }
@@ -115,7 +120,6 @@
                 .then(function(res){
                     if (res.data.result) {
                         vm.mileageOneDay = res.data.response;
-                        getMileageRangedLimit(id);
                     }
                 })
         }
@@ -137,7 +141,6 @@
                             mileage: Math.round(parseInt(res.data.response.mileage)),
                             percent: (100 / res.data.response.limit * res.data.response.mileage) < 100 ? 100 / res.data.response.limit * res.data.response.mileage : 100
                         };
-                        getParkingStatus(id);
                     }
                 })
         }
@@ -154,7 +157,6 @@
                     if (res.data.result) {
                         vm.parkingStatus = res.data.response;
                         vm.parkingPostWait = false;
-                        getTotalScoring(id);
                     }
                 })
         }
@@ -170,7 +172,6 @@
                 .then(function(res){
                     if (res.data.result) {
                         vm.totalScoring = res.data.response;
-                        getCarPosition(id)
                     }
                 })
         }

@@ -5,7 +5,68 @@
                 <ng-include src="'/dashboard/menu/dashboard-menu.html'"></ng-include>
             </div>
             <div class="col-lg-10 dashboard-body">
-                dashboard-events
+                <div class="container events-area">
+                    <div ng-if="vm.eventsList.length > 0">
+                        <div class="row events-head" ng-if="vm.newList.length !== 0">
+                            <span class="events-count pull-left" ng-class="{'active': a}">{{vm.newList.length}} новых уведомлений</span>
+                            <span class="events-count pull-right span-btn" ng-click="vm.setViewedAll()">Пометить все, как прочитанные <i class="fa fa-check color-blue"></i></span>
+                        </div>
+                        <div class="row events-list" ng-if="vm.newList.length !== 0">
+                            <div class="item" ng-click="open = !open; vm.setViewed(row)" ng-repeat="row in vm.newList track by $index" ng-if="row.is_viewed !== '1'">
+                                <div class="row item-head">
+                                <span class="head-text pull-left">{{row.category_caption}}
+                                    <i class="color-blue" ng-if="row.is_viewed === '0'">(Новое)</i>
+                                    <i ng-if="row.is_viewed === '1'">(Прочитано)</i>
+                                </span>
+                                    <span class="head-text pull-right">{{row.time | date:'dd.MM.yyyy HH:mm'}}</span>
+                                </div>
+                                <div class="row item-body">
+                                    <span class="item-text pull-left">{{row.caption}}</span>
+                                    <span class="item-text-angle pull-right">
+                                    <i ng-if="!open" class="fa fa-angle-down"></i>
+                                    <i ng-if="open" class="fa fa-angle-up"></i>
+                                </span>
+                                </div>
+                                <div class="row item-car">
+                                    <span class="car-text">{{row.object}}</span>
+                                </div>
+                                <div class="row item-popup" ng-if="open">
+                                    <span class="popup-text">{{row.message}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row events-head-history">
+                            <span class="events-history">История уведомлений</span>
+                        </div>
+                        <div class="row events-list">
+                            <div class="item" ng-click="open = !open" ng-repeat="row in vm.eventsList track by $index" ng-if="row.is_viewed != '0'">
+                                <div class="row item-head">
+                                <span class="head-text pull-left">{{row.category_caption}}
+                                    <i class="color-blue" ng-if="row.is_viewed === '0'">(Новое)</i>
+                                    <i ng-if="row.is_viewed === '1'">(Прочитано)</i>
+                                </span>
+                                    <span class="head-text pull-right">{{row.time | date:'dd.MM.yyyy HH:mm'}}</span>
+                                </div>
+                                <div class="row item-body">
+                                    <span class="item-text pull-left">{{row.caption}}</span>
+                                    <span class="item-text-angle pull-right">
+                                    <i ng-if="!open" class="fa fa-angle-down"></i>
+                                    <i ng-if="open" class="fa fa-angle-up"></i>
+                                </span>
+                                </div>
+                                <div class="row item-car">
+                                    <span class="car-text">{{row.object}}</span>
+                                </div>
+                                <div class="row item-popup" ng-if="open">
+                                    <span class="popup-text">{{row.message}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="error-events-area" ng-if="vm.eventsList.length === 0">
+                        <h3>У вас еще нет уведомлений </h3>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

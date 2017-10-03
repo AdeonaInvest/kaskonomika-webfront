@@ -8,7 +8,7 @@
             <span class="pull-right">{{25}} км.</span>
         </div>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ta-center">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ta-center ng-hide">
         <span class="consumption-title">Средний расход сегодня</span>
         <span class="consumption-val">{{18}} л. / 100 км.</span>
     </div>
@@ -28,12 +28,12 @@
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 on-off-area">
         <div class="status-area">
+            <span class="color-black" ng-if="vm.carPosition.time">Время обновления данных: {{vm.carPosition.time | date:'dd.MM.yyyy HH:mm'}}</span>
             <span ng-if="vm.parkingStatus">Включен режим парковки</span>
             <span ng-if="!vm.parkingStatus">Отключен режим парковки</span>
-            <span ng-if="vm.carPosition.time" ng-bind="vm.carPosition.time | date:'dd.MM.yyyy HH:mm'"></span>
         </div>
         <div class="address-area">
-            <span class="address-title">Автомобиль здесь</span>
+            <span class="address-title">Автомобиль здесь:</span>
             <span class="address-val" ng-if="!vm.carAddress">Адрес не найден</span>
             <span class="address-val" ng-if="vm.carAddress">{{vm.carAddress}}</span>
             <button class="btn btn-kasko" ng-disabled="vm.parkingPostWait">
