@@ -1,0 +1,103 @@
+<!-- Фамилия, Имя, Отчество -->
+<div class="row">
+    <div class="col-lg-4">
+        <div class="form-group">
+            <label>Фамилия</label>
+            <input class="form-control" ng-value="vm.carDocs.sts.value" ng-disabled=""/>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="form-group">
+            <label>Имя</label>
+            <input class="form-control" ng-value="vm.carDocs.sts.value" ng-disabled=""/>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="form-group">
+            <label>Отчество</label>
+            <input class="form-control" ng-value="vm.carDocs.sts.value" ng-disabled=""/>
+        </div>
+    </div>
+</div>
+<!-- Дата рождения, Пол, Отчество -->
+<div class="row">
+    <div class="col-lg-4">
+        <div class="form-group">
+            <label>Дата рождения</label>
+            <input type="date" class="form-control" ng-value="vm.carDocs.sts.value" ng-disabled="">
+        </div>
+    </div>
+    <div class="col-lg-8">
+        <div class="form-group">
+            <label>Пол</label>
+            <div>
+                <div class="custom-radio" ng-click="vm.fill.holder.sex = '1'">
+                    <input type="radio" ng-model="vm.fill.holder.sex">
+                    <label ng-class="{'active': vm.fill.holder.sex == '1'}">
+                        Мужчина
+                    </label>
+                </div>
+                <div class="custom-radio" ng-click="vm.fill.holder.sex = '0'">
+                    <input type="radio" ng-model="vm.fill.holder.sex">
+                    <label ng-class="{'active': vm.fill.holder.sex == '0'}">
+                        Женщина
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<hr/>
+<!-- Документ, удостоверяющий личность, Серия документа, Номер документа -->
+<div class="row">
+    <div class="col-lg-4">
+        <div class="form-group">
+            <label>Документ, удостоверяющий личность</label>
+            <input class="form-control" ng-value="vm.carDocs.sts.value" ng-disabled=""/>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="form-group">
+            <label>Серия документа</label>
+            <input class="form-control" ng-value="vm.carDocs.sts.value" ng-disabled=""/>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="form-group">
+            <label>Номер документа</label>
+            <input class="form-control" ng-value="vm.carDocs.sts.value" ng-disabled=""/>
+        </div>
+    </div>
+</div>
+<!-- Прикрепление фото пасспорта-->
+<div class="row">
+    <div class="col-lg-4">
+        <custom-upload index="1" doc="Первая страница пасспорта"></custom-upload>
+    </div>
+    <div class="col-lg-4">
+        <custom-upload index="2" doc="Страница с регистрацией"></custom-upload>
+    </div>
+    <div class="col-lg-4"></div>
+</div>
+<!-- Кем выдан документ, Дата выдачи документа -->
+<div class="row">
+    <div class="col-lg-8">
+        <div class="form-group">
+            <label>Кем выдан документ</label>
+            <input class="form-control" ng-value="vm.carDocs.sts.value" ng-disabled=""/>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="form-group">
+            <label>Дата выдачи документа</label>
+            <input type="date" class="form-control" ng-value="vm.carDocs.sts.value" ng-disabled=""/>
+        </div>
+    </div>
+</div>
+<!-- Добавление нового документа -->
+<div class="add-doc-area">
+    <a href>
+        <i class="fa fa-plus-circle"></i>
+        <span>Добавить документ</span>
+    </a>
+</div>

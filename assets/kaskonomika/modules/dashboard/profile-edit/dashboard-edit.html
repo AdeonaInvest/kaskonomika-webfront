@@ -5,7 +5,15 @@
                 <ng-include src="'/dashboard/menu/dashboard-menu.html'"></ng-include>
             </div>
             <div class="col-lg-10 dashboard-body">
-                dashboard-profile-edit
+                <div class="container">
+                    <a href="" class="back-link">
+                        <i class="fa fa-angle-left"></i> Назад к профилю
+                    </a>
+                    <h1>Редактирование данных</h1>
+                    <ng-include src="'/dashboard/profile-edit/area-personal.html'"></ng-include>
+                    <ng-include src="'/dashboard/profile-edit/area-address.html'"></ng-include>
+                    <ng-include src="'/dashboard/profile-edit/area-contacts.html'"></ng-include>
+                </div>
             </div>
         </div>
     </div>

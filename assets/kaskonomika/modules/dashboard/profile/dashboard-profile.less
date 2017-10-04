@@ -28,6 +28,395 @@
         float: none;
         padding: 0;
         margin: 0;
+        .profile-header {
+          background: linear-gradient(to top, #d3edfa, #c9e0ee);
+          .avatar-area {
+            margin: 0;
+            padding: 30px 0 0 0;
+            .container {
+              .avatar-img-area {
+                img {
+                  width: 100%;
+                  max-width: 140px;
+                  border-radius: 50%;
+                  background: transparent;
+                }
+              }
+              .user-name-area {
+                margin: 30px 0 0 0;
+                padding: 0 0 20px 0;
+                border-bottom: 1px solid #bed4e1;
+                a {
+                  font: 16px/16px @fm-main;
+                  span {
+                    font: 16px/16px @fm-main;
+                    color: #000;
+                    text-align: left;
+                    transition: .2s ease;
+                    i {
+                      transition: .2s ease;
+                      line-height: 16px;
+                      color: #000;
+                    }
+                  }
+                  &:hover {
+                    text-decoration: none;
+                    span {
+                      color: @color-blue-hover;
+                      transition: .2s ease;
+                      i {
+                        transition: .2s ease;
+                        color: @color-blue-hover;
+                      }
+                    }
+                  }
+                  &:focus {
+                    text-decoration: none;
+                    span {
+                      color: #000;
+                      i {
+                        line-height: 16px;
+                        color: #000;
+                      }
+                    }
+                  }
+                }
+              }
+              .user-score-area {
+                margin: 20px 0 0 0;
+                .pull-left {
+                  font: 16px/22px @fm-web;
+                  color: #000;
+                  text-align: left;
+                  vertical-align: middle;
+                  b {
+                    vertical-align: middle;
+                    font: 20px/22px @fm-bold;
+                  }
+                }
+                .pull-right {
+                  line-height: 22px;
+                  i {
+                    line-height: 22px;
+                    font-size: 22px;
+                    color: #000;
+                    vertical-align: middle;
+                  }
+                  span {
+                    font: 16px/22px @fm-main;
+                    color: #000;
+                    text-align: right;
+                    vertical-align: middle;
+                  }
+                  &:hover {
+                    text-decoration: none;
+                    i {
+                      transition: .2s ease;
+                      color: @color-blue-hover;
+                    }
+                    span {
+                      color: @color-blue-hover;
+                      transition: .2s ease;
+                    }
+                  }
+                  &:focus {
+                    text-decoration: none;
+                    span {
+                      color: #000;
+                      i {
+                        line-height: 16px;
+                        color: #000;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+          }
+          .cars-list-area {
+            padding: 0 70px;
+            background: none;
+            overflow: hidden;
+            margin: 0;
+            .container {
+              .car-item {
+                float: left;
+                min-width: 200px;
+                max-height: 95px;
+
+                margin: 30px 5px 0;
+                padding: 15px 20px;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+                background: @color-blue;
+
+                cursor: pointer;
+                transition: .2s ease;
+                span {
+                  display: block;
+                  color: #fff;
+                }
+                .car-number {
+                  font: 11px/15px @fm-web;
+                  text-transform: uppercase;
+                  text-align: left;
+                }
+                .car-name {
+                  font: 20px/27px @fm-bold;
+                  text-align: left;
+                }
+                .car-date {
+                  font: 14px/23px @fm-light;
+                  text-align: left;
+                }
+                &._active {
+                  cursor: default;
+                  background: #fff;
+
+                  span {
+                    color: #000;
+                  }
+                  .car-date {
+                    color: @color-darkgrey;
+                  }
+
+                  &:hover {
+                    background: #fff;
+                  }
+                }
+                &:hover {
+                  transition: .2s ease;
+
+                  background: @color-blue-hover;
+                }
+              }
+            }
+          }
+        }
+        .profile-body {
+          .container {
+            .insurance-alert-area {
+              margin: 0;
+              .insurance-alert {
+                background: #ececec;
+                border-radius: 5px;
+                border: none;
+                margin: 30px 0 0;
+                .col-lg-2 {
+                  text-align: center;
+                  .fa {
+                    color: @color-red-light;
+                    line-height: 140px;
+                  }
+                }
+                .col-lg-6 {
+                  .alert-title {
+                    margin: 45px 0 0;
+                    font: 22px/22px @fm-bold;
+                    color: @color-red-light;
+                    text-align: left;
+                    display: block;
+                    width: 100%;
+                  }
+                  .alert-text {
+                    font: 16px/16px @fm-web;
+                    color: #000;
+                    text-align: left;
+                    display: block;
+                    width: 100%;
+                    margin: 10px 0 0;
+                  }
+                }
+                .col-lg-4 {
+                  .btn-kasko {
+                    margin: 50px auto 0;
+                  }
+                }
+              }
+
+            }
+            .meta-area {
+              margin: 30px 0 0;
+              .left-col {
+                padding: 0 0 50px 0;
+                .map-area {
+
+                }
+                hr {
+                  border-color: #dadada;
+                  margin: 50px 0;
+                }
+                .car-info {
+
+                }
+
+              }
+              .right-col {
+                margin-right: 0;
+                .insurance-item {
+                  width: 100%;
+                  margin: 0;
+                  border: 1px solid #dadada;
+                  padding: 0 20px;
+                  border-radius: 5px;
+                  .item-body-hr {
+                    padding: 15px 0;
+                    border-bottom: 1px solid #dadada;
+                    box-sizing: content-box;
+                  }
+                  .item-header {
+                    height: 30px;
+                    .item-header-title {
+                      font: 12px/30px @fm-main;
+                      color: #000;
+                      text-transform: uppercase;
+                      text-align: left;
+                    }
+                    ul {
+                      padding: 0;
+                      margin: 0;
+                      li {
+                        margin-left: 10px;
+                        padding: 0;
+                        .icon-bordered {
+                          border: 2px solid #e7e7e7;
+                          border-radius: 50%;
+                          width: 30px;
+                          height: 30px;
+                          text-align: center;
+                          .fa {
+                            font-size: 16px;
+                            line-height: 26px;
+                            color: #ea5052;
+                          }
+                        }
+                        &:hover {
+                          cursor: pointer;
+                          .icon-bordered {
+                            border-color: @color-blue;
+                          }
+                        }
+                      }
+                    }
+                  }
+                  .item-body {
+                    .item-body-logo {
+                      text-align: center;
+                      img {
+                        max-width: 100%;
+                        max-height: 60px;
+                      }
+                    }
+                    .item-body-number {
+                      .item-body-number-title {
+                        font: 14px/18px @fm-web;
+                        color: #a3a3a3;
+                        text-transform: none;
+                        text-align: left;
+                        display: block;
+                        width: 100%;
+                      }
+                      .item-body-number-text {
+                        font: 14px/18px @fm-main;
+                        color: #000;
+                        text-transform: uppercase;
+                        text-align: left;
+                        display: block;
+                        width: 100%;
+                      }
+                    }
+                    .item-body-date {
+                      .item-body-date-title {
+                        font: 14px/18px @fm-web;
+                        color: #a3a3a3;
+                        text-transform: none;
+                        text-align: left;
+                        display: block;
+                        width: 100%;
+                      }
+                      .item-body-date-text {
+                        font: 14px/18px @fm-main;
+                        color: #000;
+                        text-transform: none;
+                        text-align: left;
+                        display: block;
+                        width: 100%;
+                      }
+                    }
+                    .item-additional-docs {
+                      .item-additional-docs-one {
+                        height: 30px;
+                        .pull-left {
+                          font: 14px/30px @fm-web;
+                          color: #000;
+                          text-transform: none;
+                          text-align: left;
+                        }
+                        .pull-right {
+                          font: 14px/30px @fm-web;
+                          color: #000;
+                          text-transform: none;
+                          text-align: right;
+                        }
+                      }
+                    }
+                    .item-view-docs {
+                      span {
+                        font: 18px/18px @fm-main;
+                        color: #000;
+                        text-transform: none;
+                        text-align: left;
+                        display: block;
+                        transition: .2s ease;
+                        i {
+                          margin: 0 0 0 5px;
+                          color: #000;
+                          transition: .2s ease;
+                        }
+                        &:hover {
+                          cursor: pointer;
+                          color: @color-blue;
+                          transition: .2s ease;
+                          i {
+                            transition: .2s ease;
+                            color: @color-blue;
+                          }
+                        }
+                      }
+                    }
+                    .item-body-losses {
+                      border: none;
+                      .item-body-losses-title {
+                        font: 14px/18px @fm-web;
+                        color: #a3a3a3;
+                        text-transform: none;
+                        text-align: left;
+                        display: block;
+                        width: 100%;
+                      }
+                      .item-body-losses-text {
+                        height: 23px;
+                        .pull-left {
+                          font: 16px/23px @fm-main;
+                          color: #000;
+                          text-transform: none;
+                          text-align: left;
+                        }
+                        .pull-right {
+                          font: 22px/22px @fm-bold;
+                          color: #000;
+                          text-transform: none;
+                          text-align: right;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

@@ -9,7 +9,8 @@
             <div class="ppc-percents">
                 <div class="pcc-percents-wrapper">
                     <span class='value'>{{vm.totalScoring}}<br/>
-                    <small>Нет данных об оценке вождения</small></span>
+                    <small ng-if="vm.totalScoring">Оценка за стиль вождения</small>
+                    <small ng-if="!vm.totalScoring">Нет данных об оценке вождения</small></span>
                 </div>
             </div>
         </div>

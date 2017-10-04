@@ -5,7 +5,31 @@
                 <ng-include src="'/dashboard/menu/dashboard-menu.html'"></ng-include>
             </div>
             <div class="col-lg-10 dashboard-body">
-                dashboard-profile
+                <div class="profile-header">
+                    <div class="row avatar-area">
+                        <ng-include src="'/dashboard/profile/area-avatar.html'"></ng-include>
+                    </div>
+                    <div class="row cars-list-area">
+                        <div class="container">
+                            <ng-include src="'/dashboard/profile/area-car-tabs.html'"></ng-include>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-body">
+                    <div class="container">
+                        <div class="row insurance-alert-area" ng-if="hide">
+                            <ng-include src="'/dashboard/profile/area-insurance-alert.html'"></ng-include>
+                        </div>
+                        <div class="row meta-area">
+                            <div class="col-lg-8 left-col">
+                                <ng-include src="'/dashboard/profile/area-meta-data.html'"></ng-include>
+                            </div>
+                            <div class="col-lg-4 right-col">
+                                <ng-include src="'/dashboard/profile/area-insurances-list.html'"></ng-include>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

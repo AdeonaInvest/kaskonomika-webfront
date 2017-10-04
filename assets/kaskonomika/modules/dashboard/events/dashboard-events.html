@@ -14,18 +14,18 @@
                         <div class="row events-list" ng-if="vm.newList.length !== 0">
                             <div class="item" ng-click="open = !open; vm.setViewed(row)" ng-repeat="row in vm.newList track by $index" ng-if="row.is_viewed !== '1'">
                                 <div class="row item-head">
-                                <span class="head-text pull-left">{{row.category_caption}}
-                                    <i class="color-blue" ng-if="row.is_viewed === '0'">(Новое)</i>
-                                    <i ng-if="row.is_viewed === '1'">(Прочитано)</i>
-                                </span>
+                                    <span class="head-text pull-left">{{row.category_caption}}
+                                        <i class="color-blue" ng-if="row.is_viewed === '0'">(Новое)</i>
+                                        <i ng-if="row.is_viewed === '1'">(Прочитано)</i>
+                                    </span>
                                     <span class="head-text pull-right">{{row.time | date:'dd.MM.yyyy HH:mm'}}</span>
                                 </div>
                                 <div class="row item-body">
                                     <span class="item-text pull-left">{{row.caption}}</span>
                                     <span class="item-text-angle pull-right">
-                                    <i ng-if="!open" class="fa fa-angle-down"></i>
-                                    <i ng-if="open" class="fa fa-angle-up"></i>
-                                </span>
+                                        <i ng-if="!open" class="fa fa-angle-down"></i>
+                                        <i ng-if="open" class="fa fa-angle-up"></i>
+                                    </span>
                                 </div>
                                 <div class="row item-car">
                                     <span class="car-text">{{row.object}}</span>
