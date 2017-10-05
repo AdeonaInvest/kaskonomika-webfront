@@ -26,8 +26,98 @@
       }
       .dashboard-body {
         float: none;
-        padding: 0;
+        padding: 30px 0;
         margin: 0;
+        .container {
+          .back-link {
+            font: 16px/16px @fm-web;
+            color: #000;
+            transition: .2s ease;
+            &:hover {
+              transition: .2s ease;
+              color: @color-blue;
+              text-decoration: none;
+            }
+            &:focus {
+              outline: none;
+              text-decoration: none;
+            }
+          }
+          h1 {
+            font: 36px/36px @fm-bold;
+            color: #000;
+            margin: 20px 0 25px 0;
+          }
+          hr {
+            border-color: #e5e5e5;
+            margin: 15px 0 25px;
+          }
+          .custom-upload {
+            margin: 0;
+          }
+          .bottom-row {
+            margin-bottom: 25px;
+          }
+          .add-doc-area {
+            margin-bottom: 25px;
+            .plus-button {
+              line-height: 22px;
+              i {
+                line-height: 22px;
+                font-size: 22px;
+                color: @color-blue;
+                vertical-align: middle;
+              }
+              span {
+                font: 16px/22px @fm-web;
+                color: #000;
+                text-align: right;
+                vertical-align: middle;
+                margin: 0 0 0 5px;
+              }
+              &:hover {
+                text-decoration: none;
+                i {
+                  transition: .2s ease;
+                  color: @color-blue-hover;
+                }
+                span {
+                  color: @color-blue-hover;
+                  transition: .2s ease;
+                }
+              }
+              &:focus {
+                text-decoration: none;
+                i {
+                  line-height: 16px;
+                  color: @color-blue;
+                }
+                span {
+                  color: #000;
+                }
+              }
+            }
+          }
+          .checkbox {
+            margin-top: 0
+          }
+          .custom-input-group {
+            .col-lg-1 {
+              .fa {
+                cursor: pointer;
+                line-height: 66px;
+                width: 100%;
+                text-align: center;
+                color: #000;
+                transition: .2s ease;
+                &:hover {
+                  color: @color-red-light;
+                  transition: .2s ease;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

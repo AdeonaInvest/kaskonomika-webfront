@@ -68,7 +68,7 @@
          * Подтверждение кода из SMS
          */
         function confirmPhone() {
-            var data = {
+            let data = {
                 phone: vm.user.phone,
                 sms_verification_code: vm.user.code
             };

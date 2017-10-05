@@ -13,6 +13,22 @@
                     <ng-include src="'/dashboard/profile-edit/area-personal.html'"></ng-include>
                     <ng-include src="'/dashboard/profile-edit/area-address.html'"></ng-include>
                     <ng-include src="'/dashboard/profile-edit/area-contacts.html'"></ng-include>
+                    <hr/>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="checkbox custom-checkbox">
+                                <input class="hidden ng-pristine ng-untouched ng-valid ng-empty" id="Juridical" type="checkbox" ng-model="vm.user.confirmAll">
+                                <label ng-click="vm.user.confirmAll = !vm.user.confirmAll">
+                                    <span>Согласен на обработку персональных данных</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <button class="btn btn-kasko btn-kasko-lg" ng-disabled="">Сохранить изменения</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

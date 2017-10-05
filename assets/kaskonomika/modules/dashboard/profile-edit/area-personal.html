@@ -3,19 +3,19 @@
     <div class="col-lg-4">
         <div class="form-group">
             <label>Фамилия</label>
-            <input class="form-control" ng-value="vm.carDocs.sts.value" ng-disabled=""/>
+            <input class="form-control" ng-value="vm.user.last_name" ng-disabled="vm.user.docs.last_name"/>
         </div>
     </div>
     <div class="col-lg-4">
         <div class="form-group">
             <label>Имя</label>
-            <input class="form-control" ng-value="vm.carDocs.sts.value" ng-disabled=""/>
+            <input class="form-control" ng-value="vm.user.name" ng-disabled="vm.user.docs.name"/>
         </div>
     </div>
     <div class="col-lg-4">
         <div class="form-group">
             <label>Отчество</label>
-            <input class="form-control" ng-value="vm.carDocs.sts.value" ng-disabled=""/>
+            <input class="form-control" ng-value="vm.user.middle_name" ng-disabled="vm.user.docs.middle_name"/>
         </div>
     </div>
 </div>
@@ -24,22 +24,22 @@
     <div class="col-lg-4">
         <div class="form-group">
             <label>Дата рождения</label>
-            <input type="date" class="form-control" ng-value="vm.carDocs.sts.value" ng-disabled="">
+            <input type="date" class="form-control" ng-value="vm.user.contractor.birth_date" ng-disabled="vm.user.contractor.birth_date">
         </div>
     </div>
     <div class="col-lg-8">
         <div class="form-group">
             <label>Пол</label>
             <div>
-                <div class="custom-radio" ng-click="vm.fill.holder.sex = '1'">
-                    <input type="radio" ng-model="vm.fill.holder.sex">
-                    <label ng-class="{'active': vm.fill.holder.sex == '1'}">
+                <div class="custom-radio" ng-click="!vm.user.sex ? vm.user.sex = '1' : null">
+                    <input type="radio" ng-model="vm.user.sex">
+                    <label ng-class="{'active': vm.user.sex == '1','color-gray':vm.user.sex}">
                         Мужчина
                     </label>
                 </div>
-                <div class="custom-radio" ng-click="vm.fill.holder.sex = '0'">
-                    <input type="radio" ng-model="vm.fill.holder.sex">
-                    <label ng-class="{'active': vm.fill.holder.sex == '0'}">
+                <div class="custom-radio" ng-click="!vm.user.sex ? vm.user.sex = '0' : null">
+                    <input type="radio" ng-model="vm.user.sex">
+                    <label ng-class="{'active': vm.user.sex == '0','color-gray':vm.user.sex}">
                         Женщина
                     </label>
                 </div>
@@ -48,56 +48,73 @@
     </div>
 </div>
 <hr/>
-<!-- Документ, удостоверяющий личность, Серия документа, Номер документа -->
-<div class="row">
-    <div class="col-lg-4">
-        <div class="form-group">
-            <label>Документ, удостоверяющий личность</label>
-            <input class="form-control" ng-value="vm.carDocs.sts.value" ng-disabled=""/>
+<div ng-if="vm.showAddPassport || vm.user.docs">
+    <!-- Документ, удостоверяющий личность, Серия документа, Номер документа -->
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Документ, удостоверяющий личность</label>
+                <input class="form-control" value="Пасспорт РФ" disabled/>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Серия / Номер документа</label>
+                <input class="form-control" ng-model="vm.user.passportSn" mask="9999 999999" restrict="reject" ng-disabled="vm.user.passportSn"/>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Дата выдачи документа</label>
+                <input type="date" class="form-control" ng-value="vm.user.docs.issued_date" ng-disabled="vm.user.docs.issued_date"/>
+            </div>
         </div>
     </div>
-    <div class="col-lg-4">
-        <div class="form-group">
-            <label>Серия документа</label>
-            <input class="form-control" ng-value="vm.carDocs.sts.value" ng-disabled=""/>
+    <!-- Фамилия, Имя, Отчество  -->
+    <div class="row" ng-if="!vm.user.docs">
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Фамилия</label>
+                <input class="form-control" ng-value="vm.user.docs.last_name" ng-disabled="vm.user.docs.last_name"/>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Имя</label>
+                <input class="form-control" ng-value="vm.user.docs.name" ng-disabled="vm.user.docs.name"/>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Отчество</label>
+                <input class="form-control" ng-value="vm.user.docs.middle_name" ng-disabled="vm.user.docs.middle_name"/>
+            </div>
         </div>
     </div>
-    <div class="col-lg-4">
-        <div class="form-group">
-            <label>Номер документа</label>
-            <input class="form-control" ng-value="vm.carDocs.sts.value" ng-disabled=""/>
+    <!-- Кем выдан документ, Дата выдачи документа -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label>Кем выдан документ</label>
+                <input class="form-control" ng-value="vm.user.docs.issued" ng-disabled="vm.user.docs.issued"/>
+            </div>
         </div>
     </div>
-</div>
-<!-- Прикрепление фото пасспорта-->
-<div class="row">
-    <div class="col-lg-4">
-        <custom-upload index="1" doc="Первая страница пасспорта"></custom-upload>
-    </div>
-    <div class="col-lg-4">
-        <custom-upload index="2" doc="Страница с регистрацией"></custom-upload>
-    </div>
-    <div class="col-lg-4"></div>
-</div>
-<!-- Кем выдан документ, Дата выдачи документа -->
-<div class="row">
-    <div class="col-lg-8">
-        <div class="form-group">
-            <label>Кем выдан документ</label>
-            <input class="form-control" ng-value="vm.carDocs.sts.value" ng-disabled=""/>
+    <!-- Прикрепление фото пасспорта-->
+    <div class="row bottom-row" ng-if="!vm.user.docs">
+        <div class="col-lg-4">
+            <custom-upload index="1" doc="Первая страница паспорта"></custom-upload>
         </div>
-    </div>
-    <div class="col-lg-4">
-        <div class="form-group">
-            <label>Дата выдачи документа</label>
-            <input type="date" class="form-control" ng-value="vm.carDocs.sts.value" ng-disabled=""/>
+        <div class="col-lg-4">
+            <custom-upload index="2" doc="Страница с регистрацией"></custom-upload>
         </div>
+        <div class="col-lg-4"></div>
     </div>
 </div>
 <!-- Добавление нового документа -->
-<div class="add-doc-area">
-    <a href>
+<div class="add-doc-area" ng-if="!vm.showAddPassport && !vm.user.docs">
+    <a href class="plus-button" ng-click="vm.showAddPassport = !vm.showAddPassport">
         <i class="fa fa-plus-circle"></i>
-        <span>Добавить документ</span>
+        <span>Добавить документ, удостоверяющий личность</span>
     </a>
 </div>
