@@ -51,6 +51,7 @@
                         vm.user.token = response.data.token;
                         vm.step = 2;
                         vm.user.await = false;
+                        sendVerifyCode();
                         xlog('registrationController : REGISTRATION -> Registration success');
                     } else {
                         vm.user.regError = true;
@@ -60,6 +61,18 @@
                         }
                         vm.user.await = false;
                         xlog('registrationController : REGISTRATION -> Registration error');
+                    }
+                })
+        }
+
+        function sendVerifyCode() {
+            let data = {
+                user_id: vm.user.user_id
+            };
+            $http.post(config.api + 'users/sendVerifyCode', data)
+                .then(function(res){
+                    if (!res.data.result) {
+                        xlog('registrationController : REGISTRATION -> sendVerifyCode error');
                     }
                 })
         }

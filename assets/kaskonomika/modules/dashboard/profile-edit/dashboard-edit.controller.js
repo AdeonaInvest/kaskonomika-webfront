@@ -10,11 +10,6 @@
     function dashboardEditController(FileUploader,$http,config,$location) {
         let vm = this;
 
-        vm.user = {
-            is_juridical: false,
-            newPhone: [],
-            newEmail: []
-        }; //Данные пользователя на странице
 
         vm.clearQueue = clearQueue; //Удаление изображения из очереди
         vm.btnAddContact = btnAddContact; //Добавление новго контакта к пользователю
@@ -24,7 +19,14 @@
         activate();
         ///////////////////
         function activate() {
-            checkUser();
+            //Данные пользователя на странице
+            vm.user = {
+                is_juridical: false,
+                newPhone: [],
+                newEmail: [],
+                havePassport: false
+            };
+            checkUser(); //Проверка залогенного пользователя
         }
 
         /**
@@ -93,6 +95,10 @@
                         if (vm.user.contractor.is_juridical === '1') {
                             vm.user.is_juridical = true;
                         }
+                        vm.user.birth_date = vm.user.contractor.birth_date || undefined;
+                        vm.user.last_name = vm.user.contractor.name.split(' ')[0];
+                        vm.user.name = vm.user.contractor.name.split(' ')[1];
+                        vm.user.middle_name = vm.user.contractor.name.split(' ')[2];
                         vm.user.sex = vm.user.contractor.sex || undefined;
                         getContractorDocuments();
                         getContractorsContacts();
@@ -110,11 +116,13 @@
                 .then(function(res){
                     if (res.data.result) {
                         vm.user.docs = res.data.response[0];
-                        if (res.data.response[0]) vm.user.hasePassport = true;
-                        vm.user.passportSn = vm.user.docs.series + ' ' + vm.user.docs.number;
-                        vm.user.last_name = vm.user.docs.last_name;
-                        vm.user.name = vm.user.docs.name;
-                        vm.user.middle_name = vm.user.docs.middle_name;
+                        if (res.data.response[0]) {
+                            vm.user.havePassport = true;
+                            vm.user.passportSn = vm.user.docs.series + ' ' + vm.user.docs.number;
+                            vm.user.last_name = vm.user.docs.last_name;
+                            vm.user.name = vm.user.docs.name;
+                            vm.user.middle_name = vm.user.docs.middle_name;
+                        }
                     } else {
                         xlog('MODULE : DASHBOARD : PROFILE_EDIT : getContractorDocuments() error!')
                     }
@@ -184,12 +192,12 @@
          */
         function saveChanges() {
 
-            if (!vm.user.hasePassport) {
+            if (!vm.user.havePassport) {
                 let date = new Date(vm.user.contractor.birth_date),
                     data = {
                         token: vm.token,
-                        is_juridical: vm.user.is_juridical,
-                        birth_date: date.getDate() + '.' + ((date.getMonth()+1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + date.getFullYear(),
+                        is_juridical: vm.user.is_juridical ? 1 : 0,
+                        birth_date: (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + '.' + ((date.getMonth()+1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '.' +date.getFullYear(),
                         is_primary: 1,
                         sex: vm.user.sex,
                         name: vm.user.last_name + ' ' + vm.user.name + ' ' + vm.user.middle_name
@@ -197,42 +205,97 @@
                     $http.post(config.api + 'contractors/create',data)
                         .then(function(res){
                             if (res.data.result) {
-                                
+                                $http.get(config.api + 'contractors/primary?token=' + vm.token)
+                                    .then(function(res){
+                                        if (res.data.result) {
+                                            vm.user.contractor = res.data.response;
+
+                                            // Сохранение телефонов
+                                            if (vm.user.newPhone.length > 0) {
+                                                xlog('vm.user.newPhone.length > 0');
+                                                vm.user.newPhone.forEach(function(f){
+                                                    saveContractorContact(f.contact_type_id, f.content, res.data);
+                                                })
+                                            }
+
+                                            // Сохранение адресов электронной почты
+                                            if (vm.user.newEmail.length > 0) {
+                                                xlog('vm.user.newEmail.length > 0');
+                                                vm.user.newEmail.forEach(function(f){
+                                                    saveContractorContact(f.contact_type_id, f.content);
+                                                })
+                                            }
+
+                                            if (vm.user.regAddress) {
+                                                saveContractorContact(3, vm.user.regAddress);
+                                            }
+
+                                            if (vm.user.homeAddress) {
+                                                saveContractorContact(4, vm.user.homeAddress);
+                                            }
+
+                                            setTimeout(activate,3000);
+                                        }
+                                    })
                             }
                         })
+            } else {
+                let date = new Date(vm.user.docs.issued_date),
+                    data = {
+                        token: vm.token,
+                        name: vm.user.last_name,
+                        middle_name: vm.user.middle_name,
+                        last_name: vm.user.last_name,
+                        full_name: vm.user.last_name + ' ' + vm.user.name + ' ' + vm.user.middle_name,
+                        series: vm.user.passportSn.substring(0,4),
+                        number: vm.user.passportSn.substring(4,10),
+                        document_type_id: 1,
+                        issued: vm.user.docs.issued,
+                        issued_date: (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + '.' + ((date.getMonth()+1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '.' +date.getFullYear(),
+                        expiration_date: (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + '.' + ((date.getMonth()+1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '.' +(date.getFullYear()+100),
+                        content: ''
+                    };
+                $http.post(config.api + 'contractors/'+ vm.user.contractor.id +'/documents/create',data)
+                    .then(function(res){
+                        if (res.data.result) {
+                            setTimeout(activate,3000);
+                        }
+                    })
             }
-
-            // Сохранение телефонов
-            if (vm.user.newPhone.length > 0) {
-                vm.user.newPhone.forEach(function(f){
-                    saveContractorContact(f.contact_type_id, f.content);
-                })
-            }
-
-            // Сохранение адресов электронной почты
-            if (vm.user.newEmail.length > 0) {
-                vm.user.newPhone.forEach(function(f){
-                    saveContractorContact(f.contact_type_id, f.content);
-                })
-            }
-
-
-
-
-
         }
 
         /**
          * Сохранение контактов
          */
         function saveContractorContact(id, content) {
-            let data = {
-                token: vm.token,
-                contact_type_id: id,
-                content: content,
-                is_primary: 0
-            };
-            $http.post(config.api + '/contractors/'+ vm.user.contractor.id +'/contacts/create',data)
+            let data;
+            if (id === 1 || id === 2) {
+                data = {
+                    token: vm.token,
+                    contact_type_id: id,
+                    content: content,
+                    is_primary: 0
+                };
+            } else {
+                data = {
+                    token: vm.token,
+                    contact_type_id: id,
+                    content: JSON.stringify({
+                        kladr: "",
+                        index: "",
+                        region: "",
+                        disctrict: "",
+                        city: "",
+                        sub_city: "",
+                        street: "",
+                        building: "",
+                        number: "",
+                        address: content
+                    }),
+                    is_primary: 0
+                };
+            }
+            $http.post(config.api + 'contractors/'+ vm.user.contractor.id +'/contacts/create',data)
                 .then(function(res){
                     if (res.data.result) {
                         xlog('that!s OK');
