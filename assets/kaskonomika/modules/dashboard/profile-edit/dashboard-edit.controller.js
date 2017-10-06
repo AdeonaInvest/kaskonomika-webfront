@@ -122,7 +122,10 @@
                             vm.user.last_name = vm.user.docs.last_name;
                             vm.user.name = vm.user.docs.name;
                             vm.user.middle_name = vm.user.docs.middle_name;
+                            let dates = vm.user.docs.issued_date.split('.');
+                            vm.user.docs.issued_date = dates[2] + '-' + dates[1] + '-' + dates[0]
                         }
+                        xlog('vm.user.docs',vm.user.docs)
                     } else {
                         xlog('MODULE : DASHBOARD : PROFILE_EDIT : getContractorDocuments() error!')
                     }
@@ -209,32 +212,52 @@
                                     .then(function(res){
                                         if (res.data.result) {
                                             vm.user.contractor = res.data.response;
+                                            let data = {
+                                                token: vm.token,
+                                                name: vm.user.last_name,
+                                                middle_name: vm.user.middle_name,
+                                                last_name: vm.user.last_name,
+                                                full_name: vm.user.last_name + ' ' + vm.user.name + ' ' + vm.user.middle_name,
+                                                series: vm.user.passportSn.substring(0,4),
+                                                number: vm.user.passportSn.substring(4,10),
+                                                document_type_id: 1,
+                                                issued: vm.user.docs.issued,
+                                                issued_date: (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + '.' + ((date.getMonth()+1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '.' +date.getFullYear(),
+                                                expiration_date: (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + '.' + ((date.getMonth()+1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '.' +(date.getFullYear()+100),
+                                                content: ''
+                                            };
+                                            $http.post(config.api + 'contractors/'+vm.user.contractor.id+'/documents/create',data)
+                                                .then(function(res){
+                                                    // Сохранение телефонов
+                                                    if (vm.user.newPhone.length > 0) {
+                                                        xlog('vm.user.newPhone.length > 0');
+                                                        vm.user.newPhone.forEach(function(f){
+                                                            saveContractorContact(f.contact_type_id, f.content, res.data);
+                                                        })
+                                                    }
 
-                                            // Сохранение телефонов
-                                            if (vm.user.newPhone.length > 0) {
-                                                xlog('vm.user.newPhone.length > 0');
-                                                vm.user.newPhone.forEach(function(f){
-                                                    saveContractorContact(f.contact_type_id, f.content, res.data);
-                                                })
-                                            }
+                                                    // Сохранение адресов электронной почты
+                                                    if (vm.user.newEmail.length > 0) {
+                                                        xlog('vm.user.newEmail.length > 0');
+                                                        vm.user.newEmail.forEach(function(f){
+                                                            saveContractorContact(f.contact_type_id, f.content);
+                                                        })
+                                                    }
 
-                                            // Сохранение адресов электронной почты
-                                            if (vm.user.newEmail.length > 0) {
-                                                xlog('vm.user.newEmail.length > 0');
-                                                vm.user.newEmail.forEach(function(f){
-                                                    saveContractorContact(f.contact_type_id, f.content);
-                                                })
-                                            }
+                                                    // Сохранение адреса регистрации
+                                                    if (vm.user.regAddress) {
+                                                        saveContractorContact(3, vm.user.regAddress);
+                                                    }
 
-                                            if (vm.user.regAddress) {
-                                                saveContractorContact(3, vm.user.regAddress);
-                                            }
+                                                    // Сохранение адреса прописки
+                                                    if (vm.user.homeAddress) {
+                                                        saveContractorContact(4, vm.user.homeAddress);
+                                                    }
 
-                                            if (vm.user.homeAddress) {
-                                                saveContractorContact(4, vm.user.homeAddress);
-                                            }
+                                                    uploadPassportScans(); //Сохранение сканов паспорта
 
-                                            setTimeout(activate,3000);
+                                                    setTimeout(activate,3000); //Обновление данных через 3 секунды после завершения загрузки
+                                                });
                                         }
                                     })
                             }
@@ -302,6 +325,26 @@
                     }
 
                 })
+        }
+
+
+        function uploadPassportScans() {
+            vm.uploader1.queue[0].formData = [{
+                token: vm.token,
+                category_id: 27,
+                owner_id: vm.user.contractor.id,
+                user_phone: vm.user.phone,
+                user_email: vm.user.email
+            }];
+            vm.uploader1.uploadAll();
+            vm.uploader2.queue[0].formData = [{
+                token: vm.token,
+                category_id: 27,
+                owner_id: vm.user.contractor.id,
+                user_phone: vm.user.phone,
+                user_email: vm.user.email
+            }];
+            vm.uploader2.uploadAll();
         }
 
         /**

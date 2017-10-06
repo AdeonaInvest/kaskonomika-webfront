@@ -1,55 +1,55 @@
-<!-- Фамилия, Имя, Отчество -->
-<div class="row">
-    <div class="col-lg-4">
-        <div class="form-group">
-            <label>Фамилия</label>
-            <input class="form-control" ng-model="vm.user.last_name" ng-disabled="vm.user.havePassport"/>
+<hr/>
+<div ng-if="vm.showAddPassport || vm.user.docs">
+    <!-- Фамилия, Имя, Отчество -->
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Фамилия</label>
+                <input class="form-control" ng-model="vm.user.last_name" ng-disabled="vm.user.havePassport"/>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Имя</label>
+                <input class="form-control" ng-model="vm.user.name" ng-disabled="vm.user.havePassport"/>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Отчество</label>
+                <input class="form-control" ng-model="vm.user.middle_name" ng-disabled="vm.user.havePassport"/>
+            </div>
         </div>
     </div>
-    <div class="col-lg-4">
-        <div class="form-group">
-            <label>Имя</label>
-            <input class="form-control" ng-model="vm.user.name" ng-disabled="vm.user.havePassport"/>
+    <!-- Дата рождения, Пол, Отчество -->
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Дата рождения</label>
+                <input type="date" ng-if="vm.user.havePassport" class="form-control" ng-value="vm.user.contractor.birth_date" disabled>
+                <input type="date" ng-if="!vm.user.havePassport" class="form-control" ng-model="vm.user.contractor.birth_date">
+            </div>
         </div>
-    </div>
-    <div class="col-lg-4">
-        <div class="form-group">
-            <label>Отчество</label>
-            <input class="form-control" ng-model="vm.user.middle_name" ng-disabled="vm.user.havePassport"/>
-        </div>
-    </div>
-</div>
-<!-- Дата рождения, Пол, Отчество -->
-<div class="row">
-    <div class="col-lg-4">
-        <div class="form-group">
-            <label>Дата рождения</label>
-            <input type="date" ng-if="!vm.user.havePassport" class="form-control" ng-value="vm.user.contractor.birth_date">
-            <input type="date" ng-if="vm.user.havePassport" class="form-control" ng-model="vm.user.contractor.birth_date">
-        </div>
-    </div>
-    <div class="col-lg-8">
-        <div class="form-group">
-            <label>Пол</label>
-            <div>
-                <div class="custom-radio" ng-click="!vm.user.sex ? vm.user.sex = '1' : null">
-                    <input type="radio" ng-model="vm.user.sex">
-                    <label ng-class="{'active': vm.user.sex == '1','color-gray':vm.user.havePassport}">
-                        Мужчина
-                    </label>
-                </div>
-                <div class="custom-radio" ng-click="!vm.user.sex ? vm.user.sex = '0' : null">
-                    <input type="radio" ng-model="vm.user.sex">
-                    <label ng-class="{'active': vm.user.sex == '0','color-gray':vm.user.havePassport}">
-                        Женщина
-                    </label>
+        <div class="col-lg-8">
+            <div class="form-group">
+                <label>Пол</label>
+                <div>
+                    <div class="custom-radio" ng-click="!vm.user.sex ? vm.user.sex = '1' : null">
+                        <input type="radio" ng-model="vm.user.sex">
+                        <label ng-class="{'active': vm.user.sex == '1','color-gray':vm.user.havePassport}">
+                            Мужчина
+                        </label>
+                    </div>
+                    <div class="custom-radio" ng-click="!vm.user.sex ? vm.user.sex = '0' : null">
+                        <input type="radio" ng-model="vm.user.sex">
+                        <label ng-class="{'active': vm.user.sex == '0','color-gray':vm.user.havePassport}">
+                            Женщина
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<hr/>
-<div ng-if="vm.showAddPassport || vm.user.docs">
     <!-- Документ, удостоверяющий личность, Серия документа, Номер документа -->
     <div class="row">
         <div class="col-lg-4">
@@ -67,28 +67,8 @@
         <div class="col-lg-4">
             <div class="form-group">
                 <label>Дата выдачи документа</label>
-                <input type="date" class="form-control" ng-model="vm.user.docs.issued_date" ng-disabled="vm.user.havePassport"/>
-            </div>
-        </div>
-    </div>
-    <!-- Фамилия, Имя, Отчество  -->
-    <div class="row" ng-if="!vm.user.docs">
-        <div class="col-lg-4">
-            <div class="form-group">
-                <label>Фамилия</label>
-                <input class="form-control" ng-model="vm.user.docs.last_name" ng-disabled="vm.user.havePassport"/>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="form-group">
-                <label>Имя</label>
-                <input class="form-control" ng-model="vm.user.docs.name" ng-disabled="vm.user.havePassport"/>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="form-group">
-                <label>Отчество</label>
-                <input class="form-control" ng-model="vm.user.docs.middle_name" ng-disabled="vm.user.havePassport"/>
+                <input type="date" ng-if="vm.user.havePassport" class="form-control" ng-value="vm.user.docs.issued_date" disabled>
+                <input type="date" ng-if="!vm.user.havePassport" class="form-control" ng-model="vm.user.docs.issued_date">
             </div>
         </div>
     </div>
