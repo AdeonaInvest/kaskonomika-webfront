@@ -13,6 +13,7 @@
             'cfp.loadingBar',
             'rzModule',
             'ngMap',
+            'chart.js',
             'ngMask',
             'angularFileUpload'
         ])
@@ -27,9 +28,9 @@
         })
         .config(config);
 
-    config.$inject = ['$locationProvider','cfpLoadingBarProvider','$httpProvider'];
+    config.$inject = ['$locationProvider','cfpLoadingBarProvider','$httpProvider','ChartJsProvider'];
 
-    function config ($locationProvider,cfpLoadingBarProvider,$httpProvider) {
+    function config ($locationProvider,cfpLoadingBarProvider,$httpProvider,ChartJsProvider) {
         
         /**
          * Включение HTML5 навигации для сайта
@@ -42,6 +43,7 @@
          */
         delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
+        ChartJsProvider.setOptions({ colors : [ 'Green', 'Red'] });
         
         /**
          * Настройки прелоадера

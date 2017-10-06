@@ -8,9 +8,9 @@
             <span class="pull-right">{{25}} км.</span>
         </div>
     </div>
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ta-center ng-hide">
-        <span class="consumption-title">Средний расход сегодня</span>
-        <span class="consumption-val">{{18}} л. / 100 км.</span>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 ta-center">
+        <span class="consumption-title">Оценка за стиль вождения</span>
+        <span class="consumption-val">{{vm.totalScoring}}</span>
     </div>
 </div>
 <div class="row maps-and-on-off">
@@ -36,14 +36,22 @@
             <span class="address-title">Автомобиль здесь:</span>
             <span class="address-val" ng-if="!vm.carAddress">Адрес не найден</span>
             <span class="address-val" ng-if="vm.carAddress">{{vm.carAddress}}</span>
-            <button class="btn btn-kasko" ng-disabled="vm.parkingPostWait">
-                <span ng-if="!vm.parkingStatus && !vm.parkingPostWait" ng-click="vm.setParking(1)">Включить режим парковки</span>
-                <span ng-if="vm.parkingStatus && !vm.parkingPostWait" ng-click="vm.setParking(0)">Выключить режим парковки</span>
-                <span ng-if="vm.parkingPostWait">
-                    <i class="fa fa-spin fa-circle-o-notch color-blue"></i>
-                </span>
-
-            </button>
+            <div ng-if="!vm.parkingStatus">
+                <button class="btn btn-kasko" ng-disabled="vm.parkingPostWait" ng-click="vm.setParking(1)">
+                    <span ng-if="!vm.parkingPostWait" ng-click="vm.setParking(1)">Включить режим парковки</span>
+                    <span ng-if="vm.parkingPostWait">
+                        <i class="fa fa-spin fa-circle-o-notch color-blue"></i>
+                    </span>
+                </button>
+            </div>
+            <div ng-if="vm.parkingStatus">
+                <button class="btn btn-kasko" ng-disabled="vm.parkingPostWait" ng-click="vm.setParking(1)">
+                    <span ng-if="!vm.parkingPostWait" ng-click="vm.setParking(0)">Выключить режим парковки</span>
+                    <span ng-if="vm.parkingPostWait">
+                        <i class="fa fa-spin fa-circle-o-notch color-blue"></i>
+                    </span>
+                </button>
+            </div>
         </div>
     </div>
 </div>

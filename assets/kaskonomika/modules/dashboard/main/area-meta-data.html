@@ -1,0 +1,50 @@
+<div class="car-info">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label>Автомобиль</label>
+                <input class="form-control" ng-value="vm.policyDate.mark + ' ' + vm.policyDate.model + ' ' + vm.policyDate.modification + ' ' + vm.policyDate.year" disabled>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Рег. номер</label>
+                <input class="form-control" ng-value="vm.carDocs.sts.value | avtoNumberMask" disabled>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>СТС автомобиля (серия и номер)</label>
+                <input class="form-control" ng-value="vm.carDocs.sts.ns" disabled>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Дата выдачи СТС</label>
+                <input class="form-control" ng-value="vm.carDocs.sts.issued_date | date:'dd.MM.yyyy'" disabled>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>VIN номер</label>
+                <input class="form-control" ng-value="vm.policyDate.vin" disabled>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>ПТС автомобиля (серия и номер)</label>
+                <input class="form-control" ng-value="vm.carDocs.pts.ns" disabled>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Дата выдачи ПТС</label>
+                <input class="form-control" ng-value="vm.carDocs.pts.issued_date | date:'dd.MM.yyyy'" disabled>
+            </div>
+        </div>
+    </div>
+</div>
