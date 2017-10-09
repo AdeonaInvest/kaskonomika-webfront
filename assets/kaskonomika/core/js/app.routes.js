@@ -79,11 +79,6 @@
                 controller: 'dashboardProfileController',
                 controllerAs: 'vm'
             })
-            .when ('/dashboard/profile/edit', {
-                templateUrl: '/dashboard/profile-edit/dashboard-edit.html',
-                controller: 'dashboardEditController',
-                controllerAs: 'vm'
-            })
             .when ('/result-page', {
                 templateUrl: '/result-page/result-page.html',
                 controller: 'resultPageController',

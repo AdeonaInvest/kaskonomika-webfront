@@ -1,8 +1,0 @@
-<div class="car-item animated bounceInRight"
-     ng-class="{'_active' : vm.activeCarTab == row.id}"
-     ng-click="vm.setActivetab(row.id, key)"
-     ng-repeat="(key,row) in vm.carsList track by $index">
-    <span class="car-number">{{row.number | avtoNumberMask}}</span>
-    <span class="car-name">{{row.mark}} {{row.model}}</span>
-    <span class="car-date">Застрахована до {{row.policies[0].end_date}}</span>
-</div>

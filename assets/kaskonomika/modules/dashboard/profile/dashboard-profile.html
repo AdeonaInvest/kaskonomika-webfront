@@ -1,32 +1,32 @@
-<div id="dashboard-profile">
+<div id="dashboard-profile-edit">
     <div class="container-fluid">
         <div class="row row-db">
             <div class="col-lg-2 dashboard-menu">
                 <ng-include src="'/dashboard/menu/dashboard-menu.html'"></ng-include>
             </div>
             <div class="col-lg-10 dashboard-body">
-                <div class="profile-header">
-                    <div class="row avatar-area">
-                        <ng-include src="'/dashboard/profile/area-avatar.html'"></ng-include>
-                    </div>
-                    <div class="row cars-list-area">
-                        <div class="container">
-                            <ng-include src="'/dashboard/profile/area-car-tabs.html'"></ng-include>
+                <div class="container">
+                    <a href="" class="back-link">
+                        <i class="fa fa-angle-left"></i> Назад к профилю
+                    </a>
+                    <h1>Редактирование данных</h1>
+                    <ng-include src="'/dashboard/profile/area-personal.html'"></ng-include>
+                    <ng-include src="'/dashboard/profile/area-address.html'"></ng-include>
+                    <ng-include src="'/dashboard/profile/area-contacts.html'"></ng-include>
+                    <hr/>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="checkbox custom-checkbox">
+                                <input class="hidden ng-pristine ng-untouched ng-valid ng-empty" id="Juridical" type="checkbox" ng-model="vm.user.confirmAll">
+                                <label ng-click="vm.user.confirmAll = !vm.user.confirmAll">
+                                    <span>Согласен на обработку персональных данных</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="profile-body">
-                    <div class="container">
-                        <div class="row insurance-alert-area" ng-if="hide">
-                            <ng-include src="'/dashboard/profile/area-insurance-alert.html'"></ng-include>
-                        </div>
-                        <div class="row meta-area">
-                            <div class="col-lg-8 left-col">
-                                <ng-include src="'/dashboard/profile/area-meta-data.html'"></ng-include>
-                            </div>
-                            <div class="col-lg-4 right-col">
-                                <ng-include src="'/dashboard/profile/area-insurances-list.html'"></ng-include>
-                            </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <button class="btn btn-kasko btn-kasko-lg" ng-disabled="!vm.user.confirmAll" ng-click="vm.saveChanges()">Сохранить изменения</button>
                         </div>
                     </div>
                 </div>
