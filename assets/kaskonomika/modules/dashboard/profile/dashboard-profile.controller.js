@@ -48,6 +48,12 @@
          * Создание загрузчиков для фото
          */
         function createUploaders() {
+            vm.uploaderOptions = {
+                url: config.api + 'storage/upload',
+                method: 'post',
+                autoUpload : false,
+                withCredentials: false
+            };
             for (let i = 1; i <= 10; i++) {
                 vm['uploader'+i] = new FileUploader(vm.uploaderOptions);
 

@@ -28,6 +28,144 @@
         float: none;
         padding: 0;
         margin: 0;
+        .cars-list-area {
+          padding: 0 70px;
+          background: linear-gradient(to top, #d3edfa, #c9e0ee);
+          overflow: hidden;
+          .car-item {
+            float: left;
+            min-width: 200px;
+            max-height: 95px;
+
+            margin: 50px 5px 0;
+            padding: 15px 20px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            background: @color-blue;
+
+            cursor: pointer;
+            transition: .2s ease;
+            span {
+              display: block;
+              color: #fff;
+            }
+            .car-number {
+              font: 11px/15px @fm-web;
+              text-transform: uppercase;
+              text-align: left;
+            }
+            .car-name {
+              font: 20px/27px @fm-bold;
+              text-align: left;
+            }
+            .car-date {
+              font: 14px/23px @fm-light;
+              text-align: left;
+            }
+            &._active {
+              cursor: default;
+              background: #fff;
+
+              span {
+                color: #000;
+              }
+              .car-date {
+                color: @color-darkgrey;
+              }
+
+              &:hover {
+                background: #fff;
+              }
+            }
+            &:hover {
+              transition: .2s ease;
+
+              background: @color-blue-hover;
+            }
+          }
+        }
+        .container {
+          .step-area {
+            margin: 20px 0 0;
+            .span-step {
+              display: block;
+              width: 100%;
+              font: 11px/11px @fm-web;
+              text-transform: uppercase;
+              color: grey;
+              text-align: left;
+            }
+            .span-step-title {
+              display: block;
+              width: 100%;
+              font: 22px/22px @fm-bold;
+              text-transform: none;
+              color: #000;
+              text-align: left;
+              margin: 10px 0;
+            }
+            .span-step-desc {
+              font: 14px/18px @fm-web;
+              color: #000;
+              text-align: left;
+            }
+            .sum-btn-group {
+              @btn-height: 40px;
+              width: 200px;
+              margin: 10px auto 10px 20px;
+              height: @btn-height;
+              .sum-btn {
+                float: left;
+                height: @btn-height;
+                color: #000;
+                padding: 0 5px;
+                font: 16px/@btn-height @fm-web;
+                background: #fff;
+                width: 50px;
+                border: 1px solid #54b5e0;
+                transition: .2s ease;
+                &:first-child {
+                  font: 24px/1 @fm-web;
+                  background: #54b5e0;
+                  color: #fff;
+                  border-top-left-radius: 5px;
+                  border-bottom-left-radius: 5px;
+                  &:hover {
+                    border-color: #e86364;
+                    transition: .2s ease;
+                    background: #e86364;
+                  }
+                }
+                &:last-child {
+                  font: 24px/1 @fm-web;
+                  background: #54b5e0;
+                  color: #fff;
+                  border-top-right-radius: 5px;
+                  border-bottom-right-radius: 5px;
+                  &:hover {
+                    border-color: #e86364;
+                    transition: .2s ease;
+                    background: #e86364;
+                  }
+                }
+                &._disabled {
+                  background: grey;
+                  color: @color-grey;
+                  cursor: not-allowed;
+                  border-color: grey;
+                  &:hover {
+                    border-color: grey;
+                    background: grey;
+                    color: @color-grey;
+                  }
+                }
+                &:focus {
+                  outline: none;
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

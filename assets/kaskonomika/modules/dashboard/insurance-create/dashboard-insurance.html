@@ -5,10 +5,155 @@
                 <ng-include src="'/dashboard/menu/dashboard-menu.html'"></ng-include>
             </div>
             <div class="col-lg-10 dashboard-body">
-                dashboard-insurance-create
+                <div class="cars-list-area">
+                    <div class="car-item animated bounceInRight" ng-class="{'_active' : row.active}" ng-repeat="row in vm.carsList track by $index">
+                        <span class="car-number">{{row.number | avtoNumberMask}}</span>
+                        <span class="car-name">{{row.mark}} {{row.model}}</span>
+                        <span class="car-date">Застрахована до {{row.policies[0].end_date}}</span>
+                    </div>
+                </div>
+                <div class="container">
+
+                    <!-- ТИП ПРОИСШЕСТВИЯ --->
+                    <div class="row incident-type step-area" ng-if="vm.incidentList">
+                        <hr/>
+                        <span class="span-step">Шаг 1</span>
+                        <span class="span-step-title">Тип происшествия</span>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-kasko btn-kasko-lg"
+                                    ng-repeat="(key,row) in vm.incidentList"
+                                    ng-click="vm.activeIncident = row; vm.issue.variant = null; vm.getVariantsList(row.id)"
+                                    ng-class="{'_default' : vm.activeIncident.id != vm.incidentList[key].id}">{{row.name}}</button>
+                        </div>
+                        <div class="btn-group" ng-if="vm.activeIncident.id && vm.activeIncident.id != '3'">
+                            <select ng-model="vm.issue.variant" class="form-control" ng-change="vm.getGuiltyType(vm.issue.variant)">
+                                <option disabled value="">Что именно произошло?</option>
+                                <option ng-value="row.id" ng-repeat="row in vm.variantsList track by $index">{{row.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- ДАННЫЕ ВИНОВНИКА ПРОИСШЕСТВИЯ --->
+                    <div class="row guilty-type step-area" ng-if="vm.guiltyType">
+                        <hr/>
+                        <span class="span-step">Шаг 2</span>
+                        <span class="span-step-title">Данные виновника происшествия</span>
+                        <div class="btn-group">
+                            <select ng-model="vm.issue.guiltyType" class="form-control" ng-change="vm.issue.guiltyType === null ? null : vm.getGuiltyDrivers(vm.issue.car.id)">
+                                <option disabled selected value="">Кто виновник происшествия?</option>
+                                <option ng-value="row.id" ng-repeat="row in vm.guiltyType track by $index">{{row.name}}</option>
+                            </select>
+                        </div>
+                        <div class="btn-group" ng-if="vm.guiltyDrivers && vm.issue.guiltyType === '1'">
+                            <select ng-model="vm.issue.guilty" class="form-control">
+                                <option disabled selected value="">Кто из водителей виновен?</option>
+                                <option ng-value="row" ng-repeat="row in vm.guiltyDrivers track by $index">{{row.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- ДАННЫЕ ИНОГО ЛИЦА --->
+                    <div class="row incident-type step-area" ng-if="vm.issue.guiltyType === '4' || vm.issue.guiltyType === '3'">
+                        <hr/>
+                        <span class="span-step">Шаг 3</span>
+                        <span class="span-step-title">Данные виновника происшествия</span>
+                    </div>
+
+                    <!-- КАРТА МЕСТА ПРОИСШЕСТВИЯ --->
+                    <div class="row map-area step-area" ng-if="vm.issue.guilty !== undefined || vm.issue.guiltyType === '4' || vm.issue.guiltyType === '3'">
+                        <hr/>
+                        <span class="span-step">Шаг 3</span>
+                        <span class="span-step-title">Где случилось происшествие?</span>
+                        <!-- MAP HERE -->
+                        <ng-map zoom="14" center="['55.754347', '37.620176']"></ng-map>
+                        <div class="form-group">
+                            <label>Адрес места происшествия</label>
+                            <input class="form-control" ng-model="vm.issue.mapAddress" placeholder="Воспользуйтесь поиском по адресу..."/>
+                        </div>
+                    </div>
+
+                    <!-- ОПИСАНИЕ СОБЫТИЙ ПРОИСШЕСТВИЯ --->
+                    <div class="row version-area step-area" ng-if="vm.issue.mapAddress || vm.issue.mapMarker">
+                        <hr/>
+                        <span class="span-step">Шаг 4</span>
+                        <span class="span-step-title">Опишите свою версию случившегося</span>
+                        <div class="form-group">
+                            <textarea class="form-control" ng-model="vm.issue.myVersion" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- ОПИСАНИЕ СОБЫТИЙ ПРОИСШЕСТВИЯ --->
+                    <div class="row repair-items-area step-area" ng-if="vm.issue.mapAddress || vm.issue.mapMarker">
+                        <hr/>
+                        <span class="span-step">Шаг 5</span>
+                        <span class="span-step-title">Поврежденные элементы автомобиля</span>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="checkbox custom-checkbox">
+                                    <input class="hidden" type="checkbox" ng-model="vm.issue.repairGlass">
+                                    <label ng-click="vm.issue.repairGlass = !vm.issue.repairGlass">
+                                        <span>Повреждено остекление салона</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="checkbox custom-checkbox">
+                                    <input class="hidden" type="checkbox" ng-model="vm.issue.repairLighting">
+                                    <label ng-click="vm.issue.repairLighting = !vm.issue.repairLighting">
+                                        <span>Повреждены осветительные приборы</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="checkbox custom-checkbox">
+                                    <input class="hidden" type="checkbox" ng-model="vm.issue.repairBody">
+                                    <label ng-click="vm.issue.repairBody = !vm.issue.repairBody">
+                                        <span>Повреждены элементы кузова</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="checkbox custom-checkbox">
+                                    <input class="hidden" type="checkbox" ng-model="vm.issue.repairMirrors">
+                                    <label ng-click="vm.issue.repairMirrors = !vm.issue.repairMirrors">
+                                        <span>Повреждены зеркала</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="span-step-title">Поврежденные элементы автомобиля</span>
+                        <div class="sum-btn-group">
+                            <button class="sum-btn"
+                                    ng-click="vm.issue.repairCount > 0 ? (vm.issue.repairCount = vm.issue.repairCount - 1) : null"
+                                    ng-class="{'_disabled': vm.issue.repairCount === 0}">-</button>
+                            <button class="sum-btn">{{vm.issue.repairCount}}</button>
+                            <button class="sum-btn"
+                                    ng-click="vm.issue.repairCount < 25 ? (vm.issue.repairCount = vm.issue.repairCount + 1) : null"
+                                    ng-class="{'_disabled': vm.issue.repairCount === 25}">+</button>
+                        </div>
+                    </div>
+
+                    <!-- ОБЩИЙ ВИД МЕСТА ДТП --->
+                    <div class="row version-area step-area">
+                        <hr/>
+                        <span class="span-step">Шаг 5</span>
+                        <span class="span-step-title">Общий вид места ДТП</span>
+                        <span class="span-step-desc">Отойдите на 15-30 метров от места происшествия и сделайте несколько фото общего плана с разных сторон. Важно чтобы на фото было видно пострадавшие автомобили, дорожные знаки, дорожную разметку, номера домов и прочие ориентиры.</span>
+                        <div class="upload-btn col-lg-3" ng-if="vm.uploaderCreated">
+                            <custom-upload index="2" multi="1" doc="Фотография места ДТП"></custom-upload>
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
         </div>
     </div>
+</div>
+<div id="debug-area" class="ng-hide">
+    <code>{{vm.issue.guiltyType}}</code>
 </div>
 
 

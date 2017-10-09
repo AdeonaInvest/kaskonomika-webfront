@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-lg-3">
         <div class="checkbox custom-checkbox">
-            <input class="hidden ng-pristine ng-untouched ng-valid ng-empty" id="residentRF" type="checkbox" ng-model="vm.user.resident">
+            <input class="hidden" id="residentRF" type="checkbox" ng-model="vm.user.resident">
             <label ng-click="!vm.user.havePassport ? vm.user.resident = !vm.user.resident : null" ng-class="{'color-gray':vm.user.havePassport}">
                 <span>Резидент РФ</span>
             </label>
@@ -10,7 +10,7 @@
     </div>
     <div class="col-lg-3">
         <div class="checkbox custom-checkbox">
-            <input class="hidden ng-pristine ng-untouched ng-valid ng-empty" id="Juridical" type="checkbox" ng-model="vm.user.is_juridical">
+            <input class="hidden" id="Juridical" type="checkbox" ng-model="vm.user.is_juridical">
             <label ng-click="!vm.user.havePassport ? vm.user.is_juridical = !vm.user.is_juridical : null" ng-class="{'color-gray':vm.user.havePassport}">
                 <span>Должностное лицо</span>
             </label>
