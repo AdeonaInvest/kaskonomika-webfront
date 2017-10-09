@@ -6,38 +6,29 @@
             </div>
             <div class="col-lg-10 dashboard-body">
                 <div class="container events-area">
-                    <div ng-if="vm.eventsList.length > 0">
-                        <button class="btn btn-kasko">Создать заявление о страховом случае</button>
+                    <button class="btn btn-kasko">Создать заявление о страховом случае</button>
+                    <div ng-if="vm.lossesList.length > 0">
                         <div class="row events-head-history">
-                            <h3 class="ta-center">Ваши заявления.</h3>
+                            <span class="events-history">Ваши заявления</span>
                         </div>
                         <div class="row events-list">
-                            <div class="item" ng-click="open = !open" ng-repeat="row in vm.eventsList track by $index" ng-if="row.is_viewed != '0'">
+                            <div class="item" ng-repeat="row in vm.lossesList | limitTo: 50 | orderBy: '-create_date' track by $index">
                                 <div class="row item-head">
-                                <span class="head-text pull-left">{{row.category_caption}}
-                                    <i class="color-blue" ng-if="row.is_viewed === '0'">(Новое)</i>
-                                    <i ng-if="row.is_viewed === '1'">(Прочитано)</i>
-                                </span>
-                                    <span class="head-text pull-right">{{row.time | date:'dd.MM.yyyy HH:mm'}}</span>
+                                    <span class="head-text pull-left">Дата заявления: {{row.create_date}}</span>
+                                    <span class="head-text pull-right">Номер заявления: {{row.id}}</span>
                                 </div>
                                 <div class="row item-body">
-                                    <span class="item-text pull-left">{{row.caption}}</span>
-                                    <span class="item-text-angle pull-right">
-                                    <i ng-if="!open" class="fa fa-angle-down"></i>
-                                    <i ng-if="open" class="fa fa-angle-up"></i>
-                                </span>
+                                    <span class="item-text pull-left">Страховая компания: <b>{{row.insurance_company}}</b></span>
+                                    <span class="item-text-angle pull-right">Статус: {{row.losses_applications_status}}</span>
                                 </div>
                                 <div class="row item-car">
-                                    <span class="car-text">{{row.object}}</span>
-                                </div>
-                                <div class="row item-popup" ng-if="open">
-                                    <span class="popup-text">{{row.message}}</span>
+                                    <span class="car-text">Номер полиса автомобиля: {{row.policy_number}}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="error-events-area" ng-if="vm.eventsList.length === 0">
-                        <h3>У вас еще нет уведомлений </h3>
+                    <div class="error-events-area" ng-if="vm.lossesList.length === 0">
+                        <h3>Вы еще не составляли ни одного заявления об обытках</h3>
                     </div>
                 </div>
             </div>
