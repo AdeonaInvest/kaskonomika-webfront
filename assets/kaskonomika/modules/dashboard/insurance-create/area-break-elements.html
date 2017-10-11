@@ -1,0 +1,53 @@
+<div class="row repair-items-area step-area">
+    <hr/>
+    <span class="span-step">Шаг 5</span>
+    <span class="span-step-title">Поврежденные элементы автомобиля</span>
+    <div class="animated zoomIn">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="checkbox custom-checkbox">
+                    <input class="hidden" type="checkbox" ng-model="vm.issue.repairGlass">
+                    <label ng-click="vm.issue.repairGlass = !vm.issue.repairGlass">
+                        <span>Повреждено остекление салона</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="checkbox custom-checkbox">
+                    <input class="hidden" type="checkbox" ng-model="vm.issue.repairLighting">
+                    <label ng-click="vm.issue.repairLighting = !vm.issue.repairLighting">
+                        <span>Повреждены осветительные приборы</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="checkbox custom-checkbox">
+                    <input class="hidden" type="checkbox" ng-model="vm.issue.repairBody">
+                    <label ng-click="vm.issue.repairBody = !vm.issue.repairBody">
+                        <span>Повреждены элементы кузова</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="checkbox custom-checkbox">
+                    <input class="hidden" type="checkbox" ng-model="vm.issue.repairMirrors">
+                    <label ng-click="vm.issue.repairMirrors = !vm.issue.repairMirrors">
+                        <span>Повреждены зеркала</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <span class="span-step-title">Поврежденные элементы автомобиля</span>
+        <div class="sum-btn-group">
+            <button class="sum-btn"
+                    ng-click="(vm.issue.repairCount > 0 && vm.lossesAwait !== 2) ? (vm.issue.repairCount = vm.issue.repairCount - 1) : null"
+                    ng-class="{'_disabled': vm.issue.repairCount === 0, '_disabled': vm.lossesAwait === 2}">-</button>
+            <button class="sum-btn">{{vm.issue.repairCount}}</button>
+            <button class="sum-btn"
+                    ng-click="(vm.issue.repairCount < 25 && vm.lossesAwait !== 2) ? (vm.issue.repairCount = vm.issue.repairCount + 1) : null"
+                    ng-class="{'_disabled': vm.issue.repairCount === 25, '_disabled': vm.lossesAwait === 2}">+</button>
+        </div>
+    </div>
+</div>

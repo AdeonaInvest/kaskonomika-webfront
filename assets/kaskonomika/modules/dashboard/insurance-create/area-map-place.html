@@ -1,0 +1,16 @@
+<div class="row map-area step-area">
+    <hr/>
+    <span class="span-step">Шаг 3</span>
+    <span class="span-step-title">Где случилось происшествие?</span>
+    <span class="span-step-desc">Укажите на карте, где случилось происшествие. При надобности, найдите место по адресу.</span>
+    <div class="animated zoomIn">
+        <!-- MAP HERE -->
+        <ng-map zoom="14" center="{{vm.issue.mapCenter}}" on-click="vm.editGoogleMap()">
+            <marker position="{{vm.issue.mapPosition.lat}}, {{vm.issue.mapPosition.lng}}" ng-if="vm.issue.mapPosition"></marker>
+        </ng-map>
+        <div class="form-group">
+            <label>Адрес места происшествия</label>
+            <input class="form-control" ng-model="vm.issue.mapAddress" placeholder="Воспользуйтесь поиском по адресу..."/>
+        </div>
+    </div>
+</div>

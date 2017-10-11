@@ -86,6 +86,7 @@
             getCarPosition(id); //Получение местонахождения авто
             getCarDocuments(id); //Получение данных по авто
             getSummaryMileage(id); //Получние данных о пробеге за последний месяц
+            getMileagePerMonth(id); //Получние данных о пробеге за последний год
         }
 
         /**
@@ -221,6 +222,60 @@
         }
 
         /**
+         * Получние данных о пробеге за последний год
+         * @param id
+         */
+        function getMileagePerMonth(id) {
+            let date = new Date(),
+                data = {
+                    token: vm.token,
+                    date_from: (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + '.' + ((date.getMonth()) < 10 ? '0' + date.getMonth() : date.getMonth()) + '.' +(date.getFullYear()-1),
+                    date_to: (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + '.' + ((date.getMonth()) < 10 ? '0' + date.getMonth() : date.getMonth()) + '.' + date.getFullYear(),
+                    type: 'm'
+                };
+            $http.post(config.api + 'policies/' + id + '/mileage/',data)
+                .then(function(res) {
+                    if (res.data.result) {
+                        let mileageChartMileagePerMonth = [],
+                            mileageChartLimitPerMonth = [];
+                        res.data.response.forEach(function(f){
+                            mileageChartMileagePerMonth.push(f.mileage);
+                            mileageChartLimitPerMonth.push(f.limit);
+                        });
+                        vm.mileageChartPerMonth = {
+                            data: [mileageChartMileagePerMonth,mileageChartLimitPerMonth],
+                            labels: [1,2,3,4,5,6,7,8,9,10,11,12],
+                            series: ['Текущий пробег','Рекомендованный пробег'],
+                            datasetOverride: [{ yAxisID: 'y-axis-1' }, { xAxisID: 'x-axis-1' }],
+                            options: {
+                                tooltip: {
+
+                                },
+                                scales: {
+                                    yAxes: [
+                                        {
+                                            id: 'y-axis-1',
+                                            type: 'linear',
+                                            display: false,
+                                            position: 'left'
+                                        },
+                                        {
+                                            id: 'x-axis-1',
+                                            type: 'linear',
+                                            display: false,
+                                            position: 'bottom'
+                                        }
+                                    ]
+                                }
+                            }
+                        };
+                        xlog('vm.mileageChart',vm.mileageChart)
+                    }
+                })
+
+        }
+
+        /**
          * Получение местонахождения авто
          * @param id - id авто из getVehicles
          */
@@ -272,13 +327,13 @@
         }
 
         /**
-         * //Получние данных о пробеге за последний месяц
+         * Получние данных о пробеге за последний месяц
          */
         function getSummaryMileage(id) {
             let date = new Date(),
                 data = {
                 token: vm.token,
-                date_from: (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + '.' + ((date.getMonth()) < 10 ? '0' + date.getMonth() : date.getMonth()) + '.' +date.getFullYear(),
+                date_from: '01.' + ((date.getMonth()+1) < 10 ? '0' + (date.getMonth()+1) : (date.getMonth()+1)) + '.' +date.getFullYear(),
                 date_to: (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + '.' + ((date.getMonth()+1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '.' +date.getFullYear(),
                 type: 'd'
             };
@@ -287,13 +342,17 @@
                     if (res.data.result) {
                         let mileageChartMileage = [],
                             mileageChartLimit = [];
+                        vm.arr = [];
                         res.data.response.forEach(function(f){
                             mileageChartMileage.push(f.mileage);
                             mileageChartLimit.push(f.limit);
                         });
+                        for (let i = 1; i < res.data.response.length; i++) {
+                            vm.arr.push(i)
+                        }
                         vm.mileageChart = {
                             data: [mileageChartMileage,mileageChartLimit],
-                            labels: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],
+                            labels: vm.arr,
                             series: ['Текущий пробег','Рекомендованный пробег'],
                             datasetOverride: [{ yAxisID: 'y-axis-1' }, { xAxisID: 'x-axis-1' }],
                             options: {

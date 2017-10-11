@@ -1,0 +1,17 @@
+<div class="row guilty-type step-area">
+    <hr/>
+    <span class="span-step">Шаг 2</span>
+    <span class="span-step-title">Данные виновника происшествия</span>
+    <div class="btn-group animated zoomIn">
+        <select ng-model="vm.issue.guiltyType" class="form-control" ng-change="vm.issue.guiltyType === null ? null : vm.getGuiltyDrivers(vm.issue.car.id)">
+            <option disabled selected value="">Кто виновник происшествия?</option>
+            <option ng-value="row.id" ng-repeat="row in vm.guiltyType track by $index">{{row.name}}</option>
+        </select>
+    </div>
+    <div class="btn-group guilty-type animated zoomIn" ng-if="vm.guiltyDrivers && vm.issue.guiltyType === '1'">
+        <select ng-model="vm.issue.guilty" class="form-control">
+            <option disabled selected value="">Кто из водителей виновен?</option>
+            <option ng-value="row" ng-repeat="row in vm.guiltyDrivers track by $index">{{row.name}}</option>
+        </select>
+    </div>
+</div>

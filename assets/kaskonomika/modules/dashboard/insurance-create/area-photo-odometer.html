@@ -1,0 +1,19 @@
+<div class="row photo-odometer step-area">
+    <hr/>
+    <span class="span-step">Шаг 8</span>
+    <span class="span-step-title">Фотография одометра</span>
+    <span class="span-step-desc">Сделайте фото одометра вашего автомобиля перед тем, как убрать его с места ДТП</span>
+    <div class="animated zoomIn">
+        <div class="row">
+            <div class="upload-btn col-lg-3" ng-if="vm.uploaderCreated">
+                <custom-upload index="4" multi="1" doc="Загрузить фотографию"></custom-upload>
+            </div>
+        </div>
+        <div class="row imgs-area">
+            <div class="img-item" ng-repeat="(key,item) in vm.issue.uploader[4]">
+                <img ng-src="{{item}}"/>
+                <i class="fa fa-trash-o" ng-click="vm.clearQueue({index: 4, key: key+1})"></i>
+            </div>
+        </div>
+    </div>
+</div>

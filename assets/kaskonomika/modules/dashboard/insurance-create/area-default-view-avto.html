@@ -1,0 +1,141 @@
+<!--
+    Uploader: 21-24
+-->
+<div class="row tabs-area step-area">
+    <hr/>
+    <span class="span-step">Шаг 5</span>
+    <span class="span-step-title">Общий вид автомобиля</span>
+    <span class="span-step-desc">Сфотографируйте ваш автомобиль с 4 ракурсов.</span>
+    <div class="animated zoomIn">
+        <uib-accordion close-others="vm.oneAtATime">
+            <div uib-accordion-group class="panel-default" ng-click="vm.step5Tabs[0].open = !vm.step5Tabs[0].open">
+                <uib-accordion-heading>
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <img ng-src="{{vm.step5Tabs[0].img}}"/>
+                        </div>
+                        <div class="col-lg-9">
+                            <span class="title-direction">{{vm.step5Tabs[0].header}}</span>
+                            <span class="photo-count">{{vm.step5Tabs[0].text}} {{vm.issue.uploader[21].length || 0}}</span>
+                        </div>
+                        <div class="col-lg-1">
+                            <i ng-if="!vm.step5Tabs[0].open" class="fa fa-angle-down"></i>
+                            <i ng-if="vm.step5Tabs[0].open" class="fa fa-angle-up"></i>
+                        </div>
+                    </div>
+                </uib-accordion-heading>
+                <uib-accordion-body>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <custom-upload index="21" multi="1" doc="Загрузить фотографию"></custom-upload>
+                        </div>
+                    </div>
+                    <div class="row imgs-area">
+                        <div class="img-item" ng-repeat="(key,item) in vm.issue.uploader[21]">
+                            <div class=" animated zoomIn">
+                                <img ng-src="{{item}}"/>
+                                <i class="fa fa-trash-o" ng-click="vm.clearQueue({index: 21, key: key+1})"></i>
+                            </div>
+                        </div>
+                    </div>
+                </uib-accordion-body>
+            </div>
+            <div uib-accordion-group class="panel-default" ng-click="vm.step5Tabs[1].open = !vm.step5Tabs[1].open">
+                <uib-accordion-heading class="row">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <img ng-src="{{vm.step5Tabs[1].img}}"/>
+                        </div>
+                        <div class="col-lg-9">
+                            <span class="title-direction">{{vm.step5Tabs[1].header}}</span>
+                            <span class="photo-count">{{vm.step5Tabs[1].text}} {{vm.issue.uploader[22].length || 0}}</span>
+                        </div>
+                        <div class="col-lg-1">
+                            <i ng-if="!vm.step5Tabs[1].open" class="fa fa-angle-down"></i>
+                            <i ng-if="vm.step5Tabs[1].open" class="fa fa-angle-up"></i>
+                        </div>
+                    </div>
+                </uib-accordion-heading>
+                <uib-accordion-body>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <custom-upload index="22" multi="1" doc="Загрузить фотографию"></custom-upload>
+                        </div>
+                    </div>
+                    <div class="row imgs-area">
+                        <div class="img-item" ng-repeat="(key,item) in vm.issue.uploader[22]">
+                            <div class=" animated zoomIn">
+                                <img ng-src="{{item}}"/>
+                                <i class="fa fa-trash-o" ng-click="vm.clearQueue({index: 22, key: key+1})"></i>
+                            </div>
+                        </div>
+                    </div>
+                </uib-accordion-body>
+            </div>
+            <div uib-accordion-group class="panel-default" ng-click="vm.step5Tabs[2].open = !vm.step5Tabs[2].open">
+                <uib-accordion-heading class="row">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <img ng-src="{{vm.step5Tabs[2].img}}"/>
+                        </div>
+                        <div class="col-lg-9">
+                            <span class="title-direction">{{vm.step5Tabs[2].header}}</span>
+                            <span class="photo-count">{{vm.step5Tabs[2].text}} {{vm.issue.uploader[23].length || 0}}</span>
+                        </div>
+                        <div class="col-lg-1">
+                            <i ng-if="!vm.step5Tabs[2].open" class="fa fa-angle-down"></i>
+                            <i ng-if="vm.step5Tabs[2].open" class="fa fa-angle-up"></i>
+                        </div>
+                    </div>
+                </uib-accordion-heading>
+                <uib-accordion-body>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <custom-upload index="23" multi="1" doc="Загрузить фотографию"></custom-upload>
+                        </div>
+                    </div>
+                    <div class="row imgs-area">
+                        <div class="img-item" ng-repeat="(key,item) in vm.issue.uploader[23]">
+                            <div class=" animated zoomIn">
+                                <img ng-src="{{item}}"/>
+                                <i class="fa fa-trash-o" ng-click="vm.clearQueue({index: 23, key: key+1})"></i>
+                            </div>
+                        </div>
+                    </div>
+                </uib-accordion-body>
+            </div>
+            <div uib-accordion-group class="panel-default" ng-click="vm.step5Tabs[3].open = !vm.step5Tabs[3].open">
+                <uib-accordion-heading class="row">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <img ng-src="{{vm.step5Tabs[3].img}}"/>
+                        </div>
+                        <div class="col-lg-9">
+                            <span class="title-direction">{{vm.step5Tabs[3].header}}</span>
+                            <span class="photo-count">{{vm.step5Tabs[3].text}} {{vm.issue.uploader[24].length || 0}}</span>
+                        </div>
+                        <div class="col-lg-1">
+                            <i ng-if="!vm.step5Tabs[3].open" class="fa fa-angle-down"></i>
+                            <i ng-if="vm.step5Tabs[3].open" class="fa fa-angle-up"></i>
+                        </div>
+                    </div>
+                </uib-accordion-heading>
+                <uib-accordion-body>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <custom-upload index="24" multi="1" doc="Загрузить фотографию"></custom-upload>
+                        </div>
+                    </div>
+                    <div class="row imgs-area">
+                        <div class="img-item" ng-repeat="(key,item) in vm.issue.uploader[24]">
+                            <div class=" animated zoomIn">
+                                <img ng-src="{{item}}"/>
+                                <i class="fa fa-trash-o" ng-click="vm.clearQueue({index: 24, key: key+1})"></i>
+                            </div>
+                        </div>
+                    </div>
+                </uib-accordion-body>
+            </div>
+        </uib-accordion>
+    </div>
+</div>

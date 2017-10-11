@@ -8,7 +8,7 @@
     footerController.$inject = [];
 
     function footerController() {
-        var vm = this;
+        let vm = this;
         
         activate();
         ///////////////////
@@ -20,7 +20,7 @@
          * Get current full Year -> 2017
          */
         function getCurrentYear() {
-            var date = new Date();
+            let date = new Date();
             vm.currentYear = date.getFullYear();
         }
     }
