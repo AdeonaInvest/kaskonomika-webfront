@@ -33,11 +33,27 @@
             vm.view = true;
             $scope.$on('$includeContentLoaded', function () {
                 $rootScope.findData.step = 11; // Установка дефолтного шага.
-            })
-            getFindData(); //Get findData from localStorage
+            });
+            checkUser();
         }
         
         //////////////////
+
+        /**
+         * Проверка залогенного пользователя
+         */
+        function checkUser() {
+            vm.user = JSON.parse(localStorage.getItem('currentUser'));
+            vm.token = localStorage.getItem('currentToken');
+            if (vm.user) {
+                vm.fill.holder.phone = vm.user.phone;
+                vm.fill.holder.email = vm.user.email;
+            }
+
+            xlog('vm.user',vm.user)
+
+            getFindData(); //Get findData from localStorage()
+        }
 
         /**
          * Get findData from localStorage
@@ -51,6 +67,7 @@
                 $location.path('/')
             }
         }
+
 
         //Go to the next step with any properties
         function nextStep(step) {
@@ -187,9 +204,7 @@
                 }
             }
             else if (step === 4) {
-                vm.fill.step++; //Go to the next step
-                getExecute();
-                /*step4CheckByVin()
+                step4CheckByVin()
                     .then(function(res){
                         if (res.data.result) {
                             step4AttachToUser(res)
@@ -204,11 +219,69 @@
                                     } else breakFilling();
                                 })
                         } else breakFilling();
-                    })*/
+                    })
             }
             else if (step === 5) {
-                vm.fill.step++; //Go to the next step
-                getExecute();
+                if (vm.findData.filter.drivers.length > 1) {
+                    vm.findData.filter.drivers.forEach(function(f){
+                        let date = new Date(f.age),
+                            data = {
+                            token: vm.token,
+                            is_juridical: 0,
+                            birth_date: ((date.getDate() < 10 ? '0'+date.getDate() : date.getDate())+'.'+((date.getMonth()+1) < 10 ? '0'+(date.getMonth()+1) : (date.getMonth()+1))+'.'+date.getFullYear()),
+                            is_primary: 1,
+                            sex: f.sex,
+                            name: f.firstName + ' ' + f.name + ' ' + f.secondName
+                        };
+                        $http.post(config.api + 'contractors/create', data)
+                            .then(function(res){
+                                if (res.data.result) {
+                                    let data = {
+                                        token: vm.token,
+                                        name: f.name,
+                                        middle_name: f.firstName,
+                                        last_name: f.secondName,
+                                        full_name: f.firstName + ' ' + f.name + ' ' + f.secondName,
+                                        series: f.series.split(' ')[0],
+                                        number: f.series.split(' ')[1],
+                                        document_type_id: 3,
+                                        issued: '',
+                                        issued_date: "01.01.2017",
+                                        expiration_date: '12.12.2020',
+                                        content: ''
+                                    };
+                                    $http.post(config.api + 'contractors/'+ res.data.response + '/documents/create',data)
+                                        .then(function(res){
+                                            if (res.data.result) {
+                                                vm.fill.step++; //Go to the next step
+                                            }
+                                        })
+                                }
+
+                            })
+                    })
+                } else {
+                    let data = {
+                        token: vm.token,
+                        name: vm.findData.filter.drivers[0].name,
+                        middle_name: vm.findData.filter.drivers[0].firstName,
+                        last_name: vm.findData.filter.drivers[0].secondName,
+                        full_name: vm.findData.filter.drivers[0].firstName + ' ' + vm.findData.filter.drivers[0].name + ' ' + vm.findData.filter.drivers[0].secondName,
+                        series: vm.findData.filter.drivers[0].series.split(' ')[0],
+                        number: vm.findData.filter.drivers[0].series.split(' ')[1],
+                        document_type_id: 3,
+                        issued: '',
+                        issued_date: "01.01.2017",
+                        expiration_date: '12.12.2020',
+                        content: ''
+                    };
+                    $http.post(config.api + 'contractors/'+ vm.fill.response.contractor_id + '/documents/create',data)
+                        .then(function(res){
+                            if (res.data.result) {
+                                vm.fill.step++; //Go to the next step
+                            }
+                        })
+                }
             }
         }
 
@@ -216,6 +289,7 @@
          * Get execute for issues ids list
          */
         function getExecute() {
+            xlog('vm.findData',vm.findData)
 
             vm.ready = false; //Hide sidebar & show loader
 
@@ -305,7 +379,7 @@
                                 .then(function(res){
                                     if (res.data.result) { //Check OK result
                                         if (res.data.response.is_canceled === 0 && res.data.response.is_error === 0 && res.data.response.is_success === 1) { //Check for disabled item
-                                            if (res.data.response.calculations_product_id === vm.findData.calculations_product_id) {
+                                            if (res.data.response.insurance_company_id === vm.findData.insurance_company_id) {
                                                 res.data.response.active = true; //Set active status for current Issue to display active tab in sidebar
                                                 vm.findData.calculation_id = res.data.response.calculation_id;
                                                 xlog('MODULE : FILLING -> Current calculator:', vm.findData.calculation_id);
@@ -446,10 +520,22 @@
                 user_email: vm.fill.response.contractor_email_id
             }];
             vm.uploader1.uploadAll();
-            vm.uploader1.onCompleteAll = function(){
-                vm.fill.step++; //Go to the next step
-                vm.waiter = false;
-                getExecute();
+            vm.uploader1.onCompleteItem  = function(){
+
+
+                vm.uploader5.queue[0].formData = [{
+                    token: $rootScope.currentToken,
+                    category_id: 27,
+                    owner_id: vm.fill.response.contractor_documents_id,
+                    user_phone: vm.fill.response.contractor_phone_id,
+                    user_email: vm.fill.response.contractor_email_id
+                }];
+                vm.uploader5.uploadAll();
+                vm.uploader5.onCompleteItem  = function(){
+                    vm.fill.step++; //Go to the next step
+                    vm.waiter = false;
+                    getExecute();
+                };
             };
 
         }
@@ -563,10 +649,20 @@
                 user_email: vm.fill.response.beneficiary_email_id
             }];
             vm.uploader2.uploadAll();
-            vm.uploader2.onCompleteAll = function(){
-                vm.fill.step++; //Go to the next step
-                vm.waiter = false;
-                getExecute();
+            vm.uploader2.onCompleteItem  = function(){
+                vm.uploader6.queue[0].formData = [{
+                    token: $rootScope.currentToken,
+                    category_id: 27,
+                    owner_id: vm.fill.response.beneficiary_documents_id,
+                    user_phone: vm.fill.response.beneficiary_phone_id,
+                    user_email: vm.fill.response.beneficiary_email_id
+                }];
+                vm.uploader6.uploadAll();
+                vm.uploader6.onCompleteItem  = function(){
+                    vm.fill.step++; //Go to the next step
+                    vm.waiter = false;
+                    getExecute();
+                };
             };
         }
 
@@ -657,7 +753,7 @@
                             end_date: (currentDate.getDate()<10?'0'+currentDate.getDate():currentDate.getDate())+'.'+((currentDate.getMonth()+1)<10?'0'+(currentDate.getMonth()+1):(currentDate.getMonth()+1))+'.'+(currentDate.getFullYear()+1),
                             contractor_insurer_id: vm.fill.response.contractor_id,
                             contractor_beneficiary_id: vm.fill.response.beneficiary_id ? vm.fill.response.beneficiary_id : null,
-                            insurance_company_id: vm.findData.calculations_product_id,
+                            insurance_company_id: vm.findData.insurance_company_id,
                             product_id: 1,
                             policies_type_id: 1,
                             insurance_company_calculation_id: vm.findData.calculation_id,
@@ -667,8 +763,8 @@
                     $http.post(config.api + 'policies/create',data)
                         .then(function(res){
                             if (res.data.result) {
-                                /*vm.fill.step++; //Go to the next step
-                                getExecute();*/
+                                vm.fill.step++; //Go to the next step
+                                getExecute();
                                 vm.waiter = false;
                                 console.log('ВСЕ ЗБС!!!!!!!!!!!!!!!!!!!!!')
                             }
@@ -711,7 +807,7 @@
                 withCredentials: false
             };
 
-            for (let i = 1; i <= 10; i++) {
+            for (let i = 1; i <= 15; i++) {
                 vm['uploader'+i] = new FileUploader(vm.uploaderOptions);
 
                 vm['uploader'+i].onAfterAddingAll = function(){

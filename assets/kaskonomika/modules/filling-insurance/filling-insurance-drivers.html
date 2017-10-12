@@ -18,11 +18,11 @@
                 </div>
             </div>
             <div class="col-lg-4">
-                <custom-upload index="5" doc="Прикрепить cкан вод. прав"></custom-upload>
+                <custom-upload index="7" doc="Прикрепить cкан вод. прав"></custom-upload>
             </div>
         </div>
         <hr/>
-        <div ng-if="vm.findData.driver.id === '2' && vm.findData.filter.drivers[1]">
+        <div ng-if="vm.findData.filter.drivers[1]">
             <h4>Данные второго водителя</h4>
             <div class="row row-string">
                 <div class="col-lg-4">
@@ -66,8 +66,8 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
-                        <label>Возраст (полных лет)</label>
-                        <input class="form-control" ng-model="vm.findData.filter.drivers[1].age" placeholder="Полных лет" mask="99" limit="true" restrict="reject">
+                        <label>Дата рождения</label>
+                        <input type="date" class="form-control" ng-model="vm.findData.filter.drivers[1].age" placeholder="XX.XX.XXXX" max="1999-09-25" min="1945-01-01">
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -94,12 +94,12 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <custom-upload index="6" doc="Прикрепить cкан вод. прав"></custom-upload>
+                    <custom-upload index="8" doc="Прикрепить cкан вод. прав"></custom-upload>
                 </div>
             </div>
             <hr/>
         </div>
-        <div ng-if="vm.findData.driver.id === '2' && vm.findData.filter.drivers[2]">
+        <div ng-if="vm.findData.filter.drivers[2]">
             <h4>Данные третьего водителя</h4>
             <div class="row row-string">
                 <div class="col-lg-4">
@@ -143,8 +143,8 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
-                        <label>Возраст (полных лет)</label>
-                        <input class="form-control" ng-model="vm.findData.filter.drivers[2].age" placeholder="Полных лет" mask="99" limit="true" restrict="reject">
+                        <label>Дата рождения</label>
+                        <input type="date" class="form-control" ng-model="vm.findData.filter.drivers[2].age" placeholder="XX.XX.XXXX" max="1999-09-25" min="1945-01-01">
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -171,12 +171,12 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <custom-upload index="7" doc="Прикрепить cкан вод. прав"></custom-upload>
+                    <custom-upload index="9" doc="Прикрепить cкан вод. прав"></custom-upload>
                 </div>
             </div>
             <hr/>
         </div>
-        <div ng-if="vm.findData.driver.id === '2' && vm.findData.filter.drivers[3]">
+        <div ng-if="vm.findData.filter.drivers[3]">
             <h4>Данные четвертого водителя</h4>
             <div class="row row-string">
                 <div class="col-lg-4">
@@ -220,8 +220,8 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
-                        <label>Возраст (полных лет)</label>
-                        <input class="form-control" ng-model="vm.findData.filter.drivers[3].age" placeholder="Полных лет" mask="99" limit="true" restrict="reject">
+                        <label>Дата рождения</label>
+                        <input type="date" class="form-control" ng-model="vm.findData.filter.drivers[3].age" placeholder="XX.XX.XXXX" max="1999-09-25" min="1945-01-01">
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -248,12 +248,12 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <custom-upload index="8" doc="Прикрепить cкан вод. прав"></custom-upload>
+                    <custom-upload index="10" doc="Прикрепить cкан вод. прав"></custom-upload>
                 </div>
             </div>
             <hr/>
         </div>
-        <div ng-if="vm.findData.driver.id === '2' && vm.findData.filter.drivers[4]">
+        <div ng-if="vm.findData.filter.drivers[4]">
             <h4>Данные пятого водителя</h4>
             <div class="row row-string">
                 <div class="col-lg-4">
@@ -297,8 +297,8 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
-                        <label>Возраст (полных лет)</label>
-                        <input class="form-control" ng-model="vm.findData.filter.drivers[4].age" placeholder="Полных лет" mask="99" limit="true" restrict="reject">
+                        <label>Дата рождения</label>
+                        <input type="date" class="form-control" ng-model="vm.findData.filter.drivers[4].age" placeholder="XX.XX.XXXX" max="1999-09-25" min="1945-01-01">
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -325,7 +325,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <custom-upload index="9" doc="Прикрепить cкан вод. прав"></custom-upload>
+                    <custom-upload index="11" doc="Прикрепить cкан вод. прав"></custom-upload>
                 </div>
             </div>
             <hr/>
@@ -343,27 +343,27 @@
                 <button ng-if="!vm.findData.filter.drivers[1]"
                         class="btn btn-kasko"
                         ng-click="vm.nextStep(5)"
-                        ng-disabled="!vm.findData.filter.drivers[0].series || vm.uploader5.queue.length === 0">Продолжить</button>
+                        ng-disabled="!vm.findData.filter.drivers[0].series || vm.uploader7.queue.length === 0">Продолжить</button>
 
                 <button ng-if="vm.findData.filter.drivers[1] && !vm.findData.filter.drivers[2] && !vm.findData.filter.drivers[3] && !vm.findData.filter.drivers[4]"
                         class="btn btn-kasko"
                         ng-click="vm.nextStep(5)"
-                        ng-disabled="!vm.findData.filter.drivers[0].series || vm.uploader5.queue.length === 0 || !vm.findData.filter.drivers[1].firstName || !vm.findData.filter.drivers[1].name || !vm.findData.filter.drivers[1].secondName || !vm.findData.filter.drivers[1].sex || !vm.findData.filter.drivers[1].age || !vm.findData.filter.drivers[1].exp || !vm.findData.filter.drivers[1].series || vm.uploader6.queue.length === 0">Продолжить</button>
+                        ng-disabled="!vm.findData.filter.drivers[0].series || vm.uploader7.queue.length === 0 || !vm.findData.filter.drivers[1].firstName || !vm.findData.filter.drivers[1].name || !vm.findData.filter.drivers[1].secondName || !vm.findData.filter.drivers[1].sex || !vm.findData.filter.drivers[1].age || !vm.findData.filter.drivers[1].exp || !vm.findData.filter.drivers[1].series || vm.uploader8.queue.length === 0">Продолжить</button>
 
                 <button ng-if="vm.findData.filter.drivers[2] && !vm.findData.filter.drivers[3] && !vm.findData.filter.drivers[4]"
                         class="btn btn-kasko"
                         ng-click="vm.nextStep(5)"
-                        ng-disabled="!vm.findData.filter.drivers[0].series || vm.uploader5.queue.length === 0 || !vm.findData.filter.drivers[1].firstName || !vm.findData.filter.drivers[1].name || !vm.findData.filter.drivers[1].secondName || !vm.findData.filter.drivers[1].sex || !vm.findData.filter.drivers[1].age || !vm.findData.filter.drivers[1].exp || !vm.findData.filter.drivers[1].series || vm.uploader6.queue.length === 0 || !vm.findData.filter.drivers[2].firstName || !vm.findData.filter.drivers[2].name || !vm.findData.filter.drivers[2].secondName || !vm.findData.filter.drivers[2].sex || !vm.findData.filter.drivers[2].age || !vm.findData.filter.drivers[2].exp || !vm.findData.filter.drivers[2].series || vm.uploader7.queue.length === 0">Продолжить</button>
+                        ng-disabled="!vm.findData.filter.drivers[0].series || vm.uploader7.queue.length === 0 || !vm.findData.filter.drivers[1].firstName || !vm.findData.filter.drivers[1].name || !vm.findData.filter.drivers[1].secondName || !vm.findData.filter.drivers[1].sex || !vm.findData.filter.drivers[1].age || !vm.findData.filter.drivers[1].exp || !vm.findData.filter.drivers[1].series || vm.uploader8.queue.length === 0 || !vm.findData.filter.drivers[2].firstName || !vm.findData.filter.drivers[2].name || !vm.findData.filter.drivers[2].secondName || !vm.findData.filter.drivers[2].sex || !vm.findData.filter.drivers[2].age || !vm.findData.filter.drivers[2].exp || !vm.findData.filter.drivers[2].series || vm.uploader9.queue.length === 0">Продолжить</button>
 
                 <button ng-if="vm.findData.filter.drivers[3] && !vm.findData.filter.drivers[4]"
                         class="btn btn-kasko"
                         ng-click="vm.nextStep(5)"
-                        ng-disabled="!vm.findData.filter.drivers[0].series || vm.uploader5.queue.length === 0 || !vm.findData.filter.drivers[1].firstName || !vm.findData.filter.drivers[1].name || !vm.findData.filter.drivers[1].secondName || !vm.findData.filter.drivers[1].sex || !vm.findData.filter.drivers[1].age || !vm.findData.filter.drivers[1].exp || !vm.findData.filter.drivers[1].series || vm.uploader6.queue.length === 0 || !vm.findData.filter.drivers[2].firstName || !vm.findData.filter.drivers[2].name || !vm.findData.filter.drivers[2].secondName || !vm.findData.filter.drivers[2].sex || !vm.findData.filter.drivers[2].age || !vm.findData.filter.drivers[2].exp || !vm.findData.filter.drivers[2].series || vm.uploader7.queue.length === 0 || !vm.findData.filter.drivers[3].firstName || !vm.findData.filter.drivers[3].name || !vm.findData.filter.drivers[3].secondName || !vm.findData.filter.drivers[3].sex || !vm.findData.filter.drivers[3].age || !vm.findData.filter.drivers[3].exp || !vm.findData.filter.drivers[3].series || vm.uploader8.queue.length === 0">Продолжить</button>
+                        ng-disabled="!vm.findData.filter.drivers[0].series || vm.uploader7.queue.length === 0 || !vm.findData.filter.drivers[1].firstName || !vm.findData.filter.drivers[1].name || !vm.findData.filter.drivers[1].secondName || !vm.findData.filter.drivers[1].sex || !vm.findData.filter.drivers[1].age || !vm.findData.filter.drivers[1].exp || !vm.findData.filter.drivers[1].series || vm.uploader8.queue.length === 0 || !vm.findData.filter.drivers[2].firstName || !vm.findData.filter.drivers[2].name || !vm.findData.filter.drivers[2].secondName || !vm.findData.filter.drivers[2].sex || !vm.findData.filter.drivers[2].age || !vm.findData.filter.drivers[2].exp || !vm.findData.filter.drivers[2].series || vm.uploader9.queue.length === 0 || !vm.findData.filter.drivers[3].firstName || !vm.findData.filter.drivers[3].name || !vm.findData.filter.drivers[3].secondName || !vm.findData.filter.drivers[3].sex || !vm.findData.filter.drivers[3].age || !vm.findData.filter.drivers[3].exp || !vm.findData.filter.drivers[3].series || vm.uploader10.queue.length === 0">Продолжить</button>
 
                 <button ng-if="vm.findData.filter.drivers[4]"
                         class="btn btn-kasko"
                         ng-click="vm.nextStep(5)"
-                        ng-disabled="!vm.findData.filter.drivers[0].series || vm.uploader5.queue.length === 0 || !vm.findData.filter.drivers[1].firstName || !vm.findData.filter.drivers[1].name || !vm.findData.filter.drivers[1].secondName || !vm.findData.filter.drivers[1].sex || !vm.findData.filter.drivers[1].age || !vm.findData.filter.drivers[1].exp || !vm.findData.filter.drivers[1].series || vm.uploader6.queue.length === 0 || !vm.findData.filter.drivers[2].firstName || !vm.findData.filter.drivers[2].name || !vm.findData.filter.drivers[2].secondName || !vm.findData.filter.drivers[2].sex || !vm.findData.filter.drivers[2].age || !vm.findData.filter.drivers[2].exp || !vm.findData.filter.drivers[2].series || vm.uploader7.queue.length === 0 || !vm.findData.filter.drivers[3].firstName || !vm.findData.filter.drivers[3].name || !vm.findData.filter.drivers[3].secondName || !vm.findData.filter.drivers[3].sex || !vm.findData.filter.drivers[3].age || !vm.findData.filter.drivers[3].exp || !vm.findData.filter.drivers[3].series || vm.uploader8.queue.length === 0 || !vm.findData.filter.drivers[4].firstName || !vm.findData.filter.drivers[4].name || !vm.findData.filter.drivers[4].secondName || !vm.findData.filter.drivers[4].sex || !vm.findData.filter.drivers[4].age || !vm.findData.filter.drivers[4].exp || !vm.findData.filter.drivers[4].series || vm.uploader9.queue.length === 0">Продолжить</button>
+                        ng-disabled="!vm.findData.filter.drivers[0].series || vm.uploader7.queue.length === 0 || !vm.findData.filter.drivers[1].firstName || !vm.findData.filter.drivers[1].name || !vm.findData.filter.drivers[1].secondName || !vm.findData.filter.drivers[1].sex || !vm.findData.filter.drivers[1].age || !vm.findData.filter.drivers[1].exp || !vm.findData.filter.drivers[1].series || vm.uploader8.queue.length === 0 || !vm.findData.filter.drivers[2].firstName || !vm.findData.filter.drivers[2].name || !vm.findData.filter.drivers[2].secondName || !vm.findData.filter.drivers[2].sex || !vm.findData.filter.drivers[2].age || !vm.findData.filter.drivers[2].exp || !vm.findData.filter.drivers[2].series || vm.uploader9.queue.length === 0 || !vm.findData.filter.drivers[3].firstName || !vm.findData.filter.drivers[3].name || !vm.findData.filter.drivers[3].secondName || !vm.findData.filter.drivers[3].sex || !vm.findData.filter.drivers[3].age || !vm.findData.filter.drivers[3].exp || !vm.findData.filter.drivers[3].series || vm.uploader10.queue.length === 0 || !vm.findData.filter.drivers[4].firstName || !vm.findData.filter.drivers[4].name || !vm.findData.filter.drivers[4].secondName || !vm.findData.filter.drivers[4].sex || !vm.findData.filter.drivers[4].age || !vm.findData.filter.drivers[4].exp || !vm.findData.filter.drivers[4].series || vm.uploader11.queue.length === 0">Продолжить</button>
             </div>
 
         </div>

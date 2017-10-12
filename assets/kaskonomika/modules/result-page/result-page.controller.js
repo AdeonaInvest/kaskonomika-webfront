@@ -229,7 +229,7 @@
         function getResults(execute) {
             vm.resultList = [];
             execute.forEach(function (f) {
-                var data = {
+                let data = {
                     token: '',
                     id: f
                 };
@@ -351,9 +351,9 @@
         /**
          * Relocate to filling page and save pre-results
          */
-        function goFillingInsurance(calculations_product_id, calculation_id){
+        function goFillingInsurance(insurance_company_id, calculation_id){
             $rootScope.findData.filter = vm.filter;
-            $rootScope.findData.calculations_product_id = calculations_product_id;
+            $rootScope.findData.insurance_company_id = insurance_company_id;
             $rootScope.findData.calculation_id = calculation_id;
             localStorage.setItem('findData',JSON.stringify($rootScope.findData));
             $location.path('/filling');

@@ -66,6 +66,7 @@
                                ng-model="vm.fill.holder.phone"
                                placeholder="+7 (XXX) XXX-XX-XX"
                                mask="+9 (999) 999-99-99"
+                               ng-disabled="vm.user"
                                restrict="reject"
                                clean="true">
                     </div>
@@ -78,6 +79,7 @@
                                class="form-control"
                                name="email"
                                ng-model="vm.fill.holder.email"
+                               ng-disabled="vm.user"
                                placeholder="example@myemail.com">
                     </div>
                 </div>
@@ -117,7 +119,6 @@
                 </div>
                 <div class="col-lg-4">
                     <button class="btn btn-kasko btn-confirm"
-                            type="submit"
                             ng-click="vm.nextStep('reg')"
                             ng-disabled="!vm.fill.confirmCode">Активировать</button>
                 </div>
@@ -159,8 +160,11 @@
                 </div>
             </div>
             <div class="row row-string">
-                <div class="col-lg-4">
-                    <custom-upload index="1" doc="Прикрепить скан пасспорта"></custom-upload>
+                <div class="col-lg-6">
+                    <custom-upload index="1" doc="Скан первой страницы паспорта"></custom-upload>
+                </div>
+                <div class="col-lg-6">
+                    <custom-upload index="5" doc="Скан страницы паспорта с регистрацией"></custom-upload>
                 </div>
             </div>
             <hr/>
@@ -302,8 +306,11 @@
                 </div>
             </div>
             <div class="row row-string">
-                <div class="col-lg-4">
-                    <custom-upload index="2" doc="Прикрепить скан пасспорта"></custom-upload>
+                <div class="col-lg-6">
+                    <custom-upload index="2" doc="Скан первой страницы паспорта"></custom-upload>
+                </div>
+                <div class="col-lg-6">
+                    <custom-upload index="6" doc="Скан страницы паспорта с регистрацией"></custom-upload>
                 </div>
             </div>
             <hr/>
@@ -420,7 +427,7 @@
         <ng-include src="'/filling-insurance/filling-insurance-drivers.html'"></ng-include>
     </div>
     <div ng-if="vm.fill.step == 6" class="ta-center">
-        <span>Спасибо за ожидание.<br/>Все расчеты окончены, мы вскоре свяжемся с вами для дальнейшего оформления полиса</span>
+        <span class="final-step-title">Спасибо за ожидание.<br/>Все расчеты окончены, мы вскоре свяжемся с вами для дальнейшего оформления полиса.</span>
     </div>
     <div class="blocker" ng-if="vm.waiter">
         <i class="fa fa-circle-o-notch fa-spin fa-5x"></i>

@@ -71,7 +71,7 @@
             };
             $http.post(config.api + 'communications/messages/viewed',data)
                 .then(function(res){
-                    item.is_viewed = '1';
+                    item.looked = '1';
                     xlog('f',res.data)
                 })
         }

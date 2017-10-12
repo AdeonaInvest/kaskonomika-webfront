@@ -1,5 +1,7 @@
 <hr/>
 <div class="row">
+
+    <!-- КОНТАКТНЫЙ ТЕЛЕФОН -->
     <div class="col-lg-6">
         <div class="row">
             <div class="col-lg-12">
@@ -10,7 +12,7 @@
             </div>
         </div>
 
-        <div class="row custom-input-group" ng-repeat="(key,row) in vm.user.contacts | filter:{contact_type_id:'1'} track by $index">
+        <div class="row custom-input-group" ng-repeat="(key,row) in vm.user.contacts | filter:{contact_type_id:'1'} track by $index" ng-if="row.content !== vm.user.phone">
             <div class="col-lg-11">
                 <div class="form-group">
                     <label>Контактный телефон</label>
@@ -41,6 +43,8 @@
             </a>
         </div>
     </div>
+
+    <!-- КОНТАКТНЫЙ АДРЕС ЭЛЕКТРОННОЙ ПОЧТЫ -->
     <div class="col-lg-6">
         <div class="row">
             <div class="col-lg-12">
@@ -51,7 +55,7 @@
             </div>
         </div>
 
-        <div class="row custom-input-group" ng-repeat="(key,row) in vm.user.contacts | filter:{contact_type_id:'2'} track by $index">
+        <div class="row custom-input-group" ng-repeat="(key,row) in vm.user.contacts | filter:{contact_type_id:'2'} track by $index" ng-if="row.content !== vm.user.phone">
             <div class="col-lg-11">
                 <div class="form-group">
                     <label>Электронная почта</label>
