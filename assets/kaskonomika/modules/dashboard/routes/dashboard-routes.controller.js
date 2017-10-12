@@ -5,16 +5,17 @@
         .module('kaskonomika')
         .controller('dashboardRoutesController', dashboardRoutesController);
 
-    dashboardRoutesController.$inject = ['$rootScope','$http','config'];
+    dashboardRoutesController.$inject = ['$rootScope','$http','config','NgMap'];
 
-    function dashboardRoutesController($rootScope,$http,config) {
+    function dashboardRoutesController($rootScope,$http,config,NgMap) {
         let vm = this;
 
         vm.carsList = [];
 
 
-        vm.setCurrentMonth = setCurrentMonth;
-        vm.getTripTrack = getTripTrack;
+        vm.setCurrentMonth = setCurrentMonth; //Смена текущего месяца
+        vm.getTripTrack = getTripTrack; //Получение детальных данных о поездке. Координаты, события и т.п.
+        vm.setInvisibilityMap = setInvisibilityMap; //Скрытие уже открытых вкладок
 
         activate();
         ///////////////////
@@ -163,7 +164,14 @@
                 })
         }
 
+        /**
+         * Получение детальных данных о поездке. Координаты, события и т.п.
+         * @param trip - объект поездки vm.routesMeta.perDay[day]
+         */
         function getTripTrack(trip) {
+            vm.routesPath = [];
+            vm.routesEvents = [];
+            xlog('trip',trip);
             if (!trip.active && !trip.waiterMap) {
                 trip.waiterMap = true;
                 let data = {
@@ -174,17 +182,45 @@
                 };
                 $http.post(config.api + 'telematic/meta/trip_track', data)
                     .then(function(res){
-                        trip.waiterMap = false;
                         trip.active = true;
-                        trip.routes = res.data;
-                        xlog('maps-trips', res.data)
+                        trip.routes = true;
+                        res.data.response.tracker.p.forEach(function(f){
+                            let data = {
+                                lat: parseFloat(f.pt.gps.lat),
+                                lon: parseFloat(f.pt.gps.lon)
+                            };
+                            vm.routesPath.push([data.lat, data.lon]);
+                        });
+                        trip.trip_events.forEach(function(f){
+                            let data = {
+                                lat: parseFloat(f.lat),
+                                lon: parseFloat(f.lon),
+                                event: f.name
+                            };
+                            vm.routesEvents.push(data);
+                        });
+
+                        trip.waiterMap = false;
                     })
             } else if(!trip.active && trip.waiterMap){
                 trip.routes = null;
-            } else if(trip.active && !trip.waiterMap){
+            } else if (trip.active && !trip.waiterMap){
                 trip.routes = null;
                 trip.waiterMap = false;
                 trip.active = false;
+            }
+        }
+
+        /**
+         * Скрытие уже открытых вкладок
+         * @param array - все поездки за выбранный период
+         */
+        function setInvisibilityMap(array) {
+            for (let i in array) {
+                array[i].array.forEach(function(a){
+                    a.routes = false;
+                    a.active = false;
+                })
             }
         }
 

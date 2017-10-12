@@ -157,10 +157,11 @@
                 border-radius: 5px;
                 ul {
                   padding: 0;
+                  margin: 0;
                   li {
                     list-style: none;
                     margin: 10px 10px 0;
-                    padding: 0 0 10px;
+                    padding: 0;
                     .item-title {
                       width: 100%;
                       margin: 0;
@@ -194,17 +195,17 @@
                           transition: .2s ease;
                           color: #fff;
                           &.show-more {
-                            transition: 0s;
+                            transition: 0s ease;
                           }
                           &.span-title {
-                            transition: 0s;
+                            transition: 0s ease;
                           }
                         }
 
                       }
                     }
                     .item-map {
-                      margin: 0;
+                      margin: 10px 0 0 0;
                       .item-map-body {
                         ng-map {
 

@@ -15,6 +15,7 @@
         vm.btnAddContact = btnAddContact; //Добавление новго контакта к пользователю
         vm.deleteContacts = deleteContacts; //Удаление контакта от пользователя
         vm.saveChanges = saveChanges; //Сохранение всех внесенных изменений
+        vm.deleteContactFromServer = deleteContactFromServer; //Удаление контакта с сервера
 
         activate();
         ///////////////////
@@ -26,6 +27,7 @@
                 newEmail: [],
                 havePassport: false
             };
+            vm.waitSaveChanges = false;
             checkUser(); //Проверка залогенного пользователя
         }
 
@@ -197,9 +199,34 @@
         }
 
         /**
+         * Удаление контакта с сервера
+         * @param row
+         */
+        function deleteContactFromServer(row) {
+            xlog('vm.user.contacts',vm.user.contacts);
+            let data = {
+                    token: vm.token,
+                    type_id: row.contact_type_id, // ID контакта
+                    contact: row.content // Сам контакт в исходном виде
+                };
+            $http.post(config.api + 'contractors/'+ vm.user.contractor.id +'/contact_delete',data)
+                .then(function(res){
+                    if (res.data.result) {
+                        vm.user.contacts.forEach(function(f,key){
+                            if (f.id === row.id) {
+                                vm.user.contacts.splice(key,1);
+                            }
+                        })
+                    }
+
+                })
+        }
+
+        /**
          * Сохранение всех внесенных изменений
          */
         function saveChanges() {
+            vm.waitSaveChanges = true;
 
             if (!vm.user.havePassport) {
                 let date = new Date(vm.user.contractor.birth_date),
@@ -269,27 +296,33 @@
                         }
                     })
             } else {
-                let date = new Date(vm.user.docs.issued_date),
-                    data = {
-                        token: vm.token,
-                        name: vm.user.last_name,
-                        middle_name: vm.user.middle_name,
-                        last_name: vm.user.last_name,
-                        full_name: vm.user.last_name + ' ' + vm.user.name + ' ' + vm.user.middle_name,
-                        series: vm.user.passportSn.substring(0,4),
-                        number: vm.user.passportSn.substring(4,10),
-                        document_type_id: 1,
-                        issued: vm.user.docs.issued,
-                        issued_date: (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + '.' + ((date.getMonth()+1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '.' +date.getFullYear(),
-                        expiration_date: (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + '.' + ((date.getMonth()+1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '.' +(date.getFullYear()+100),
-                        content: ''
-                    };
-                $http.post(config.api + 'contractors/'+ vm.user.contractor.id +'/documents/create',data)
-                    .then(function(res){
-                        if (res.data.result) {
-                            setTimeout(activate,3000);
-                        }
-                    })
+
+                // Сохранение адреса регистрации
+                if (vm.user.regAddress) {
+                    saveContractorContact(3, vm.user.regAddress);
+                }
+
+                // Сохранение адреса прописки
+                if (vm.user.homeAddress) {
+                    saveContractorContact(4, vm.user.homeAddress);
+                }
+
+                // Сохранение новых телефонов
+                if (vm.user.newPhone.length > 0) {
+                    vm.user.newPhone.forEach(function(f){
+                        saveContractorContact(f.contact_type_id, f.content);
+                    });
+                }
+
+                // Сохранение новых emal'ов
+                if (vm.user.newEmail.length > 0) {
+                    vm.user.newEmail.forEach(function(f){
+                        saveContractorContact(f.contact_type_id, f.content);
+                    });
+                }
+
+                setTimeout(activate,3000); //Обновление данных через 3 секунды после завершения загрузки
+
             }
         }
 
