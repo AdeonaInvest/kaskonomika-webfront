@@ -10,13 +10,15 @@
     function carFinderController($rootScope,$scope,$http,$location,$timeout,config,$route) {
         
         ///////////////////
-        var vm = this;
+        let vm = this;
         vm.view = false; //Статус готовности отображения
 
         $rootScope.allData = {
             marks: '',
             models: '',
             year: '',
+            bodyType: '',
+            gear: '',
             mods: '',
             drivers: '',
             old: '',
@@ -43,7 +45,7 @@
         vm.getMarks = getMarks;
         vm.getYear = getYear;
         vm.getModels = getModels;
-        vm.getModification = getModification;
+        vm.getBodyTypes = getBodyTypes;
         vm.getDrivers = getDrivers;
         vm.getAges = getAges;
         vm.getExp = getExp;
@@ -55,6 +57,8 @@
         vm.findResults = findResults;
         vm.disableBtnResult = disableBtnResult;
         vm.goBackToResults = goBackToResults;
+        vm.getGearBox = getGearBox;
+        vm.getModification = getModification;
 
 
         /**
@@ -120,14 +124,48 @@
         /**
          * Получение списка модификаций автомобилей
          */
-        function getModification(model){
+        function getBodyTypes(model){
             $rootScope.findData.is_open = false;
             vm.wait = true;
-            $http.get(config.api + 'dictionaries/marks/' + $rootScope.findData.mark.mark + '/' + $rootScope.findData.year + '/' + model)
+            $http.get(config.api + 'dictionaries/marks2/' + $rootScope.findData.mark.mark + '/' + $rootScope.findData.year + '/' + model)
                 .then(function(response){
                     if (response.data.result) {
-                        $rootScope.allData.mods = response.data.response;
+                        $rootScope.allData.bodyType = response.data.response;
                         $rootScope.findData.step = 4;
+                        $rootScope.findData.is_open = true;
+                        vm.wait = false;
+                    }
+                })
+        }
+
+        /**
+         * Получение списка КПП
+         */
+        function getGearBox(){
+            $rootScope.findData.is_open = false;
+            vm.wait = true;
+            $http.get(config.api + 'dictionaries/marks2/' + $rootScope.findData.mark.mark + '/' + $rootScope.findData.year + '/' + $rootScope.findData.model.model + '/' + $rootScope.findData.bodyType.id)
+                .then(function(response){
+                    if (response.data.result) {
+                        $rootScope.allData.gear = response.data.response;
+                        $rootScope.findData.step = 5;
+                        $rootScope.findData.is_open = true;
+                        vm.wait = false;
+                    }
+                })
+        }
+
+        /**
+         * Получение списка модификаций автомобилей
+         */
+        function getModification(){
+            $rootScope.findData.is_open = false;
+            vm.wait = true;
+            $http.get(config.api + 'dictionaries/marks2/' + $rootScope.findData.mark.mark + '/' + $rootScope.findData.year + '/' + $rootScope.findData.model.model + '/' + $rootScope.findData.bodyType.id + '/' + $rootScope.findData.gear.id)
+                .then(function(response){
+                    if (response.data.result) {
+                        $rootScope.allData.mod = response.data.response;
+                        $rootScope.findData.step = 6;
                         $rootScope.findData.is_open = true;
                         vm.wait = false;
                     }
@@ -144,16 +182,12 @@
                 .then(function(response){
                     if (response.data.result) {
                         $rootScope.allData.drivers = response.data.response;
-                        $rootScope.findData.step = 5;
+                        $rootScope.findData.step = 7;
                         $rootScope.findData.is_open = true;
                         vm.wait = false;
                     }
                 })
         }
-
-        /*$rootScope.$watch('findData.is_open', function(){
-            console.log('$rootScope.findData.is_open',$rootScope.findData.is_open)
-        });*/
 
         /**
          * Получение списка годов рождения
@@ -162,10 +196,10 @@
             $rootScope.findData.is_open = false;
             $timeout(function(){
                 $rootScope.allData.age = [];
-                for (var i = 18; i < 69; ++i) {
+                for (let i = 18; i < 69; ++i) {
                     $rootScope.allData.age.push(i);
                 }
-                $rootScope.findData.step = 6;
+                $rootScope.findData.step = 8;
                 $rootScope.findData.is_open = true;
             })
 
@@ -178,11 +212,11 @@
             $rootScope.findData.is_open = false;
             $timeout(function(){
                 $rootScope.allData.exp = [];
-                var start = 2017-year+17;
-                for (var i = start; i <= 2017; ++i) {
+                let start = 2017-year+17;
+                for (let i = start; i <= 2017; ++i) {
                     $rootScope.allData.exp.push(i);
                 }
-                $rootScope.findData.step = 7;
+                $rootScope.findData.step = 9;
                 $rootScope.findData.is_open = true;
             })
 
@@ -192,7 +226,7 @@
          * Финальный шаг, после которого уходим на перерасчет
          */
         function finalStep() {
-            $rootScope.findData.step = 8;
+            $rootScope.findData.step = 10;
             $rootScope.findData.is_open = false;
             $rootScope.findData.ready = true;
             findResults();
@@ -208,6 +242,8 @@
             if (data.year) $rootScope.findData.year = undefined;
             if (data.model) $rootScope.findData.model = undefined;
             if (data.mod) $rootScope.findData.mod = undefined;
+            if (data.bodyType) $rootScope.findData.bodyType = undefined;
+            if (data.gear) $rootScope.findData.gear = undefined;
             if (data.driver) $rootScope.findData.driver = undefined;
             if (data.age) $rootScope.findData.age = undefined;
             if (data.exp) $rootScope.findData.exp = undefined;
@@ -254,13 +290,13 @@
          */
         function progressWidth(){
             if ($rootScope.findData) {
-                if ($rootScope.findData.step < 5) {
+                if ($rootScope.findData.step < 7) {
                     return 0;
-                } else if ($rootScope.findData.step >= 5 && $rootScope.findData.step <= 8) {
+                } else if ($rootScope.findData.step >= 7 && $rootScope.findData.step < 10) {
                     return 33;
-                } else if ($rootScope.findData.step > 8 && $rootScope.findData.step < 10) {
+                } else if ($rootScope.findData.step > 9 && $rootScope.findData.step < 11) {
                     return 66;
-                } else if ($rootScope.findData.step > 10) {
+                } else if ($rootScope.findData.step > 11) {
                     return 100;
                 }
             }
@@ -285,8 +321,8 @@
          * @returns {boolean}
          */
         function disableBtnResult(){
-            var a = $rootScope.findData;
-            if (a.mark!='' && a.year!='' && a.model!='' && a.mod!='' && a.driver!='' && a.age!='' && a.exp!='') return true
+            let a = $rootScope.findData;
+            if (a.mark!='' && a.bodyType!='' && a.gear!='' && a.year!='' && a.model!='' && a.mod!='' && a.driver!='' && a.age!='' && a.exp!='') return true
         }
 
         /**

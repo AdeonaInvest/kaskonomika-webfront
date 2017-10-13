@@ -32,7 +32,7 @@
         function activate() {
             vm.view = true;
             $scope.$on('$includeContentLoaded', function () {
-                $rootScope.findData.step = 11; // Установка дефолтного шага.
+                $rootScope.findData.step = 20; // Установка дефолтного шага.
             });
             checkUser();
         }
@@ -306,7 +306,9 @@
                 mark_id: vm.findData.mark.mark || null,
                 year: vm.findData.year || null,
                 model_id: vm.findData.model.model || null,
-                mark_model_id: vm.findData.mod.id || null,
+                body_type: vm.findData.bodyType.id || null,
+                gear: vm.findData.gear.id || null,
+                mark_model_id: vm.findData.mod || null,
                 drivers_option_id: vm.findData.driver.id || null,
                 age: vm.findData.age || null,
                 experience_start_year: vm.findData.exp || null,

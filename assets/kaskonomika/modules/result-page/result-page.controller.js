@@ -89,7 +89,7 @@
                     if (localStorage.getItem('findData')) {
                         $rootScope.findData = JSON.parse(localStorage.getItem('findData'));// -> All data for search
                         $rootScope.allData = JSON.parse(localStorage.getItem('allData')); // -> All data from server
-                        $rootScope.findData.step = 9; // Set step for stop car-finder
+                        $rootScope.findData.step = 10; // Set step for stop car-finder
                         vm.filter.drivers[0].age = $rootScope.findData.age;
                         vm.filter.drivers[0].exp = $rootScope.findData.exp;
                         vm.haveResult = true; // For singleton
@@ -110,7 +110,7 @@
          * Get current year : YYYY
          */
         function getCurrentYear() {
-            var date = new Date();
+            let date = new Date();
             vm.currentYear = date.getFullYear();
             getCarPrice();
         }
@@ -120,11 +120,11 @@
          * Get current price : YYYY
          */
         function getCarPrice() {
-            var data = {
+            let data = {
                 year: $rootScope.findData.year,
                 is_used: 0
             };
-            $http.post(config.api + 'dictionaries/car/' + $rootScope.findData.mod.id + '/price', data)
+            $http.post(config.api + 'dictionaries/car/' + $rootScope.findData.mod + '/price', data)
                 .then(function (response) {
                     if (response.data.result) {
                         vm.filter.priceSlider = {
@@ -178,12 +178,15 @@
         function getExecute() {
             // If no 'stop' execute
             if (!vm.stopExecute) {
+                xlog('$rootScope.findData',$rootScope.findData);
                 let data = {
                     token: '',
                     mark_id: $rootScope.findData.mark.mark,
                     year: $rootScope.findData.year,
                     model_id: $rootScope.findData.model.model,
-                    mark_model_id: $rootScope.findData.mod.id,
+                    body_type: $rootScope.findData.bodyType.id,
+                    gear: $rootScope.findData.gear.id,
+                    mark_model_id: $rootScope.findData.mod,
                     drivers_option_id: $rootScope.findData.driver.id,
                     sum: vm.filter.priceSlider.val,
                     promocode: '',
