@@ -27,7 +27,7 @@
             <div class="form-group">
                 <label>Дата рождения</label>
                 <input type="date" ng-if="vm.user.havePassport" class="form-control" ng-value="vm.user.contractor.birth_date" disabled>
-                <input type="date" ng-if="!vm.user.havePassport" class="form-control" ng-model="vm.user.contractor.birth_date">
+                <input type="date" ng-if="!vm.user.havePassport" class="form-control" ng-model="vm.user.contractor.birth_date" max="1999-09-25" min="1945-01-01">
             </div>
         </div>
         <div class="col-lg-8">
@@ -82,7 +82,7 @@
         </div>
     </div>
     <!-- Прикрепление фото пасспорта-->
-    <div class="row bottom-row" ng-if="!vm.user.docs">
+    <div class="row bottom-row" ng-if="!vm.user.havePassport">
         <div class="col-lg-4">
             <custom-upload index="1" doc="Первая страница паспорта"></custom-upload>
         </div>

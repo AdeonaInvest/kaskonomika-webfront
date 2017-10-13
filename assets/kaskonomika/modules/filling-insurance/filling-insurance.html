@@ -7,10 +7,10 @@
     <div class="container-fluid filling-area">
         <div class="container">
             <div class="row">
-                <div class="col-lg-7">
+                <div ng-class="{'col-lg-7': vm.fill.step !== 5, 'col-lg-12': vm.fill.step === 5}">
                     <ng-include src="'/filling-insurance/filling-insurance-body.html'" id="filling-insurance-body"></ng-include>
                 </div>
-                <div class="col-lg-5">
+                <div ng-class="{'col-lg-5': vm.fill.step !== 5, 'ng-hide': vm.fill.step === 5}">
                     <ng-include src="'/filling-insurance/filling-insurance-sidebar.html'" id="filling-insurance-sidebar"></ng-include>
                 </div>
             </div>

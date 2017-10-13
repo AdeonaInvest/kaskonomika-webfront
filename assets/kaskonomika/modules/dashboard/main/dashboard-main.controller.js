@@ -139,10 +139,10 @@
                 .then(function(res){
                     if (res.data.result) {
                         vm.mileageRangedLimit = {
-                            val: (res.data.response.limit - res.data.response.mileage) >= 0 ? res.data.response.limit - res.data.response.mileage : 0,
+                            val: (res.data.response.limit - res.data.response.mileage) >= 0 ? res.data.response.limit - res.data.response.mileage : '0',
                             limit: Math.round(parseInt(res.data.response.limit)),
                             mileage: Math.round(parseInt(res.data.response.mileage)),
-                            percent: (100 / res.data.response.limit * res.data.response.mileage) < 100 ? 100 / res.data.response.limit * res.data.response.mileage : 100
+                            percent: res.data.response.limit === '0' ? 0 : 100 / res.data.response.limit * res.data.response.mileage
                         };
                     }
                 })
@@ -269,7 +269,6 @@
                                 }
                             }
                         };
-                        xlog('vm.mileageChart',vm.mileageChart)
                     }
                 })
 
@@ -377,7 +376,6 @@
                                 }
                             }
                         };
-                        xlog('vm.mileageChart',vm.mileageChart)
                     }
                 })
         }

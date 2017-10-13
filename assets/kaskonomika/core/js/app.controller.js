@@ -5,9 +5,11 @@
         .module('kaskonomika')
         .controller('appController', appController);
 
-    appController.$inject = ['$rootScope','$scope','$location'];
+    appController.$inject = ['$rootScope','$scope','$location','$http','config'];
 
-    function appController($rootScope,$scope,$location) {
+    function appController($rootScope,$scope,$location,$http,config) {
+
+        let app = this;
         
         $rootScope.calcCount = [];
 
