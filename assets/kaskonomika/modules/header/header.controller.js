@@ -68,9 +68,12 @@
                 vm.view = true;
             });
 
+            getCarsList();
+
             $timeout(function(){
                 vm.view = true;
-            },3000)
+            },3000);
+
         }
         
         /**
@@ -132,6 +135,24 @@
             localStorage.removeItem('currentUser');
             $location.path('/');
             xlog('MODULE : HEADER : LOGOUT -> Logout success. Data cleaned');
+        }
+
+
+        /**
+         * Получение списка авто
+         */
+        function getCarsList() {
+            let token = function(){
+                return localStorage.getItem('currentToken');
+            };
+            $http.get(config.api + 'policies/vehicles?token=' + token())
+                .then(function(res){
+                    if (res.data.result) {
+                        if (res.data.response.length > 0 ) {
+                            $rootScope.is_cars = true;
+                        }
+                    }
+                })
         }
     }
 })();

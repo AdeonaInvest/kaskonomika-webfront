@@ -1,4 +1,4 @@
-<div id="dashboard-menu" ng-controller="dashboardMenuController as vm">
+<div id="dashboard-menu">
     <ul>
         <li class="normal">
             <a href="/dashboard" ng-class="{'active': currentUrl === '/dashboard'}">
@@ -6,13 +6,13 @@
                 <span>Дашборд</span>
             </a>
         </li>
-        <li class="normal" ng-if="vm.is_cars">
+        <li class="normal" ng-if="is_cars">
             <a href="/dashboard/routes" ng-class="{'active': currentUrl === '/dashboard/routes'}">
                 <i class="fa fa-car"></i>
                 <span>Марштуры</span>
             </a>
         </li>
-        <li class="normal" ng-if="vm.is_cars">
+        <li class="normal" ng-if="is_cars">
             <a href="/dashboard/events" ng-class="{'active': currentUrl === '/dashboard/events'}">
                 <i class="fa fa-bell-o"></i>
                 <span>Уведомления</span>

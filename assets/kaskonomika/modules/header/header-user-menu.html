@@ -5,19 +5,19 @@
             <span>Дашборд</span>
         </a>
     </li>
-    <li class="normal">
+    <li class="normal" ng-if="is_cars">
         <a href="/dashboard/routes">
             <i class="fa fa-car"></i>
             <span>Марштуры</span>
         </a>
     </li>
-    <li class="normal">
+    <li class="normal" ng-if="is_cars">
         <a href="/dashboard/events">
             <i class="fa fa-bell-o"></i>
             <span>Уведомления</span>
         </a>
     </li>
-    <li class="compare">
+    <li class="compare ng-hide">
         <a href="/dashboard/insurance/list" class="main">
             <i class="fa fa-file-text-o"></i>
             <span>Страховые случаи</span>
