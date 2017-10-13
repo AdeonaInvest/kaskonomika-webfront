@@ -38,7 +38,7 @@
         <label class="checkbox-check checkbox-check-title" ng-click="vm.filter.franchise = !vm.filter.franchise">Франшиза</label>
     </div>
     <div class="show-slider-franchise animated" ng-show="vm.filter.franchise" ng-class="{'bounceIn':vm.filter.franchise}">
-        <span class="big-title">от {{vm.filter.franchiseSlider.min}} до {{vm.filter.franchiseSlider.max}} <i class="fa fa-rub"></i></span>
+        <span class="big-title">от {{vm.filter.franchiseSlider.min | number:0}} до {{vm.filter.franchiseSlider.max | number:0}} <i class="fa fa-rub"></i></span>
         <rzslider rz-slider-model="vm.filter.franchiseSlider.min" rz-slider-high="vm.filter.franchiseSlider.max" rz-slider-options="vm.filter.franchiseSlider.options"></rzslider>
     </div>
     <div class="checkbox-area" ng-class="{'active':vm.filter.mileage_limit}">
@@ -46,7 +46,7 @@
         <label class="checkbox-check checkbox-check-title" ng-click="vm.filter.mileage_limit = !vm.filter.mileage_limit">Ограничение пробега</label>
     </div>
     <div class="show-slider-franchise animated" ng-show="vm.filter.mileage_limit" ng-class="{'bounceIn':vm.filter.mileage_limit}">
-        <span class="big-title">от {{vm.filter.milageSlider.min}} до {{vm.filter.milageSlider.max}} км.</span>
+        <span class="big-title">от {{vm.filter.milageSlider.min | number:0}} до {{vm.filter.milageSlider.max | number:0}} км.</span>
         <rzslider rz-slider-model="vm.filter.milageSlider.min" rz-slider-high="vm.filter.milageSlider.max" rz-slider-options="vm.filter.milageSlider.options"></rzslider>
     </div>
     <div class="checkbox-area" ng-class="{'active':vm.filter.evacuation_ss}">

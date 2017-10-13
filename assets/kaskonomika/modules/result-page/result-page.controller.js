@@ -124,7 +124,7 @@
                 year: $rootScope.findData.year,
                 is_used: 0
             };
-            $http.post(config.api + 'dictionaries/car/' + $rootScope.findData.mod + '/price', data)
+            $http.post(config.api + 'dictionaries/car/' + $rootScope.findData.mod.id + '/price', data)
                 .then(function (response) {
                     if (response.data.result) {
                         vm.filter.priceSlider = {
@@ -178,7 +178,6 @@
         function getExecute() {
             // If no 'stop' execute
             if (!vm.stopExecute) {
-                xlog('$rootScope.findData',$rootScope.findData);
                 let data = {
                     token: '',
                     mark_id: $rootScope.findData.mark.mark,
@@ -186,7 +185,7 @@
                     model_id: $rootScope.findData.model.model,
                     body_type: $rootScope.findData.bodyType.id,
                     gear: $rootScope.findData.gear.id,
-                    mark_model_id: $rootScope.findData.mod,
+                    mark_model_id: $rootScope.findData.mod.id,
                     drivers_option_id: $rootScope.findData.driver.id,
                     sum: vm.filter.priceSlider.val,
                     promocode: '',

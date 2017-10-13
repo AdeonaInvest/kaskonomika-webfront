@@ -308,7 +308,7 @@
                 model_id: vm.findData.model.model || null,
                 body_type: vm.findData.bodyType.id || null,
                 gear: vm.findData.gear.id || null,
-                mark_model_id: vm.findData.mod || null,
+                mark_model_id: vm.findData.mod.id || null,
                 drivers_option_id: vm.findData.driver.id || null,
                 age: vm.findData.age || null,
                 experience_start_year: vm.findData.exp || null,
