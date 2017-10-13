@@ -6,26 +6,28 @@
             <i class="fa fa-close fa-2x pull-right" ng-click="vm.authOpen = false"></i>
         </div>
         <div class="forms-area">
-            <div class="form-group" ng-class="{'has-error':vm.LoginError}">
-                <label for="userLoginInput">Номер телефона или эл. почта</label>
-                <input type="text" class="form-control input-lg" id="userLoginInput" ng-model="vm.userLoginInput"/>
-            </div>
-            <div class="form-group" ng-class="{'has-error':vm.LoginError}">
-                <label for="userPassInput">Пароль</label>
-                <input type="password" class="form-control input-lg" id="userPassInput" ng-model="vm.userPassInput"/>
-                <div class="errors-area">
-                    <span class="error-text color-red" ng-if="vm.LoginError">Неверно введен номер телефона или эл. почта. Быть может, введен введён пароль!</span>
+            <form>
+                <div class="form-group" ng-class="{'has-error':vm.LoginError}">
+                    <label for="userLoginInput">Номер телефона или эл. почта</label>
+                    <input class="form-control input-lg" id="userLoginInput" ng-model="vm.userLoginInput"/>
                 </div>
-            </div>
-            <div class="form-group fix-height-17">
-                <span class="pull-right go-repair-pass" ng-click="vm.showRecover = !vm.showRecover">Забыл пароль</span>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-kasko" ng-click="vm.login()" ng-disabled="!vm.userPassInput || !vm.userLoginInput || vm.waitLogin">
-                    <span ng-if="!vm.waitLogin">Войти</span>
-                    <span ng-if="vm.waitLogin"><i class="fa fa-spin fa-circle-o-notch"></i></span>
-                </button>
-            </div>
+                <div class="form-group" ng-class="{'has-error':vm.LoginError}">
+                    <label for="userPassInput">Пароль</label>
+                    <input type="password" class="form-control input-lg" id="userPassInput" ng-model="vm.userPassInput"/>
+                    <div class="errors-area">
+                        <span class="error-text color-red" ng-if="vm.LoginError">Неверно введен номер телефона или эл. почта. Быть может, введен введён пароль!</span>
+                    </div>
+                </div>
+                <div class="form-group fix-height-17">
+                    <span class="pull-right go-repair-pass" ng-click="vm.showRecover = !vm.showRecover">Забыл пароль</span>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-kasko" tabindex="0" ng-focus="vm.userPassInput" ng-click="vm.login()" ng-disabled="!vm.userPassInput || !vm.userLoginInput || vm.waitLogin">
+                        <span ng-if="!vm.waitLogin">Войти</span>
+                        <span ng-if="vm.waitLogin"><i class="fa fa-spin fa-circle-o-notch"></i></span>
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
     <div class="recover-form animate bounceInRight" ng-if="vm.showRecover">

@@ -7,7 +7,7 @@
     headerController.$inject = ['$rootScope','$scope','$window','$timeout','$location','$http','config'];
 
     function headerController($rootScope,$scope,$window,$timeout,$location,$http,config) {
-        var vm = this;
+        let vm = this;
         vm.openOverlay = false; //Состояние оверлея. false - закрыт
         vm.mainMenu = [
             {
@@ -34,11 +34,11 @@
             },
             {
                 text: 'Оплата и доставка',
-                url: '/shipping'
+                url: '/payment-and-delivery'
             },
             {
                 text: 'Политика конфиденциальности',
-                url: '/privacy_policy'
+                url: '/privacy-policy'
             }/*,
             {
                 text: 'Контакты',
@@ -116,6 +116,7 @@
                         localStorage.setItem('currentUser', JSON.stringify(_res.data.response));
                         xlog('MODULE : HEADER : USER ->', $rootScope.currentUser);
                         $rootScope.$broadcast('user');
+                        getCarsList(); //Получение списка авто
                     } else {
                         vm.waitLogin = false;
                         vm.LoginError = true;

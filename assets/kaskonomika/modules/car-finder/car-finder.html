@@ -14,13 +14,12 @@
                     </div>
                     <div class="col-xs-3">
                         <span ng-class="{active: findData.step > 6 && findData.step !== 20}"
-                              ng-click="(findData.step > 8 && findData.step !== 20) ? vm.resetFinder({driver:' ',age:' ', exp:' '},7) : null"
-                              ng-disabled="findData.step === 20">
+                              ng-click="(findData.step > 8 && findData.step !== 20) ? vm.resetFinder({driver:' ',age:' ', exp:' '},7) : null">
                             Водители
                         </span>
                     </div>
                     <div class="col-xs-3">
-                        <span ng-class="{active: findData.step > 9}" ng-click="vm.goBackToResults()" ng-disabled="findData.step < 11">Предложения</span>
+                        <span ng-class="{active: findData.step > 9}" ng-click="findData.step < 11 ? null : vm.goBackToResults()">Предложения</span>
                     </div>
                     <div class="col-xs-3">
                         <span ng-class="{active: findData.step > 10}">Оформление</span>
@@ -95,7 +94,7 @@
                         <i class="fa fa-close" ng-click="vm.resetFinder({exp:' '},9)"></i></div>
                 </div>
                 <div class="tag title" ng-if="!vm.wait">
-                    <span ng-if="findData.step == 1">Марка автомобиля...</span>
+                    <span ng-if="findData.step == 1">Выберите марку автомобиля...</span>
                     <span ng-if="findData.step == 2">Год выпуска автомобиля...</span>
                     <span ng-if="findData.step == 3">Модель автомобиля...</span>
                     <span ng-if="findData.step == 4">Тип кузова...</span>
