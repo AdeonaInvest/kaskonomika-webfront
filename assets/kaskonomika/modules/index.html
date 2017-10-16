@@ -21,9 +21,8 @@
         <script src="js/templates.js"></script>
 
         <!-- Подключение аналитик и визоров -->
-        @@include('../core/includes/yandex.html')
-        @@include('../core/includes/googleanalitics.html', {"goId": "UA-82308901-1"})
-        @@include('../core/includes/google.maps.html', {"googleApiKey": "AIzaSyDR7lYrfjX9vtetK8NwJc-QYNLo_5ECs44"})
+        @@include('../core/includes/google.analytics.html')
+        @@include('../core/includes/google.maps.api.html', {"googleApiKey": "AIzaSyDR7lYrfjX9vtetK8NwJc-QYNLo_5ECs44"})
     </head>
 
     <body ng-controller="appController" class="animated">
@@ -38,5 +37,7 @@
             <!-- Подключение FOOTER -->
             @@include('../modules/footer/footer.html')
         </div>
+
+        @@include('../core/includes/jivosait.html')
     </body>
 </html>

@@ -5,13 +5,12 @@
         .module('kaskonomika')
         .controller('dashboardRoutesController', dashboardRoutesController);
 
-    dashboardRoutesController.$inject = ['$rootScope','$http','config','NgMap'];
+    dashboardRoutesController.$inject = ['$rootScope','$http','config'];
 
-    function dashboardRoutesController($rootScope,$http,config,NgMap) {
+    function dashboardRoutesController($rootScope,$http,config) {
         let vm = this;
 
         vm.carsList = [];
-
 
         vm.setCurrentMonth = setCurrentMonth; //Смена текущего месяца
         vm.getTripTrack = getTripTrack; //Получение детальных данных о поездке. Координаты, события и т.п.
@@ -144,7 +143,6 @@
                                     a.mileage = a.mileage + m.mileage;
                                 })
                             });
-                            xlog('vm.routesMeta',vm.routesMeta)
                         } else {
                             vm.tripsError = {
                                 status: true,
@@ -152,7 +150,6 @@
                             };
                         }
                         vm.waiter = false;
-                        xlog('trips', res.data);
                     } else {
                         vm.tripsError = {
                             status: true,
