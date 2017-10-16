@@ -17,7 +17,7 @@
             issueArray: [], //Array all issues from server
             currentTab: 0, //Start tab in sidaber
             response: {}, //Data from $http.posts
-            step: 1, //Start step
+            step: 6, //Start step
             risks: [], //Array of risks from Execution -> Results
             holder: {},
             drivers: []
@@ -780,6 +780,33 @@
                 };
             };
         }
+
+
+
+        vm.card = {
+            name: 'Mike Brown',
+            number: '5555 4444 3333 1111',
+            expiry: '11 / 2020',
+            cvc: '123'
+        };
+
+        vm.cardPlaceholders = {
+            name: 'Your Full Name',
+            number: 'xxxx xxxx xxxx xxxx',
+            expiry: 'MM/YY',
+            cvc: 'xxx'
+        };
+
+        vm.cardMessages = {
+            validDate: 'valid\nthru',
+            monthYear: 'MM/YYYY',
+        };
+
+        vm.cardOptions = {
+            debug: true,
+            formatting: true,
+            width: 500 //optional
+        };
 
         //--------------- ERROR --------------//
 

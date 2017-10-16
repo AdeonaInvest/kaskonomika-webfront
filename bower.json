@@ -39,7 +39,8 @@
     "angular-loading-bar": "^0.9.0",
     "angularjs-slider": "^6.2.2",
     "cleave.js": "^1.0.1",
-    "ngmap": "^1.0.1"
+    "ngmap": "^1.0.1",
+    "angular-credit-cards": "^3.1.6"
   },
   "resolutions": {
     "angular": "^1.6.4"

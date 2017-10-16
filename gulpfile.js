@@ -53,6 +53,7 @@ var jsPaths = [
     'bower_components/ngmap/build/scripts/ng-map.min.js',
     'node_modules/chart.js/dist/Chart.min.js',
     'node_modules/angular-chart.js/dist/angular-chart.min.js',
+    'bower_components/angular-credit-cards/release/angular-credit-cards.js',
     'sites/src/js/lib/angular-mask.js',
     'sites/src/js/lib/intercom.min.js',
     'sites/src/js/lib/echarts.js',

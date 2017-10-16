@@ -1,0 +1,89 @@
+<div class="form">
+    <h4>Данные об автомобиле</h4>
+    <div class="row row-string">
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Марка автомобиля</label>
+                <input class="form-control" ng-model="vm.findData.mark.mark" disabled="disabled">
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Модель автомобиля</label>
+                <input class="form-control" ng-model="vm.findData.model.model" disabled="disabled">
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Год выпуска</label>
+                <input class="form-control" ng-model="vm.findData.year" disabled="disabled">
+            </div>
+        </div>
+    </div>
+    <div class="row row-string">
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Серия / Номер ПТС</label>
+                <input class="form-control" ng-model="vm.fill.avto.pts.serial" placeholder="1234 567890" mask="9999 999999" restrict="reject">
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Дата выдачи ПТС</label>
+                <input type="date" class="form-control" ng-model="vm.fill.avto.pts.date" placeholder="XX.XX.XXXX">
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <custom-upload index="3" doc="Прикрепить скан ПТС"></custom-upload>
+        </div>
+    </div>
+    <div class="row row-string">
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Серия / Номер СТС</label>
+                <input class="form-control" ng-model="vm.fill.avto.sts.serial" placeholder="1234 567890" mask="9999 999999" restrict="reject">
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Дата выдачи СТС</label>
+                <input type="date" class="form-control" ng-model="vm.fill.avto.sts.date" placeholder="XX.XX.XXXX">
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <custom-upload index="4" doc="Прикрепить скан СТС"></custom-upload>
+        </div>
+    </div>
+    <div class="row row-string">
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Гос. номер</label>
+                <input class="form-control" ng-model="vm.fill.avto.gosNumber" placeholder="A 123 BC 456" mask="A 999 AA 999" restrict="reject" clear="true" limit="true">
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>VIN номер</label>
+                <input class="form-control" ng-model="vm.fill.avto.vin" placeholder="1234567890" clear="true" mask="99999999999999999" limit="true">
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <label>Стоимость авто</label>
+                <input class="form-control" ng-model="vm.findData.filter.sum" ng-value="(vm.findData.filter.sum | number) + ' руб.'" disabled="disabled">
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="col-lg-8 back-step">
+            <a href ng-click="vm.backStep()" ng-if="vm.fill.step > 1 && vm.fill.step < 5">
+                <i class="fa fa-arrow-left"></i>
+                <span>Назад</span>
+            </a>
+        </div>
+        <div class="col-lg-4">
+            <button class="btn btn-kasko" ng-click="vm.nextStep(4)" ng-disabled="!vm.fill.avto.pts.serial || !vm.fill.avto.pts.date || vm.uploader3.queue.length === 0 || !vm.fill.avto.sts.serial || !vm.fill.avto.sts.date || vm.uploader4.queue.length === 0 || !vm.fill.avto.gosNumber || !vm.fill.avto.vin">Продолжить</button>
+        </div>
+    </div>
+</div>

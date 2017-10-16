@@ -7,10 +7,36 @@
     <div class="container-fluid filling-area">
         <div class="container">
             <div class="row">
-                <div ng-class="{'col-lg-7': vm.fill.step !== 5, 'col-lg-12': vm.fill.step === 5}">
-                    <ng-include src="'/filling-insurance/filling-insurance-body.html'" id="filling-insurance-body"></ng-include>
+                <div ng-class="{'col-lg-7': vm.fill.step <= 5, 'col-lg-12': vm.fill.step > 5}" id="filling-insurance-body">
+                    <div class="forms-area" ng-if="!vm.breakFilling">
+                        <div class="forms-header">
+                            <div class="row">
+                                <span class="numbera-area">{{vm.fill.step}}</span>
+                                <span class="title-area">Данные для заключение договора</span>
+                            </div>
+                        </div>
+                        <hr/>
+                        <ng-include src="'/filling-insurance/area-step-1-user.html'"></ng-include>
+                        <ng-include ng-if="vm.fill.step == 2" src="'/filling-insurance/area-step-2-passport.html'"></ng-include>
+                        <ng-include ng-if="vm.fill.step == 3" src="'/filling-insurance/area-step-3-beneficiary.html'"></ng-include>
+                        <ng-include ng-if="vm.fill.step == 4" src="'/filling-insurance/area-step-4-car.html'"></ng-include>
+                        <!--
+                            <ng-include ng-if="vm.fill.step == 5" src="'/filling-insurance/area-step-5-drivers.html'"></ng-include>
+                        -->
+                        <ng-include ng-if="vm.fill.step == 6" src="'/filling-insurance/area-step-6-payment.html'"></ng-include>
+                        <!--
+                            <ng-include ng-if="vm.fill.step == 7" src="'/filling-insurance/area-step-7-ok.html'"></ng-include>
+                        -->
+                        <div class="blocker" ng-if="vm.waiter">
+                            <i class="fa fa-circle-o-notch fa-spin fa-5x"></i>
+                        </div>
+                    </div>
+                    <div class="errors-break-area" ng-if="vm.breakFilling">
+                        <h4>Возникла ошибка. Обратитесь в службу поддержки.</h4>
+                        <a href="/">На главную</a>
+                    </div>
                 </div>
-                <div ng-class="{'col-lg-5': vm.fill.step !== 5, 'ng-hide': vm.fill.step === 5}">
+                <div ng-class="{'col-lg-5': vm.fill.step <= 5, 'ng-hide': vm.fill.step > 5}">
                     <ng-include src="'/filling-insurance/filling-insurance-sidebar.html'" id="filling-insurance-sidebar"></ng-include>
                 </div>
             </div>

@@ -17,149 +17,185 @@
   .filling-area {
     background: #fff;
   }
-  #filling-insurance-body {
-    .forms-area {
-      border: 1px solid #dedede;
-      border-radius: 5px;
-      padding: 20px;
-      .forms-header {
-        .row {
-          margin: 0;
-          padding: 0;
-          .numbera-area {
-            display: block;
-            width: 30px;
-            height: 30px;
-            background: @color-blue;
-            color: #fff;
-            border-radius: 50%;
-            font: 18px/32px @fm-web;
-            text-align: center;
-            float: left;
+  .forms-area {
+    border: 1px solid #dedede;
+    border-radius: 5px;
+    padding: 20px;
+    .forms-header {
+      .row {
+        margin: 0;
+        padding: 0;
+        .numbera-area {
+          display: block;
+          width: 30px;
+          height: 30px;
+          background: @color-blue;
+          color: #fff;
+          border-radius: 50%;
+          font: 18px/32px @fm-web;
+          text-align: center;
+          float: left;
+          transition: .5s ease;
+          &:hover {
+            background: red;
             transition: .5s ease;
-            &:hover {
-              background: red;
-              transition: .5s ease;
-            }
           }
-          .title-area {
-            float: left;
-            font: 20px/30px @fm-web;
-            color: #000;
-            height: 30px;
-            text-align: left;
-            padding: 0 0 0 20px;
-          }
+        }
+        .title-area {
+          float: left;
+          font: 20px/30px @fm-web;
+          color: #000;
+          height: 30px;
+          text-align: left;
+          padding: 0 0 0 20px;
         }
       }
-      .form {
-        h4 {
-          margin-bottom: 20px;
-        }
-        .row-string {
-          margin-top: 10px;
-          margin-bottom: 10px;
-        }
-        .back-step {
-          a {
+    }
+    .form {
+      h4 {
+        margin-bottom: 20px;
+      }
+      .row-string {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      .back-step {
+        a {
+          i {
+            line-height: 40px;
+            color: @color-blue;
+            transition: .2s ease;
+          }
+          span {
+            font: 14px/40px @fm-web;
+            color: @color-blue;
+            transition: .2s ease;
+          }
+          &:hover {
+            text-decoration: none;
             i {
-              line-height: 40px;
-              color: @color-blue;
+              color: @color-blue-hover;
               transition: .2s ease;
             }
             span {
-              font: 14px/40px @fm-web;
-              color: @color-blue;
+              color: @color-blue-hover;
               transition: .2s ease;
             }
-            &:hover {
-              text-decoration: none;
-              i {
-                color: @color-blue-hover;
-                transition: .2s ease;
-              }
-              span {
-                color: @color-blue-hover;
-                transition: .2s ease;
-              }
-            }
-            &:focus {
-              outline: none;
-            }
           }
-        }
-
-      }
-      .form-confirm {
-        .email-confirm-text {
-          font-size: 14px;
-        }
-        .confirm-title {
-          display: block;
-          margin-top: 10px;
-          font: 14px/14px @fm-web;
-        }
-        .btn-confirm {
-          margin-top: 13px;
-        }
-        .errors-area {
-          h4 {
-            text-align: center;
-            font: 14px/14px @fm-web;
+          &:focus {
+            outline: none;
           }
         }
       }
-      .blocker {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        background: rgba(255,255,255,.8);
-        text-align: center;
-        i {
-          display: block;
-          margin-top: 28%;
-          color: #59c6f1;
+      .card-body {
+        width: 500px;
+        margin: 20px auto;
+        padding: 20px 30px;
+        border: 1px solid #3f9ebc;
+        background: @color-blue;
+        border-radius: 5px;
+        .row-string {
+          margin: 20px 0;
+          .form-group {
+            margin: 0;
+          }
+        }
+        @position-x: 93%;
+        @position-y: 90%;
+        @size: 120px;
+        &.Visa {
+          background: url('/src/img/partners/visa.png') no-repeat @color-blue;
+          background-size: @size;
+          background-position-x: @position-x;
+          background-position-y: @position-y;
+        }
+        &.Maestro {
+          background: url('/src/img/partners/maestro.png') no-repeat @color-blue;
+          background-size: @size;
+          background-position-x: @position-x;
+          background-position-y: @position-y;
+        }
+        &.MasterCard {
+          background: url('/src/img/partners/mastercard.png') no-repeat @color-blue;
+          background-size: @size;
+          background-position-x: @position-x;
+          background-position-y: @position-y;
         }
       }
-      .final-step-title {
-        font: 18px/24px @fm-web;
+      .confirm-area {
+        width: 500px;
+        margin: 0 auto 20px;
       }
     }
-    .errors-break-area {
-      width: 100%;
-      border-radius: 5px;
-      background: #e76363;
-      text-align: center;
-      padding: 30px;
-      h4 {
-        font: 20px/20px @fm-bold;
-        color: #fff;
-        text-align: center;
-        margin: 0 auto 30px;
-        display: block;
+    .form-confirm {
+      .email-confirm-text {
+        font-size: 14px;
       }
-      a {
-        color: #cecece;
-        font: 18px/22px @fm-web;
-        border-bottom: 1px dashed #cecece;
-        text-align: center;
+      .confirm-title {
         display: block;
-        margin: auto;
-        width: 100px;
+        margin-top: 10px;
+        font: 14px/14px @fm-web;
+      }
+      .btn-confirm {
+        margin-top: 13px;
+      }
+      .errors-area {
+        h4 {
+          text-align: center;
+          font: 14px/14px @fm-web;
+        }
+      }
+    }
+    .blocker {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: rgba(255,255,255,.8);
+      text-align: center;
+      i {
+        display: block;
+        margin-top: 28%;
+        color: #59c6f1;
+      }
+    }
+    .final-step-title {
+      font: 18px/24px @fm-web;
+    }
+  }
+  .errors-break-area {
+    width: 100%;
+    border-radius: 5px;
+    background: #e76363;
+    text-align: center;
+    padding: 30px;
+    h4 {
+      font: 20px/20px @fm-bold;
+      color: #fff;
+      text-align: center;
+      margin: 0 auto 30px;
+      display: block;
+    }
+    a {
+      color: #cecece;
+      font: 18px/22px @fm-web;
+      border-bottom: 1px dashed #cecece;
+      text-align: center;
+      display: block;
+      margin: auto;
+      width: 100px;
+      transition: .2s ease;
+      &:hover {
+        color: #fff;
+        border-bottom: 1px solid #fff;
+        outline: none;
+        text-decoration: none;
         transition: .2s ease;
-        &:hover {
-          color: #fff;
-          border-bottom: 1px solid #fff;
-          outline: none;
-          text-decoration: none;
-          transition: .2s ease;
-        }
-        &:focus {
-          outline: none;
-          text-decoration: none;
-        }
+      }
+      &:focus {
+        outline: none;
+        text-decoration: none;
       }
     }
   }

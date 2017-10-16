@@ -1,0 +1,59 @@
+<div class="form" id="payment-form">
+    <h4>Данные для оплаты</h4>
+    <div class="card-body" ng-class="{'Maestro': cardForm.ccNumber.$ccEagerType === 'Maestro', 'Visa':cardForm.ccNumber.$ccEagerType==='Visa','MasterCard':cardForm.ccNumber.$ccEagerType==='MasterCard'}">
+        <form name="cardForm">
+            <div class="row row-string">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label>Номер карты</label>
+                        <input class="form-control" ng-model="vm.fill.card.number" cc-number cc-eager-type name="ccNumber" placeholder="1234 5678 9012 3456" mask="9999 9999 9999 9999 99" restrict="reject" validate="false">
+                    </div>
+                </div>
+            </div>
+            <div class="row row-string">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label>Имя держателя карты</label>
+                        <input class="form-control text-uppercase" ng-model="vm.fill.card.owner" placeholder="ARYA STARK" mask="@?s?" mask-repeat="50" restrict="reject" validate="false">
+                    </div>
+                </div>
+            </div>
+            <div class="row row-string">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>Дата окончания</label>
+                        <input class="form-control" ng-model="vm.fill.card.date" placeholder="12 / 34" mask="99 / 99" restrict="reject" validate="false">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        <label>CVC код</label>
+                        <input type="password" class="form-control" ng-model="vm.fill.card.code" placeholder="123" mask="9999" restrict="reject" validate="false">
+                    </div>
+                </div>
+                <div class="col-lg-4 hidden-md hidden-sm hidden-xs"></div>
+            </div>
+        </form>
+    </div>
+    <div class="row confirm-area">
+        <div class="col-lg-12">
+            <div class="checkbox custom-checkbox">
+                <input class="hidden" type="checkbox" ng-model="vm.fill.card.confirm">
+                <label ng-click="vm.fill.card.confirm = !vm.fill.card.confirm">
+                    <span><b>Я ознакомился и согласен</b> с условиями <a href="/privacy-policy" target="_blank">обработки персональных данных</a>, даю согласие на передачу указанных данных третьим лицам.</span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <button class="btn btn-kasko btn-kasko-lg" ng-disabled="!vm.fill.card.confirm || vm.waitSaveChanges" ng-click="vm.nextStep(8)">
+                <span ng-if="!vm.waitSaveChanges">Продолжить</span>
+                <span ng-if="vm.waitSaveChanges">
+                    <i class="fa fa-spin fa-circle-o-notch"></i>
+                </span>
+            </button>
+        </div>
+    </div>
+
+</div>
