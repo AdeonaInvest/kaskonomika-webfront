@@ -8,7 +8,7 @@
     carFinderController.$inject = ['$rootScope','$scope','$http','$location','$timeout','config','$route'];
 
     function carFinderController($rootScope,$scope,$http,$location,$timeout,config,$route) {
-        
+
         ///////////////////
         let vm = this;
         vm.view = false; //Статус готовности отображения
@@ -79,7 +79,7 @@
          * Получение списка марок автомобилей
          */
         function getMarks(){
-            $http.get(config.api + 'dictionaries/marks')
+            $http.get(config.api + 'dictionaries/marks3')
                 .then(function(response){
                     if (response.data.result) {
                         $rootScope.allData.marks = response.data.response;
@@ -93,7 +93,7 @@
         function getYear(mark){
             $rootScope.findData.is_open = false;
             vm.wait = true;
-            $http.get(config.api + 'dictionaries/marks/' + mark)
+            $http.get(config.api + 'dictionaries/marks3/' + mark)
                 .then(function(response){
                     if (response.data.result) {
                         $rootScope.allData.year = response.data.response;
@@ -110,7 +110,7 @@
         function getModels(year) {
             $rootScope.findData.is_open = false;
             vm.wait = true;
-            $http.get(config.api + 'dictionaries/marks/' + $rootScope.findData.mark.mark + '/' + year)
+            $http.get(config.api + 'dictionaries/marks3/' + $rootScope.findData.mark.mark + '/' + year)
                 .then(function(response){
                     if (response.data.result) {
                         $rootScope.allData.models = response.data.response;
@@ -127,7 +127,7 @@
         function getBodyTypes(model){
             $rootScope.findData.is_open = false;
             vm.wait = true;
-            $http.get(config.api + 'dictionaries/marks2/' + $rootScope.findData.mark.mark + '/' + $rootScope.findData.year + '/' + model)
+            $http.get(config.api + 'dictionaries/marks3/' + $rootScope.findData.mark.mark + '/' + $rootScope.findData.year + '/' + model) //2
                 .then(function(response){
                     if (response.data.result) {
                         $rootScope.allData.bodyType = response.data.response;
@@ -144,7 +144,7 @@
         function getGearBox(){
             $rootScope.findData.is_open = false;
             vm.wait = true;
-            $http.get(config.api + 'dictionaries/marks2/' + $rootScope.findData.mark.mark + '/' + $rootScope.findData.year + '/' + $rootScope.findData.model.model + '/' + $rootScope.findData.bodyType.id)
+            $http.get(config.api + 'dictionaries/marks3/' + $rootScope.findData.mark.mark + '/' + $rootScope.findData.year + '/' + $rootScope.findData.model.model + '/' + $rootScope.findData.bodyType.id) //2
                 .then(function(response){
                     if (response.data.result) {
                         $rootScope.allData.gear = response.data.response;
@@ -161,7 +161,7 @@
         function getModification(){
             $rootScope.findData.is_open = false;
             vm.wait = true;
-            $http.get(config.api + 'dictionaries/marks2/' + $rootScope.findData.mark.mark + '/' + $rootScope.findData.year + '/' + $rootScope.findData.model.model + '/' + $rootScope.findData.bodyType.id + '/' + $rootScope.findData.gear.id)
+            $http.get(config.api + 'dictionaries/marks3/' + $rootScope.findData.mark.mark + '/' + $rootScope.findData.year + '/' + $rootScope.findData.model.model + '/' + $rootScope.findData.bodyType.id + '/' + $rootScope.findData.gear.id) //2
                 .then(function(response){
                     if (response.data.result) {
                         $rootScope.allData.mod = response.data.response;
@@ -204,7 +204,7 @@
             })
 
         }
-        
+
         /**
          * Получение списка опыта
          */
@@ -262,7 +262,7 @@
             if (age) {
                 age = age.toString();
                 var last = age.length,
-                key = parseInt(age[last-1]);
+                    key = parseInt(age[last-1]);
                 if (key == 1) {
                     return ' год';
                 } else if (key == 2 || key == 3 || key == 4) {
