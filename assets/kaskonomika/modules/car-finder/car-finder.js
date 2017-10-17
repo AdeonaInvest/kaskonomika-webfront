@@ -79,7 +79,7 @@
          * Получение списка марок автомобилей
          */
         function getMarks(){
-            $http.get(config.api + 'dictionaries/marks3')
+            $http.get(config.api + 'dictionaries/marks')
                 .then(function(response){
                     if (response.data.result) {
                         $rootScope.allData.marks = response.data.response;
@@ -93,7 +93,7 @@
         function getYear(mark){
             $rootScope.findData.is_open = false;
             vm.wait = true;
-            $http.get(config.api + 'dictionaries/marks3/' + mark)
+            $http.get(config.api + 'dictionaries/marks/' + mark)
                 .then(function(response){
                     if (response.data.result) {
                         $rootScope.allData.year = response.data.response;
@@ -110,7 +110,7 @@
         function getModels(year) {
             $rootScope.findData.is_open = false;
             vm.wait = true;
-            $http.get(config.api + 'dictionaries/marks3/' + $rootScope.findData.mark.mark + '/' + year)
+            $http.get(config.api + 'dictionaries/marks/' + $rootScope.findData.mark.mark + '/' + year)
                 .then(function(response){
                     if (response.data.result) {
                         $rootScope.allData.models = response.data.response;
@@ -127,12 +127,17 @@
         function getBodyTypes(model){
             $rootScope.findData.is_open = false;
             vm.wait = true;
-            $http.get(config.api + 'dictionaries/marks3/' + $rootScope.findData.mark.mark + '/' + $rootScope.findData.year + '/' + model) //2
+            $http.get(config.api + 'dictionaries/marks2/' + $rootScope.findData.mark.mark + '/' + $rootScope.findData.year + '/' + model) //2
                 .then(function(response){
                     if (response.data.result) {
                         $rootScope.allData.bodyType = response.data.response;
-                        $rootScope.findData.step = 4;
-                        $rootScope.findData.is_open = true;
+                        if ($rootScope.allData.bodyType.length === 1) {
+                            $rootScope.findData.bodyType = $rootScope.allData.bodyType[0];
+                            getGearBox();
+                        } else {
+                            $rootScope.findData.step = 4;
+                            $rootScope.findData.is_open = true;
+                        }
                         vm.wait = false;
                     }
                 })
@@ -144,12 +149,17 @@
         function getGearBox(){
             $rootScope.findData.is_open = false;
             vm.wait = true;
-            $http.get(config.api + 'dictionaries/marks3/' + $rootScope.findData.mark.mark + '/' + $rootScope.findData.year + '/' + $rootScope.findData.model.model + '/' + $rootScope.findData.bodyType.id) //2
+            $http.get(config.api + 'dictionaries/marks2/' + $rootScope.findData.mark.mark + '/' + $rootScope.findData.year + '/' + $rootScope.findData.model.model + '/' + $rootScope.findData.bodyType.id) //2
                 .then(function(response){
                     if (response.data.result) {
                         $rootScope.allData.gear = response.data.response;
-                        $rootScope.findData.step = 5;
-                        $rootScope.findData.is_open = true;
+                        if ($rootScope.allData.gear.length === 1) {
+                            $rootScope.findData.gear = $rootScope.allData.gear[0];
+                            getModification();
+                        } else {
+                            $rootScope.findData.step = 5;
+                            $rootScope.findData.is_open = true;
+                        }
                         vm.wait = false;
                     }
                 })
@@ -161,7 +171,7 @@
         function getModification(){
             $rootScope.findData.is_open = false;
             vm.wait = true;
-            $http.get(config.api + 'dictionaries/marks3/' + $rootScope.findData.mark.mark + '/' + $rootScope.findData.year + '/' + $rootScope.findData.model.model + '/' + $rootScope.findData.bodyType.id + '/' + $rootScope.findData.gear.id) //2
+            $http.get(config.api + 'dictionaries/marks2/' + $rootScope.findData.mark.mark + '/' + $rootScope.findData.year + '/' + $rootScope.findData.model.model + '/' + $rootScope.findData.bodyType.id + '/' + $rootScope.findData.gear.id) //2
                 .then(function(response){
                     if (response.data.result) {
                         $rootScope.allData.mod = response.data.response;

@@ -325,7 +325,7 @@
             if (!vm.userPhone.popover) {
                 vm.userPhone.popover = true;
             } else {
-                if (vm.userPhone.phone.length  === 12) {
+                if (vm.userPhone.phone.length > 12) {
                     vm.userPhone.error = false;
                     let data = {
                         region: 'Москва и область',

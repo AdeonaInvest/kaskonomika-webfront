@@ -25,10 +25,7 @@
         <h4 class="popover-item-title">ОСТАВЬТЕ НОМЕР ТЕЛЕФОНА, ЧТОБЫ МЫ МОГЛИ СВЯЗАТЬСЯ С ВАМИ</h4>
         <div class="row">
             <div class="col-lg-4" ng-class="{'has-error' : vm.userPhone.error}">
-                <input type="text" class="form-control" ng-model="vm.userPhone.phone" placeholder="+7 XXX XXX XX XX" cleave="vm.userPhone.cleave"/>
-            </div>
-            <div class="col-lg-8 animated fadeIn error-phone" ng-if="vm.userPhone.error">
-                <span>Номер телефона введен в неверном формате, номер должен начинаться с +7</span>
+                <input class="form-control" ng-model="vm.userPhone.phone" placeholder="+7 XXX XXX XX XX" mask="+9 (999) 999-99-99"/>
             </div>
         </div>
     </div>
