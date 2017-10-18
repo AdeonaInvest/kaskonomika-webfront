@@ -16,7 +16,8 @@
             'chart.js',
             'ngMask',
             'angularFileUpload',
-            'credit-cards'
+            'credit-cards',
+            'angular-click-outside'
         ])
         .constant('config', {
             version: '0.0.1', //Текущая версия сайта

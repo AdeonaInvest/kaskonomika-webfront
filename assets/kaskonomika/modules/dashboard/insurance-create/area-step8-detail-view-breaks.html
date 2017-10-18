@@ -1,0 +1,20 @@
+<div class="row guilty-type step-area">
+    <hr/>
+    <span class="span-step">Шаг 6</span>
+    <span class="span-step-title">Детальный вид повреждений</span>
+    <div class="animated zoomIn">
+        <div class="row">
+            <div class="col-lg-4">
+                <custom-upload index="25" multi="1" doc="Загрузить фотографию"></custom-upload>
+            </div>
+        </div>
+        <div class="row imgs-area">
+            <div class="img-item" ng-repeat="(key,item) in vm.issue.uploader[25]">
+                <div class=" animated zoomIn">
+                    <img ng-src="{{item}}"/>
+                    <i class="fa fa-trash-o" ng-click="vm.clearQueue({index: 25, key: key+1})"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

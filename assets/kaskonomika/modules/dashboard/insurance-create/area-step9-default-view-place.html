@@ -5,13 +5,13 @@
     <span class="span-step-desc">Отойдите на 15-30 метров от места происшествия и сделайте несколько фото общего плана с разных сторон. Важно чтобы на фото было видно пострадавшие автомобили, дорожные знаки, дорожную разметку, номера домов и прочие ориентиры.</span>
     <div class="row animated zoomIn">
         <div class="upload-btn col-lg-3" ng-if="vm.uploaderCreated">
-            <custom-upload index="3" multi="1" doc="Загрузить фотографию"></custom-upload>
+            <custom-upload index="26" multi="1" doc="Загрузить фотографию"></custom-upload>
         </div>
     </div>
     <div class="row imgs-area animated zoomIn">
-        <div class="img-item" ng-repeat="(key,item) in vm.issue.uploader[3]">
+        <div class="img-item" ng-repeat="(key,item) in vm.issue.uploader[26]">
             <img ng-src="{{item}}"/>
-            <i class="fa fa-trash-o" ng-click="vm.clearQueue({index: 3, key: key+1})"></i>
+            <i class="fa fa-trash-o" ng-click="vm.clearQueue({index: 26, key: key+1})"></i>
         </div>
     </div>
 

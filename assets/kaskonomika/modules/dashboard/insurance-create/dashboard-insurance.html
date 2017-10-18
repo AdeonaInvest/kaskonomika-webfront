@@ -15,43 +15,43 @@
                 <div class="container">
 
                     <!-- ТИП ПРОИСШЕСТВИЯ -- 1 --->
-                    <ng-include src="'/dashboard/insurance-create/area-event-type.html'" ng-if="vm.incidentList"></ng-include>
+                    <ng-include src="'/dashboard/insurance-create/area-step1-event-type.html'" ng-if="vm.incidentList"></ng-include>
 
                     <!-- КТО ВИНОВЕН В ПРОИСШЕСТВИИ? -- 2 --->
-                    <ng-include src="'/dashboard/insurance-create/area-issue-type.html'" ng-if="vm.guiltyType"></ng-include>
+                    <ng-include src="'/dashboard/insurance-create/area-step2-issue-type.html'" ng-if="vm.guiltyType"></ng-include>
 
-                    <!-- ДАННЫЕ ИНОГО ЛИЦА --->
-                    <ng-include src="'/dashboard/insurance-create/area-issue-data.html'" ng-if="vm.issue.guiltyType === '4'"></ng-include>
+                    <!-- ДАННЫЕ ИНОГО ЛИЦА -- 3 --->
+                    <ng-include src="'/dashboard/insurance-create/area-step3-issue-data.html'" ng-if="vm.issue.guiltyType === '4'"></ng-include>
 
-                    <!-- КАРТА МЕСТА ПРОИСШЕСТВИЯ -- 3 --->
-                    <ng-include src="'/dashboard/insurance-create/area-map-place.html'" ng-if="vm.issue.guilty || vm.issue.guiltyType === '3'"></ng-include>
+                    <!-- КАРТА МЕСТА ПРОИСШЕСТВИЯ -- 4 --->
+                    <ng-include src="'/dashboard/insurance-create/area-step4-map-place.html'" ng-if="vm.issue.guilty || vm.issue.guiltyType === '3'"></ng-include>
 
-                    <!-- ОПИСАНИЕ СОБЫТИЙ ПРОИСШЕСТВИЯ --->
-                    <ng-include src="'/dashboard/insurance-create/area-write-events.html'" ng-if="vm.issue.mapAddress || vm.issue.mapMarker"></ng-include>
+                    <!-- ОПИСАНИЕ СОБЫТИЙ ПРОИСШЕСТВИЯ -- 5 --->
+                    <ng-include src="'/dashboard/insurance-create/area-step5-write-events.html'" ng-if="vm.issue.mapAddress || vm.issue.mapMarker"></ng-include>
 
-                    <!-- ПОВРЕЖДЕННЫЕ ЭЛЕМЕНТЫ ПРОИСШЕСТВИЯ --->
-                    <ng-include src="'/dashboard/insurance-create/area-break-elements.html'" ng-if="vm.issue.myVersion.length > 1"></ng-include>
+                    <!-- ПОВРЕЖДЕННЫЕ ЭЛЕМЕНТЫ ПРОИСШЕСТВИЯ -- 6 --->
+                    <ng-include src="'/dashboard/insurance-create/area-step6-break-elements.html'" ng-if="vm.issue.myVersion.length > 1"></ng-include>
 
-                    <!-- ОБЩИЙ ВИД АВТОМОБИЛЯ С 4 СТОРОН -- 5 --->
-                    <ng-include src="'/dashboard/insurance-create/area-default-view-avto.html'" ng-if="vm.uploaderCreated"></ng-include>
+                    <!-- ОБЩИЙ ВИД АВТОМОБИЛЯ С 4 СТОРОН -- 7 --->
+                    <ng-include src="'/dashboard/insurance-create/area-step7-default-view-avto.html'" ng-if="vm.uploaderCreated"></ng-include>
 
-                    <!-- ДЕТАЛЬНЫЙ ВИД ПОВРЕЖДЕНИЙ  -- 6 --->
-<!--
-                    <ng-include src="'/dashboard/insurance-create/area-detail-view-breaks.html'" ng-if="vm.issue.uploader[24].length > 0"></ng-include>
--->
-                    <ng-include src="'/dashboard/insurance-create/area-detail-view-breaks.html'"></ng-include>
+                    <!-- ДЕТАЛЬНЫЙ ВИД ПОВРЕЖДЕНИЙ  -- 8 --->
+                    <ng-include src="'/dashboard/insurance-create/area-step8-detail-view-breaks.html'" ng-if="vm.issue.uploader[24].length > 0"></ng-include>
 
-                    <!-- ОБЩИЙ ВИД МЕСТА ДТП -- 7 --->
-                    <ng-include src="'/dashboard/insurance-create/area-default-view-place.html'" ng-if="vm.issue.uploader[2].length > 0"></ng-include>
+                    <!-- ОБЩИЙ ВИД МЕСТА ДТП -- 9 --->
+                    <ng-include src="'/dashboard/insurance-create/area-step9-default-view-place.html'" ng-if="vm.issue.uploader[25].length > 0"></ng-include>
 
-                    <!-- ФОТО ОДОМЕТРА ПОСЛЕ ДТС -- 8 --->
-                    <ng-include src="'/dashboard/insurance-create/area-photo-odometer.html'" ng-if="vm.issue.uploader[3].length > 0"></ng-include>
+                    <!-- ФОТО ОДОМЕТРА ПОСЛЕ ДТС -- 10 --->
+                    <ng-include src="'/dashboard/insurance-create/area-step10-photo-odometer.html'" ng-if="vm.issue.uploader[26].length > 0"></ng-include>
 
-                    <!-- ФОТО VIN-НОМЕРА -- 9 --->
-                    <ng-include src="'/dashboard/insurance-create/area-photo-vin.html'" ng-if="vm.issue.uploader[4].length > 0"></ng-include>
+                    <!-- ФОТО VIN-НОМЕРА -- 11 --->
+                    <ng-include src="'/dashboard/insurance-create/area-step11-photo-vin.html'" ng-if="vm.issue.uploader[4].length > 0"></ng-include>
 
-                    <!-- ОБЪЯСНЯЛОВКА -- 9 --->
-                    <ng-include src="'/dashboard/insurance-create/area-instruction.html'" ng-if="!vm.activeIncident"></ng-include>
+                    <!-- КНОПКА ГОТОВНОСТИ -- 12 --->
+                    <ng-include src="'/dashboard/insurance-create/area-step12-result.html'" ng-if="vm.issue.uploader[5].length > 0"></ng-include>
+
+                    <!-- ОБЪЯСНЯЛОВКА -- 13 --->
+                    <ng-include src="'/dashboard/insurance-create/area-step0-instruction.html'" ng-if="!vm.activeIncident"></ng-include>
             </div>
             </div>
         </div>

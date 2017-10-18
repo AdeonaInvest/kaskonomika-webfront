@@ -65,7 +65,7 @@
             getLocalData(); //Получение данных о token'е из localStorage
             setRulesForMap(); //Получние прав и определение координат пользователя
 
-            createUploaders();
+            //createUploaders();
         }
 
         /**
@@ -206,13 +206,16 @@
          * Таймер на срабатываение после указания количества поврежденных деталей
          */
         $scope.$watch('vm.issue.repairCount',function(){
-            clearTimeout(vm.awaitLosses);
-            vm.awaitLosses = setTimeout(function(){
-                if (vm.issue.repairCount > 0 && vm.lossesAwait === 0) {
-                    vm.lossesAwait = 1;
-                    createLossesApplication();
-                }
-            },2000)
+            if (vm.issue.repairCount !== 0) {
+                vm.waitLossesApp = true;
+                clearTimeout(vm.awaitLosses);
+                vm.awaitLosses = setTimeout(function(){
+                    if (vm.issue.repairCount > 0 && vm.lossesAwait === 0) {
+                        vm.lossesAwait = 1;
+                        createLossesApplication();
+                    }
+                },2000)
+            }
         });
 
         /**
@@ -255,6 +258,7 @@
                     if (res.data.result) {
                         vm.issue.lossesId = res.data.response;
                         vm.lossesAwait = 2;
+                        vm.waitLossesApp = false;
                         //TODO открыть после установления нормального сценария
                         createUploaders();
                     } else {

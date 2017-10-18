@@ -20,12 +20,14 @@
             step: 6, //Start step
             risks: [], //Array of risks from Execution -> Results
             holder: {},
-            drivers: []
+            drivers: [],
+            payment: {}
         };
 
         vm.nextStep = nextStep;
         vm.setNewCurrentIssue = setNewCurrentIssue;
         vm.clearQueue = clearQueue;
+        vm.backStep = backStep;
         vm.backStep = backStep;
 
         activate();
@@ -67,7 +69,6 @@
                 $location.path('/')
             }
         }
-
 
         //Go to the next step with any properties
         function nextStep(step) {
@@ -283,6 +284,9 @@
                         })
                 }
             }
+            else if (step === 6) {
+                createBilling(); //Создание объекта платежа
+            }
         }
 
         /**
@@ -413,6 +417,7 @@
         }
 
         //---------------------------------------------------- STEPS FUNCTIONS ----------------------------------/
+
         //--------------- STEP 2 --------------//
 
         /**
@@ -765,6 +770,7 @@
                     $http.post(config.api + 'policies/create',data)
                         .then(function(res){
                             if (res.data.result) {
+                                vm.fill.created_policy_id = res.data.response;
                                 vm.fill.step++; //Go to the next step
                                 getExecute();
                                 vm.waiter = false;
@@ -782,31 +788,63 @@
         }
 
 
+        //----------------------------------------- ПРОЦЕСС ОПЛАТЫ --------------------------------------//
 
-        vm.card = {
-            name: 'Mike Brown',
-            number: '5555 4444 3333 1111',
-            expiry: '11 / 2020',
-            cvc: '123'
-        };
+        /**
+         * Создание объекта платежа
+         */
+        function createBilling() {
+            vm.waiter = true;
+            $http.post(config.api + 'billing/create/' + vm.fill.created_policy_id, {token: $rootScope.currentToken})
+                .then(function(res){
+                    if (res.data.result === true) {
+                        vm.fill.payment.billing_id = res.data.response;
+                        createPayment(); //Создание платежа и получение ID платежа
+                    } else {
+                        vm.waiter = false;
+                        xerror('MODULE : FILLING : createBilling() $http.post failure ->',res.data.response.message);
+                    }
+                })
+        }
 
-        vm.cardPlaceholders = {
-            name: 'Your Full Name',
-            number: 'xxxx xxxx xxxx xxxx',
-            expiry: 'MM/YY',
-            cvc: 'xxx'
-        };
+        /**
+         * Создание платежа и получение ID платежа
+         */
+        function createPayment() {
+            let data = {
+                token: $rootScope.currentToken,
+                billing_id: vm.fill.payment.billing_id,
+                payment_type: 1,
+                sum: vm.findData.filter.sum,
+                successUrl: 'http://localhost:3001/04.4_payment.html?policyId[]=193&payedPolicyId=193&paymentResult=success',
+                failUrl: 'http://localhost:3001/04.4_payment.html?policyId[]=193&payedPolicyId=193&paymentResult=fail'
+            };
+            $http.post(config.api + 'payments/card/create',data)
+                .then(function(res){
+                    if (res.data.result === true) {
+                        vm.fill.payment.id = res.data.response;
+                        createPaymentDebit(vm.fill.payment.id);
+                    }
+                })
+        }
 
-        vm.cardMessages = {
-            validDate: 'valid\nthru',
-            monthYear: 'MM/YYYY',
-        };
-
-        vm.cardOptions = {
-            debug: true,
-            formatting: true,
-            width: 500 //optional
-        };
+        function createPaymentDebit(id) {
+            let data = {
+                token: $rootScope.currentToken,
+                card_number: vm.fill.card.number,
+                card_holder: vm.fill.card.owner,
+                card_year: '20' + parseInt(vm.fill.card.date.split('/')[0]),
+                card_month: parseInt(vm.fill.card.date.split('/')[1]),
+                card_cvc: vm.fill.card.code
+            };
+            $http.post(config.api + 'payments/card/debit/' + id,data)
+                .then(function(res){
+                    if (res.data.result === true) {
+                        vm.fill.step++; //Go to the next step
+                        vm.waiter = false;
+                    }
+                })
+        }
 
         //--------------- ERROR --------------//
 

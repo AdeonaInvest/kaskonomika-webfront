@@ -49,5 +49,8 @@
                     ng-click="(vm.issue.repairCount < 25 && vm.lossesAwait !== 2) ? (vm.issue.repairCount = vm.issue.repairCount + 1) : null"
                     ng-class="{'_disabled': vm.issue.repairCount === 25, '_disabled': vm.lossesAwait === 2}">+</button>
         </div>
+        <div class="row ta-center" ng-if="vm.waitLossesApp">
+            <i class="fa fa-5x fa-spin fa-circle-o-notch color-blue"></i>
+        </div>
     </div>
 </div>
