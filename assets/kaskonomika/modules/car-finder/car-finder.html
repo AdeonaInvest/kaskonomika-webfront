@@ -7,14 +7,14 @@
             <div class="steps-area">
                 <div class="row title-area">
                     <div class="col-xs-3">
-                        <span ng-class="{'active' : findData.step !== 20}"
+                        <span ng-class="{'active' : findData.step !== 20, '_no_click' : findData.step < 7}"
                               ng-click="(findData.step > 6 && findData.step !== 20) ? vm.resetFinder({mark:' ',year:' ',model:' ',bodyType: ' ',gear:' ',mod:' ',driver:' ',age:' ', exp:' '},1) : null">
                             Автомобиль
                         </span>
                     </div>
                     <div class="col-xs-3">
-                        <span ng-class="{active: findData.step > 6 && findData.step !== 20}"
-                              ng-click="(findData.step > 8 && findData.step !== 20) ? vm.resetFinder({driver:' ',age:' ', exp:' '},7) : null">
+                        <span ng-class="{'active': findData.step > 6 && findData.step !== 20, '_no_click': findData.step > 6 && findData.step < 11}"
+                              ng-click="(findData.step > 10 && findData.step !== 20) ? vm.resetFinder({driver:' ',age:' ', exp:' '},7) : null">
                             Водители
                         </span>
                     </div>

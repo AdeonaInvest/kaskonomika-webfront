@@ -17,7 +17,7 @@
             issueArray: [], //Array all issues from server
             currentTab: 0, //Start tab in sidaber
             response: {}, //Data from $http.posts
-            step: 6, //Start step
+            step: 5, //Start step
             risks: [], //Array of risks from Execution -> Results
             holder: {},
             drivers: [],
@@ -29,6 +29,7 @@
         vm.clearQueue = clearQueue;
         vm.backStep = backStep;
         vm.backStep = backStep;
+        vm.getBanksList = getBanksList;
 
         activate();
         function activate() {
@@ -405,6 +406,9 @@
             vm.fill.step--;
         }
 
+        function getBanksList(){
+
+        }
 
         /**
          * Set new current Tab
@@ -922,8 +926,7 @@
 
         $scope.$watch('vm.fill',function(){
             xlog('vm.fill change', vm.fill);
-        })
-
+        });
 
     }
 })();

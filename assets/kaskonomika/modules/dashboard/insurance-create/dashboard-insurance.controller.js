@@ -14,7 +14,12 @@
         vm.issue = {
             repairCount: 0,
             uploader: [],
-            mapCenter: 'Москва'
+            sd: {},
+            mapCenter: 'Москва',
+            repairGlass: false,
+            repairLighting: false,
+            repairMirrors: false,
+            repairBody: false,
         };
         vm.activeIncident = 0;
         vm.lossesAwait = 0; // 0 - стоп, 1 - ожидаение, 2 - завершение
@@ -58,6 +63,8 @@
         vm.getGuiltyDrivers = getGuiltyDrivers;
         vm.clearQueue = clearQueue;
         vm.editGoogleMap = editGoogleMap;
+        vm.insuranceReady = insuranceReady;
+        vm.showStepThree = showStepThree;
 
         activate();
         ///////////////////
@@ -167,7 +174,6 @@
                 })
         }
 
-
         /**
          * Получние прав и определение координат пользователя
          */
@@ -260,9 +266,67 @@
                         vm.lossesAwait = 2;
                         vm.waitLossesApp = false;
                         //TODO открыть после установления нормального сценария
-                        createUploaders();
+                        getDocumentAdditionalList();
                     } else {
                         xerror('MODULE : DASHBOARD : INSURANCE_CREATE : createLossesApplication()')
+                    }
+                })
+        }
+
+        function showStepThree() {
+            if (vm.issue.guiltyType) {
+                if (vm.issue.guiltyType === '4' || vm.issue.guiltyType === '5') {
+                    if (vm.issue.sd.first_name && vm.issue.sd.name && vm.issue.sd.middle_name && vm.issue.sd.birthday && vm.issue.sd.reg_address && vm.issue.sd.doc_type && vm.issue.sd.doc_serial && vm.issue.sd.doc_date && vm.issue.sd.phone && vm.issue.sd.doc_owner && vm.issue.sd.car_model && vm.issue.sd.car_year && vm.issue.sd.car_number && vm.issue.sd.car_vin && vm.issue.sd.car_sts_serial && vm.issue.sd.car_sts_number && vm.issue.sd.osago_number && vm.issue.sd.osago_name && vm.issue.sd.osago_date) {
+                        return true
+                    }
+                } else {
+                    return true
+                }
+            } else if (vm.issue.guilty) {
+                return true
+            } else {
+                return false
+            }
+        }
+
+        function getDocumentAdditionalList() {
+            let data = {
+                token:  vm.token,
+                losses_companies_id: vm.activeIncident.id,
+                variant_id: vm.issue.variant,
+                guilty_type_id: vm.issue.guiltyType,
+                is_glass: vm.issue.repairGlass,
+                is_light: vm.issue.repairLighting,
+                is_mirror: vm.issue.repairMirrors,
+                is_body: vm.issue.repairBody,
+                parts_count: vm.issue.repairCount
+            };
+            $http.post(config.api + 'losses/documents_required_list',data)
+                .then(function(res){
+                    if (res.data.result) {
+                        vm.addDocumentsList = {};
+                        vm.addDocumentsList.docs = res.data.response;
+                        vm.addDocumentsList.number = vm.addDocumentsList.docs.length;
+                        createUploaders();
+                    }
+
+                })
+        }
+        /**
+         * Утверждение заявления и отправка данных на сервер
+         */
+        function insuranceReady() {
+            let date = new Date(),
+                data = {
+
+                };
+            $http.post(config.api + 'losses/applications/create',data)
+                .then(function (res) {
+                    if (res.data.result) {
+                        //TODO открыть после установления нормального сценария
+
+                    } else {
+                        xerror('MODULE : DASHBOARD : INSURANCE_CREATE : insuranceReady() $http failure')
                     }
                 })
         }
@@ -320,7 +384,7 @@
                 withCredentials: false
             };
             // Создание массива для загрузчиков
-            for (let i = 21; i <= 25; i++) {
+            for (let i = 21; i <= 50; i++) {
                 vm['uploader'+i] = new FileUploader(vm.uOstep5);
                 vm.issue.uploader.push([]);
 

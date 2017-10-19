@@ -13,6 +13,7 @@
     function customUpload() {
         return {
             template: function(elem, attr) {
+                let index = attr.index;
                 if (attr.multi === '1') {
                     return '<div class="custom-upload">' +
                         '<div>' +

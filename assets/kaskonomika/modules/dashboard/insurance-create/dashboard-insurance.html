@@ -21,10 +21,10 @@
                     <ng-include src="'/dashboard/insurance-create/area-step2-issue-type.html'" ng-if="vm.guiltyType"></ng-include>
 
                     <!-- ДАННЫЕ ИНОГО ЛИЦА -- 3 --->
-                    <ng-include src="'/dashboard/insurance-create/area-step3-issue-data.html'" ng-if="vm.issue.guiltyType === '4'"></ng-include>
+                    <ng-include src="'/dashboard/insurance-create/area-step3-issue-data.html'" ng-if="vm.issue.guiltyType === '4' || vm.issue.guiltyType === '5'"></ng-include>
 
                     <!-- КАРТА МЕСТА ПРОИСШЕСТВИЯ -- 4 --->
-                    <ng-include src="'/dashboard/insurance-create/area-step4-map-place.html'" ng-if="vm.issue.guilty || vm.issue.guiltyType === '3'"></ng-include>
+                    <ng-include src="'/dashboard/insurance-create/area-step4-map-place.html'" ng-if="vm.showStepThree()"></ng-include>
 
                     <!-- ОПИСАНИЕ СОБЫТИЙ ПРОИСШЕСТВИЯ -- 5 --->
                     <ng-include src="'/dashboard/insurance-create/area-step5-write-events.html'" ng-if="vm.issue.mapAddress || vm.issue.mapMarker"></ng-include>
@@ -47,9 +47,12 @@
                     <!-- ФОТО VIN-НОМЕРА -- 11 --->
                     <ng-include src="'/dashboard/insurance-create/area-step11-photo-vin.html'" ng-if="vm.issue.uploader[4].length > 0"></ng-include>
 
-                    <!-- КНОПКА ГОТОВНОСТИ -- 12 --->
-                    <ng-include src="'/dashboard/insurance-create/area-step12-result.html'" ng-if="vm.issue.uploader[5].length > 0"></ng-include>
+                    <!-- ОБЪЯСНЯЛОВКА -- 12 --->
+                    <ng-include src="'/dashboard/insurance-create/area-step12-docs.html'"></ng-include>
 
+                    <!-- КНОПКА ГОТОВНОСТИ -- 13 --->
+                    <ng-include src="'/dashboard/insurance-create/area-step12-result.html'" ng-if="vm.issue.uploader[5].length > 0"></ng-include>
+                    
                     <!-- ОБЪЯСНЯЛОВКА -- 13 --->
                     <ng-include src="'/dashboard/insurance-create/area-step0-instruction.html'" ng-if="!vm.activeIncident"></ng-include>
             </div>

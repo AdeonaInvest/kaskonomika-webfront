@@ -34,6 +34,13 @@
               &:hover {
                 color: #263c75;
               }
+              &._no_click {
+                color: #50b2d9;
+                cursor: default;
+                &:hover {
+                  color: #50b2d9;
+                }
+              }
             }
           }
         }
@@ -144,7 +151,13 @@
               }
               .active {
                 color: #50b2d9;
-
+                &._no_click {
+                  cursor: default;
+                  color: #50b2d9;
+                  &:hover {
+                    color: #50b2d9;
+                  }
+                }
               }
             }
           }
@@ -218,6 +231,13 @@
             cursor: pointer;
             &:hover {
               color: #263c75;
+            }
+            &._no_click {
+              cursor: default;
+              color: #fff;
+              &:hover {
+                color: #fff;
+              }
             }
           }
           &:nth-child(1) {

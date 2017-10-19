@@ -21,6 +21,25 @@
                 <custom-upload index="7" doc="Прикрепить cкан вод. прав"></custom-upload>
             </div>
         </div>
+        <div class="row row-string credit-car-area">
+            <div class="col-lg-5">
+                <div class="checkbox custom-checkbox">
+                    <input class="hidden " type="checkbox" ng-model="vm.fill.avto.creditStatus">
+                    <label ng-click="vm.fill.avto.creditStatus = !vm.fill.avto.creditStatus">
+                        <span>Автомобиль куплен в кредит</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="form-group" ng-if="vm.fill.avto.creditStatus" ng-init="vm.getBanksList()">
+                    <label>Какой банк выдал кредит на авто</label>
+                    <select class="form-control" ng-model="vm.findData.filter.drivers[0].marry" ng-init="vm.findData.filter.drivers[0].marry = '1'">
+                        <option value="1">Да</option>
+                        <option value="0">Нет</option>
+                    </select>
+                </div>
+            </div>
+        </div>
         <hr/>
         <div ng-if="vm.findData.filter.drivers[1]">
             <h4>Данные второго водителя</h4>

@@ -1,0 +1,18 @@
+<div class="row docs step-area" ng-repeat="(key,row) in vm.addDocumentsList.docs track by $index" ng-init="ind = this">
+    <hr/>
+    <span class="span-step">Шаг {{key + 10}}</span>
+    <span class="span-step-title" ng-bind="row.type"></span>
+    <div class="animated zoomIn">
+        <div class="row">
+            <div class="upload-btn col-lg-3" ng-if="vm.uploaderCreated">
+                <custom-upload index="{{26 + vm.addDocumentsList.number + key}}" multi="1" doc="Загрузить фотографию" ng-init="ind.docIndex = (26 + vm.addDocumentsList.number + key) | number:0" ></custom-upload>
+            </div>
+        </div>
+        <div class="row imgs-area">
+            <div class="img-item" ng-repeat="(index,item) in vm.issue.uploader[ind.docIndex]">
+                <img ng-src="{{item}}"/>
+                <i class="fa fa-trash-o" ng-click="vm.clearQueue({index: ind.docIndex, key: index+1})"></i>
+            </div>
+        </div>
+    </div>
+</div>
