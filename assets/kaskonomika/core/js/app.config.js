@@ -17,7 +17,8 @@
             'ngMask',
             'angularFileUpload',
             'credit-cards',
-            'angular-click-outside'
+            'angular-click-outside',
+            'mgcrea.bootstrap.affix'
         ])
         .constant('config', {
             version: '0.0.1', //Текущая версия сайта

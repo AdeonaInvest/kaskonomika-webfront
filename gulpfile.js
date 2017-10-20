@@ -54,6 +54,7 @@ var jsPaths = [
     'node_modules/chart.js/dist/Chart.min.js',
     'node_modules/angular-chart.js/dist/angular-chart.min.js',
     'bower_components/angular-credit-cards/release/angular-credit-cards.js',
+    'bower_components/angular-bootstrap-affix/dist/angular-bootstrap-affix.js',
     'sites/src/js/lib/angular-mask.js',
     'sites/src/js/lib/intercom.min.js',
     'sites/src/js/lib/echarts.js',

@@ -1,6 +1,4 @@
 #header {
-  @header-height: 80px;
-  height: @header-height;
   padding: 0;
   background: transparent;
   position: fixed;
@@ -15,7 +13,6 @@
       padding: 0;
       margin: 0;
       li {
-        height: @header-height;
         padding: 0;
       }
       .sub-menu-icon {
@@ -23,7 +20,6 @@
         text-align: center;
         .fa {
           cursor: pointer;
-          line-height: @header-height;
           vertical-align: middle;
           &:hover {
             color: @color-blue-light;
@@ -37,7 +33,6 @@
           margin: 0;
           padding: 0;
           display: block;
-          line-height: @header-height;
           vertical-align: middle;
           text-decoration: none;
           img {
@@ -51,7 +46,6 @@
       }
     }
     #header-overlay {
-      @header-height: 80px;
       padding: 0;
       margin: 0;
       background: none;
@@ -74,9 +68,7 @@
             ul {
               padding: 0;
               margin: 0;
-              height: @header-height;
               li {
-                height: @header-height;
                 padding: 0;
                 float: left;
               }
@@ -85,7 +77,6 @@
                 text-align: center;
                 .fa {
                   cursor: pointer;
-                  line-height: @header-height;
                   vertical-align: middle;
                   &:hover {
                     color: @color-blue-light;
@@ -100,7 +91,6 @@
                   margin: 0;
                   padding: 0;
                   display: block;
-                  line-height: @header-height;
                   vertical-align: middle;
                   text-decoration: none;
                   img {
@@ -113,7 +103,6 @@
                 }
                 .sub-menu-logo-mobile {
                   text-align: right;
-                  line-height: @header-height;
                   margin: 0 20px 0 0;
                 }
               }
@@ -178,12 +167,10 @@
       padding: 0;
       width: 530px;
       li {
-        line-height: @header-height;
         margin: 0 10px;
         padding: 0;
         a {
           display: block;
-          font: 11px/@header-height @fm-main;
           color: #000;
           text-transform: uppercase;
           &:hover {
@@ -214,7 +201,6 @@
     }
   }
   .user-menu {
-    line-height: @header-height;
     ul {
       float: right;
       margin: 0;
@@ -223,8 +209,6 @@
       li {
         margin: 0 10px;
         padding: 0;
-        height: @header-height;
-        line-height: @header-height;
         vertical-align: top;
         float: right;
       }
@@ -232,14 +216,9 @@
         opacity: 0;
 
         .header-calc {
-          @header-calc-height: 40px;
-          @currentHeight: (@header-height - @header-calc-height) / 2;
-          margin-top: @currentHeight;
           background: @color-blue-dark;
           border-radius: 20px;
-          height: @header-calc-height;
           text-align: center;
-          line-height: @header-calc-height;
           cursor: pointer;
           padding: 0 13px;
           i {
@@ -248,7 +227,6 @@
           }
           span {
             margin: 0 0 0 10px;
-            font: 14px/@header-calc-height @fm-main;
             color: #fff;
           }
           &:hover {
@@ -259,7 +237,6 @@
       .phone-area {
         span {
           display: block;
-          font: 12px/@header-height @fm-web;
           color: #000;
         }
       }
@@ -267,11 +244,6 @@
         position: relative;
         @header-user-height: 40px;
         .user-dashboard-area {
-          @currentHeight: (@header-height - @header-user-height) / 2;
-          margin-top: @currentHeight;
-          width: @header-user-height;
-          height: @header-user-height;
-          line-height: @header-user-height;
           vertical-align: middle;
           border-radius: 50%;
           background: #fff;
@@ -331,7 +303,7 @@
             clear: both;
             margin: 0;
             padding: 0;
-            @line-height: 60px;
+            @ul-line-height: 60px;
             li {
               clear: both;
               margin: 0;
@@ -342,7 +314,7 @@
               height: auto;
               a {
                 display: block;
-                height: @line-height;
+                height: @ul-line-height;
                 width: 100%;
                 i {
                   display: block;
@@ -390,10 +362,10 @@
               a {
                 border-bottom: 1px solid #dbdbdb;
                 i {
-                  line-height: @line-height;
+                  line-height: @ul-line-height;
                 }
                 span {
-                  font: 11px/@line-height @fm-main;
+                  font: 11px/@ul-line-height @fm-main;
                   text-transform: uppercase;
                 }
               }
@@ -401,28 +373,27 @@
             .compare {
               a {
                 padding: 0 0 0 22px;
-                height: calc(@line-height - 20px);
+                height: calc(@ul-line-height - 20px);
                 &:first-child {
                   padding: 0;
                   margin-top: 10px;
                   span {
-                    font: 11px/calc(@line-height - 20px) @fm-main;
+                    font: 11px/calc(@ul-line-height - 20px) @fm-main;
                     text-transform: uppercase;
                   }
                 }
                 &:last-child {
                   border-bottom: 1px solid #dbdbdb;
-                  height: calc(@line-height - 10px);
+                  height: calc(@ul-line-height - 10px);
                 }
                 i {
-                  line-height: calc(@line-height - 20px);
+                  line-height: calc(@ul-line-height - 20px);
                 }
                 span {
-                  font: 14px/calc(@line-height - 20px) @fm-web;
+                  font: 14px/calc(@ul-line-height - 20px) @fm-web;
                   text-transform: none;
                 }
               }
-
             }
           }
         }
@@ -464,6 +435,7 @@
 #header-user-menu {
   position: absolute;
 }
+
 #header-auth-menu {
   position: fixed;
   top: 0;

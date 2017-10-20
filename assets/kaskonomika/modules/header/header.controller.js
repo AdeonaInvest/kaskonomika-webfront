@@ -45,7 +45,7 @@
                 url: '/contacts'
             }*/
         ]; //Пункты меню оверлея
-        vm.showCalc = $rootScope.showCalc;
+        $rootScope.showCalc = false;
 
         $rootScope.scrollFromTop = false; //Состояние скролла - отодвинут ли скролл сверху.
         

@@ -30,7 +30,7 @@
                 $rootScope.carFinder = false; // Обнуление данных поиска авто
                 $rootScope.showCalc = false; // Обновление отображения поиска в хедере
                 $rootScope.currentUrl = $location.path(); // Create note for current URL
-                xlog('APP : CLEAR_SCOPE_DATA -> Scope data is cleared');
+                xlog('APP : CLEAR_SCOPE_DATA -> Scope data is cleaned');
             });
         }
 

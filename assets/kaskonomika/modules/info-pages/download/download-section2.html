@@ -23,9 +23,9 @@
         </div>
         <div class="row pointers-area">
             <div class="pointers">
-                <div class="pointer animated" ng-class="{active: vm.phone==1}" ng-click="vm.phone=1"></div>
-                <div class="pointer animated" ng-class="{active: vm.phone==2}" ng-click="vm.phone=2"></div>
-                <div class="pointer animated" ng-class="{active: vm.phone==3}" ng-click="vm.phone=3"></div>
+                <div class="pointer animated" ng-class="{active: vm.phone==1}" ng-click="vm.phone=1; vm.clearIntervalSlider()"></div>
+                <div class="pointer animated" ng-class="{active: vm.phone==2}" ng-click="vm.phone=2; vm.clearIntervalSlider()"></div>
+                <div class="pointer animated" ng-class="{active: vm.phone==3}" ng-click="vm.phone=3; vm.clearIntervalSlider()"></div>
             </div>
         </div>
     </div>

@@ -5,7 +5,7 @@
         .module('kaskonomika')
         .controller('carFinderController', carFinderController);
 
-    carFinderController.$inject = ['$rootScope','$scope','$http','$location','$timeout','config','$route'];
+    carFinderController.$inject = ['$rootScope','$scope','$http','$location','$timeout','config','$route',];
 
     function carFinderController($rootScope,$scope,$http,$location,$timeout,config,$route) {
 

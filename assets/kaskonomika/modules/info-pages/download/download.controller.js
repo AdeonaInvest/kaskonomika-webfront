@@ -8,10 +8,15 @@
     downloadController.$inject = ['$scope','$interval'];
 
     function downloadController($scope,$interval) {
-        ///////////////////
-        var vm = this;
+        let vm = this;
+
         vm.view = false; //Статус готовности отображения
+        vm.phone = 1; // Начальная позиция слайдера
+
+        vm.clearIntervalSlider = clearIntervalSlider; //Отключение слайдера при клике на стрелочки
+
         activate();
+        /////////////////////
         function activate() {
             $scope.$on('cfpLoadingBar:completed',function(){
                 vm.view = true;
@@ -19,10 +24,6 @@
 
             phoneSlider(); //Запуск слайдера
         }
-        //////////////////
-        vm.phone = 1; // Начальная позиция слайдера
-
-        vm.clearIntervalSlider = clearIntervalSlider; //Отключение слайдера при клике на стрелочки
 
         /**
          * Запуск слайдера

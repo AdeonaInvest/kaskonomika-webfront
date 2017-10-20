@@ -57,7 +57,6 @@
             }
         ];
 
-
         vm.getVariantsList = getVariantsList;
         vm.getGuiltyType = getGuiltyType;
         vm.getGuiltyDrivers = getGuiltyDrivers;
@@ -71,8 +70,6 @@
         function activate() {
             getLocalData(); //Получение данных о token'е из localStorage
             setRulesForMap(); //Получние прав и определение координат пользователя
-
-            //createUploaders();
         }
 
         /**
@@ -273,6 +270,10 @@
                 })
         }
 
+        /**
+         * Проверка отображение шага 3
+         * @returns {boolean} - true или false
+         */
         function showStepThree() {
             if (vm.issue.guiltyType) {
                 if (vm.issue.guiltyType === '4' || vm.issue.guiltyType === '5') {
@@ -289,6 +290,9 @@
             }
         }
 
+        /**
+         * Получение списка дополнительных документов
+         */
         function getDocumentAdditionalList() {
             let data = {
                 token:  vm.token,
@@ -419,7 +423,5 @@
             }
         }
 
-
-        
     }
 })();

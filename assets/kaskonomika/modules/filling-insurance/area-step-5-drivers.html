@@ -31,11 +31,10 @@
                 </div>
             </div>
             <div class="col-lg-7">
-                <div class="form-group" ng-if="vm.fill.avto.creditStatus" ng-init="vm.getBanksList()">
-                    <label>Какой банк выдал кредит на авто</label>
-                    <select class="form-control" ng-model="vm.findData.filter.drivers[0].marry" ng-init="vm.findData.filter.drivers[0].marry = '1'">
-                        <option value="1">Да</option>
-                        <option value="0">Нет</option>
+                <div class="form-group" ng-if="vm.fill.avto.creditStatus && vm.fill.banks_list.length > 0">
+                    <select class="form-control" ng-model="vm.fill.avto.bank" ng-init="vm.fill.avto.bank">
+                        <option disabled selected value="">Выберите банк, выдавший вам кредит</option>
+                        <option value="row" ng-repeat="row in vm.fill.banks_list track by $index">{{row.name}}</option>
                     </select>
                 </div>
             </div>

@@ -66,6 +66,7 @@
             if (vm.findData) {
                 xlog('MODULE : FILLING -> FindData received',vm.findData);
                 getExecute();
+                getBanksList();
             } else {
                 $location.path('/')
             }
@@ -308,6 +309,8 @@
 
             //Create Obj for execute
             let data = {
+                car_credit_status: vm.fill.avto.creditStatus || null,
+                car_credit_bank: vm.fill.avto.bank || null,
                 mark_id: vm.findData.mark.mark || null,
                 year: vm.findData.year || null,
                 model_id: vm.findData.model.model || null,
@@ -402,11 +405,23 @@
                 })
         }
 
+        /**
+         * Возврат назад на шаг
+         */
         function backStep() {
             vm.fill.step--;
         }
 
+        /**
+         * Получение списка банков
+         */
         function getBanksList(){
+            $http.get(config.api + 'insuranceCompanies/' + vm.findData.insurance_company_id + '/banks?token=' + vm.token) //Post data for execute
+                .then(function(res){
+                    if (res.data.result) {
+                        vm.fill.banks_list = res.data.response;
+                    }
+                })
 
         }
 
@@ -769,14 +784,17 @@
                             policies_type_id: 1,
                             insurance_company_calculation_id: vm.findData.calculation_id,
                             policy_payment_order_id: 1,
-                            objects: vm.fill.risks
+                            objects: vm.fill.risks,
+                            car_credit_status: vm.fill.avto.creditStatus || null,
+                            car_credit_bank: vm.fill.avto.bank || null,
                         };
                     $http.post(config.api + 'policies/create',data)
                         .then(function(res){
                             if (res.data.result) {
                                 vm.fill.created_policy_id = res.data.response;
                                 vm.fill.step++; //Go to the next step
-                                getExecute();
+                                getExecute(); //Get execute for issues ids list
+                                getBanksList(); //Получение списка банков
                                 vm.waiter = false;
                                 console.log('ВСЕ ЗБС!!!!!!!!!!!!!!!!!!!!!')
                             }
@@ -789,6 +807,15 @@
                         })
                 };
             };
+        }
+
+        function confirmCreadetPolicy() {
+            $http.post(config.api + 'losses/applications/:application_id/confirm',{token:vm.token})
+                .then(function(res){
+                    if (res.data.result) {
+
+                    }
+                })
         }
 
 
@@ -844,6 +871,7 @@
             $http.post(config.api + 'payments/card/debit/' + id,data)
                 .then(function(res){
                     if (res.data.result === true) {
+                        confirmCreadetPolicy();
                         vm.fill.step++; //Go to the next step
                         vm.waiter = false;
                     }

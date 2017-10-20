@@ -40,7 +40,8 @@
     "angularjs-slider": "^6.2.2",
     "cleave.js": "^1.0.1",
     "ngmap": "^1.0.1",
-    "angular-credit-cards": "^3.1.6"
+    "angular-credit-cards": "^3.1.6",
+    "angular-bootstrap-affix": "^0.2.2"
   },
   "resolutions": {
     "angular": "^1.6.4"

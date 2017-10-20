@@ -3,8 +3,9 @@
  */
 
 @screen-lg-min: 1200px;
-@screen-md-min: 992px;
+@screen-md-min: 979px;
 @screen-sm-min: 768px;
+@screen-xs-min: 480px;
 
 @media (min-width:300px) and (max-width: 1000px) {
   .m-width-100 {
@@ -14,3 +15,409 @@
     width: 90%!important;
   }
 }
+@media (min-width: @screen-xs-min) {
+  .wrap-padding {padding-top: 50px}
+  #header {
+    @header-height: 50px;
+    height: @header-height;
+    .sub-menu {
+      ul {
+        li {
+          height: @header-height;
+        }
+        .sub-menu-icon {
+          .fa {
+            line-height: @header-height;
+          }
+        }
+        .sub-menu-logo {
+          a {
+            line-height: @header-height;
+          }
+        }
+      }
+      #header-overlay {
+        .container-fluid {
+          .menu-area {
+            .logo-area {
+              ul {
+                height: @header-height;
+                li {
+                  height: @header-height;
+                }
+                .sub-menu-icon {
+                  .fa {
+                    line-height: @header-height;
+                  }
+                }
+                .sub-menu-logo {
+                  a {
+                    line-height: @header-height;
+                  }
+                  .sub-menu-logo-mobile {
+                    line-height: @header-height;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .main-menu {
+      ul {
+        li {
+          line-height: @header-height;
+          a {
+            font: 11px/@header-height @fm-main;
+          }
+        }
+      }
+    }
+    .user-menu {
+      line-height: @header-height;
+      ul {
+        li {
+          height: @header-height;
+          line-height: @header-height;
+        }
+        .calc-area {
+          .header-calc {
+            @header-calc-height: 40px;
+            @currentHeight: (@header-height - @header-calc-height) / 2;
+            margin-top: @currentHeight;
+            height: @header-calc-height;
+            line-height: @header-calc-height;
+            span {
+              font: 14px/@header-calc-height @fm-main;
+            }
+          }
+        }
+        .phone-area {
+          span {
+            font: 12px/@header-height @fm-web;
+          }
+        }
+        .user-dashboard-icon {
+          @header-user-height: 40px;
+          .user-dashboard-area {
+            @currentHeight: (@header-height - @header-user-height) / 2;
+            margin-top: @currentHeight;
+            width: @header-user-height;
+            height: @header-user-height;
+            line-height: @header-user-height;
+            i {
+              line-height: @header-user-height;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: @screen-sm-min) {
+  .wrap-padding {padding-top: 50px}
+  #header {
+    @header-height: 50px;
+    height: @header-height;
+    .sub-menu {
+      ul {
+        li {
+          height: @header-height;
+        }
+        .sub-menu-icon {
+          .fa {
+            line-height: @header-height;
+          }
+        }
+        .sub-menu-logo {
+          a {
+            line-height: @header-height;
+          }
+        }
+      }
+      #header-overlay {
+        .container-fluid {
+          .menu-area {
+            .logo-area {
+              ul {
+                height: @header-height;
+                li {
+                  height: @header-height;
+                }
+                .sub-menu-icon {
+                  .fa {
+                    line-height: @header-height;
+                  }
+                }
+                .sub-menu-logo {
+                  a {
+                    line-height: @header-height;
+                  }
+                  .sub-menu-logo-mobile {
+                    line-height: @header-height;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .main-menu {
+      ul {
+        li {
+          line-height: @header-height;
+          a {
+            font: 11px/@header-height @fm-main;
+          }
+        }
+      }
+    }
+    .user-menu {
+      line-height: @header-height;
+      ul {
+        li {
+          height: @header-height;
+          line-height: @header-height;
+        }
+        .calc-area {
+          .header-calc {
+            @header-calc-height: 40px;
+            @currentHeight: (@header-height - @header-calc-height) / 2;
+            margin-top: @currentHeight;
+            height: @header-calc-height;
+            line-height: @header-calc-height;
+            span {
+              font: 14px/@header-calc-height @fm-main;
+            }
+          }
+        }
+        .phone-area {
+          span {
+            font: 12px/@header-height @fm-web;
+          }
+        }
+        .user-dashboard-icon {
+          @header-user-height: 40px;
+          .user-dashboard-area {
+            @currentHeight: (@header-height - @header-user-height) / 2;
+            margin-top: @currentHeight;
+            width: @header-user-height;
+            height: @header-user-height;
+            line-height: @header-user-height;
+            i {
+              line-height: @header-user-height;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (min-width: @screen-sm-min) and (max-width: @screen-md-min) {
+  .wrap-padding {padding-top: 60px}
+  #header {
+    @header-height: 60px;
+    height: @header-height;
+    .sub-menu {
+      ul {
+        li {
+          height: @header-height;
+        }
+        .sub-menu-icon {
+          .fa {
+            line-height: @header-height;
+          }
+        }
+        .sub-menu-logo {
+          a {
+            line-height: @header-height;
+          }
+        }
+      }
+      #header-overlay {
+        .container-fluid {
+          .menu-area {
+            .logo-area {
+              ul {
+                height: @header-height;
+                li {
+                  height: @header-height;
+                }
+                .sub-menu-icon {
+                  .fa {
+                    line-height: @header-height;
+                  }
+                }
+                .sub-menu-logo {
+                  a {
+                    line-height: @header-height;
+                  }
+                  .sub-menu-logo-mobile {
+                    line-height: @header-height;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .main-menu {
+      ul {
+        li {
+          line-height: @header-height;
+          a {
+            font: 11px/@header-height @fm-main;
+          }
+        }
+      }
+    }
+    .user-menu {
+      line-height: @header-height;
+      ul {
+        li {
+          height: @header-height;
+          line-height: @header-height;
+        }
+        .calc-area {
+          .header-calc {
+            @header-calc-height: 40px;
+            @currentHeight: (@header-height - @header-calc-height) / 2;
+            margin-top: @currentHeight;
+            height: @header-calc-height;
+            line-height: @header-calc-height;
+            span {
+              font: 14px/@header-calc-height @fm-main;
+            }
+          }
+        }
+        .phone-area {
+          span {
+            font: 12px/@header-height @fm-web;
+          }
+        }
+        .user-dashboard-icon {
+          @header-user-height: 40px;
+          .user-dashboard-area {
+            @currentHeight: (@header-height - @header-user-height) / 2;
+            margin-top: @currentHeight;
+            width: @header-user-height;
+            height: @header-user-height;
+            line-height: @header-user-height;
+            i {
+              line-height: @header-user-height;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (min-width: @screen-lg-min) {
+  .wrap-padding {padding-top: 80px}
+  #header {
+    @header-height: 80px;
+    height: @header-height;
+    .sub-menu {
+      ul {
+        li {
+          height: @header-height;
+        }
+        .sub-menu-icon {
+          .fa {
+            line-height: @header-height;
+          }
+        }
+        .sub-menu-logo {
+          a {
+            line-height: @header-height;
+          }
+        }
+      }
+      #header-overlay {
+        .container-fluid {
+          .menu-area {
+            .logo-area {
+              ul {
+                height: @header-height;
+                li {
+                  height: @header-height;
+                }
+                .sub-menu-icon {
+                  .fa {
+                    line-height: @header-height;
+                  }
+                }
+                .sub-menu-logo {
+                  a {
+                    line-height: @header-height;
+                  }
+                  .sub-menu-logo-mobile {
+                    line-height: @header-height;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .main-menu {
+      ul {
+        li {
+          line-height: @header-height;
+          a {
+            font: 11px/@header-height @fm-main;
+          }
+        }
+      }
+    }
+    .user-menu {
+      line-height: @header-height;
+      ul {
+        li {
+          height: @header-height;
+          line-height: @header-height;
+        }
+        .calc-area {
+          .header-calc {
+            @header-calc-height: 40px;
+            @currentHeight: (@header-height - @header-calc-height) / 2;
+            margin-top: @currentHeight;
+            height: @header-calc-height;
+            line-height: @header-calc-height;
+            span {
+              font: 14px/@header-calc-height @fm-main;
+            }
+          }
+        }
+        .phone-area {
+          span {
+            font: 12px/@header-height @fm-web;
+          }
+        }
+        .user-dashboard-icon {
+          @header-user-height: 40px;
+          .user-dashboard-area {
+            @currentHeight: (@header-height - @header-user-height) / 2;
+            margin-top: @currentHeight;
+            width: @header-user-height;
+            height: @header-user-height;
+            line-height: @header-user-height;
+            i {
+              line-height: @header-user-height;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
