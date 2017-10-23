@@ -1,15 +1,21 @@
 <div class="container-fluid">
     <div class="menu-area pull-left col-lg-3 col-md-6 col-sm-6 col-xs-12">
-        <div class="logo-area animated" ng-class="{fadeIn: vm.openOverlay, fadeOut: !vm.openOverlay}">
-            <ul class="list-inline noselect">
-                <li class="sub-menu-icon noselect">
-                    <i class="fa fa-times fa-2x noselect" ng-click="vm.openOverlay = !vm.openOverlay"></i>
-                </li>
-                <li class="sub-menu-logo noselect">
-                    <a href="/" class="noselect hidden-xs"><img src="/src/img/base/logo-sm.png"/></a>
-                    <span class="visible-xs sub-menu-logo-mobile">+7 499 550-00-09</span>
-                </li>
-            </ul>
+        <div class="logo-area animated row m-0" ng-class="{fadeIn: vm.openOverlay, fadeOut: !vm.openOverlay}">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-9 p-0">
+                <ul class="list-inline noselect">
+                    <li class="sub-menu-icon noselect">
+                        <i class="fa fa-times fa-2x noselect" ng-click="vm.openOverlay = !vm.openOverlay"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 hidden-xs">
+                <ul class="list-inline noselect">
+                    <li class="sub-menu-logo _mobile noselect">
+                        <a href="/" class="noselect hidden-xs"><img src="/src/img/base/logo-sm.png"/></a>
+                        <span class="visible-xs sub-menu-logo-mobile">+7 499 550-00-09</span>
+                    </li>
+                </ul>
+            </div>
         </div>
         <div class="overlay-menu-area animated" ng-class="{fadeIn: vm.openOverlay, fadeOut: !vm.openOverlay}">
             <div class="overlay-main-menu hidden-lg">

@@ -1,11 +1,11 @@
 <div class="container-fluid" id="header" ng-class="{'active' : scrollFromTop}" ng-controller="headerController as vm">
     <div ng-show="!showCalc">
         <div class="sub-menu pull-left col-lg-3 col-md-6 col-sm-6 col-xs-9">
-            <ul class="list-inline animated fadeInLeftBig">
-                <li class="sub-menu-icon">
+            <ul class="list-inline">
+                <li class="sub-menu-icon hidden-lg animated fadeInLeftBig">
                     <i class="fa fa-bars fa-2x noselect" ng-click="vm.openOverlay = !vm.openOverlay"></i>
                 </li>
-                <li class="sub-menu-logo">
+                <li class="sub-menu-logo col-lg-12 animated fadeInLeftBig">
                     <a href="/" class="noselect"><img src="/src/img/base/logo-sm.png"/></a>
                 </li>
             </ul>
@@ -24,7 +24,7 @@
             <ul class="list-inline animated fadeInRightBig">
                 <li>
                     <div class="user-dashboard-icon" ng-if="currentUser" uib-dropdown>
-                        <div class="user-dashboard-area animated hidden-sm hidden-xs"
+                        <div class="user-dashboard-area animated"
                              on-toggle="toggled(open)"
                              uib-dropdown-toggle
                              is-open="menuOpened"
@@ -40,7 +40,7 @@
                         <!--END : Всплывающее меню личного кабинета -->
                     </div>
                     <div class="user-dashboard-icon" ng-if="!currentUser" uib-dropdown>
-                        <div class="user-dashboard-area animated hidden-sm hidden-xs"
+                        <div class="user-dashboard-area animated"
                              ng-click="vm.authOpen = true"
                              ng-if="vm.view"
                              ng-class="{bounceInRight: vm.view, bounceOutRight: !vm.view}">
@@ -51,10 +51,10 @@
                         <!--END : Всплывающее меню личного кабинета -->
                     </div>
                 </li>
-                <li class="phone-area hidden-sm hidden-xs animated" ng-class="{bounceInRight: vm.view}">
+                <li class="phone-area animated hidden-sm hidden-xs" ng-class="{bounceInRight: vm.view}">
                     <span>+7 (499) 550-00-09</span>
                 </li>
-                <li class="calc-area animated" ng-class="{slideInDown: scrollFromTop, fadeOut: !scrollFromTop}">
+                <li class="calc-area animated hidden-sm hidden-xs" ng-class="{slideInDown: scrollFromTop, fadeOut: !scrollFromTop}">
                     <div class="header-calc" ng-click="showCalc = !showCalc">
                         <i class="fa fa-calculator"></i>
                         <span class="hidden-xs">Рассчитать Каско</span>
