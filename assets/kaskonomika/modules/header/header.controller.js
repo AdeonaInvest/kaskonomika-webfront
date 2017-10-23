@@ -73,7 +73,6 @@
             $timeout(function(){
                 vm.view = true;
             },3000);
-
         }
         
         /**

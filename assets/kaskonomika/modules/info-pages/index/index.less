@@ -11,11 +11,6 @@
       padding: 150px 0;
       background: url('/src/img/backgrounds/index-section1-bg-right.png') bottom right / 20% no-repeat,
                   url('/src/img/backgrounds/index-section1-bg-left.png') bottom left / 20% no-repeat #e4f3fc;
-      h1 {
-        margin: 0 auto 40px;
-        font: 36px/50px @fm-bold;
-        width: 70%;
-      }
       .calc-module {
         width: 80%;
         display: block;
@@ -35,7 +30,6 @@
         width: 70%;
       }
       .partners-logos {
-        width: 65%;
         margin: auto;
         ul {
           padding: 0;
@@ -72,14 +66,8 @@
   #index-section2-carefully {
     display: block;
     width: 100%;
-    padding: 150px 0;
     background: url('/src/img/backgrounds/index-section2-bg-front.png') bottom right / 50% no-repeat,
                 url('/src/img/backgrounds/index-section2-bg-back.png') 100% 60% no-repeat #b2dcf6;
-    h2 {
-      margin: 0 auto 40px;
-      font: 54px/69px @fm-bold;
-      width: 70%;
-    }
     p {
       margin: 0 auto;
       padding: 0;
@@ -94,11 +82,6 @@
     padding: 150px 0;
     background: url('/src/img/backgrounds/index-section3-bg-front.png') bottom right / 40% no-repeat,
     url('/src/img/backgrounds/index-section3-bg-back.png') bottom right no-repeat #59c6f2;
-    h2 {
-      margin: 0 auto 40px;
-      font: 54px/69px @fm-bold;
-      width: 70%;
-    }
     p {
       margin: 0 auto;
       padding: 0;
@@ -112,11 +95,6 @@
     width: 100%;
     padding: 150px 0;
     background: url('/src/img/backgrounds/index-section4-bg.png') bottom right / 40% no-repeat #e76363;
-    h2 {
-      margin: 0 auto 40px;
-      font: 54px/69px @fm-bold;
-      width: 70%;
-    }
     p {
       margin: 0 auto;
       padding: 0;
@@ -130,11 +108,6 @@
     width: 100%;
     padding: 150px 0;
     background: url('/src/img/backgrounds/index-section5-bg.png') bottom right / 40% no-repeat #efefef;
-    h2 {
-      margin: 0 auto 40px;
-      font: 54px/69px @fm-bold;
-      width: 70%;
-    }
     .faq-box {
       width: 60%;
       margin: 0 auto;
@@ -348,34 +321,12 @@
           z-index: 20;
           display: block;
         }
-        @media (min-width: 990px) {
-          .slide-text {
-            position: absolute;
-            font: 16px/35px @fm-web;
-            color: #fff;
-            max-width: 350px;
-            top: 200px;
-            left: 23%;
-            padding: 0;
-            margin: auto;
-            z-index: 30;
-            text-align: left;
-          }
-        }
-        @media (max-width: 990px) {
-          .slide-text {
-            position: absolute;
-            font: 16px/35px @fm-web;
-            color: #fff;
-            max-width: 600px;
-            top: 200px;
-            left: 23%;
-            padding: 0;
-            margin: auto;
-            z-index: 30;
-            text-align: left;
-
-          }
+        .slide-text {
+          position: absolute;
+          font: 16px/35px @fm-web;
+          color: #fff;
+          margin: auto;
+          z-index: 30;
         }
       }
       .swiper-button-next {
@@ -466,13 +417,11 @@
     }
     .calc-module {
       position: absolute;
-      top: 400px;
       left: 0;
       right: 0;
-      bottom: 0;
+      bottom: 30px;
       margin: auto;
       max-width: 815px;
-      width: 100%;
       display: block;
       background: #fff;
       border-radius: 10px;

@@ -7,15 +7,209 @@
 @screen-sm-min: 768px;
 @screen-xs-min: 480px;
 
-@media (min-width:300px) and (max-width: 1000px) {
-  .m-width-100 {
-    width: 100%!important;
+// MIN SM width
+//------------------   480px
+@media (max-width: @screen-xs-min) {
+  .wrap-padding {padding-top: 50px}
+  #header {
+    @header-height: 50px;
+    height: @header-height;
+    .sub-menu {
+      ul {
+        li {
+          height: @header-height;
+        }
+        .sub-menu-icon {
+          .fa {
+            line-height: @header-height;
+          }
+        }
+        .sub-menu-logo {
+          a {
+            line-height: @header-height;
+          }
+        }
+      }
+      #header-overlay {
+        .container-fluid {
+          .menu-area {
+            .logo-area {
+              ul {
+                height: @header-height;
+                li {
+                  height: @header-height;
+                }
+                .sub-menu-icon {
+                  .fa {
+                    line-height: @header-height;
+                  }
+                }
+                .sub-menu-logo {
+                  a {
+                    line-height: @header-height;
+                  }
+                  .sub-menu-logo-mobile {
+                    line-height: @header-height;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .main-menu {
+      ul {
+        li {
+          line-height: @header-height;
+          a {
+            font: 11px/@header-height @fm-main;
+          }
+        }
+      }
+    }
+    .user-menu {
+      display: none;
+      line-height: @header-height;
+      ul {
+        li {
+          height: @header-height;
+          line-height: @header-height;
+        }
+        .calc-area {
+          .header-calc {
+            @header-calc-height: 40px;
+            @currentHeight: (@header-height - @header-calc-height) / 2;
+            margin-top: @currentHeight;
+            height: @header-calc-height;
+            line-height: @header-calc-height;
+            span {
+              font: 14px/@header-calc-height @fm-main;
+            }
+          }
+        }
+        .phone-area {
+          span {
+            font: 12px/@header-height @fm-web;
+          }
+        }
+        .user-dashboard-icon {
+          @header-user-height: 40px;
+          .user-dashboard-area {
+            @currentHeight: (@header-height - @header-user-height) / 2;
+            margin-top: @currentHeight;
+            width: @header-user-height;
+            height: @header-user-height;
+            line-height: @header-user-height;
+            i {
+              line-height: @header-user-height;
+            }
+          }
+        }
+      }
+    }
   }
-  .m-width-90 {
-    width: 90%!important;
+  #index-page {
+    #index-section1-calc {
+      .section1-calc-bottom-area {
+        .partners-logos {
+          width: 60%;
+        }
+      }
+      .section1-calc-top-area {
+        h1 {
+          margin: 0 auto 20px;
+          font: 24px/30px @fm-bold;
+          width: 80%;
+        }
+      }
+    }
+    #index-section2-carefully, #index-section3-economy, #index-section4-case, #index-section5-faq {
+      padding: 25px 0;
+    }
+    #index-section6-slider {
+      .slide-text {
+        top: 150px;
+        left: 0;
+        text-align: center;
+        max-width: 100%;
+        padding: 0 10px;
+      }
+      .calc-module {
+        width: 90%;
+      }
+    }
+    .index-section-title {
+      font: 29px/34px @fm-bold;
+      margin: 0 auto 40px;
+      width: 70%;
+    }
+  }
+  #footer {
+    .list-inline {
+      text-align: center;
+    }
+    .copy-area {
+      text-align: center;
+    }
+  }
+  #how-it-work-page {
+    .header-text {
+      width: 100%;
+      text-align: center;
+    }
+    h1 {
+      font: 24px/30px @fm-bold;
+      margin: 0 auto 50px;
+    }
+    h3 {
+      text-align: center;
+    }
+    .cirlce-number {
+      margin: auto;
+    }
+    #how-it-work-page-section-1 {
+      background: #b2dcf6;
+    }
+  }
+  #faq-page {
+    .noSearchResult {
+      font: 24px/24px @fm-main;
+    }
+  }
+  #download-page {
+    h3 {
+      text-align: center;
+    }
+    p {
+      text-align: center;
+    }
+    .text-area {
+      p {
+        text-align: left;
+      }
+    }
+    .pointers-area {
+      margin-top: 30px;
+    }
+    #download-section1 {
+      .container {
+        padding: 50px 0;
+        h1 {
+          margin: 0 auto 50px;
+        }
+      }
+    }
+    #download-section2 {
+      .container {
+        padding: 50px 0;
+      }
+    }
   }
 }
-@media (min-width: @screen-xs-min) {
+// XS width
+//------------------   768px   -----------------------  480px  ----------------------
+@media (max-width: @screen-sm-min) and (min-width: @screen-xs-min) {
   .wrap-padding {padding-top: 50px}
   #header {
     @header-height: 50px;
@@ -114,108 +308,107 @@
       }
     }
   }
-}
-@media (max-width: @screen-sm-min) {
-  .wrap-padding {padding-top: 50px}
-  #header {
-    @header-height: 50px;
-    height: @header-height;
-    .sub-menu {
-      ul {
-        li {
-          height: @header-height;
-        }
-        .sub-menu-icon {
-          .fa {
-            line-height: @header-height;
-          }
-        }
-        .sub-menu-logo {
-          a {
-            line-height: @header-height;
-          }
+  #index-page {
+    #index-section1-calc {
+      .section1-calc-bottom-area {
+        .partners-logos {
+          width: 60%;
         }
       }
-      #header-overlay {
-        .container-fluid {
-          .menu-area {
-            .logo-area {
-              ul {
-                height: @header-height;
-                li {
-                  height: @header-height;
-                }
-                .sub-menu-icon {
-                  .fa {
-                    line-height: @header-height;
-                  }
-                }
-                .sub-menu-logo {
-                  a {
-                    line-height: @header-height;
-                  }
-                  .sub-menu-logo-mobile {
-                    line-height: @header-height;
-                  }
-                }
-              }
-            }
-          }
+      .section1-calc-top-area {
+        h1 {
+          margin: 0 auto 20px;
+          font: 24px/30px @fm-bold;
+          width: 80%;
         }
       }
     }
-    .main-menu {
-      ul {
-        li {
-          line-height: @header-height;
-          a {
-            font: 11px/@header-height @fm-main;
-          }
+    #index-section2-carefully, #index-section3-economy, #index-section4-case, #index-section5-faq {
+      padding: 25px 0;
+    }
+    #index-section6-slider {
+      .slide-text {
+        top: 150px;
+        left: 0;
+        text-align: center;
+        max-width: 100%;
+        padding: 0 10px;
+      }
+      .calc-module {
+        width: 90%;
+      }
+    }
+    .index-section-title {
+      font: 29px/34px @fm-bold;
+      margin: 0 auto 40px;
+      width: 70%;
+    }
+  }
+  #footer {
+    .list-inline {
+      text-align: center;
+    }
+    .copy-area {
+      text-align: center;
+    }
+  }
+  #how-it-work-page {
+    .header-text {
+      width: 100%;
+      text-align: center;
+    }
+    h1 {
+      font: 36px/50px @fm-bold;
+      margin: 0 auto 50px;
+    }
+    h3 {
+      text-align: center;
+    }
+    .cirlce-number {
+      margin: auto;
+    }
+    #how-it-work-page-section-1 {
+      background: #b2dcf6;
+    }
+  }
+  #faq-page {
+    .noSearchResult {
+      font: 24px/24px @fm-main;
+    }
+  }
+  #download-page {
+    h3 {
+      text-align: center;
+    }
+    p {
+      text-align: center;
+    }
+    .text-area {
+      p {
+        text-align: left;
+      }
+    }
+    .pointers-area {
+      margin-top: 30px;
+    }
+    #download-section1 {
+      .container {
+        padding: 50px 0;
+        h1 {
+          margin: 0 auto 50px;
         }
       }
     }
-    .user-menu {
-      line-height: @header-height;
-      ul {
-        li {
-          height: @header-height;
-          line-height: @header-height;
-        }
-        .calc-area {
-          .header-calc {
-            @header-calc-height: 40px;
-            @currentHeight: (@header-height - @header-calc-height) / 2;
-            margin-top: @currentHeight;
-            height: @header-calc-height;
-            line-height: @header-calc-height;
-            span {
-              font: 14px/@header-calc-height @fm-main;
-            }
-          }
-        }
-        .phone-area {
-          span {
-            font: 12px/@header-height @fm-web;
-          }
-        }
-        .user-dashboard-icon {
-          @header-user-height: 40px;
-          .user-dashboard-area {
-            @currentHeight: (@header-height - @header-user-height) / 2;
-            margin-top: @currentHeight;
-            width: @header-user-height;
-            height: @header-user-height;
-            line-height: @header-user-height;
-            i {
-              line-height: @header-user-height;
-            }
-          }
-        }
+    #download-section2 {
+      .container {
+        padding: 50px 0;
       }
     }
   }
 }
-@media (min-width: @screen-sm-min) and (max-width: @screen-md-min) {
+// SM width
+//------------------   979px   -----------------------  768px  ----------------------
+@media (max-width: @screen-md-min) and (min-width: @screen-sm-min) {
   .wrap-padding {padding-top: 60px}
   #header {
     @header-height: 60px;
@@ -314,7 +507,299 @@
       }
     }
   }
+  #index-page {
+    #index-section1-calc {
+      .section1-calc-bottom-area {
+        .partners-logos {
+          width: 100%;
+        }
+      }
+      .section1-calc-top-area {
+        h1 {
+          margin: 0 auto 40px;
+          font: 28px/36px @fm-bold;
+          width: 80%;
+        }
+      }
+    }
+    #index-section2-carefully, #index-section3-economy, #index-section4-case, #index-section5-faq {
+      padding: 50px 0;
+    }
+    #index-section6-slider {
+      .slide-text {
+        top: 200px;
+        left: 0;
+        text-align: center;
+        max-width: 100%;
+        padding: 0 100px;
+      }
+      .calc-module {
+        width: 90%;
+      }
+    }
+    .index-section-title {
+      font: 40px/49px @fm-bold;
+      margin: 0 auto 40px;
+      width: 70%;
+    }
+  }
+  #footer {
+    .copy-area {
+      text-align: right;
+    }
+  }
+  #how-it-work-page {
+    .header-text {
+      width: 100%;
+      text-align: center;
+    }
+    h1 {
+      font: 36px/50px @fm-bold;
+      margin: 0 auto 50px;
+    }
+    h3 {
+      text-align: center;
+    }
+    .cirlce-number {
+      margin: auto;
+    }
+    #how-it-work-page-section-1 {
+      background: #b2dcf6;
+    }
+  }
+  #faq-page {
+    .noSearchResult {
+      font: 24px/24px @fm-main;
+    }
+  }
+  #download-page {
+    h3 {
+      text-align: center;
+    }
+    p {
+      text-align: center;
+    }
+    .text-area {
+      p {
+        text-align: left;
+      }
+    }
+    .pointers-area {
+      margin-top: 30px;
+    }
+    #download-section1 {
+      .container {
+        padding: 100px 0;
+        h1 {
+          margin: 0 auto 50px;
+        }
+      }
+    }
+    #download-section2 {
+      .container {
+        padding: 100px 0;
+      }
+    }
+  }
 }
+// MD width
+//------------------   1200px   -----------------------  979px  ----------------------
+@media (max-width: @screen-lg-min) and (min-width: @screen-md-min) {
+  .wrap-padding {padding-top: 80px}
+  #header {
+    @header-height: 80px;
+    height: @header-height;
+    .sub-menu {
+      ul {
+        li {
+          height: @header-height;
+        }
+        .sub-menu-icon {
+          .fa {
+            line-height: @header-height;
+          }
+        }
+        .sub-menu-logo {
+          a {
+            line-height: @header-height;
+          }
+        }
+      }
+      #header-overlay {
+        .container-fluid {
+          .menu-area {
+            .logo-area {
+              ul {
+                height: @header-height;
+                li {
+                  height: @header-height;
+                }
+                .sub-menu-icon {
+                  .fa {
+                    line-height: @header-height;
+                  }
+                }
+                .sub-menu-logo {
+                  a {
+                    line-height: @header-height;
+                  }
+                  .sub-menu-logo-mobile {
+                    line-height: @header-height;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .main-menu {
+      ul {
+        li {
+          line-height: @header-height;
+          a {
+            font: 11px/@header-height @fm-main;
+          }
+        }
+      }
+    }
+    .user-menu {
+      line-height: @header-height;
+      ul {
+        li {
+          height: @header-height;
+          line-height: @header-height;
+        }
+        .calc-area {
+          .header-calc {
+            @header-calc-height: 40px;
+            @currentHeight: (@header-height - @header-calc-height) / 2;
+            margin-top: @currentHeight;
+            height: @header-calc-height;
+            line-height: @header-calc-height;
+            span {
+              font: 14px/@header-calc-height @fm-main;
+            }
+          }
+        }
+        .phone-area {
+          span {
+            font: 12px/@header-height @fm-web;
+          }
+        }
+        .user-dashboard-icon {
+          @header-user-height: 40px;
+          .user-dashboard-area {
+            @currentHeight: (@header-height - @header-user-height) / 2;
+            margin-top: @currentHeight;
+            width: @header-user-height;
+            height: @header-user-height;
+            line-height: @header-user-height;
+            i {
+              line-height: @header-user-height;
+            }
+          }
+        }
+      }
+    }
+  }
+  #index-page {
+    #index-section1-calc {
+      .section1-calc-bottom-area {
+        .partners-logos {
+          width: 80%;
+        }
+      }
+      .section1-calc-top-area {
+        h1 {
+          margin: 0 auto 40px;
+          font: 36px/50px @fm-bold;
+          width: 70%;
+        }
+      }
+    }
+    #index-section2-carefully, #index-section3-economy, #index-section4-case, #index-section5-faq {
+      padding: 75px 0;
+    }
+    #index-section6-slider {
+      .slide-text {
+        top: 200px;
+        left: 23%;
+        text-align: left;
+        max-width: 600px;
+        padding: 0;
+      }
+      .calc-module {
+        width: 100%;
+      }
+    }
+    .index-section-title {
+      font: 46px/54px @fm-bold;
+      margin: 0 auto 40px;
+      width: 70%;
+    }
+  }
+  #footer {
+    .copy-area {
+      text-align: right;
+    }
+  }
+  #how-it-work-page {
+    .header-text {
+      width: 70%;
+      text-align: left;
+    }
+    h1 {
+      font: 36px/50px @fm-bold;
+      margin: 0 auto 100px;
+    }
+    h3 {
+      text-align: left;
+    }
+    .cirlce-number {
+      margin: 0;
+    }
+    #how-it-work-page-section-1 {
+      background: url('/src/img/backgrounds/how-it-work-section1.png') bottom right / 50% no-repeat #b2dcf6;
+    }
+  }
+  #faq-page {
+    .noSearchResult {
+      font: 30px/30px @fm-main;
+    }
+  }
+  #download-page {
+    h3 {
+      text-align: center;
+    }
+    p {
+      text-align: center;
+    }
+    .text-area {
+      p {
+        text-align: left;
+      }
+    }
+    .pointers-area {
+      margin-top: 30px;
+    }
+    #download-section1 {
+      .container {
+        padding: 100px 0;
+        h1 {
+          margin: 0 auto 50px;
+        }
+      }
+    }
+    #download-section2 {
+      .container {
+        padding: 100px 0;
+      }
+    }
+  }
+}
+// LG width
+//------------------   1200px
 @media (min-width: @screen-lg-min) {
   .wrap-padding {padding-top: 80px}
   #header {
@@ -411,6 +896,100 @@
             }
           }
         }
+      }
+    }
+  }
+  #index-page {
+    #index-section1-calc {
+      .section1-calc-bottom-area {
+        .partners-logos {
+          width: 65%;
+        }
+      }
+      .section1-calc-top-area {
+        h1 {
+          margin: 0 auto 40px;
+          font: 36px/50px @fm-bold;
+          width: 70%;
+        }
+      }
+    }
+    #index-section2-carefully, #index-section3-economy, #index-section4-case, #index-section5-faq {
+      padding: 150px 0;
+    }
+    #index-section6-slider {
+      .slide-text {
+        top: 200px;
+        left: 23%;
+        text-align: left;
+        max-width: 600px;
+        padding: 0;
+      }
+      .calc-module {
+        width: 100%;
+      }
+    }
+    .index-section-title {
+      font: 54px/69px @fm-bold;
+      margin: 0 auto 40px;
+      width: 70%;
+    }
+  }
+  #footer {
+    .copy-area {
+      text-align: right;
+    }
+  }
+  #how-it-work-page {
+    .header-text {
+      width: 70%;
+      text-align: left;
+    }
+    h1 {
+      font: 36px/50px @fm-bold;
+      margin: 0 auto 100px;
+    }
+    h3 {
+      text-align: left;
+    }
+    .cirlce-number {
+      margin: 0;
+    }
+    #how-it-work-page-section-1 {
+      background: url('/src/img/backgrounds/how-it-work-section1.png') bottom right / 50% no-repeat #b2dcf6;
+    }
+  }
+  #faq-page {
+    .noSearchResult {
+      font: 30px/30px @fm-main;
+    }
+  }
+  #download-page {
+    h3 {
+      text-align: left;
+    }
+    p {
+      text-align: left;
+    }
+    .text-area {
+      p {
+        text-align: left;
+      }
+    }
+    .pointers-area {
+      margin-top: 0;
+    }
+    #download-section1 {
+      .container {
+        padding: 150px 0;
+        h1 {
+          margin: 0 auto 100px;
+        }
+      }
+    }
+    #download-section2 {
+      .container {
+        padding: 150px 0;
       }
     }
   }

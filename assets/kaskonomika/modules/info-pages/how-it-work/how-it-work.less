@@ -11,15 +11,13 @@
     color: #53b4de;
   }
   p {
-     text-align: left;
      padding: 0;
      font: 16px/24px @fm-light;
-    color: #000;
+     color: #000;
   }
   h1 {
     text-align: center;
     margin: 0 auto 100px;
-    font: 36px/50px @fm-bold;
     width: 70%;
     color: #000;
   }
@@ -27,9 +25,12 @@
     color: #000;
   }
   h3 {
-    text-align: left;
     font: 20px/20px @fm-web;
     color: #000;
+  }
+  .row {
+    margin-left: 0;
+    margin-right: 0;
   }
   ng-include {
     @media (min-width: 1200px) {
@@ -51,20 +52,6 @@
   #how-it-work-page-section-1 {
     display: block;
     width: 100%;
-    @media (min-width: 992px) {
-      background: url('/src/img/backgrounds/how-it-work-section1.png') bottom right / 50% no-repeat #b2dcf6;
-    }
-    @media (max-width: 992px) {
-      background: #b2dcf6;
-    }
-    .container-fluid {
-      .container {
-        p {
-          width: 70%;
-        }
-      }
-    }
-
   }
   #how-it-work-page-section-2 {
     display: block;
