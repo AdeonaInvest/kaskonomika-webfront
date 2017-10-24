@@ -17,7 +17,7 @@
             issueArray: [], //Array all issues from server
             currentTab: 0, //Start tab in sidaber
             response: {}, //Data from $http.posts
-            step: 4, //Start step
+            step: 1, //Start step
             risks: [], //Array of risks from Execution -> Results
             holder: {},
             drivers: [],

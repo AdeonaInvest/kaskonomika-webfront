@@ -2,13 +2,13 @@
     <h4>Данные вашего водительского удостоверения</h4>
     <div ng-if="vm.findData.driver.id === '2'">
         <div class="row row-string">
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
                     <label>Серия / номер вод. прав</label>
                     <input class="form-control" ng-model="vm.findData.filter.drivers[0].series" placeholder="1234 567890" mask="99@@ 999999" clear="false" restrict="reject"/>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
                     <label>Состоите ли вы в браке?</label>
                     <select class="form-control" ng-model="vm.findData.filter.drivers[0].marry" ng-init="vm.findData.filter.drivers[0].marry = '1'">
@@ -17,12 +17,12 @@
                     </select>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <custom-upload index="7" doc="Прикрепить cкан вод. прав"></custom-upload>
             </div>
         </div>
         <div class="row row-string credit-car-area">
-            <div class="col-lg-5">
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                 <div class="checkbox custom-checkbox">
                     <input class="hidden " type="checkbox" ng-model="vm.fill.avto.creditStatus">
                     <label ng-click="vm.fill.avto.creditStatus = !vm.fill.avto.creditStatus">
@@ -30,7 +30,7 @@
                     </label>
                 </div>
             </div>
-            <div class="col-lg-7">
+            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
                 <div class="form-group" ng-if="vm.fill.avto.creditStatus && vm.fill.banks_list.length > 0">
                     <select class="form-control" ng-model="vm.fill.avto.bank" ng-init="vm.fill.avto.bank">
                         <option disabled selected value="">Выберите банк, выдавший вам кредит</option>
@@ -43,19 +43,19 @@
         <div ng-if="vm.findData.filter.drivers[1]">
             <h4>Данные второго водителя</h4>
             <div class="row row-string">
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Фамилия</label>
                         <input class="form-control" ng-model="vm.findData.filter.drivers[1].firstName" placeholder="Фамилия" mask="!" limit="false" restrict="reject">
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Имя</label>
                         <input class="form-control" ng-model="vm.findData.filter.drivers[1].name" placeholder="Имя" mask="!" limit="false" restrict="reject">
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Отчество</label>
                         <input class="form-control" ng-model="vm.findData.filter.drivers[1].secondName" placeholder="Отчество" mask="!" limit="false" restrict="reject">
@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div class="row row-string">
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Выберите пол</label>
                         <div>
@@ -82,13 +82,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Дата рождения</label>
                         <input type="date" class="form-control" ng-model="vm.findData.filter.drivers[1].age" placeholder="XX.XX.XXXX" max="1999-09-25" min="1945-01-01">
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Стаж вождения с</label>
                         <input class="form-control" ng-model="vm.findData.filter.drivers[1].exp" placeholder="С какого года считается стаж?" max="2000" mask="9999" limit="true" restrict="reject">
@@ -96,13 +96,13 @@
                 </div>
             </div>
             <div class="row row-string">
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label>Серия / номер вод. прав</label>
                         <input class="form-control" ng-model="vm.findData.filter.drivers[1].series" placeholder="1234 567890" mask="99@@ 999999" clear="false" restrict="reject"/>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label>Состоит ли в браке?</label>
                         <select class="form-control" ng-model="vm.findData.filter.drivers[1].marry" ng-init="vm.findData.filter.drivers[1].marry = '1'">
@@ -111,7 +111,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <custom-upload index="8" doc="Прикрепить cкан вод. прав"></custom-upload>
                 </div>
             </div>
@@ -120,19 +120,19 @@
         <div ng-if="vm.findData.filter.drivers[2]">
             <h4>Данные третьего водителя</h4>
             <div class="row row-string">
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Фамилия</label>
                         <input class="form-control" ng-model="vm.findData.filter.drivers[2].firstName" placeholder="Фамилия" mask="!" limit="false" restrict="reject">
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Имя</label>
                         <input class="form-control" ng-model="vm.findData.filter.drivers[2].name" placeholder="Имя" mask="!" limit="false" restrict="reject">
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Отчество</label>
                         <input class="form-control" ng-model="vm.findData.filter.drivers[2].secondName" placeholder="Отчество" mask="!" limit="false" restrict="reject">
@@ -140,7 +140,7 @@
                 </div>
             </div>
             <div class="row row-string">
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Выберите пол</label>
                         <div>
@@ -159,13 +159,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Дата рождения</label>
                         <input type="date" class="form-control" ng-model="vm.findData.filter.drivers[2].age" placeholder="XX.XX.XXXX" max="1999-09-25" min="1945-01-01">
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Стаж вождения с</label>
                         <input class="form-control" ng-model="vm.findData.filter.drivers[2].exp" placeholder="С какого года считается стаж?" mask="9999" limit="true" restrict="reject">
@@ -173,13 +173,13 @@
                 </div>
             </div>
             <div class="row row-string">
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label>Серия / номер вод. прав</label>
                         <input class="form-control" ng-model="vm.findData.filter.drivers[2].series" placeholder="1234 567890" mask="99@@ 999999" clear="false" restrict="reject"/>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label>Состоит ли в браке?</label>
                         <select class="form-control" ng-model="vm.findData.filter.drivers[2].marry" ng-init="vm.findData.filter.drivers[2].marry = '1'">
@@ -188,7 +188,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <custom-upload index="9" doc="Прикрепить cкан вод. прав"></custom-upload>
                 </div>
             </div>
@@ -197,19 +197,19 @@
         <div ng-if="vm.findData.filter.drivers[3]">
             <h4>Данные четвертого водителя</h4>
             <div class="row row-string">
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Фамилия</label>
                         <input class="form-control" ng-model="vm.findData.filter.drivers[3].firstName" placeholder="Фамилия" mask="!" limit="false" restrict="reject">
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Имя</label>
                         <input class="form-control" ng-model="vm.findData.filter.drivers[3].name" placeholder="Имя" mask="!" limit="false" restrict="reject">
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Отчество</label>
                         <input class="form-control" ng-model="vm.findData.filter.drivers[3].secondName" placeholder="Отчество" mask="!" limit="false" restrict="reject">
@@ -217,7 +217,7 @@
                 </div>
             </div>
             <div class="row row-string">
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Выберите пол</label>
                         <div>
@@ -236,13 +236,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Дата рождения</label>
                         <input type="date" class="form-control" ng-model="vm.findData.filter.drivers[3].age" placeholder="XX.XX.XXXX" max="1999-09-25" min="1945-01-01">
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Стаж вождения с</label>
                         <input class="form-control" ng-model="vm.findData.filter.drivers[3].exp" placeholder="С какого года считается стаж?" mask="9999" limit="true" restrict="reject">
@@ -250,13 +250,13 @@
                 </div>
             </div>
             <div class="row row-string">
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label>Серия / номер вод. прав</label>
                         <input class="form-control" ng-model="vm.findData.filter.drivers[3].series" placeholder="1234 567890" mask="99@@ 999999" clear="false" restrict="reject"/>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label>Состоит ли в браке?</label>
                         <select class="form-control" ng-model="vm.findData.filter.drivers[3].marry" ng-init="vm.findData.filter.drivers[3].marry = '1'">
@@ -265,7 +265,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <custom-upload index="10" doc="Прикрепить cкан вод. прав"></custom-upload>
                 </div>
             </div>
@@ -274,19 +274,19 @@
         <div ng-if="vm.findData.filter.drivers[4]">
             <h4>Данные пятого водителя</h4>
             <div class="row row-string">
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Фамилия</label>
                         <input class="form-control" ng-model="vm.findData.filter.drivers[4].firstName" placeholder="Фамилия" mask="!" limit="false" restrict="reject">
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Имя</label>
                         <input class="form-control" ng-model="vm.findData.filter.drivers[4].name" placeholder="Имя" mask="!" limit="false" restrict="reject">
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Отчество</label>
                         <input class="form-control" ng-model="vm.findData.filter.drivers[4].secondName" placeholder="Отчество" mask="!" limit="false" restrict="reject">
@@ -294,7 +294,7 @@
                 </div>
             </div>
             <div class="row row-string">
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Выберите пол</label>
                         <div>
@@ -313,13 +313,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Дата рождения</label>
                         <input type="date" class="form-control" ng-model="vm.findData.filter.drivers[4].age" placeholder="XX.XX.XXXX" max="1999-09-25" min="1945-01-01">
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                     <div class="form-group">
                         <label>Стаж вождения с</label>
                         <input class="form-control" ng-model="vm.findData.filter.drivers[4].exp" placeholder="С какого года считается стаж?" mask="9999" limit="true" restrict="reject">
@@ -327,13 +327,13 @@
                 </div>
             </div>
             <div class="row row-string">
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label>Серия / номер вод. прав</label>
                         <input class="form-control" ng-model="vm.findData.filter.drivers[4].series" placeholder="1234 567890" mask="99@@ 999999" clear="false" restrict="reject"/>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <div class="form-group">
                         <label>Состоит ли в браке?</label>
                         <select class="form-control" ng-model="vm.findData.filter.drivers[4].marry" ng-init="vm.findData.filter.drivers[4].marry = '1'">
@@ -342,7 +342,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <custom-upload index="11" doc="Прикрепить cкан вод. прав"></custom-upload>
                 </div>
             </div>
@@ -350,13 +350,13 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-8 back-step">
+        <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 back-step">
             <a href ng-click="vm.backStep()" ng-if="vm.fill.step > 1 && vm.fill.step < 6">
                 <i class="fa fa-arrow-left"></i>
                 <span>Назад</span>
             </a>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
             <div ng-if="vm.findData.driver.id === '2'">
                 <button ng-if="!vm.findData.filter.drivers[1]"
                         class="btn btn-kasko"
@@ -383,7 +383,6 @@
                         ng-click="vm.nextStep(5)"
                         ng-disabled="!vm.findData.filter.drivers[0].series || vm.uploader7.queue.length === 0 || !vm.findData.filter.drivers[1].firstName || !vm.findData.filter.drivers[1].name || !vm.findData.filter.drivers[1].secondName || !vm.findData.filter.drivers[1].sex || !vm.findData.filter.drivers[1].age || !vm.findData.filter.drivers[1].exp || !vm.findData.filter.drivers[1].series || vm.uploader8.queue.length === 0 || !vm.findData.filter.drivers[2].firstName || !vm.findData.filter.drivers[2].name || !vm.findData.filter.drivers[2].secondName || !vm.findData.filter.drivers[2].sex || !vm.findData.filter.drivers[2].age || !vm.findData.filter.drivers[2].exp || !vm.findData.filter.drivers[2].series || vm.uploader9.queue.length === 0 || !vm.findData.filter.drivers[3].firstName || !vm.findData.filter.drivers[3].name || !vm.findData.filter.drivers[3].secondName || !vm.findData.filter.drivers[3].sex || !vm.findData.filter.drivers[3].age || !vm.findData.filter.drivers[3].exp || !vm.findData.filter.drivers[3].series || vm.uploader10.queue.length === 0 || !vm.findData.filter.drivers[4].firstName || !vm.findData.filter.drivers[4].name || !vm.findData.filter.drivers[4].secondName || !vm.findData.filter.drivers[4].sex || !vm.findData.filter.drivers[4].age || !vm.findData.filter.drivers[4].exp || !vm.findData.filter.drivers[4].series || vm.uploader11.queue.length === 0">Продолжить</button>
             </div>
-
         </div>
     </div>
 </div>
