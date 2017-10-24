@@ -7,7 +7,7 @@
     <div class="container-fluid filling-area">
         <div class="container">
             <div class="row">
-                <div ng-class="{'col-lg-7': vm.fill.step <= 5, 'col-lg-12': vm.fill.step > 5}" id="filling-insurance-body">
+                <div ng-class="{'col-lg-7 col-md-7': vm.fill.step <= 5, 'col-lg-12 col-md-12': vm.fill.step > 5}" id="filling-insurance-body col-sm-12 col-xs-12">
                     <div class="forms-area" ng-if="!vm.breakFilling">
                         <div class="forms-header">
                             <div class="row">
@@ -32,7 +32,7 @@
                         <a href="/">На главную</a>
                     </div>
                 </div>
-                <div ng-class="{'col-lg-5': vm.fill.step <= 5, 'ng-hide': vm.fill.step > 5}">
+                <div ng-class="{'col-lg-5 col-md-5': vm.fill.step <= 5, 'ng-hide': vm.fill.step > 5}" class="col-sm-12 col-xs-12">
                     <ng-include src="'/filling-insurance/filling-insurance-sidebar.html'" id="filling-insurance-sidebar"></ng-include>
                 </div>
             </div>

@@ -1,9 +1,9 @@
 <div class="item animated bounceIn" ng-repeat="row in vm.resultList track by $index" ng-if="row.is_error != 1">
     <div class="row top-area">
-        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
             <img class="issure-logo" ng-src="{{row.insurance_company.logotype.path}}"/>
         </div>
-        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col">
+        <div class="col-lg-8 col-md-8 col-sm-10 col-xs-12 col">
             <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6 col p-top-n">
                 <div class="item-title-area">
                     <span>{{row.calculations_product_name}}</span>
@@ -38,8 +38,8 @@
             <span ng-show="showPopover">Скрыть подробнее<i class="fa fa-caret-up"></i></span>
         </button>
     </div>
-    <div class="popover-area" ng-if='showPopover'>
-        <div class="popover-item" ng-repeat="(key,item) in row.types track by $index">
+    <div class="row popover-area m-0" ng-if='showPopover'>
+        <div class="popover-item col-lg-6 col-md-6 col-sm-12 col-xs-12" ng-repeat="(key,item) in row.types track by $index">
             <h4 class="popover-item-title">{{key}}</h4>
             <ul>
                 <li ng-repeat="sub in item | orderBy: '-is_included'">

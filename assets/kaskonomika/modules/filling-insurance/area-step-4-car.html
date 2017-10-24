@@ -1,19 +1,19 @@
 <div class="form">
     <h4>Данные об автомобиле</h4>
     <div class="row row-string">
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
             <div class="form-group">
                 <label>Марка автомобиля</label>
                 <input class="form-control" ng-model="vm.findData.mark.mark" disabled="disabled">
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
             <div class="form-group">
                 <label>Модель автомобиля</label>
                 <input class="form-control" ng-model="vm.findData.model.model" disabled="disabled">
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
             <div class="form-group">
                 <label>Год выпуска</label>
                 <input class="form-control" ng-model="vm.findData.year" disabled="disabled">
@@ -21,19 +21,19 @@
         </div>
     </div>
     <div class="row row-string">
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <div class="form-group">
                 <label>Серия / Номер ПТС</label>
                 <input class="form-control" ng-model="vm.fill.avto.pts.serial" placeholder="1234 567890" mask="9999 999999" restrict="reject">
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <div class="form-group">
                 <label>Дата выдачи ПТС</label>
                 <input type="date" class="form-control" ng-model="vm.fill.avto.pts.date" placeholder="XX.XX.XXXX">
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <custom-upload index="3" doc="Прикрепить скан ПТС"></custom-upload>
         </div>
     </div>

@@ -3,35 +3,35 @@
         <i class="fa fa-spin fa-circle-o-notch fa-5x"></i>
     </div>
     <div class="ready" ng-if="vm.ready">
-        <div class="filling-sidebar-body animated fadeIn">
+        <div class="filling-sidebar-body animated fadeIn col-lg-9 col-md-9 col-sm-12 col-xs-12">
             <div class="row filling-sidebar-header">
-                <div class="col-lg-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <p class="insuranse-title">Предложение от {{vm.fill.activeIssue.insurance_company.full_name}}</p>
                     <p class="car-title">Каско для {{vm.findData.mark.mark}} {{vm.findData.model.model}}</p>
                     <p class="car-desc">{{vm.findData.mod.modification}} {{vm.findData.year}}, {{vm.findData.age}} год. Стаж {{2017 - vm.findData.exp}} год(а)</p>
                 </div>
             </div>
             <div class="row filling-sidebar-middle">
-                <div class="col-lg-6">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                     <span class="fran-price">{{vm.fill.activeIssue.calculation_parameters.franchise_value || '0'}} <i class="fa fa-ruble"></i></span>
                     <span class="fran-title">Франшиза</span>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                     <span class="distance-price">{{vm.fill.activeIssue.calculation_parameters.mileage || '0'}} км.</span>
                     <span class="distance-title">Ежемесячный пробег</span>
                 </div>
             </div>
             <hr/>
             <div class="row filling-current-price">
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                     <span class="price-title">Уточненная цена</span>
                 </div>
-                <div class="col-lg-8">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                     <span class="fran-price">{{vm.fill.activeIssue.total_sum | number}} <i class="fa fa-ruble"></i></span>
                 </div>
             </div>
         </div>
-        <div class="sidebar-tabs animated fadeIn">
+        <div class="sidebar-tabs animated fadeIn col-lg-3 col-md-3 hidden-sm hidden-xs ">
             <ul>
                 <li ng-repeat="(key,row) in vm.fill.issueList | orderBy:'active' track by $index" ng-click="vm.setNewCurrentIssue(row, key)" ng-class="{'active' : key == vm.fill.currentTab}">
                     <img class="tab-img" alt="Предложение от {{row.insurance_company.full_name}}" ng-src="{{row.insurance_company.logotype.thumbnail}}">

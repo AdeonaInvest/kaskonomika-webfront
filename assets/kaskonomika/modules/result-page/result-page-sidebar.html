@@ -11,12 +11,12 @@
 <div class="block-area">
     <span class="block-title">Допущенные водители</span>
     <div class="driver-row animated bounceInRight" ng-repeat="(key,row) in vm.filter.drivers">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 left-side">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 left-side">
             <span ng-if="findData.driver.id === '2'">Возраст:</span>
             <span ng-if="findData.driver.id === '1'">Мин. возраст:</span>
             <input class="form-control" ng-model="vm.filter.drivers[key].age" ng-change="vm.checkValidAge(key)" placeholder="*полных лет"/>
         </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 right-side">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 right-side">
             <span ng-if="findData.driver.id === '2'">Стаж с:</span>
             <span ng-if="findData.driver.id === '1'">Мин. стаж:</span>
             <input class="form-control" ng-disabled="!vm.filter.drivers[key].age" ng-change="vm.checkValidExp(key)" ng-model="vm.filter.drivers[key].exp" placeholder="*с какого года?"/>
@@ -69,4 +69,7 @@
         <input class="checkbox-input" type="checkbox" ng-model="vm.filter.komissar">
         <label class="checkbox-check checkbox-check-title" ng-click="vm.filter.komissar = !vm.filter.komissar">Аварийный комиссар</label>
     </div>
+</div>
+<div class="block-area ta-center hidden-lg hidden-md">
+    <button class="btn-kasko" ng-click="vm.showPopoverFilter = false">Применить фильтр</button>
 </div>

@@ -12,19 +12,19 @@
     </div>
     <hr/>
     <div class="row row-string">
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
             <div class="form-group">
                 <label>Фамилия</label>
                 <input name="firstName" class="form-control" ng-model="vm.fill.beneficiary.firstName" ng-disabled="vm.overlap" placeholder="Фамилия" mask="!" limit="false" restrict="reject">
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
             <div class="form-group">
                 <label>Имя</label>
                 <input name="name" class="form-control" ng-model="vm.fill.beneficiary.name" ng-disabled="vm.overlap" placeholder="Имя" mask="!" limit="false" restrict="reject">
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
             <div class="form-group">
                 <label>Отчество</label>
                 <input name="secondName" class="form-control" ng-model="vm.fill.beneficiary.secondName" ng-disabled="vm.overlap" placeholder="Отчество" mask="!" limit="false" restrict="reject">
@@ -32,7 +32,7 @@
         </div>
     </div>
     <div class="row row-string">
-        <div class="col-lg-8">
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
             <div class="form-group">
                 <label>Выберите пол</label>
                 <div>
@@ -51,7 +51,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
             <div class="form-group">
                 <label>Дата рождения</label>
                 <input type="date" name="birthday" class="form-control" ng-model="vm.fill.beneficiary.birthday" ng-disabled="vm.overlap" placeholder="XX.XX.XXXX" max="1999-09-25" min="1945-01-01">
@@ -59,7 +59,7 @@
         </div>
     </div>
     <div class="row row-string">
-        <div class="col-lg-6">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <div class="form-group">
                 <label>Контактный телефон</label>
                 <input name="phone"
@@ -71,7 +71,7 @@
                        restrict="reject">
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
             <div class="form-group">
                 <label>Электронная почта</label>
                 <input type="email"
@@ -85,13 +85,13 @@
     </div>
     <hr/>
     <div class="row row-string">
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
             <div class="form-group">
                 <label>Тип документа</label>
                 <input class="form-control" placeholder="Пасспорт" disabled>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
             <div class="form-group">
                 <label>Серия / Номер пасспорта</label>
                 <input name="passport"
@@ -104,7 +104,7 @@
                        restrict="reject">
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
             <div class="form-group">
                 <label>Дата выдачи пасспорта</label>
                 <input type="date" name="date" class="form-control" ng-model="vm.fill.beneficiary.passport.date" ng-disabled="vm.overlap" placeholder="XX.XX.XXXX">
@@ -112,7 +112,7 @@
         </div>
     </div>
     <div class="row row-string">
-        <div class="col-lg-12 ">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="form-group">
                 <label>Кем выдан пасспорт</label>
                 <input name="owner" class="form-control" ng-model="vm.fill.beneficiary.passport.owner" ng-disabled="vm.overlap" placeholder="Как в документе">
@@ -120,22 +120,22 @@
         </div>
     </div>
     <div class="row row-string">
-        <div class="col-lg-6">
+        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
             <custom-upload index="2" doc="Скан первой страницы паспорта"></custom-upload>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
             <custom-upload index="6" doc="Скан страницы паспорта с регистрацией"></custom-upload>
         </div>
     </div>
     <hr/>
     <div class="row">
-        <div class="col-lg-8 back-step">
+        <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 back-step">
             <a href ng-click="vm.backStep()" ng-if="vm.fill.step > 1 && vm.fill.step < 5">
                 <i class="fa fa-arrow-left"></i>
                 <span>Назад</span>
             </a>
         </div>
-        <div class="col-lg-4" ng-if="!vm.overlap">
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" ng-if="!vm.overlap">
             <button class="btn btn-kasko"
                     ng-click="vm.nextStep(3)"
                     ng-disabled="(!vm.fill.beneficiary.firstName || !vm.fill.beneficiary.name || !vm.fill.beneficiary.secondName || !vm.fill.beneficiary.sex || !vm.fill.beneficiary.birthday || !vm.fill.beneficiary.phone || !vm.fill.beneficiary.email || !vm.fill.beneficiary.passport.serial || !vm.fill.beneficiary.passport.date || !vm.fill.beneficiary.passport.owner || vm.uploader2.queue.length === 0) || vm.overlap">Продолжить</button>

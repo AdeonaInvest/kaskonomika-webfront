@@ -2,19 +2,19 @@
     <div class="form">
         <h4>Данные страхователя</h4>
         <div class="row row-string">
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div class="form-group">
                     <label>Фамилия</label>
                     <input class="form-control" ng-model="vm.fill.holder.firstName" placeholder="Фамилия" mask="!" limit="false" restrict="reject">
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div class="form-group">
                     <label>Имя</label>
                     <input class="form-control" ng-model="vm.fill.holder.name" placeholder="Имя" mask="!" limit="false" restrict="reject">
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div class="form-group">
                     <label>Отчество</label>
                     <input class="form-control" ng-model="vm.fill.holder.secondName" placeholder="Отчество" mask="!" limit="false" restrict="reject">
@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="row row-string">
-            <div class="col-lg-8">
+            <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
                 <div class="form-group">
                     <label>Выберите пол</label>
                     <div>
@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="form-group">
                     <label>Дата рождения</label>
                     <input type="date" class="form-control" ng-model="vm.fill.holder.birthday" placeholder="XX.XX.XXXX" max="1999-09-25" min="1945-01-01">
@@ -49,7 +49,7 @@
             </div>
         </div>
         <div class="row row-string">
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="form-group" ng-class="{'has-error':vm.fill.holder.phoneError}">
                     <label ng-if="!vm.fill.holder.phoneError">Контактный телефон</label>
                     <label ng-if="vm.fill.holder.phoneError" class="color-red">Телефон введен неверно или уже используется</label>
@@ -63,7 +63,7 @@
                            clean="true">
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="form-group" ng-class="{'has-error':vm.fill.holder.emailError}">
                     <label ng-if="!vm.fill.holder.emailError">Электронная почта</label>
                     <label ng-if="vm.fill.holder.emailError" class="color-red">Эта электронная почта уже используется</label>
@@ -78,13 +78,13 @@
         </div>
         <hr/>
         <div class="row">
-            <div class="col-lg-8 back-step">
+            <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 back-step">
                 <a href ng-click="vm.backStep()" ng-if="vm.fill.step > 1 && vm.fill.step < 5">
                     <i class="fa fa-arrow-left"></i>
                     <span>Назад</span>
                 </a>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                 <button class="btn btn-kasko"
                         type="submit"
                         ng-click="vm.nextStep(1)"
@@ -94,22 +94,23 @@
     </div>
 </div>
 <div ng-if="vm.fill.step == 1 && vm.regNow">
+    <hr/>
     <div class="form form-confirm">
         <h4 class="ta-center">Вы не зарегистрированы</h4>
         <h4 class="ta-center email-confirm-text">По адресу <b>{{vm.fill.holder.email}}</b> отправлено письмо для подтверждения электронной почты и временный пароль.</h4>
         <hr/>
         <h4 class="ta-center">Для продолжения необходимо активировать ваш телефон.</h4>
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                 <span class="confirm-title">Вам был отправлен код активации, пожалуйста введите его.</span>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                 <div class="form-group">
                     <label>Введите код активации</label>
-                    <input name="code" class="form-control" ng-model="vm.fill.confirmCode" placeholder="1234">
+                    <input name="code" class="form-control" ng-model="vm.fill.confirmCode" placeholder="1234" mask="9999" restrict="reject">
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                 <button class="btn btn-kasko btn-confirm"
                         ng-click="vm.nextStep('reg')"
                         ng-disabled="!vm.fill.confirmCode">Активировать</button>

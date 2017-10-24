@@ -4,20 +4,28 @@
             <ng-include src="'/car-finder/car-finder.html'" id="car-finder-type-4"></ng-include>
         </div>
     </div>
-    <div class="container-fluid result-body">
+    <div class="container-fluid result-body" ng-if="!vm.showPopoverFilter">
         <div class="container">
+            <div class="row result-filter-btn ta-center hidden-lg hidden-md">
+                <button class="btn-kasko" ng-click="vm.showPopoverFilter = !vm.showPopoverFilter">Фильтр по предложениям</button>
+            </div>
             <div class="row result-area">
-                <div class="col-lg-9 results-list">
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 results-list">
                     <ng-include src="'/result-page/result-page-item.html'" id="result-page-list" ng-if="vm.resultList.length > 0"></ng-include>
                     <div class="loader-area" ng-if="vm.resultCount != 0">
                         <i class="fa fa-4x fa-refresh fa-spin"></i>
                     </div>
                     <ng-include src="'/result-page/result-page-item-default.html'"></ng-include>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
                     <ng-include src="'/result-page/result-page-sidebar.html'" id="result-page-sidebar"></ng-include>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="filter-popover wrap-padding" ng-if="vm.showPopoverFilter">
+        <div class="container">
+            <ng-include src="'/result-page/result-page-sidebar.html'" id="result-page-sidebar"></ng-include>
         </div>
     </div>
 </div>

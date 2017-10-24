@@ -14,6 +14,7 @@
         vm.executeTimer = 1000; // Duration for $http POST execute
         vm.execute = []; // Execute results array
         vm.resultList = []; // Results list
+        vm.showPopoverFilter = false; // Hide filter popover
         vm.userPhone = { // default popover Settings
             popover: false, // default close popover
             cleave: {
