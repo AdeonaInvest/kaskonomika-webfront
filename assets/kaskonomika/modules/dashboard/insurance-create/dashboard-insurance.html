@@ -48,7 +48,7 @@
                     <ng-include src="'/dashboard/insurance-create/area-step11-photo-vin.html'" ng-if="vm.issue.uploader[4].length > 0"></ng-include>
 
                     <!-- ОБЪЯСНЯЛОВКА -- 12 --->
-                    <ng-include src="'/dashboard/insurance-create/area-step12-docs.html'"></ng-include>
+                    <ng-include src="'/dashboard/insurance-create/area-step12-docs.html'" ng-if="vm.issue.uploader[5].length > 0"></ng-include>
 
                     <!-- КНОПКА ГОТОВНОСТИ -- 13 --->
                     <ng-include src="'/dashboard/insurance-create/area-step12-result.html'" ng-if="vm.issue.uploader[5].length > 0"></ng-include>

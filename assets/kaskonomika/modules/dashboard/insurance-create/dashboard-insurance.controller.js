@@ -70,6 +70,10 @@
         function activate() {
             getLocalData(); //Получение данных о token'е из localStorage
             setRulesForMap(); //Получние прав и определение координат пользователя
+            $http.post(config.api + 'storage/files/categories',{token: vm.token})
+                .then(function(res){
+                    xlog(res.data);
+                })
         }
 
         /**
@@ -190,6 +194,13 @@
          * Работа с картой, установка меток и т.п.
          */
         function editGoogleMap(event) {
+            // Запрос текущего местоположения браузера / телефона пользователя
+            navigator.geolocation.getCurrentPosition(function(res){
+                if (res) {
+                    vm.phonePosition = res.Position.coords.coords;
+                }
+            });
+
             let geocoder = new google.maps.Geocoder(); //Доступ к сервису геокодирования
 
             vm.issue.mapPosition = {lat: event.latLng.lat(),lng: event.latLng.lng()}; //Получение координат клика
@@ -254,7 +265,11 @@
                     is_light: vm.issue.repairLighting,
                     is_mirror: vm.issue.repairMirrors,
                     is_body: vm.issue.repairBody,
-                    parts_count: vm.issue.repairCount
+                    parts_count: vm.issue.repairCount,
+                    phone_lat: vm.phonePosition ? vm.phonePosition.latitude : null,
+                    phone_lng: vm.phonePosition ? vm.phonePosition.longitude : null,
+                    car_lat: vm.issue.mapPosition ? vm.issue.mapPosition.lat : null,
+                    car_lng: vm.issue.mapPosition ? vm.issue.mapPosition.lng : null
             };
             $http.post(config.api + 'losses/applications/create',data)
                 .then(function (res) {
@@ -309,13 +324,20 @@
                 .then(function(res){
                     if (res.data.result) {
                         vm.addDocumentsList = {};
+                        vm.addDocumentsList.indexes = [];
                         vm.addDocumentsList.docs = res.data.response;
                         vm.addDocumentsList.number = vm.addDocumentsList.docs.length;
+
+                        vm.addDocumentsList.docs.forEach(function(f){
+                            vm.addDocumentsList.indexes.push(f.type_id);
+                        });
+
                         createUploaders();
                     }
 
                 })
         }
+
         /**
          * Утверждение заявления и отправка данных на сервер
          */
@@ -339,27 +361,73 @@
          * Создание загрузчиков для фото
          */
         function createUploaders() {
-
             /**
-             * Загрузчик для 1 документа
-             * @type {{url: string, method: string, autoUpload: boolean, formData: [null], withCredentials: boolean}}
+             * Настройки для загрузчика
+             * @type {{url: string, method: string, autoUpload: boolean, formData: [], withCredentials: boolean}}
              */
-            vm.uploaderOptions = {
+            vm.uploaderConfig = {
                 url: config.api + 'storage/upload',
                 method: 'post',
                 autoUpload : true,
-                formData: [{
-                    category_id: 6,
-                    token: vm.token,
-                    owner_id: vm.user.id
-                }],
+                formData: [],
                 withCredentials: false
             };
             // Создание массива для загрузчиков
-            for (let i = 1; i <= 20; i++) {
-                vm['uploader'+i] = new FileUploader(vm.uploaderOptions);
+            for (let i = 0; i < 50; i++) {
+                vm['uploader'+i] = new FileUploader(vm.uploaderConfig);
                 vm.issue.uploader.push([]);
 
+                /**
+                 * Обработка перед загрузкой изображения
+                 * @param item
+                 */
+                vm['uploader'+i].onBeforeUploadItem = function(item) {
+                    let data = {
+                        token: vm.token,
+                        owner_id: vm.user.id
+                    };
+                    switch (i) {
+                        case 21: data.category_id = 5; //Спереди-справа
+                            break;
+                        case 22: data.category_id = 6; //Спереди-слева
+                            break;
+                        case 23: data.category_id = 8; //Сзади-слева
+                            break;
+                        case 24: data.category_id = 7; //Сзади-справа
+                            break;
+                        case 25: data.category_id = 9; //Детальный вид повреждений
+                            break;
+                        case 26: data.category_id = 2; //Общий вид места ДТП
+                            break;
+                        case 4: data.losses_documents_types = 22;//Фотография одометра
+                            break;
+                        case 5: data.losses_documents_types = 21;//Фотография VIN-номера
+                            break;
+                        case 27: data.losses_documents_types = 1; //Свидетельство о регистрации ТС (СТС)
+                            break;
+                        case 28: data.losses_documents_types = 9; //Справка о ДТП (Приложение к приказу МВД РФ № 154)
+                            break;
+                        case 29: data.losses_documents_types = 10; //Протокол об административном правонарушении (если составлялся)
+                            break;
+                        case 30: data.losses_documents_types = 11; //Определение о возбуждении дела об административном правонарушении (если оформлялось)
+                            break;
+                        case 31: data.losses_documents_types = 12; //Определение об отказе в возбуждении дела об административном правонарушении (если оформлялось)
+                            break;
+                        case 32: data.losses_documents_types = 24; //Водительское удостоверение лица, управлявшего ТС в момент заявляемого события
+                            break;
+                        case 33: data.losses_documents_types = 30; //Постановление по делу об административном правонарушении (если составлялось)
+                            break;
+                        default: data.category_id = 14; //Дефолтный ID для всех изображений
+                            break;
+                    }
+                    item.formData.push(data);
+                };
+
+                /**
+                 * Событие после завершения загрузки изображения
+                 * @param item
+                 * @param response
+                 */
                 vm['uploader'+i].onCompleteItem  = function(item, response){
                     if (response.result === true) {
                         $http.get(config.api + 'storage/files/'+ response.response +'?token=' + vm.token)
@@ -372,37 +440,45 @@
                 };
             }
 
-            /**
-             * Загрузчик для нескольких документов в ШАГЕ 5
-             * @type {{url: string, method: string, autoUpload: boolean, formData: [null], withCredentials: boolean}}
-             */
-            vm.uOstep5 = {
-                url: config.api + 'storage/upload',
-                method: 'post',
-                autoUpload : true,
-                formData: [{
-                    category_id: 6,
-                    token: vm.token,
-                    owner_id: vm.user.id
-                }],
-                withCredentials: false
-            };
-            // Создание массива для загрузчиков
-            for (let i = 21; i <= 50; i++) {
-                vm['uploader'+i] = new FileUploader(vm.uOstep5);
+            //Создание загрузчиков для динамических списков документов
+            let index = 0;
+            for (let i = 50; i <= vm.addDocumentsList.number; i++) {
+                vm['uploader'+i] = new FileUploader(vm.uploaderConfig);
                 vm.issue.uploader.push([]);
 
+                /**
+                 * Обработка перед загрузкой изображения
+                 * @param item
+                 */
+                vm['uploader'+i].onBeforeUploadItem = function(item) {
+                    item.formData.push({
+                        losses_documents_types: vm.addDocumentsList.indexes[index],
+                        token: vm.token,
+                        owner_id: vm.user.id
+                    });
+                };
+
+                /**
+                 * Событие после завершения загрузки изображения
+                 * @param item
+                 * @param response
+                 */
                 vm['uploader'+i].onCompleteItem  = function(item, response){
                     if (response.result === true) {
                         $http.get(config.api + 'storage/files/'+ response.response +'?token=' + vm.token)
                             .then(function(res){
-                               if (res.data.result) {
-                                   vm.issue.uploader[i].push(res.data.response.path)
-                               }
+                                if (res.data.result) {
+                                    vm.issue.uploader[i].push(res.data.response.path)
+                                }
                             });
                     }
                 };
+                index++;
             }
+
+            /**
+             * Событие при завершении создания всех загрузчиков
+             */
             setTimeout(function(){
                 vm.uploaderCreated = true;
             },500);
@@ -416,7 +492,7 @@
             vm['uploader'+ index].destroy();
             if (a.key) {
                 vm.issue.uploader[index].splice(a.key-1,1);
-                vm['uploader'+index] = new FileUploader(vm.uOstep5);
+                vm['uploader'+index] = new FileUploader(vm.uploaderConfig);
             } else {
                 vm.issue.uploader[index] = [];
                 vm['uploader'+index] = new FileUploader(vm.uploaderOptions);
