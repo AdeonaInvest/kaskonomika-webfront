@@ -5,28 +5,40 @@
             <i class="fa fa-spin fa-circle-o-notch fa-2x"></i>
         </div>
         <div ng-if="vm.lossesList && !vm.error">
-            <table class="table table-striped tr-hover table-bordered">
-                <thead>
-                <tr>
-                    <th sort order="'external_number'" by="order" reverse="reverse">Номер</th>
-                    <th sort order="'losses_applications_status'" by="order" reverse="reverse">Статус</th>
-                    <th sort order="'create_date'" by="order" reverse="reverse">Дата создания</th>
-                    <th sort order="'event_date'" by="order" reverse="reverse">Дата происшествия</th>
-                    <th sort order="2" by="order" reverse="reverse">Номер полиса</th>
-                    <th sort order="3" by="order" reverse="reverse">Страховая компания</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="(key,row) in vm.lossesList | orderBy:order:reverse">
-                    <td>{{row.external_number}}</td>
-                    <td>{{row.losses_applications_status}}</td>
-                    <td>{{row.create_date}}</td>
-                    <td>{{row.event_date}}</td>
-                    <td>{{row.policy_number}}</td>
-                    <td>{{row.insurance_company}}</td>
-                </tr>
-                </tbody>
-            </table>
+            <div ng-if="vm.lossesList && !vm.error" class="lossos-body">
+                <table class="table table-striped tr-hover table-bordered">
+                    <thead>
+                    <tr>
+                        <th sort order="'number'" by="order" reverse="reverse">№ заявления</th>
+                        <th sort order="'application_date'" by="order" reverse="reverse">Дата заявления</th>
+                        <th sort order="'policy_number'" by="order" reverse="reverse">№ полиса</th>
+                        <th sort order="'insurer'" by="order" reverse="reverse">ФИО</th>
+                        <th sort order="'vin'" by="order" reverse="reverse">VIN-номер</th>
+                        <th sort order="'reg_plate'" by="order" reverse="reverse">Гос. номер</th>
+                        <th sort order="'event_date'" by="order" reverse="reverse">Дата происшествия</th>
+                        <th sort order="'event_type'" by="order" reverse="reverse">Событие</th>
+                        <th sort order="'event_desc'" by="order" reverse="reverse">Описание события</th>
+                        <th sort order="'status'" by="order" reverse="reverse">Статус</th>
+                        <th sort order="'insurance_company'" by="order" reverse="reverse">Страховая компания</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="(key,row) in vm.lossesList | orderBy:order:reverse" ng-click="vm.openModal(row.id)">
+                        <td>{{row.number}}</td>
+                        <td>{{row.application_date | date:'dd.MM.yyyy'}}</td>
+                        <td>{{row.policy_number}}</td>
+                        <td>{{row.insurer}}</td>
+                        <td>{{row.vin}}</td>
+                        <td style="word-wrap: normal">{{row.reg_plate}}</td>
+                        <td>{{row.event_date | date:'dd.MM.yyyy'}}</td>
+                        <td>{{row.event_type}}</td>
+                        <td>{{row.event_desc}}</td>
+                        <td>{{row.status}}</td>
+                        <td>{{row.insurance_company}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <http-error></http-error>
     </div>

@@ -1,0 +1,41 @@
+<div ng-controller="lossesModalModalController as vm" class="lossesModal">
+    <div class="modal-header">
+        <h3 class="modal-title ta-center">Восстановления доступа к StreamPub.net</h3>
+    </div>
+    <div class="modal-body modal-body-notification text-center">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Полис</h3>
+            </div>
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+                    <dt>Страховая компания</dt>
+                    <dd>{{vm.ld.insurance_company}}</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>Договор</dt>
+                    <dd>{{vm.ld.number}}</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>Период действия договора</dt>
+                    <dd>{{vm.ld.policy_begin_date | date:'dd.MM.yyyy'}} - {{vm.ld.policy_end_date | date:'dd.MM.yyyy'}}</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>ФИО страхователя</dt>
+                    <dd>{{vm.ld.driver.name}}</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>Телефон</dt>
+                    <dd>{{'--'}}</dd>
+                </dl>
+                <dl class="dl-horizontal">
+                    <dt>E-mail</dt>
+                    <dd>{{'--'}}</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <!--<div class="modal-footer">
+
+    </div>-->
+</div>

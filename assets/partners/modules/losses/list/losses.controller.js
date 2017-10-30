@@ -7,12 +7,14 @@
     angular.module('partners')
         .controller('pageLossesController', pageLossesController);
 
-    pageLossesController.$inject = ['$rootScope','$http','config'];
+    pageLossesController.$inject = ['$rootScope','$http','config','modalService'];
 
-    function pageLossesController($rootScope,$http,config) {
-        var vm = this;
-        var api = config.api;
+    function pageLossesController($rootScope,$http,config,modalService) {
+        let vm = this;
+        let api = config.api;
         vm.lossesList = false;
+
+        vm.openModal = openModal;
 
         activate();
         /////////////////////
@@ -33,6 +35,11 @@
                         vm.error = true;
                     }
                 })
+        }
+
+
+        function openModal(id) {
+            modalService.openModal('lossesModal', {id:id}, 'lg','lossesModalModalController');
         }
 
     }
