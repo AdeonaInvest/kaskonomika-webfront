@@ -92,7 +92,7 @@
                         </dl>
                         <dl class="dl-horizontal">
                             <dt>Пробег авто</dt>
-                            <dd>{{vm.ld.mileage}} км.</dd>
+                            <dd>{{vm.ld.mileage | number}} км.</dd>
                         </dl>
                         <dl class="dl-horizontal">
                             <dt>Заявлено о СС в</dt>
@@ -104,7 +104,7 @@
                         </dl>
                         <dl class="dl-horizontal">
                             <dt>Данные второго участника</dt>
-                            <dd>{{vm.ld.second_participant.status}}</dd>
+                            <dd><a class="cursor-pointer" uib-popover-html="vm.second_participant" popover-title="Данные второго водителя" ng-click="vm.getSecondParticipantInfo(vm.ld.second_participant.id);">{{vm.ld.driver.name}}</a></dd>
                         </dl>
                         <dl class="dl-horizontal">
                             <dt>Обстоятельства происшествия</dt>
