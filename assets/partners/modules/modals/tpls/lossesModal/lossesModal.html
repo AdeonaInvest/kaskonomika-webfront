@@ -1,37 +1,131 @@
 <div ng-controller="lossesModalModalController as vm" class="lossesModal">
     <div class="modal-header">
-        <h3 class="modal-title ta-center">Восстановления доступа к StreamPub.net</h3>
+        <h3 class="modal-title ta-center">Заявление: {{vm.ld.number}}</h3>
     </div>
     <div class="modal-body modal-body-notification text-center">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Полис</h3>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Полис</h3>
+                    </div>
+                    <div class="panel-body">
+                        <dl class="dl-horizontal">
+                            <dt>Страховая компания</dt>
+                            <dd>{{vm.ld.insurance_company || '---'}}</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Договор</dt>
+                            <dd>{{vm.ld.number || '---'}}</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Период действия договора</dt>
+                            <dd>{{vm.ld.policy_begin_date | date:'dd.MM.yyyy'}} - {{vm.ld.policy_end_date | date:'dd.MM.yyyy'}}</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>ФИО страхователя</dt>
+                            <dd>{{vm.ld.policy_insurer_name || '---'}}</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Телефон</dt>
+                            <dd>{{vm.ld.policy_insurer_phone || '---'}}</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>E-mail</dt>
+                            <dd>{{vm.ld.policy_insurer_email || '---'}}</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Автомобиль</h3>
+                    </div>
+                    <div class="panel-body">
+                        <dl class="dl-horizontal">
+                            <dt>Марка / Модель</dt>
+                            <dd>{{vm.ld.policy_object_mark || '---'}} {{vm.ld.policy_object_model || '---'}}</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>VIN-номер</dt>
+                            <dd>{{vm.ld.policy_object_vin || '---'}}</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Гос. номер</dt>
+                            <dd>{{vm.ld.policy_object_number || '---'}}</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Год выпуска</dt>
+                            <dd>{{vm.ld.policy_object_year || '---'}}</dd>
+                        </dl>
+                    </div>
+                </div>
             </div>
-            <div class="panel-body">
-                <dl class="dl-horizontal">
-                    <dt>Страховая компания</dt>
-                    <dd>{{vm.ld.insurance_company}}</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt>Договор</dt>
-                    <dd>{{vm.ld.number}}</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt>Период действия договора</dt>
-                    <dd>{{vm.ld.policy_begin_date | date:'dd.MM.yyyy'}} - {{vm.ld.policy_end_date | date:'dd.MM.yyyy'}}</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt>ФИО страхователя</dt>
-                    <dd>{{vm.ld.driver.name}}</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt>Телефон</dt>
-                    <dd>{{'--'}}</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                    <dt>E-mail</dt>
-                    <dd>{{'--'}}</dd>
-                </dl>
+            <div class="col-lg-6">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Данные о происшествии</h3>
+                    </div>
+                    <div class="panel-body">
+                        <dl class="dl-horizontal">
+                            <dt>Дата происшествия</dt>
+                            <dd>{{vm.ld.event_date}}</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Время происшествия</dt>
+                            <dd>{{vm.ld.event_time}}</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Дата заявления</dt>
+                            <dd>{{vm.ld.application_date}}</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Тип события</dt>
+                            <dd>{{vm.ld.event_type}}</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Описание события</dt>
+                            <dd>{{vm.ld.event_variant}}</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Адрес происшествия</dt>
+                            <dd>{{vm.ld.address.address}}</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Пробег авто</dt>
+                            <dd>{{vm.ld.mileage}} км.</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Заявлено о СС в</dt>
+                            <dd>{{vm.ld.claimed}}</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Данные по водителю</dt>
+                            <dd><a class="cursor-pointer" uib-popover-html="vm.contractor" popover-title="Данные пользователя" ng-click="vm.getContractorInfo(vm.ld.driver.id);">{{vm.ld.driver.name}}</a></dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Данные второго участника</dt>
+                            <dd>{{vm.ld.second_participant.status}}</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Обстоятельства происшествия</dt>
+                            <dd>{{vm.ld.info}}</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr ng-if="vm.ld.photos.length > 0"/>
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="list-inline" lightbox="vm.ld.photos">
+                    <li ng-repeat="row in vm.ld.photos" class="thumbnail">
+                        <div class="list-item">
+                            <a href="{{row}}" class="lightbox-trigger">
+                                <img ng-src="{{row}}"/>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

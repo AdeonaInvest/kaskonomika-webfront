@@ -7,7 +7,8 @@
             'ngSanitize',
             'ngCookies',
             'ui.bootstrap',
-            'chart.js'
+            'chart.js',
+            'angular-lightbox'
         ])
         .constant('config', {
             api: 'https://api.kaskonomika.ru/v1',

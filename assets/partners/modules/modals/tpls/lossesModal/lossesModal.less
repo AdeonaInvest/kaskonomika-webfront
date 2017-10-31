@@ -3,13 +3,32 @@
     .panel {
       .panel-body {
         dl {
+          margin-bottom: 10px;
           dt {
             width: 200px;
           }
           dd {
             margin-left: 220px;
+            .popover-html {
+              dl {
+                margin-bottom: 0;
+                dt {
+                  width: 100px;
+                }
+                dd {
+                  margin-left: 120px;
+                }
+              }
+            }
           }
         }
+      }
+    }
+    .list-inline {
+      padding: 0;
+      li {
+        margin: 5px;
+        max-width: 15%;
       }
     }
   }
