@@ -47,7 +47,7 @@
                 path: '/losses/list',
                 child: [
                     {
-                        name: 'Список убытков',
+                        name: 'Список заявлений',
                         icon: 'fa-list',
                         path: '/losses/list'
                     }
