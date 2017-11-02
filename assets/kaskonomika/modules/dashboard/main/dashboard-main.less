@@ -25,6 +25,9 @@
         float: none;
         padding: 0;
         margin: 0;
+        >.row {
+          margin: 0;
+        }
         .cars-list-area {
           padding: 0 70px;
           background: linear-gradient(to top, #d3edfa, #c9e0ee);
@@ -62,21 +65,18 @@
             &._active {
               cursor: default;
               background: #fff;
-
               span {
                 color: #000;
               }
               .car-date {
                 color: @color-darkgrey;
               }
-
               &:hover {
                 background: #fff;
               }
             }
             &:hover {
               transition: .2s ease;
-
               background: @color-blue-hover;
             }
           }
