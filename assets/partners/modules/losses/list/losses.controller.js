@@ -11,10 +11,9 @@
 
     function pageLossesController($rootScope,$http,config,modalService) {
         let vm = this;
-        let api = config.api;
         vm.lossesList = false;
 
-        vm.openModal = openModal;
+        vm.openModal = openModal; //Открытие модального окна
 
         activate();
         /////////////////////
@@ -27,7 +26,7 @@
          * Получение и форматирование списка убытков
          */
         function getLosses() {
-            $http.get(api + '/losses/applications?token=' + $rootScope.token)
+            $http.get(config.api + '/losses/applications?token=' + $rootScope.token)
                 .then(function(response){
                     if (response.data.result) {
                         vm.lossesList = response.data.response;
@@ -37,11 +36,13 @@
                 })
         }
 
-
+        /**
+         * Открытие модального окна
+         * @param id - ID записи в списке
+         */
         function openModal(id) {
             modalService.openModal('lossesModal', {id:id}, 'lg','lossesModalModalController');
         }
-
     }
 })();
 

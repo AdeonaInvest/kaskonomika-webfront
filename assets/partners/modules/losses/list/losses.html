@@ -27,7 +27,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="(key,row) in vm.lossesList | orderBy:order:reverse | filter: vm.searchArea" ng-click="vm.openModal(row.id)">
+                    <tr ng-repeat="(key,row) in vm.lossesList | orderBy:order:reverse | filter: vm.searchArea track by $index" ng-click="vm.openModal(row.id)">
                         <td>{{row.number}}</td>
                         <td>{{row.application_date | date:'dd.MM.yyyy'}}</td>
                         <td>{{row.policy_number}}</td>

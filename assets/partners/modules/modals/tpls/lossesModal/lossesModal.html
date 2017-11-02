@@ -1,4 +1,4 @@
-<div ng-controller="lossesModalModalController as vm" class="lossesModal">
+<div class="lossesModal">
     <div class="modal-header">
         <h3 class="modal-title ta-center">Заявление: {{vm.ld.number}}</h3>
     </div>
@@ -118,7 +118,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <ul class="list-inline" lightbox="vm.ld.photos">
-                    <li ng-repeat="row in vm.ld.photos" class="thumbnail">
+                    <li ng-repeat="row in vm.ld.photos track by $index" class="thumbnail">
                         <div class="list-item">
                             <a href="{{row}}" class="lightbox-trigger">
                                 <img ng-src="{{row}}"/>

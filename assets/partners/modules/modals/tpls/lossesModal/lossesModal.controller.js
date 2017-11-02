@@ -12,8 +12,8 @@
 
         vm.id = $rootScope.modalData.id;
 
-        vm.getContractorInfo = getContractorInfo;
-        vm.getSecondParticipantInfo = getSecondParticipantInfo;
+        vm.getContractorInfo = getContractorInfo; //Получение данных по пользователю
+        vm.getSecondParticipantInfo = getSecondParticipantInfo; //Получение данных по виновнику
 
         //////////////////////
         activate();
@@ -32,11 +32,11 @@
             getLossData();
         }
 
-
-
-        // 968 //vm.id
+        /**
+         * Получение подробных данных о заявлении
+         */
         function getLossData(){
-            $http.get(config.api + '/losses/applications/item/1036?token=' + vm.token)
+            $http.get(config.api + '/losses/applications/item/'+vm.id+'?token=' + vm.token)
                 .then(function(res){
                     vm.ld = res.data.response;
                     vm.ld.photos = [];
@@ -46,15 +46,35 @@
                             vm.ld.photos.push(f.path)
                         })
                     }
-                    if (vm.ld.files.scene.length > 0) {
-                        vm.ld.files.scene.forEach(function(f){
-                            vm.ld.photos.push(f.path)
+                    if (vm.ld.files.details.length > 0) {
+                        vm.ld.files.details.forEach(function(f){
+                            if (f.path) {
+                                vm.ld.photos.push(f.path)
+                            }
+                        })
+                    }
+                    if (vm.ld.files.overview.length > 0) {
+                        vm.ld.files.overview.forEach(function(f){
+                            if (f.path) {
+                                vm.ld.photos.push(f.path)
+                            }
+                        })
+                    }
+                    if (vm.ld.files.required.length > 0) {
+                        vm.ld.files.required.forEach(function(f){
+                            if (f.path) {
+                                vm.ld.photos.push(f.path)
+                            }
                         })
                     }
                 })
         }
 
 
+        /**
+         * Получение данных по пользователю
+         * @param id
+         */
         function getContractorInfo(id) {
             $http.get(config.api + '/contractors/' + id + '?token=' + vm.token)
                 .then(function(res){
@@ -78,6 +98,10 @@
                 })
         }
 
+        /**
+         * Получение данных по виновнику
+         * @param id
+         */
         function getSecondParticipantInfo(id) {
             $http.get(config.api + '/contractors/' + id + '?token=' + vm.token)
                 .then(function(res){
