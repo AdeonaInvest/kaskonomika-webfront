@@ -87,6 +87,10 @@
                             <dd>{{vm.ld.event_variant}}</dd>
                         </dl>
                         <dl class="dl-horizontal">
+                            <dt>Обстоятельства происшествия</dt>
+                            <dd>{{vm.ld.info || '--'}}</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
                             <dt>Адрес происшествия</dt>
                             <dd>{{vm.ld.address.address}}</dd>
                         </dl>
@@ -96,7 +100,7 @@
                         </dl>
                         <dl class="dl-horizontal">
                             <dt>Заявлено о СС в</dt>
-                            <dd>{{vm.ld.claimed}}</dd>
+                            <dd>{{vm.ld.claimed || '--'}}</dd>
                         </dl>
                         <dl class="dl-horizontal">
                             <dt>Данные по водителю</dt>
@@ -105,10 +109,6 @@
                         <dl class="dl-horizontal">
                             <dt>Данные второго участника</dt>
                             <dd><a class="cursor-pointer" uib-popover-html="vm.second_participant" popover-title="Данные второго водителя" ng-click="vm.getSecondParticipantInfo(vm.ld.second_participant.id);">{{vm.ld.driver.name}}</a></dd>
-                        </dl>
-                        <dl class="dl-horizontal">
-                            <dt>Обстоятельства происшествия</dt>
-                            <dd>{{vm.ld.info}}</dd>
                         </dl>
                     </div>
                 </div>
