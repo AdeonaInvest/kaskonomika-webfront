@@ -130,14 +130,19 @@
          * Получение списка вариантов происшествий
          */
         function getVariantsList(id) {
-            $http.get(config.api + 'losses/variants/list/' + id + '?token=' + vm.token)
-                .then(function (res) {
-                    if (res.data.result) {
-                        vm.variantsList = res.data.response;
-                    } else {
-                        xerror('MODULE : DASHBOARD : INSURANCE_CREATE : getVariantsList()')
-                    }
-                })
+            if (id !== 3) {
+                $http.get(config.api + 'losses/variants/list/' + id + '?token=' + vm.token)
+                    .then(function (res) {
+                        if (res.data.result) {
+                            vm.variantsList = res.data.response;
+                        } else {
+                            xerror('MODULE : DASHBOARD : INSURANCE_CREATE : getVariantsList()')
+                        }
+                    })
+            } else {
+                //TODO сразу поставить, что виновник неизвестен и открыть карту
+                vm.issue.guiltyType = 2; //Установка виновника, как неизвестное лицо
+            }
         }
 
         /**
@@ -157,22 +162,46 @@
         /**
          * Получение списка водителей авто
          */
-        function getGuiltyDrivers(id) {
-            $http.get(config.api + 'losses/guiltyDrivers?object_id=' + id + '?token=' + vm.token)
-                .then(function (res) {
-                    if (res.data.result) {
-                        vm.guiltyDrivers = [];
-                        res.data.response.forEach(function(f){
-                            if (f.is_deleted !== '1') {
-                                vm.guiltyDrivers.push(f)
-                            }
-                        });
-                        // TODO
-                        //editMap();
-                    } else {
-                        xerror('MODULE : DASHBOARD : INSURANCE_CREATE : getGuiltyDrivers()')
+        function getGuiltyDrivers(guiltyType, id) {
+            if (guiltyType === 2 || guiltyType === 4) {
+                //TODO отображение анкеты для третьего / иного лица
+            } else {
+                $http.get(config.api + 'losses/guiltyDrivers?object_id=' + id + '?token=' + vm.token)
+                    .then(function (res) {
+                        if (res.data.result) {
+                            vm.guiltyDrivers = [];
+                            res.data.response.forEach(function(f){
+                                if (f.is_deleted !== '1') {
+                                    vm.guiltyDrivers.push(f)
+                                }
+                            });
+                            // TODO
+                            //editMap();
+                        } else {
+                            xerror('MODULE : DASHBOARD : INSURANCE_CREATE : getGuiltyDrivers()')
+                        }
+                    })
+            }
+        }
+
+        /**
+         * Проверка отображение шага 3
+         * @returns {boolean} - true или false
+         */
+        function showStepThree() {
+            if (vm.issue.guiltyType) {
+                if (vm.issue.guiltyType === '4' || vm.issue.guiltyType === '5') {
+                    if (vm.issue.sd.first_name && vm.issue.sd.name && vm.issue.sd.middle_name && vm.issue.sd.birthday && vm.issue.sd.reg_address && vm.issue.sd.doc_type && vm.issue.sd.doc_serial && vm.issue.sd.doc_date && vm.issue.sd.phone && vm.issue.sd.doc_owner && vm.issue.sd.car_model && vm.issue.sd.car_year && vm.issue.sd.car_number && vm.issue.sd.car_vin && vm.issue.sd.car_sts_serial && vm.issue.sd.car_sts_number && vm.issue.sd.osago_number && vm.issue.sd.osago_name && vm.issue.sd.osago_date) {
+                        return true
                     }
-                })
+                } else {
+                    return true
+                }
+            } else if (vm.issue.guilty) {
+                return true
+            } else {
+                return false
+            }
         }
 
         /**
@@ -285,25 +314,6 @@
                 })
         }
 
-        /**
-         * Проверка отображение шага 3
-         * @returns {boolean} - true или false
-         */
-        function showStepThree() {
-            if (vm.issue.guiltyType) {
-                if (vm.issue.guiltyType === '4' || vm.issue.guiltyType === '5') {
-                    if (vm.issue.sd.first_name && vm.issue.sd.name && vm.issue.sd.middle_name && vm.issue.sd.birthday && vm.issue.sd.reg_address && vm.issue.sd.doc_type && vm.issue.sd.doc_serial && vm.issue.sd.doc_date && vm.issue.sd.phone && vm.issue.sd.doc_owner && vm.issue.sd.car_model && vm.issue.sd.car_year && vm.issue.sd.car_number && vm.issue.sd.car_vin && vm.issue.sd.car_sts_serial && vm.issue.sd.car_sts_number && vm.issue.sd.osago_number && vm.issue.sd.osago_name && vm.issue.sd.osago_date) {
-                        return true
-                    }
-                } else {
-                    return true
-                }
-            } else if (vm.issue.guilty) {
-                return true
-            } else {
-                return false
-            }
-        }
 
         /**
          * Получение списка дополнительных документов

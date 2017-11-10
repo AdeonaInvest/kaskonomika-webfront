@@ -54,7 +54,7 @@
         <div class="form-inline noselect">
             <!--<div class="input-line" ng-click="findData.step < 8 ? findData.is_open = true : null">-->
             <div class="input-line" ng-click="findData.step < 8 ? findData.is_open = true : null">
-                <div ng-show="findData.step < 7">
+                <div ng-show="findData.step < 7" class="tag-marker">
                     <div class="tag mark" ng-if="findData.mark">
                         {{findData.mark.mark}}
                         <i class="fa fa-close" ng-click="vm.resetFinder({mark:' ',year:' ',model:' ',bodyType: ' ',gear:' ',mod:' '},1)"></i>
@@ -81,7 +81,7 @@
                     </div>
 
                 </div>
-                <div ng-show="findData.step >= 7">
+                <div ng-show="findData.step >= 7" class="tag-marker">
                     <div class="tag driver" ng-if="findData.driver">
                         {{findData.driver.name}}
                         <i class="fa fa-close" ng-click="vm.resetFinder({driver:' ',age:' ',exp:' '},7)"></i>
@@ -127,7 +127,7 @@
              ng-class="{flipInX: findData.is_open, bounceOut: !findData.is_open}"
              ng-show="findData.is_open">
             <div class="popover-text popover-mark" ng-if="findData.step === 1">
-                <div class="block-inline col-md-2 col-sm-3 col-xs-3"
+                <div class="block-inline col-md-2 col-sm-3 col-xs-6"
                      ng-repeat="row in allData.marks track by $index"
                      ng-if="row.is_popular_mark == 1 || showAll"
                      ng-click="vm.getYear(row.mark); findData.mark = row">
@@ -138,14 +138,14 @@
                 </div>
             </div>
             <div class="popover-text popover-year" ng-if="findData.step === 2">
-                <div class="block-inline col-md-3 col-sm-4 col-xs-4"
+                <div class="block-inline col-md-3 col-sm-4 col-xs-6"
                      ng-repeat="row in allData.year track by $index"
                      ng-click="vm.getModels(row); findData.year = row">
                     {{row}}
                 </div>
             </div>
             <div class="popover-text popover-model" ng-if="findData.step === 3">
-                <div class="block-inline col-md-3 col-sm-4 col-xs-4"
+                <div class="block-inline col-md-3 col-sm-4 col-xs-6"
                      ng-repeat="row in allData.models track by $index"
                      ng-click="findData.model = row; vm.getBodyTypes(row.model)">
                     {{row.model}}
@@ -180,7 +180,7 @@
                 </div>
             </div>
             <div class="popover-text popover-age" ng-if="findData.step === 8">
-                <div class="block-inline col-md-2 col-sm-3 col-xs-3"
+                <div class="block-inline col-md-2 col-sm-3 col-xs-4"
                      ng-repeat="row in allData.age track by $index"
                      ng-click="vm.getExp(row); findData.age = row">
                     {{row}}

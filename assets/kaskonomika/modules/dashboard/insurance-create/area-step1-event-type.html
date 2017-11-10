@@ -8,7 +8,7 @@
                 ng-click="vm.activeIncident = row; vm.issue.variant = null; vm.getVariantsList(row.id)"
                 ng-class="{'_default' : vm.activeIncident.id != vm.incidentList[key].id}">{{row.name}}</button>
     </div>
-    <div class="btn-group input-what-happend animated zoomIn" ng-if="vm.activeIncident.id && vm.activeIncident.id != '3'">
+    <div class="btn-group input-what-happend" ng-if="vm.activeIncident.id && vm.activeIncident.id != '3'">
         <select ng-model="vm.issue.variant" class="form-control" ng-change="vm.getGuiltyType(vm.issue.variant)">
             <option disabled value="">Что именно произошло?</option>
             <option ng-value="row.id" ng-repeat="row in vm.variantsList track by $index">{{row.name}}</option>

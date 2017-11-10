@@ -21,7 +21,7 @@
                     <ng-include src="'/dashboard/insurance-create/area-step2-issue-type.html'" ng-if="vm.guiltyType"></ng-include>
 
                     <!-- ДАННЫЕ ИНОГО ЛИЦА -- 3 --->
-                    <ng-include src="'/dashboard/insurance-create/area-step3-issue-data.html'" ng-if="vm.issue.guiltyType === '4' || vm.issue.guiltyType === '5'"></ng-include>
+                    <ng-include src="'/dashboard/insurance-create/area-step3-issue-data.html'" ng-if="vm.issue.guiltyType === '4' || vm.issue.guiltyType === '2'"></ng-include>
 
                     <!-- КАРТА МЕСТА ПРОИСШЕСТВИЯ -- 4 --->
                     <ng-include src="'/dashboard/insurance-create/area-step4-map-place.html'" ng-if="vm.showStepThree()"></ng-include>
