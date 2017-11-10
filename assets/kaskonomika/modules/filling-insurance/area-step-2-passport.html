@@ -38,13 +38,13 @@
     </div>
     <hr/>
     <div class="row">
-        <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 back-step">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 back-step">
             <a href ng-click="vm.backStep()" ng-if="vm.fill.step > 1 && vm.fill.step < 5">
                 <i class="fa fa-arrow-left"></i>
                 <span>Назад</span>
             </a>
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <button class="btn btn-kasko"
                     ng-disabled="!vm.fill.passport.serial || !vm.fill.passport.date || !vm.fill.passport.owner || vm.uploader1.queue.length === 0"
                     ng-click="vm.nextStep(2)">Продолжить</button>

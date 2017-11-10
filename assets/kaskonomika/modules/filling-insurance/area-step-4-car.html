@@ -76,13 +76,13 @@
     </div>
     <hr/>
     <div class="row">
-        <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12 back-step">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 back-step">
             <a href ng-click="vm.backStep()" ng-if="vm.fill.step > 1 && vm.fill.step < 5">
                 <i class="fa fa-arrow-left"></i>
                 <span>Назад</span>
             </a>
         </div>
-        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <button class="btn btn-kasko" ng-click="vm.nextStep(4)" ng-disabled="!vm.fill.avto.pts.serial || !vm.fill.avto.pts.date || vm.uploader3.queue.length === 0 || !vm.fill.avto.sts.serial || !vm.fill.avto.sts.date || vm.uploader4.queue.length === 0 || !vm.fill.avto.gosNumber || !vm.fill.avto.vin">Продолжить</button>
         </div>
     </div>

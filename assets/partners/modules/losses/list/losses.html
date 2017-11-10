@@ -13,21 +13,21 @@
                 <table class="table table-striped tr-hover table-bordered">
                     <thead>
                     <tr>
-                        <th>№ заявления</th>
-                        <th>Дата заявления</th>
+                        <th>№</th>
+                        <th>Заявление</th>
                         <th>№ полиса</th>
                         <th sort order="'insurer'" by="order" reverse="reverse">ФИО</th>
                         <th>VIN-номер</th>
                         <th>Гос. номер</th>
-                        <th>Дата происшествия</th>
+                        <th>Происшествие</th>
                         <th sort order="'event_type'" by="order" reverse="reverse">Событие</th>
                         <th>Описание события</th>
                         <th sort order="'status'" by="order" reverse="reverse">Статус</th>
-                        <th sort order="'insurance_company'" by="order" reverse="reverse">Страховая компания</th>
+                        <th sort order="'insurance_company'" by="order" reverse="reverse">С.К.</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="(key,row) in vm.lossesList | orderBy: order : reverse | filter: vm.searchArea track by $index" ng-click="vm.openModal(row.id)">
+                    <tr ng-repeat="(key,row) in vm.lossesList | orderBy: order : reverse | filter: vm.searchArea track by $index" ng-click="vm.openModal(row.id); success = true" ng-class="{'success': success}">
                         <td>{{row.number}}</td>
                         <td>{{row.application_date | date:'dd.MM.yyyy'}}</td>
                         <td>{{row.policy_number}}</td>
