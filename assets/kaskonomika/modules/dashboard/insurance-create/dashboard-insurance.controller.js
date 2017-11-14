@@ -20,6 +20,9 @@
             repairLighting: false,
             repairMirrors: false,
             repairBody: false,
+            repairWheels: false,
+            showGuiltyAnketa: false,
+            showMap: false
         };
         vm.activeIncident = 0;
         vm.lossesAwait = 0; // 0 - стоп, 1 - ожидаение, 2 - завершение
@@ -28,30 +31,30 @@
         vm.oneAtATime = true; // открытие лишь одной вкладки в шаге 5
         vm.step5Tabs = [
             {
-                img: '/src/img/icons/insurance/view_front_right.png',
+                img: '/src/img/icons/insurance/front_direct.png',
                 uploaderId: 11,
-                header: 'Спереди-справа',
+                header: 'Спереди',
                 text: 'Фотографий:',
                 open: false
             },
             {
-                img: '/src/img/icons/insurance/view_front_left.png',
+                img: '/src/img/icons/insurance/view_left.png',
                 uploaderId: 10,
-                header: 'Спереди-слева',
+                header: 'Слева',
                 text: 'Фотографий:',
                 open: false
             },
             {
-                img: '/src/img/icons/insurance/view_rear_left.png',
+                img: '/src/img/icons/insurance/view_rear_direct.png',
                 uploaderId: 12,
-                header: 'Сзади-слева',
+                header: 'Сзади',
                 text: 'Фотографий:',
                 open: false
             },
             {
-                img: '/src/img/icons/insurance/view_rear_right.png',
+                img: '/src/img/icons/insurance/view_right.png',
                 uploaderId: 13,
-                header: 'Сзади-справа',
+                header: 'Справа',
                 text: 'Фотографий:',
                 open: false
             }
@@ -62,8 +65,8 @@
         vm.getGuiltyDrivers = getGuiltyDrivers;
         vm.clearQueue = clearQueue;
         vm.editGoogleMap = editGoogleMap;
-        vm.insuranceReady = insuranceReady;
-        vm.showStepThree = showStepThree;
+        vm.createDriverContractor = createDriverContractor;
+        vm.createLossesApplication = createLossesApplication;
 
         activate();
         ///////////////////
@@ -83,6 +86,21 @@
             vm.user = JSON.parse(localStorage.getItem('currentUser'));
             vm.token = localStorage.getItem('currentToken');
             getVehicles(); //Получение списка авто с оформленными полисами
+        }
+
+        /**
+         * Получние прав и определение координат пользователя
+         */
+        function setRulesForMap() {
+            navigator.geolocation.getCurrentPosition(show_map, handle_error);
+
+            function show_map(position) {
+                vm.issue.mapCenter = [position.coords.latitude, position.coords.longitude]; // Центрирование карты
+            }
+
+            function handle_error(err) {
+                xerror('MODULE : DASHBOARD : INSURANCE : setRulesForMap() : Geoposition failure!', err)
+            }
         }
 
         /**
@@ -140,8 +158,8 @@
                         }
                     })
             } else {
-                //TODO сразу поставить, что виновник неизвестен и открыть карту
                 vm.issue.guiltyType = 2; //Установка виновника, как неизвестное лицо
+                editGoogleMap(); //Работа с картой, установка меток и т.п.
             }
         }
 
@@ -149,6 +167,8 @@
          * Получение списка виновников происшествия
          */
         function getGuiltyType(id) {
+            vm.issue.showGuiltyAnketa = false; //отображение анкеты виновника
+            vm.guiltyDrivers = null;
             $http.get(config.api + 'losses/guiltyTypes?variant=' + id + '?token=' + vm.token)
                 .then(function (res) {
                     if (res.data.result) {
@@ -162,10 +182,11 @@
         /**
          * Получение списка водителей авто
          */
-        function getGuiltyDrivers(guiltyType, id) {
-            if (guiltyType === 2 || guiltyType === 4) {
-                //TODO отображение анкеты для третьего / иного лица
+        function getGuiltyDrivers(id) {
+            if (vm.issue.guiltyType.id === '2' || vm.issue.guiltyType.id === '4') {
+                vm.issue.showGuiltyAnketa = true; //отображение анкеты виновника
             } else {
+                vm.issue.showGuiltyAnketa = false; //отображение анкеты виновника
                 $http.get(config.api + 'losses/guiltyDrivers?object_id=' + id + '?token=' + vm.token)
                     .then(function (res) {
                         if (res.data.result) {
@@ -175,8 +196,6 @@
                                     vm.guiltyDrivers.push(f)
                                 }
                             });
-                            // TODO
-                            //editMap();
                         } else {
                             xerror('MODULE : DASHBOARD : INSURANCE_CREATE : getGuiltyDrivers()')
                         }
@@ -185,44 +204,53 @@
         }
 
         /**
-         * Проверка отображение шага 3
-         * @returns {boolean} - true или false
+         * Создание объекта контрагента-виновника происшествия и добавления к нему авто
          */
-        function showStepThree() {
-            if (vm.issue.guiltyType) {
-                if (vm.issue.guiltyType === '4' || vm.issue.guiltyType === '5') {
-                    if (vm.issue.sd.first_name && vm.issue.sd.name && vm.issue.sd.middle_name && vm.issue.sd.birthday && vm.issue.sd.reg_address && vm.issue.sd.doc_type && vm.issue.sd.doc_serial && vm.issue.sd.doc_date && vm.issue.sd.phone && vm.issue.sd.doc_owner && vm.issue.sd.car_model && vm.issue.sd.car_year && vm.issue.sd.car_number && vm.issue.sd.car_vin && vm.issue.sd.car_sts_serial && vm.issue.sd.car_sts_number && vm.issue.sd.osago_number && vm.issue.sd.osago_name && vm.issue.sd.osago_date) {
-                        return true
+        function createDriverContractor(){
+            let data = {
+                token: vm.token,
+                name: vm.issue.sd.name,
+                phone: vm.issue.sd.phone,
+                address: vm.issue.sd.reg_address
+            };
+            $http.post(config.api + 'contractors/complexcreate',data) //Комплексное добавление контрагента с контактами и тд
+                .then(function(res){
+                    if (res.data.result) {
+                        if (vm.issue.guiltyType.is_car_data_needed === '1') {
+                            let date = new Date(vm.issue.sd.osago_date),
+                                data = {
+                                token: vm.token,
+                                name: vm.issue.sd.name,
+                                reg_plate: vm.issue.sd.car_number,
+                                driver_contractor_id: res.data.response, //ID, из "Комплексное добавление контрагента с контактами и тд"
+                                osago_number: vm.issue.sd.osago_number,
+                                osago_expiration_date: (date.getDate()<10?'0'+date.getDate():date.getDate())+'.'+((date.getMonth()+1)<10?'0'+(date.getMonth()+1):(date.getMonth()+1))+'.'+date.getFullYear(),
+                                osago_company: vm.issue.sd.osago_name
+                            };
+                            $http.post(config.api + 'losses/addGuiltyCarKasko',data) //Добавление машины контрагента
+                                .then(function(res){
+                                    if (res.data.result) {
+                                        vm.issue.guilty_contractor_id = res.data.response; //ID виновника происшествия
+                                        editGoogleMap() //Работа с картой, установка меток и т.п.
+                                    } else {
+                                        xerror('MODULE : DASHBOARD : INSURANCE_CREATE : createDriverContractor() : contractors/complexcreate')
+                                    }
+                                })
+                        } else {
+                            editGoogleMap() //Работа с картой, установка меток и т.п.
+                        }
+                    } else {
+                        xerror('MODULE : DASHBOARD : INSURANCE_CREATE : createDriverContractor()')
                     }
-                } else {
-                    return true
-                }
-            } else if (vm.issue.guilty) {
-                return true
-            } else {
-                return false
-            }
-        }
-
-        /**
-         * Получние прав и определение координат пользователя
-         */
-        function setRulesForMap() {
-            navigator.geolocation.getCurrentPosition(show_map, handle_error);
-
-            function show_map(position) {
-                vm.issue.mapCenter = [position.coords.latitude, position.coords.longitude]; // Центрирование карты
-            }
-
-            function handle_error(err) {
-                xerror('MODULE : DASHBOARD : INSURANCE : setRulesForMap() : Geoposition failure!', err)
-            }
+                })
         }
 
         /**
          * Работа с картой, установка меток и т.п.
          */
         function editGoogleMap(event) {
+
+            vm.issue.showMap = true;
             // Запрос текущего местоположения браузера / телефона пользователя
             navigator.geolocation.getCurrentPosition(function(res){
                 if (res) {
@@ -232,8 +260,10 @@
 
             let geocoder = new google.maps.Geocoder(); //Доступ к сервису геокодирования
 
-            vm.issue.mapPosition = {lat: event.latLng.lat(),lng: event.latLng.lng()}; //Получение координат клика
-            vm.issue.mapCenter = [vm.issue.mapPosition.lat, vm.issue.mapPosition.lng]; // Центрирование карты
+            if (event) {
+                vm.issue.mapPosition = {lat: event.latLng.lat(),lng: event.latLng.lng()}; //Получение координат клика
+                vm.issue.mapCenter = [vm.issue.mapPosition.lat, vm.issue.mapPosition.lng]; // Центрирование карты
+            }
 
             //------------------- Декодирование адреса местоположения авто ---------------------//
             geocoder.geocode({'location': vm.issue.mapPosition}, function(results, status) {
@@ -245,21 +275,7 @@
             });
         }
 
-        /**
-         * Таймер на срабатываение после указания количества поврежденных деталей
-         */
-        $scope.$watch('vm.issue.repairCount',function(){
-            if (vm.issue.repairCount !== 0) {
-                vm.waitLossesApp = true;
-                clearTimeout(vm.awaitLosses);
-                vm.awaitLosses = setTimeout(function(){
-                    if (vm.issue.repairCount > 0 && vm.lossesAwait === 0) {
-                        vm.lossesAwait = 1;
-                        createLossesApplication();
-                    }
-                },2000)
-            }
-        });
+        //createLossesApplication()
 
         /**
          * Получение списка водителей авто
@@ -272,8 +288,8 @@
                     object_id: vm.issue.car ? vm.issue.car.id : null,
                     losses_companies_id: vm.activeIncident.id,
                     event_date: (date.getDate()<10?'0'+date.getDate():date.getDate())+'.'+((date.getMonth()+1)<10?'0'+(date.getMonth()+1):(date.getMonth()+1))+'.'+date.getFullYear(),
-                    losses_guilty_type_id: vm.activeIncident.id,
-                    guilty_contractor_id: vm.issue.guilty ? vm.issue.guilty.id : null,
+                    losses_guilty_type_id: vm.issue.guiltyType.id,
+                    guilty_contractor_id: vm.issue.guilty_contractor_id ? vm.issue.guilty_contractor_id : null,
                     address: JSON.stringify({
                         kladr: '',
                         index: '',
@@ -284,7 +300,7 @@
                         street: '',
                         building: '',
                         number: '',
-                        address: 'Бережковская наб., Москва, Россия, 121059'
+                        address: vm.issue.mapAddress
                     }),
                     info: vm.issue.myVersion,
                     pc_lat: '', //
@@ -294,7 +310,7 @@
                     is_light: vm.issue.repairLighting,
                     is_mirror: vm.issue.repairMirrors,
                     is_body: vm.issue.repairBody,
-                    parts_count: vm.issue.repairCount,
+                    is_wheels: vm.issue.repairWheels,
                     phone_lat: vm.phonePosition ? vm.phonePosition.latitude : null,
                     phone_lng: vm.phonePosition ? vm.phonePosition.longitude : null,
                     car_lat: vm.issue.mapPosition ? vm.issue.mapPosition.lat : null,
@@ -306,14 +322,12 @@
                         vm.issue.lossesId = res.data.response;
                         vm.lossesAwait = 2;
                         vm.waitLossesApp = false;
-                        //TODO открыть после установления нормального сценария
                         getDocumentAdditionalList();
                     } else {
                         xerror('MODULE : DASHBOARD : INSURANCE_CREATE : createLossesApplication()')
                     }
                 })
         }
-
 
         /**
          * Получение списка дополнительных документов
@@ -323,12 +337,12 @@
                 token:  vm.token,
                 losses_companies_id: vm.activeIncident.id,
                 variant_id: vm.issue.variant,
-                guilty_type_id: vm.issue.guiltyType,
+                guilty_type_id: vm.issue.guiltyType.id,
                 is_glass: vm.issue.repairGlass,
                 is_light: vm.issue.repairLighting,
                 is_mirror: vm.issue.repairMirrors,
                 is_body: vm.issue.repairBody,
-                parts_count: vm.issue.repairCount
+                is_wheels: vm.issue.repairWheels
             };
             $http.post(config.api + 'losses/documents_required_list',data)
                 .then(function(res){
@@ -351,7 +365,7 @@
         /**
          * Утверждение заявления и отправка данных на сервер
          */
-        function insuranceReady() {
+        /*function insuranceReady() {
             let date = new Date(),
                 data = {
 
@@ -365,7 +379,7 @@
                         xerror('MODULE : DASHBOARD : INSURANCE_CREATE : insuranceReady() $http failure')
                     }
                 })
-        }
+        }*/
 
         /**
          * Создание загрузчиков для фото

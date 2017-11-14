@@ -3,14 +3,13 @@
     <span class="span-step">Шаг 2</span>
     <span class="span-step-title">Данные виновника происшествия</span>
     <div class="btn-group animated zoomIn">
-        <select ng-model="vm.issue.guiltyType" class="form-control" ng-change="vm.issue.guiltyType === null ? null : vm.getGuiltyDrivers(row.id, vm.issue.car.id)">
+        <select ng-model="vm.issue.guiltyType" class="form-control" ng-change="vm.issue.guiltyType === null ? null : vm.getGuiltyDrivers(vm.issue.car.id)">
             <option disabled selected value="">Кто виновник происшествия?</option>
-            <option ng-value="row.id" ng-repeat="row in vm.guiltyType track by $index">{{row.name}}</option>
+            <option ng-value="row" ng-repeat="row in vm.guiltyType track by $index">{{row.name}}</option>
         </select>
-        {{vm.issue.guiltyType}}
     </div>
-    <div class="btn-group guilty-type" ng-if="vm.guiltyDrivers && vm.issue.guiltyType === '1'">
-        <select ng-model="vm.issue.guilty" class="form-control" ng-change="">
+    <div class="btn-group guilty-type" ng-if="vm.guiltyDrivers && vm.issue.guiltyType.id === '1'">
+        <select ng-model="vm.issue.guilty" class="form-control" ng-change="vm.issue.guilty === null ? null : vm.editGoogleMap()">
             <option disabled selected value="">Кто из водителей виновен?</option>
             <option ng-value="row" ng-repeat="row in vm.guiltyDrivers track by $index">{{row.name}}</option>
         </select>

@@ -1,8 +1,9 @@
 <div class="row version-area step-area">
     <hr/>
     <span class="span-step">Шаг 4</span>
-    <span class="span-step-title">Опишите свою версию случившегося</span>
+    <span class="span-step-title">Опишите свою версию случившегося.</span>
     <div class="form-group animated zoomIn">
         <textarea class="form-control" ng-model="vm.issue.myVersion" rows="3"></textarea>
+        <span class="textarea-decs" ng-if="!vm.issue.myVersion || vm.issue.myVersion.length <= 50">Минимальная длина описания - 50 символов. Осталось {{50 - vm.issue.myVersion.length}}</span>
     </div>
 </div>

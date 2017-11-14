@@ -1,7 +1,7 @@
 <div class="row repair-items-area step-area">
     <hr/>
     <span class="span-step">Шаг 5</span>
-    <span class="span-step-title">Поврежденные элементы автомобиля</span>
+    <span class="span-step-title">Поврежденные элементы автомобиля.</span>
     <div class="animated zoomIn">
         <div class="row">
             <div class="col-lg-4">
@@ -12,11 +12,19 @@
                     </label>
                 </div>
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-4">
                 <div class="checkbox custom-checkbox">
                     <input class="hidden" type="checkbox" ng-model="vm.issue.repairLighting">
                     <label ng-click="vm.issue.repairLighting = !vm.issue.repairLighting">
                         <span>Повреждены осветительные приборы</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="checkbox custom-checkbox">
+                    <input class="hidden" type="checkbox" ng-model="vm.issue.repairWheels">
+                    <label ng-click="vm.issue.repairWheels = !vm.issue.repairWheels">
+                        <span>Повреждены шины, диски</span>
                     </label>
                 </div>
             </div>
@@ -39,18 +47,9 @@
                 </div>
             </div>
         </div>
-        <span class="span-step-title">Поврежденные элементы автомобиля</span>
-        <div class="sum-btn-group">
-            <button class="sum-btn"
-                    ng-click="(vm.issue.repairCount > 0 && vm.lossesAwait !== 2) ? (vm.issue.repairCount = vm.issue.repairCount - 1) : null"
-                    ng-class="{'_disabled': vm.issue.repairCount === 0, '_disabled': vm.lossesAwait === 2}">-</button>
-            <button class="sum-btn">{{vm.issue.repairCount}}</button>
-            <button class="sum-btn"
-                    ng-click="(vm.issue.repairCount < 25 && vm.lossesAwait !== 2) ? (vm.issue.repairCount = vm.issue.repairCount + 1) : null"
-                    ng-class="{'_disabled': vm.issue.repairCount === 25, '_disabled': vm.lossesAwait === 2}">+</button>
-        </div>
-        <div class="row ta-center" ng-if="vm.waitLossesApp">
-            <i class="fa fa-5x fa-spin fa-circle-o-notch color-blue"></i>
+        <hr/>
+        <div class="row row-string ta-center">
+            <button class="btn btn-kasko" ng-click="vm.createLossesApplication()">Больше ничего не повреждено</button>
         </div>
     </div>
 </div>
