@@ -29,11 +29,47 @@
       li {
         margin: 5px;
         max-width: 15%;
-        max-height: 200px;
         .list-item {
           a {
             img {
               max-height: 200px;
+            }
+          }
+        }
+      }
+    }
+    .comments-area {
+      .form-group {
+        width: 80%;
+        input {
+          width: 100%;
+        }
+        button {
+          width: 20%;
+        }
+      }
+      .comments-list {
+        blockquote {
+          padding: 0 10px;
+          margin: 5px 0;
+          text-align: left;
+          p {
+            margin:0;
+            font: 14px/14px @fm-main;
+            .fa-pencil {
+              cursor: pointer;
+              &:hover {
+                color: @color_15
+              }
+            }
+          }
+          footer {
+            font: 12px/12px @fm-main;
+            .fa-trash-o {
+              cursor: pointer;
+              &:hover {
+                color: @color_12;
+              }
             }
           }
         }

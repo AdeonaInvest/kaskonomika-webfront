@@ -1,10 +1,11 @@
 <div class="lossesModal">
     <div class="modal-header">
-        <h3 class="modal-title pull-left">Заявление: {{vm.ld.number}}</h3>
+        <h4 class="modal-title pull-left" style="line-height: 34px">Заявление: {{vm.ld.number}} ({{vm.ld.status}})</h4>
         <div class="btn-group pull-right">
-            <button class="btn btn-primary"><i class="fa fa-file-archive-o"></i> Сохранить как ZIP</button>
+            <a class="btn btn-success" target="_blank" href="https://api.kaskonomika.ru/v1/losses/applications/item/{{vm.id}}?token={{vm.token}}&files=1"><i class="fa fa-file-archive-o"></i> Сохранить в ZIP</a>
+            <a class="btn btn-primary" target="_blank" href="{{vm.ld.print}}"><i class="fa fa-file-archive-o"></i> Посмотреть в PDF</a>
+            <a class="btn btn-danger" target="_blank" href="{{vm.ld.crash_reports[0]}}" ng-if="vm.ld.crash_reports[0]"><i class="fa fa-file-archive-o"></i> Отчет о ДТП</a>
         </div>
-
     </div>
     <div class="modal-body modal-body-notification text-center">
         <div class="row">
@@ -115,6 +116,45 @@
                             <dd><a class="cursor-pointer" uib-popover-html="vm.second_participant" popover-title="Данные второго водителя" ng-click="vm.getSecondParticipantInfo(vm.ld.second_participant.id);">{{vm.ld.driver.name}}</a></dd>
                         </dl>
                     </div>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <div class="row comments-area">
+            <div class="col-lg-6">
+                <h4>Комментарии к заявлению</h4>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <input ng-model="vm.commentLosses" class="form-control" placeholder="Отсавить комментарий о заявлении"/>
+                    </div>
+                    <button class="btn btn-success" ng-click="vm.saveComment('application',vm.commentLosses)">Отправить</button>
+                </form>
+                <div class="comments-list" ng-if="vm.commentsApp">
+                    <blockquote ng-repeat="row in vm.commentsApp track by $index">
+                        <footer>{{row.created_at*1000 | date:'dd.MM.yyyy HH:mm'}} - {{row.status}} - {{row.email}} <i class="fa fa-trash-o" ng-click="vm.deleteComment(row.id,'application')"></i></footer>
+                        <p>{{row.comment}} <i class="fa fa-pencil" ng-click="vm.editComment(row,'application')"></i> <em ng-if="row.is_updated === '1'"><small class="color-red">Отредактировано</small></em></p>
+                    </blockquote>
+                </div>
+                <div class="ta-center mt-10"  ng-if="!vm.commentsApp">
+                    <i class="fa fa-circle-o-notch fa-spin fa-2x color-blue"></i>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <h4>Комментарии к статусу</h4>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <input ng-model="vm.commentStatus" class="form-control" placeholder="Отсавить комментарий о статусе"/>
+                    </div>
+                    <button class="btn btn-success" ng-click="vm.saveComment('status',vm.commentStatus)">Отправить</button>
+                </form>
+                <div class="comments-list" ng-if="vm.commentsStatus">
+                    <blockquote ng-repeat="row in vm.commentsStatus track by $index">
+                        <footer>{{row.created_at*1000 | date:'dd.MM.yyyy HH:mm'}} - {{row.status}} - {{row.email}} <i class="fa fa-trash-o" ng-click="vm.deleteComment(row.id,'status')"></i></footer>
+                        <p>{{row.comment}} <i class="fa fa-pencil" ng-click="vm.editComment(row,'status')"></i> <em ng-if="row.is_updated === '1'" ><small class="color-red">Отредактировано</small></em></p>
+                    </blockquote>
+                </div>
+                <div class="ta-center mt-10"  ng-if="!vm.commentsStatus">
+                    <i class="fa fa-circle-o-notch fa-spin fa-2x color-blue"></i>
                 </div>
             </div>
         </div>

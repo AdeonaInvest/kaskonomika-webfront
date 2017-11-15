@@ -14,6 +14,9 @@
 
         vm.getContractorInfo = getContractorInfo; //Получение данных по пользователю
         vm.getSecondParticipantInfo = getSecondParticipantInfo; //Получение данных по виновнику
+        vm.saveComment = saveComment; //Сохранение комментария
+        vm.deleteComment = deleteComment; //Удаление комментария
+        vm.editComment = editComment; //Редактирование комментария
 
         //////////////////////
         activate();
@@ -68,8 +71,110 @@
                         })
                     }
                 })
+                .then(getComments('status')) //Получение списка комментариев
+                .then(getComments('application')) //Получение списка комментариев
         }
 
+        /**
+         * Сохранение комментария
+         */
+        function saveComment(type, text) {
+            if (vm.edit) {
+                let data = {
+                    text: text
+                };
+                $http.put(config.api + '/losses/applications/'+vm.id+'/comments/'+vm.edit.comment+'?token='+vm.token,data)
+                    .then(function(res){
+                        if (res.data.result) {
+                            vm.commentLosses = null;
+                            vm.commentStatus = null;
+                            vm.edit = undefined;
+                            getComments(type)
+                        } else {
+                            vm.commentLosses = null;
+                            vm.commentStatus = null;
+                            vm.edit = undefined;
+                        }
+                    })
+            } else {
+                let data = {
+                    token: vm.token,
+                    type: type,
+                    text: text
+                };
+                $http.post(config.api + '/losses/applications/'+vm.id+'/comments',data)
+                    .then(function(res){
+                        if (res.data.result) {
+                            if (type === 'status') {
+                                getComments('status')
+                            } else if (type === 'application') {
+                                getComments('application')
+                            }
+                        }
+                    })
+                    .then(function(){
+                        vm.commentLosses = null;
+                        vm.commentStatus = null;
+                        vm.edit = undefined;
+                    })
+            }
+        }
+
+        /**
+         * Получение списка комментариев
+         * @param type - тип необходимого комментария
+         */
+        function getComments(type) {
+            if (type === 'status') {
+                vm.commentsStatus = undefined;
+            } else if (type === 'application') {
+                vm.commentsApp = undefined;
+            }
+            $http.get(config.api + '/losses/applications/'+vm.id+'/comments?type='+type+'&token='+vm.token)
+                .then(function(res){
+                    if (res.data.result) {
+                        if (type === 'status') {
+                            vm.commentsStatus = res.data.response;
+                        } else if (type === 'application') {
+                            vm.commentsApp = res.data.response;
+                        }
+                    }
+                })
+        }
+
+        /**
+         * Удаление комментария
+         * @param id - ID самого комментария
+         * @param type - тип комментария (application, status)
+         */
+        function deleteComment(id,type) {
+            $http.delete(config.api + '/losses/applications/'+vm.id+'/comments/'+id+'?token='+vm.token)
+                .then(function(res){
+                    if (res.data.result) {
+                        if (type === 'status') {
+                            getComments('status')
+                        } else if (type === 'application') {
+                            getComments('application')
+                        }
+                    }
+                })
+        }
+
+        /**
+         * Редактирование комментария
+         * @param comment - весь объект коммента
+         * @param type - тип комментария
+         */
+        function editComment(comment,type) {
+            if (type === 'status') {
+                vm.commentStatus = comment.comment;
+            } else if (type === 'application') {
+                vm.commentLosses = comment.comment;
+            }
+            vm.edit = {
+                comment: comment.id
+            }
+        }
 
         /**
          * Получение данных по пользователю
