@@ -41,6 +41,7 @@
          * @param id - ID записи в списке
          */
         function openModal(id) {
+            vm.id = id;
             modalService.openModal('lossesModal', {id:id}, 'lg','lossesModalModalController');
         }
     }

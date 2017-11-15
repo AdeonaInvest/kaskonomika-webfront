@@ -15,6 +15,21 @@
         
         vm.menu = [
             {
+                name: 'Убытки',
+                icon: 'fa-rub',
+                path: '/losses/list',
+                child: [
+                    {
+                        name: 'Список заявлений',
+                        icon: 'fa-list',
+                        path: '/losses/list'
+                    }
+                ]
+            }
+        ];
+
+        /*vm.menu = [
+            {
                 name: 'Панель управления',
                 icon: 'fa-dashboard',
                 path: '/dashboard'
@@ -53,7 +68,7 @@
                     }
                 ]
             }
-        ];
+        ];*/
                
 
         activate();

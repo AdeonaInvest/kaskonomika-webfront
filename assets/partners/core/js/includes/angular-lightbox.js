@@ -22,21 +22,21 @@ angular.module('angular-lightbox', [])
                     }
                     else {
                         // Build DOM
-                        var dom = $(
+                        let dom = $(
                             '<div class="angular-lightbox-overlay" style="display: none">' +
+                            '<a href class="previous" title="Назад"><i class="fa fa-angle-left"></i></a>' +
                             '<span class="angular-lightbox-inner">' +
-                            '<a href class="previous" title="Назад">«</a>' +
                             '<img src="" />' +
-                            '<a href class="next" title="Вперед">»</a>' +
-                            '<a href class="close" title="Закрыть">×</a>' +
+                            '<a href class="close" title="Закрыть">закрыть</a>' +
                             '</span>' +
+                            '<a href class="next" title="Вперед"><i class="fa fa-angle-right"></i></a>' +
                             '</div>'
                         );
                         scope.dom = dom;
                         scope.image = dom.find('img')[0];
                         dom.appendTo(document.body);
 
-                        var index = scope.images.indexOf($(this).attr('href'));
+                        let index = scope.images.indexOf($(this).attr('href'));
 
                         scope.loadImageAt(index);
 
@@ -87,13 +87,14 @@ angular.module('angular-lightbox', [])
                  */
                 scope.loadImageAt = function(index) {
                     scope.path = scope.images[index];
-                    var img = new Image();
-                    var inner = scope.dom.find('.angular-lightbox-inner');
+                    let img = new Image();
+                    let inner = scope.dom.find('.angular-lightbox-inner');
+                    let text = scope.dom.find('.angular-lightbox-inner').find('.img-title');
                     img.onload = function() {
                         inner[0].replaceChild(this, scope.image);
                         scope.image = this;
                         scope.dom.show();
-                    }
+                    };
                     img.onerror = function() {
                         inner[0].replaceChild(this, scope.image);
                         scope.image = this;
@@ -102,13 +103,14 @@ angular.module('angular-lightbox', [])
                     img.title = (index + 1) + '/' + scope.images.length;
                     img.src = scope.path; // Trigger image loading
                     img.alt = scope.path;
-                }
+                    text.html(scope.images[index].text);
+                };
 
                 /**
                  * Display previous image in scope.images
                  */
                 scope.showPrevious = function() {
-                    var index = scope.images.indexOf(scope.path) - 1;
+                    let index = scope.images.indexOf(scope.path) - 1;
                     scope.loadImageAt(index == -1 ? scope.images.length - 1 : index);
                 };
 
@@ -116,7 +118,7 @@ angular.module('angular-lightbox', [])
                  * Display next image in scope.images
                  */
                 scope.showNext = function() {
-                    var index = scope.images.indexOf(scope.path) + 1;
+                    let index = scope.images.indexOf(scope.path) + 1;
                     scope.loadImageAt(index == scope.images.length ? 0 : index);
                 };
             }

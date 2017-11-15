@@ -39,12 +39,42 @@ span.angular-lightbox-inner > a {
 span.angular-lightbox-inner > a:hover {
     color: white;
 }
-span.angular-lightbox-inner > a.previous,
-span.angular-lightbox-inner > a.next {
-    width: 2em;
-    height: 2em;
-    top: 50%;
-    margin-top: -1em; /* center vertically */
+
+.angular-lightbox-overlay .img-title {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0,0,0,.5);
+    color: #fff;
+    text-align: center;
+    display: block;
+    padding: 20px;
+    font-size: 14px;
+}
+.angular-lightbox-overlay .previous {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
+    text-align: center;
+    line-height: 100vh;
+    bottom: 0;
+    font-size: 70px;
+    width: 20%;
+    color: #fff;
+}
+.angular-lightbox-overlay .next {
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: block;
+    text-align: center;
+    line-height: 100vh;
+    bottom: 0;
+    font-size: 70px;
+    width: 20%;
+    color: #fff;
 }
 span.angular-lightbox-inner > a.previous {
     left: 0;
@@ -57,4 +87,10 @@ span.angular-lightbox-inner > a.next {
 span.angular-lightbox-inner > a.close {
     top: -1.5em;
     right: 0;
+    font-weight: 100;
+    font-size: 16px;
+    color: #fff;
+    opacity: .7;
+    line-height: 16px;
+    font-family: 'geometria-web';
 }

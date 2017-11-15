@@ -15,8 +15,8 @@
                 controllerAs: 'vm'
             })
             .when ('/dashboard', {
-                templateUrl: '/index/index.html',
-                controller: 'indexController',
+                templateUrl: '/losses/list/losses.html',
+                controller: 'pageLossesController',
                 controllerAs: 'vm'
             })
             .when ('/pso/list', {
