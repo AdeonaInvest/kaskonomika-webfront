@@ -43,30 +43,35 @@
                 .then(function(res){
                     vm.ld = res.data.response;
                     vm.ld.photos = [];
+                    vm.ld.titles = [];
                     vm.ld.address = JSON.parse(vm.ld.address);
                     if (vm.ld.files.scene.length > 0) {
                         vm.ld.files.scene.forEach(function(f){
-                            vm.ld.photos.push(f.path)
+                            vm.ld.photos.push(f.path);
+                            vm.ld.titles.push(f.category)
                         })
                     }
                     if (vm.ld.files.details.length > 0) {
                         vm.ld.files.details.forEach(function(f){
                             if (f.path) {
-                                vm.ld.photos.push(f.path)
+                                vm.ld.photos.push(f.path);
+                                vm.ld.titles.push(f.category)
                             }
                         })
                     }
                     if (vm.ld.files.overview.length > 0) {
                         vm.ld.files.overview.forEach(function(f){
                             if (f.path) {
-                                vm.ld.photos.push(f.path)
+                                vm.ld.photos.push(f.path);
+                                vm.ld.titles.push(f.category)
                             }
                         })
                     }
                     if (vm.ld.files.required.length > 0) {
                         vm.ld.files.required.forEach(function(f){
                             if (f.path) {
-                                vm.ld.photos.push(f.path)
+                                vm.ld.photos.push(f.path);
+                                vm.ld.titles.push(f.category)
                             }
                         })
                     }

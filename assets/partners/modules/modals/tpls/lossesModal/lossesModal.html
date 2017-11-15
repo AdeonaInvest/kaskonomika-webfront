@@ -127,7 +127,7 @@
                     <div class="form-group">
                         <input ng-model="vm.commentLosses" class="form-control" placeholder="Отсавить комментарий о заявлении"/>
                     </div>
-                    <button class="btn btn-success" ng-click="vm.saveComment('application',vm.commentLosses)">Отправить</button>
+                    <button class="btn btn-success" ng-click="vm.saveComment('application',vm.commentLosses)">Сохранить</button>
                 </form>
                 <div class="comments-list" ng-if="vm.commentsApp">
                     <blockquote ng-repeat="row in vm.commentsApp track by $index">
@@ -145,7 +145,7 @@
                     <div class="form-group">
                         <input ng-model="vm.commentStatus" class="form-control" placeholder="Отсавить комментарий о статусе"/>
                     </div>
-                    <button class="btn btn-success" ng-click="vm.saveComment('status',vm.commentStatus)">Отправить</button>
+                    <button class="btn btn-success" ng-click="vm.saveComment('status',vm.commentStatus)">Сохранить</button>
                 </form>
                 <div class="comments-list" ng-if="vm.commentsStatus">
                     <blockquote ng-repeat="row in vm.commentsStatus track by $index">
@@ -162,11 +162,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <ul class="list-inline" lightbox="vm.ld.photos">
-                    <li ng-repeat="row in vm.ld.photos track by $index" class="thumbnail">
+                    <li ng-repeat="(key,row) in vm.ld.photos track by $index" class="thumbnail">
                         <div class="list-item">
                             <a href="{{row}}" class="lightbox-trigger">
                                 <img ng-src="{{row}}"/>
                             </a>
+                            <span class="title">{{vm.ld.titles[key]}}</span>
                         </div>
                     </li>
                 </ul>

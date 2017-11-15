@@ -30,10 +30,21 @@
         margin: 5px;
         max-width: 15%;
         .list-item {
+          position: relative;
           a {
             img {
               max-height: 200px;
             }
+          }
+          .title {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,.4);
+            color: #fff;
+            display: block;
+            padding: 5px;
           }
         }
       }
