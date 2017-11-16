@@ -11,6 +11,7 @@
         let vm = this;
 
         vm.carsList = [];
+        vm.showEndBtn = false;
         vm.issue = {
             repairCount: 0,
             uploader: [],
@@ -67,6 +68,7 @@
         vm.editGoogleMap = editGoogleMap;
         vm.createDriverContractor = createDriverContractor;
         vm.createLossesApplication = createLossesApplication;
+        vm.insuranceReady = insuranceReady;
 
         activate();
         ///////////////////
@@ -319,14 +321,10 @@
             $http.post(config.api + 'losses/applications/create',data)
                 .then(function (res) {
                     if (res.data.result) {
-                        if (!confirm) {
-                            vm.issue.lossesId = res.data.response;
-                            vm.lossesAwait = 2;
-                            vm.waitLossesApp = false;
-                            getDocumentAdditionalList();
-                        } else {
-                            $location.path('/dashboard/insurance/list');
-                        }
+                        vm.issue.lossesId = res.data.response;
+                        vm.lossesAwait = 2;
+                        vm.waitLossesApp = false;
+                        getDocumentAdditionalList();
                     } else {
                         xerror('MODULE : DASHBOARD : INSURANCE_CREATE : createLossesApplication()')
                     }
@@ -370,17 +368,10 @@
          * Утверждение заявления и отправка данных на сервер
          */
         function insuranceReady() {
-            let date = new Date(),
-                data = {
-
-                };
-            $http.post(config.api + 'losses/applications/create',data)
-                .then(function (res) {
+            $http.get(config.api + '/losses/applications/'+vm.issue.lossesId+'/confirm')
+                .then(function(res){
                     if (res.data.result) {
-                        //TODO открыть после установления нормального сценария
-
-                    } else {
-                        xerror('MODULE : DASHBOARD : INSURANCE_CREATE : insuranceReady() $http failure')
+                        $location.path('/dashboard/insurance/list?action=createdSuccess');
                     }
                 })
         }
@@ -500,36 +491,24 @@
                             break;
                         case 5: data.losses_documents_types_id = 21;//Фотография VIN-номера
                             break;
-                        case 27: data.losses_documents_types_id = 1; //Свидетельство о регистрации ТС (СТС)
+                        case 50: data.losses_documents_types_id = 1; //Свидетельство о регистрации ТС (СТС)
                             break;
-                        case 28: data.losses_documents_types_id = 9; //Справка о ДТП (Приложение к приказу МВД РФ № 154)
+                        case 51: data.losses_documents_types_id = 9; //Справка о ДТП (Приложение к приказу МВД РФ № 154)
                             break;
-                        case 29: data.losses_documents_types_id = 10; //Протокол об административном правонарушении (если составлялся)
+                        case 52: data.losses_documents_types_id = 10; //Протокол об административном правонарушении (если составлялся)
                             break;
-                        case 30: data.losses_documents_types_id = 11; //Определение о возбуждении дела об административном правонарушении (если оформлялось)
+                        case 53: data.losses_documents_types_id = 11; //Определение о возбуждении дела об административном правонарушении (если оформлялось)
                             break;
-                        case 31: data.losses_documents_types_id = 12; //Определение об отказе в возбуждении дела об административном правонарушении (если оформлялось)
+                        case 54: data.losses_documents_types_id = 12; //Определение об отказе в возбуждении дела об административном правонарушении (если оформлялось)
                             break;
-                        case 32: data.losses_documents_types_id = 24; //Водительское удостоверение лица, управлявшего ТС в момент заявляемого события
+                        case 55: data.losses_documents_types_id = 24; //Водительское удостоверение лица, управлявшего ТС в момент заявляемого события
                             break;
-                        case 33: data.losses_documents_types_id = 30; //Постановление по делу об административном правонарушении (если составлялось)
+                        case 56: data.losses_documents_types_id = 30; //Постановление по делу об административном правонарушении (если составлялось)
                             break;
                         default: data.category_id = 14; //Дефолтный ID для всех изображений
                             break;
                     }
                     item.formData.push(data);
-                };
-
-                /**
-                 * Обработка перед загрузкой изображения
-                 * @param item
-                 */
-                vm['uploader'+i].onCompleteItem = function(item) {
-                    item.formData.push({
-                        losses_documents_types: vm.addDocumentsList.indexes[index],
-                        token: vm.token,
-                        owner_id: vm.user.id
-                    });
                 };
 
                 /**
@@ -549,7 +528,6 @@
                 };
                 index++;
             }
-
             /**
              * Событие при завершении создания всех загрузчиков
              */
