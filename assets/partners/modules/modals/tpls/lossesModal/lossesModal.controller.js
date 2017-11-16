@@ -213,26 +213,27 @@
          * @param id
          */
         function getSecondParticipantInfo(id) {
-            $http.get(config.api + '/contractors/' + id + '?token=' + vm.token)
-                .then(function(res){
-                    if (res.data.result) {
-                        let html = '<div class="popover-html">' +
-                            '<dl class="dl-horizontal">' +
-                            '<dt>#</dt><dd>'+res.data.response[0].id+'</dd></dl>' +
-                            '<dl class="dl-horizontal">' +
-                            '<dt>Ф.И.О.</dt><dd>'+res.data.response[0].name +'</dd></dl>' +
-                            '<dl class="dl-horizontal">' +
-                            '<dt>Д.р.</dt><dd>'+res.data.response[0].birth_date+'</dd></dl>' +
-                            '<dl class="dl-horizontal">' +
-                            '<dt>Пол</dt><dd>'+res.data.response[0].sex+'</dd></dl>' +
-                            '<dl class="dl-horizontal">' +
-                            '<dt>Юр.статус</dt><dd>'+res.data.response[0].is_juridical+'</dd></dl>' +
-                            '<dl class="dl-horizontal">' +
-                            '<dt>Основной</dt><dd>'+res.data.response[0].is_primary+'</dd></dl>' +
-                            '</div>';
-                        vm.second_participant = $sce.trustAsHtml(html);
-                    }
-                })
+            let html = '<div class="popover-html">' +
+                '<dl class="dl-horizontal">' +
+                '<dt>#</dt><dd>'+vm.ld.second_participant.id+'</dd></dl>' +
+                '<dl class="dl-horizontal">' +
+                '<dt>Ф.И.О.</dt><dd>'+vm.ld.second_participant.name+'</dd></dl>' +
+                '<dl class="dl-horizontal">' +
+                '<dt>Д.р.</dt><dd>'+vm.ld.second_participant.birth_date+'</dd></dl>' +
+                '<dl class="dl-horizontal">' +
+                '<dt>Авто</dt><dd>'+vm.ld.second_participant.car.mark_model+'</dd></dl>' +
+                '<dl class="dl-horizontal">' +
+                '<dt>Номер</dt><dd>'+vm.ld.second_participant.car.reg_plate+'</dd></dl>' +
+                '<dl class="dl-horizontal">' +
+                '<dt>VIN</dt><dd>'+vm.ld.second_participant.car.vin+'</dd></dl>' +
+                '<dl class="dl-horizontal">' +
+                '<dt>Осаго</dt><dd>'+vm.ld.second_participant.osago.company+'</dd></dl>' +
+                '<dl class="dl-horizontal">' +
+                '<dt>Номер осаго</dt><dd>'+vm.ld.second_participant.osago.serie+' '+vm.ld.second_participant.osago.number+'</dd></dl>' +
+                '<dl class="dl-horizontal">' +
+                '<dt>Юр.статус</dt><dd>'+vm.ld.second_participant.is_juridical+'</dd></dl>' +
+                '</div>';
+            vm.second_participant = $sce.trustAsHtml(html);
         }
     }
 

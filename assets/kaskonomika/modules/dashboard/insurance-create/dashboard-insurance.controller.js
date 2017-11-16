@@ -5,9 +5,9 @@
         .module('kaskonomika')
         .controller('dashboardInsuranceCreateController', dashboardInsuranceCreateController);
 
-    dashboardInsuranceCreateController.$inject = ['$scope','$http','config','FileUploader','NgMap'];
+    dashboardInsuranceCreateController.$inject = ['$scope','$http','config','FileUploader','$location'];
 
-    function dashboardInsuranceCreateController($scope,$http,config,FileUploader,NgMap) {
+    function dashboardInsuranceCreateController($scope,$http,config,FileUploader,$location) {
         let vm = this;
 
         vm.carsList = [];
@@ -280,7 +280,7 @@
         /**
          * Получение списка водителей авто
          */
-        function createLossesApplication() {
+        function createLossesApplication(confirm) {
             let date = new Date(),
                 data = {
                     token: vm.token,
@@ -319,10 +319,14 @@
             $http.post(config.api + 'losses/applications/create',data)
                 .then(function (res) {
                     if (res.data.result) {
-                        vm.issue.lossesId = res.data.response;
-                        vm.lossesAwait = 2;
-                        vm.waitLossesApp = false;
-                        getDocumentAdditionalList();
+                        if (!confirm) {
+                            vm.issue.lossesId = res.data.response;
+                            vm.lossesAwait = 2;
+                            vm.waitLossesApp = false;
+                            getDocumentAdditionalList();
+                        } else {
+                            $location.path('/dashboard/insurance/list');
+                        }
                     } else {
                         xerror('MODULE : DASHBOARD : INSURANCE_CREATE : createLossesApplication()')
                     }
@@ -365,7 +369,7 @@
         /**
          * Утверждение заявления и отправка данных на сервер
          */
-        /*function insuranceReady() {
+        function insuranceReady() {
             let date = new Date(),
                 data = {
 
@@ -379,7 +383,7 @@
                         xerror('MODULE : DASHBOARD : INSURANCE_CREATE : insuranceReady() $http failure')
                     }
                 })
-        }*/
+        }
 
         /**
          * Создание загрузчиков для фото
@@ -423,23 +427,23 @@
                             break;
                         case 26: data.category_id = 2; //Общий вид места ДТП
                             break;
-                        case 4: data.losses_documents_types = 22;//Фотография одометра
+                        case 4: data.losses_documents_types_id = 22;//Фотография одометра
                             break;
-                        case 5: data.losses_documents_types = 21;//Фотография VIN-номера
+                        case 5: data.losses_documents_types_id = 21;//Фотография VIN-номера
                             break;
-                        case 27: data.losses_documents_types = 1; //Свидетельство о регистрации ТС (СТС)
+                        case 27: data.losses_documents_types_id = 1; //Свидетельство о регистрации ТС (СТС)
                             break;
-                        case 28: data.losses_documents_types = 9; //Справка о ДТП (Приложение к приказу МВД РФ № 154)
+                        case 28: data.losses_documents_types_id = 9; //Справка о ДТП (Приложение к приказу МВД РФ № 154)
                             break;
-                        case 29: data.losses_documents_types = 10; //Протокол об административном правонарушении (если составлялся)
+                        case 29: data.losses_documents_types_id = 10; //Протокол об административном правонарушении (если составлялся)
                             break;
-                        case 30: data.losses_documents_types = 11; //Определение о возбуждении дела об административном правонарушении (если оформлялось)
+                        case 30: data.losses_documents_types_id = 11; //Определение о возбуждении дела об административном правонарушении (если оформлялось)
                             break;
-                        case 31: data.losses_documents_types = 12; //Определение об отказе в возбуждении дела об административном правонарушении (если оформлялось)
+                        case 31: data.losses_documents_types_id = 12; //Определение об отказе в возбуждении дела об административном правонарушении (если оформлялось)
                             break;
-                        case 32: data.losses_documents_types = 24; //Водительское удостоверение лица, управлявшего ТС в момент заявляемого события
+                        case 32: data.losses_documents_types_id = 24; //Водительское удостоверение лица, управлявшего ТС в момент заявляемого события
                             break;
-                        case 33: data.losses_documents_types = 30; //Постановление по делу об административном правонарушении (если составлялось)
+                        case 33: data.losses_documents_types_id = 30; //Постановление по делу об административном правонарушении (если составлялось)
                             break;
                         default: data.category_id = 14; //Дефолтный ID для всех изображений
                             break;
@@ -466,7 +470,7 @@
 
             //Создание загрузчиков для динамических списков документов
             let index = 0;
-            for (let i = 50; i <= vm.addDocumentsList.number; i++) {
+            for (let i = 50; i <= 70; i++) {
                 vm['uploader'+i] = new FileUploader(vm.uploaderConfig);
                 vm.issue.uploader.push([]);
 
@@ -475,6 +479,52 @@
                  * @param item
                  */
                 vm['uploader'+i].onBeforeUploadItem = function(item) {
+                    let data = {
+                        token: vm.token,
+                        owner_id: vm.user.id
+                    };
+                    switch (i) {
+                        case 21: data.category_id = 5; //Спереди-справа
+                            break;
+                        case 22: data.category_id = 6; //Спереди-слева
+                            break;
+                        case 23: data.category_id = 8; //Сзади-слева
+                            break;
+                        case 24: data.category_id = 7; //Сзади-справа
+                            break;
+                        case 25: data.category_id = 9; //Детальный вид повреждений
+                            break;
+                        case 26: data.category_id = 2; //Общий вид места ДТП
+                            break;
+                        case 4: data.losses_documents_types_id = 22;//Фотография одометра
+                            break;
+                        case 5: data.losses_documents_types_id = 21;//Фотография VIN-номера
+                            break;
+                        case 27: data.losses_documents_types_id = 1; //Свидетельство о регистрации ТС (СТС)
+                            break;
+                        case 28: data.losses_documents_types_id = 9; //Справка о ДТП (Приложение к приказу МВД РФ № 154)
+                            break;
+                        case 29: data.losses_documents_types_id = 10; //Протокол об административном правонарушении (если составлялся)
+                            break;
+                        case 30: data.losses_documents_types_id = 11; //Определение о возбуждении дела об административном правонарушении (если оформлялось)
+                            break;
+                        case 31: data.losses_documents_types_id = 12; //Определение об отказе в возбуждении дела об административном правонарушении (если оформлялось)
+                            break;
+                        case 32: data.losses_documents_types_id = 24; //Водительское удостоверение лица, управлявшего ТС в момент заявляемого события
+                            break;
+                        case 33: data.losses_documents_types_id = 30; //Постановление по делу об административном правонарушении (если составлялось)
+                            break;
+                        default: data.category_id = 14; //Дефолтный ID для всех изображений
+                            break;
+                    }
+                    item.formData.push(data);
+                };
+
+                /**
+                 * Обработка перед загрузкой изображения
+                 * @param item
+                 */
+                vm['uploader'+i].onCompleteItem = function(item) {
                     item.formData.push({
                         losses_documents_types: vm.addDocumentsList.indexes[index],
                         token: vm.token,

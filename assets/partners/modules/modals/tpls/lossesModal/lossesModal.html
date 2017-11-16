@@ -111,9 +111,9 @@
                             <dt>Данные по водителю</dt>
                             <dd>{{vm.ld.driver.name}}</dd>
                         </dl>
-                        <dl class="dl-horizontal">
+                        <dl class="dl-horizontal" ng-if="vm.ld">
                             <dt>Данные второго участника</dt>
-                            <dd>{{vm.ld.second_participant.status}}</dd>
+                            <dd><a href uib-popover-html="vm.second_participant" popover-title="Данные второго водителя" ng-init="vm.getSecondParticipantInfo()">{{vm.ld.second_participant.name ? vm.ld.second_participant.name : 'Виновник'}}</a></dd>
                         </dl>
                     </div>
                 </div>
