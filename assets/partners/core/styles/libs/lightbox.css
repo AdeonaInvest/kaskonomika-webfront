@@ -61,7 +61,7 @@ span.angular-lightbox-inner > a:hover {
     line-height: 100vh;
     bottom: 0;
     font-size: 70px;
-    width: 20%;
+    width: 10%;
     color: #fff;
 }
 .angular-lightbox-overlay .next {
@@ -73,7 +73,7 @@ span.angular-lightbox-inner > a:hover {
     line-height: 100vh;
     bottom: 0;
     font-size: 70px;
-    width: 20%;
+    width: 10%;
     color: #fff;
 }
 span.angular-lightbox-inner > a.previous {
