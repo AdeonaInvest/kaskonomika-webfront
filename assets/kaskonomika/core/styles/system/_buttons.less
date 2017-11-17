@@ -11,12 +11,14 @@
   height: 40px;
   min-width: 180px;
   color: #fff;
-  font: 16px/40px @fm-light;
+  font: 16px/40px @fm-web;
   margin: 0 auto;
   span {
-    color: #fff;
-    font: 14px/40px @fm-light;
+    color: #000;
+    font: 14px/40px @fm-web;
     vertical-align: middle;
+    text-transform: uppercase;
+    transition: .2s ease;
   }
   i {
     color: #fff;
@@ -26,14 +28,15 @@
   }
   &:hover {
     transition: .2s ease;
-    background: @color-blue-hover;
+    background: @color-blue-dark;
     outline: none;
     border: none;
     color: #fff;
     span {
       color: #fff;
-      font: 14px/40px @fm-light;
+      font: 14px/40px @fm-web;
       vertical-align: middle;
+      transition: .2s ease;
     }
   }
   &._default {

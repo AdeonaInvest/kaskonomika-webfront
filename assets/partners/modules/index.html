@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html lang="ru" ng-app='partners'>
-<head>
-    <base href="/">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <link rel="shortcut icon" href="/src/img/base/favicon.png">
-    <link href="css/style.css" rel="stylesheet" type="text/css"/>
-    <title>Каскономика</title>
+    <head>
+        <base href="/">
+        <meta charset="UTF-8">
+        <title>Каскономика</title>
+        <link rel="shortcut icon" href="/src/img/base/favicon.png">
 
-    @@include('../core/js/includes/google-maps.html')
+        <!-- Утилиты адаптивности страницы -->
+        <meta name='viewport' content='width=device-width,initial-scale=1'/>
+        <meta content='true' name='HandheldFriendly'/>
+        <meta content='width' name='MobileOptimized'/>
+        <meta content='yes' name='apple-mobile-web-app-capable'/>
 
-    <script src="/src/js/vendor.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/templates.js"></script>
-</head>
-<body class="sidebar-mini fixed sidebar-collapse"
-      ng-controller="appController"
-      ng-class="{'sidebar-collapse' : offcanvas}">
-<div class="wrapper">
+        <!-- Подключение стилей -->
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
 
-    @@include('../modules/header/header.html')
+        <!-- Подключение скриптов -->
+        <script src="/src/js/vendor.js"></script>
+        <script src="js/script.js"></script>
+        <script src="js/templates.js"></script>
 
-    @@include('../modules/sidebar/sidebar.html')
+        <!-- Подключение аналитик и визоров -->
+        @@include('../core/js/includes/google-maps.html')
+    </head>
+    <body class="sidebar-mini fixed sidebar-collapse"
+          ng-controller="appController"
+          ng-class="{'sidebar-collapse' : offcanvas}">
+    <div class="wrapper">
 
-    <div class="content-wrapper" ng-class="{'wrapper-clean' : isIndexPage}">
-        <div ng-if="!isIndexPage" breadcrumbs></div>
-        <ng-view autoscroll="true"></ng-view>
-        @@include('../modules/footer/footer.html')
+        @@include('../modules/header/header.html')
+
+        @@include('../modules/sidebar/sidebar.html')
+
+        <div class="content-wrapper" ng-class="{'wrapper-clean' : isIndexPage}">
+            <div ng-if="!isIndexPage" breadcrumbs></div>
+            <ng-view autoscroll="true"></ng-view>
+            @@include('../modules/footer/footer.html')
+        </div>
     </div>
-</div>
 
 
-</body>
+    </body>
 </html>

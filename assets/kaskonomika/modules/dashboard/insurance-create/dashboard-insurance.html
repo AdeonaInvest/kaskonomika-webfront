@@ -32,11 +32,12 @@
                     <!-- ПОВРЕЖДЕННЫЕ ЭЛЕМЕНТЫ ПРОИСШЕСТВИЯ -- 6 --->
                     <ng-include src="'/dashboard/insurance-create/area-step6-break-elements.html'" ng-if="vm.issue.myVersion.length > 49"></ng-include>
 
-                    <!-- ОБЩИЙ ВИД АВТОМОБИЛЯ С 4 СТОРОН -- 7 --->
-                    <ng-include src="'/dashboard/insurance-create/area-step7-default-view-avto.html'" ng-if="vm.uploaderCreated"></ng-include>
 
                     <!-- ОБЩИЙ ВИД МЕСТА ДТП -- 8 --->
-                    <ng-include src="'/dashboard/insurance-create/area-step9-default-view-place.html'" ng-if="vm.issue.uploader[24].length > 0"></ng-include>
+                    <ng-include src="'/dashboard/insurance-create/area-step9-default-view-place.html'" ng-if="vm.uploaderCreated"></ng-include>
+
+                    <!-- ОБЩИЙ ВИД АВТОМОБИЛЯ С 4 СТОРОН -- 7 --->
+                    <ng-include src="'/dashboard/insurance-create/area-step7-default-view-avto.html'" ng-if="vm.issue.uploader[26].length > 0"></ng-include>
 
                     <!-- ДЕТАЛЬНЫЙ ВИД ПОВРЕЖДЕНИЙ  -- 9 --->
                     <ng-include src="'/dashboard/insurance-create/area-step8-detail-view-breaks.html'" ng-if="vm.issue.uploader[26].length > 0"></ng-include>
@@ -47,7 +48,7 @@
                     <!-- ФОТО VIN-НОМЕРА -- 11 --->
                     <ng-include src="'/dashboard/insurance-create/area-step11-photo-vin.html'" ng-if="vm.issue.uploader[4].length > 0"></ng-include>
 
-                    <!-- ОБЪЯСНЯЛОВКА -- 12 --->
+                    <!-- ДОКУМЕНТЫ -- 12 --->
                     <ng-include src="'/dashboard/insurance-create/area-step12-docs.html'" ng-if="vm.issue.uploader[5].length > 0"></ng-include>
 
                     <!-- КНОПКА ГОТОВНОСТИ -- 13 --->

@@ -23,7 +23,10 @@
             repairBody: false,
             repairWheels: false,
             showGuiltyAnketa: false,
-            showMap: false
+            showMap: false,
+            damagedParts: {},
+            damagedPartsGroup: {},
+            damagedPartsItems: {}
         };
         vm.activeIncident = 0;
         vm.lossesAwait = 0; // 0 - стоп, 1 - ожидаение, 2 - завершение
@@ -69,6 +72,7 @@
         vm.createDriverContractor = createDriverContractor;
         vm.createLossesApplication = createLossesApplication;
         vm.insuranceReady = insuranceReady;
+        vm.getDamagedPartsList = getDamagedPartsList;
 
         activate();
         ///////////////////
@@ -277,12 +281,122 @@
             });
         }
 
-        //createLossesApplication()
+        function getDamagedPartsList() {
+            let url = 'losses/damages?token=' + vm.token;
+            vm.issue.damagedParts.front ? url += '&is_front=1' : null;
+            vm.issue.damagedParts.center ? url += '&is_middle=1' : null;
+            vm.issue.damagedParts.back ? url += '&is_back=1' : null;
+            vm.issue.damagedPartsGroup.is_glass ? url += '&is_glass=1' : null;
+            vm.issue.damagedPartsGroup.is_light ? url += '&is_light=1' : null;
+            vm.issue.damagedPartsGroup.is_wheels ? url += '&is_wheels=1' : null;
+            vm.issue.damagedPartsGroup.is_body ? url += '&is_body=1' : null;
+            vm.issue.damagedPartsGroup.is_mirror ? url += '&is_mirror=1' : null;
+            $http.get(config.api + url)
+                .then(function(res){
+                    if (res.data.result) {
+                        vm.damagedCarParts = res.data.response;
+                    }
+                })
+        }
+
+        watchCarDerection();
+        function watchCarDerection() {
+            $scope.$watch('vm.issue.damagedParts.front',function(){
+                vm.damagedCarGroup = {};
+                vm.issue.damagedPartsGroup = {};
+                if (vm.issue.damagedParts.front || vm.issue.damagedParts.center || vm.issue.damagedParts.back) getDamagedGroup();
+            });
+
+            $scope.$watch('vm.issue.damagedParts.center',function(){
+                vm.damagedCarGroup = {};
+                vm.issue.damagedPartsGroup = {};
+                if (vm.issue.damagedParts.front || vm.issue.damagedParts.center || vm.issue.damagedParts.back) getDamagedGroup();
+            });
+
+            $scope.$watch('vm.issue.damagedParts.back',function(){
+                vm.damagedCarGroup = {};
+                vm.issue.damagedPartsGroup = {};
+                if (vm.issue.damagedParts.front || vm.issue.damagedParts.center || vm.issue.damagedParts.back) getDamagedGroup();
+            });
+
+            $scope.$watch('vm.issue.damagedPartsGroup.is_glass',function(){
+                vm.damagedCarParts = {};
+                vm.issue.damagedPartsItems = {};
+                if (vm.issue.damagedPartsGroup.is_glass ||
+                    vm.issue.damagedPartsGroup.is_light ||
+                    vm.issue.damagedPartsGroup.is_wheels ||
+                    vm.issue.damagedPartsGroup.is_body ||
+                    vm.issue.damagedPartsGroup.is_mirror
+                ) getDamagedPartsList();
+            });
+
+            $scope.$watch('vm.issue.damagedPartsGroup.is_light',function(){
+                vm.damagedCarParts = {};
+                vm.issue.damagedPartsItems = {};
+                if (vm.issue.damagedPartsGroup.is_glass ||
+                    vm.issue.damagedPartsGroup.is_light ||
+                    vm.issue.damagedPartsGroup.is_wheels ||
+                    vm.issue.damagedPartsGroup.is_body ||
+                    vm.issue.damagedPartsGroup.is_mirror
+                ) getDamagedPartsList();
+            });
+
+            $scope.$watch('vm.issue.damagedPartsGroup.is_wheels',function(){
+                vm.damagedCarParts = {};
+                vm.issue.damagedPartsItems = {};
+                if (vm.issue.damagedPartsGroup.is_glass ||
+                    vm.issue.damagedPartsGroup.is_light ||
+                    vm.issue.damagedPartsGroup.is_wheels ||
+                    vm.issue.damagedPartsGroup.is_body ||
+                    vm.issue.damagedPartsGroup.is_mirror
+                ) getDamagedPartsList();
+            });
+
+            $scope.$watch('vm.issue.damagedPartsGroup.is_body',function(){
+                vm.damagedCarParts = {};
+                vm.issue.damagedPartsItems = {};
+                if (vm.issue.damagedPartsGroup.is_glass ||
+                    vm.issue.damagedPartsGroup.is_light ||
+                    vm.issue.damagedPartsGroup.is_wheels ||
+                    vm.issue.damagedPartsGroup.is_body ||
+                    vm.issue.damagedPartsGroup.is_mirror
+                ) getDamagedPartsList();
+            });
+
+            $scope.$watch('vm.issue.damagedPartsGroup.is_mirror',function(){
+                vm.damagedCarParts = {};
+                vm.issue.damagedPartsItems = {};
+                if (vm.issue.damagedPartsGroup.is_glass ||
+                    vm.issue.damagedPartsGroup.is_light ||
+                    vm.issue.damagedPartsGroup.is_wheels ||
+                    vm.issue.damagedPartsGroup.is_body ||
+                    vm.issue.damagedPartsGroup.is_mirror
+                ) getDamagedPartsList();
+            });
+        }
+
+
+        function getDamagedGroup() {
+            let url = 'losses/damages?token=' + vm.token;
+            vm.issue.damagedParts.front ? url += '&is_front=1' : null;
+            vm.issue.damagedParts.center ? url += '&is_middle=1' : null;
+            vm.issue.damagedParts.back ? url += '&is_back=1' : null;
+            $http.get(config.api + url)
+                .then(function(res){
+                    if (res.data.result) {
+                        vm.damagedCarGroup = res.data.response;
+                    }
+                })
+        }
 
         /**
          * Получение списка водителей авто
          */
         function createLossesApplication(confirm) {
+            let damagesList = [];
+            for (let i=0;i<vm.damagedCarParts.length;i++) {
+                damagesList.push(vm.damagedCarParts[i].id)
+            }
             let date = new Date(),
                 data = {
                     token: vm.token,
@@ -305,6 +419,7 @@
                         address: vm.issue.mapAddress
                     }),
                     info: vm.issue.myVersion,
+                    damages: damagesList,
                     pc_lat: '', //
                     pc_lng: '', //
                     variant_id: vm.issue.variant,
@@ -368,7 +483,7 @@
          * Утверждение заявления и отправка данных на сервер
          */
         function insuranceReady() {
-            $http.get(config.api + '/losses/applications/'+vm.issue.lossesId+'/confirm')
+            $http.post(config.api + 'losses/applications/'+vm.issue.lossesId+'/confirm',{token:vm.token})
                 .then(function(res){
                     if (res.data.result) {
                         $location.path('/dashboard/insurance/list?action=createdSuccess');

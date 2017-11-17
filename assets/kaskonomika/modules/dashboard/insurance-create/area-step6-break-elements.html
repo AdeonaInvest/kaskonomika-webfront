@@ -1,55 +1,50 @@
 <div class="row repair-items-area step-area">
     <hr/>
     <span class="span-step">Шаг 5</span>
-    <span class="span-step-title">Поврежденные элементы автомобиля.</span>
+    <span class="span-step-title">Повреждения автомобиля.</span>
+    <h4>Выберите, какая часть вашего автомобиля и элементы пострадала в результате происшествия.</h4>
     <div class="animated zoomIn">
+        <div class="select-car-direction">
+            <div class="front-part damagedPart" ng-click="vm.issue.damagedParts.front = !vm.issue.damagedParts.front" ng-class="{'active': vm.issue.damagedParts.front}">
+
+            </div>
+            <div class="center-part damagedPart" ng-click="vm.issue.damagedParts.center = !vm.issue.damagedParts.center" ng-class="{'active': vm.issue.damagedParts.center}">
+
+            </div>
+            <div class="back-part damagedPart" ng-click="vm.issue.damagedParts.back = !vm.issue.damagedParts.back" ng-class="{'active': vm.issue.damagedParts.back}">
+
+            </div>
+        </div>
+    </div>
+    <!-- ВЫБОР ГРУППЫ ЭЛЕМЕНТОВ -->
+    <div ng-if="vm.damagedCarGroup.length > 0">
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-4"  ng-repeat="(key,row) in vm.damagedCarGroup track by $index" >
                 <div class="checkbox custom-checkbox">
-                    <input class="hidden" type="checkbox" ng-model="vm.issue.repairGlass">
-                    <label ng-click="vm.issue.repairGlass = !vm.issue.repairGlass">
-                        <span>Повреждено остекление салона</span>
-                    </label>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="checkbox custom-checkbox">
-                    <input class="hidden" type="checkbox" ng-model="vm.issue.repairLighting">
-                    <label ng-click="vm.issue.repairLighting = !vm.issue.repairLighting">
-                        <span>Повреждены осветительные приборы</span>
-                    </label>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="checkbox custom-checkbox">
-                    <input class="hidden" type="checkbox" ng-model="vm.issue.repairWheels">
-                    <label ng-click="vm.issue.repairWheels = !vm.issue.repairWheels">
-                        <span>Повреждены шины, диски</span>
+                    <input class="hidden" type="checkbox" ng-model="vm.issue.damagedPartsGroup[row.code]">
+                    <label ng-click="vm.issue.damagedPartsGroup[row.code] = !vm.issue.damagedPartsGroup[row.code]">
+                        <span>{{row.name}}</span>
                     </label>
                 </div>
             </div>
         </div>
+    </div>
+    <hr ng-if="vm.damagedCarParts.length > 0"/>
+    <div class="damaged-parts-list" ng-if="vm.damagedCarParts.length > 0">
+        <h4>Укажите поврежденные детали.</h4>
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-3" ng-repeat="(key,row) in vm.damagedCarParts track by $index">
                 <div class="checkbox custom-checkbox">
-                    <input class="hidden" type="checkbox" ng-model="vm.issue.repairBody">
-                    <label ng-click="vm.issue.repairBody = !vm.issue.repairBody">
-                        <span>Повреждены элементы кузова</span>
-                    </label>
-                </div>
-            </div>
-            <div class="col-lg-8">
-                <div class="checkbox custom-checkbox">
-                    <input class="hidden" type="checkbox" ng-model="vm.issue.repairMirrors">
-                    <label ng-click="vm.issue.repairMirrors = !vm.issue.repairMirrors">
-                        <span>Повреждены зеркала</span>
+                    <input class="hidden" type="checkbox" ng-model="vm.issue.damagedPartsItems[row.id]">
+                    <label ng-click="vm.issue.damagedPartsItems[row.id] = !vm.issue.damagedPartsItems[row.id]">
+                        <span>{{row.name}}</span>
                     </label>
                 </div>
             </div>
         </div>
-        <hr/>
-        <div class="row row-string ta-center">
-            <button class="btn btn-kasko" ng-click="vm.createLossesApplication()">Больше ничего не повреждено</button>
-        </div>
+    </div>
+    <hr/>
+    <div class="row row-string ta-center">
+        <button class="btn btn-kasko" ng-click="vm.createLossesApplication()">Продолжить</button>
     </div>
 </div>
