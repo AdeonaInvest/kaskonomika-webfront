@@ -9,17 +9,29 @@
 
     function indexController($scope) {
         ///////////////////
-        var vm = this;
+        let vm = this;
         vm.view = false; //Статус готовности отображения
-        activate();
-        function activate() {
-            $scope.$on('cfpLoadingBar:completed',function(){
-                vm.view = true;
-            });
-        }
-        //////////////////
         vm.swiperIndex = 0;
-        
+        //Список блоков в 1 секции
+        vm.bocksList = [
+            {
+                h3: 'Осаго',
+                h4: 'Покупка онлайн'
+            },
+            {
+                h3: 'Страхование туристов',
+                h4: 'Прямо на сайте'
+            },
+            {
+                h3: 'Страхование имущества',
+                h4: '352 Предложения'
+            },
+            {
+                h3: 'Каскономика',
+                h4: 'Каско от 3000 рублей',
+                special: true
+            }
+        ];
         // Список партнеров
         vm.partnersList = [
             {
@@ -74,9 +86,19 @@
             }
         ];
 
-        $scope.onReadySwiper = function (swiper) {
-            xlog('PAGE : INDEX -> Swiper Ready');
+        //////////////////
+        activate();
 
+        function activate() {
+            $scope.$on('cfpLoadingBar:completed',function(){
+                vm.view = true;
+            });
+        }
+
+        //////////////////
+
+
+        $scope.onReadySwiper = function (swiper) {
             vm.slideTo = slideTo;
             
             function slideTo(index) {
@@ -87,8 +109,6 @@
                 vm.swiperIndex = swiper.activeIndex;
                 $scope.$digest();
             })
-
-            
         };
         
     }

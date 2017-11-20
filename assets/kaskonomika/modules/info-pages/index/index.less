@@ -7,10 +7,16 @@
   #index-section1-calc {
     display: block;
     width: 100%;
+    background: url('/src/img/backgrounds/bg_1_block.gif') no-repeat #e4f3fc;
     .section1-calc-top-area {
-      padding: 150px 0;
-      background: url('/src/img/backgrounds/index-section1-bg-right.png') bottom right / 20% no-repeat,
-                  url('/src/img/backgrounds/index-section1-bg-left.png') bottom left / 20% no-repeat #e4f3fc;
+      padding: 50px 0 90px;
+      h1 {
+        text-align: center;
+        font: 28px/34px @fm-bold;
+        color: #000;
+        text-transform: uppercase;
+        margin: 0 auto 70px;
+      }
       .calc-module {
         width: 80%;
         display: block;
@@ -20,14 +26,90 @@
       }
 
     }
+    .section1-calc-middle-area {
+      margin-bottom: 90px;
+      .container {
+        .block-group {
+          width: 80%;
+          margin: 0 auto;
+          .block-item {
+            width: 25%;
+            float: left;
+            height: 170px;
+            margin: 0;
+            background: url('/src/img/base/common/index-block-separator.png') no-repeat 0 50% #fff;
+            transition: .2s ease;
+            position: relative;
+            .text-area {
+              position: absolute;
+              bottom: 50px;
+              width: 100%;
+              h3 {
+                vertical-align: middle;
+                font: 23px/23px @fm-bold;
+                color: #000;
+                text-transform: uppercase;
+                text-align: center;
+                width: 100%;
+                margin: 0 auto 10px;
+              }
+              h4 {
+                font: 10px/10px @fm-main;
+                color: #000;
+                text-transform: uppercase;
+                text-align: center;
+                width: 100%;
+                margin: 0;
+              }
+            }
+            &:hover {
+              background: #59c6f2;
+              cursor: pointer;
+              transition: .2s ease;
+            }
+            &.one-line {
+              .text-area {
+                h3 {
+                  font: 23px/46px @fm-bold;
+                }
+              }
+            }
+            &.special {
+              background: #ea5052;
+              .text-area {
+                h3,h4 {
+                  color: #fff;
+                }
+              }
+              &:hover {
+                background: #d54a4c;
+              }
+            }
+            &:first-child {
+              border-top-left-radius: 8px;
+              border-bottom-left-radius: 8px;
+              background: #fff;
+              &:hover {
+                background: #59c6f2;
+              }
+            }
+            &:last-child {
+              border-top-right-radius: 8px;
+              border-bottom-right-radius: 8px;
+              border-left: none
+            }
+          }
+        }
+      }
+    }
     .section1-calc-bottom-area {
-      padding: 50px 0;
-      background: #b2dcf6;
+      padding: 0 0 50px;
       h3 {
         text-align: center;
         margin: 0 auto 50px;
-        font: 20px/20px @fm-light;
+        font: 20px/20px @fm-main;
         width: 70%;
+        text-transform: uppercase;
       }
       .partners-logos {
         margin: auto;
