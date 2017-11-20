@@ -1,6 +1,32 @@
 <div class="container-fluid">
     <div class="container">
-        <h2 class="m-width-90 index-section-title">Вы аккуратный водитель?<br/>Получайте за это скидки и бонусы</h2>
-        <p class="m-width-100">Система оценки вождения учитывает, насколько плавно вы совершаете маневры, разгоняетесь и тормозите, и следит за соблюдением скоростного режима. Теперь аккуратные и внимательные водители не только не платят за чужие ошибки, но и получают дополнительные скидки и бонусы.</p>
+        <div class="section-two-btns">
+            <div class="section-two-btn" ng-click="vm.tab = 1" ng-class="{'active' : vm.tab === 1}">
+                <span>Рассчитайте и выберите тариф</span>
+            </div>
+            <div class="section-two-btn" ng-click="vm.tab = 2" ng-class="{'active' : vm.tab === 2}">
+                <span>Заключите договор и оплатите онлайн</span>
+            </div>
+            <div class="section-two-btn" ng-click="vm.tab = 3" ng-class="{'active' : vm.tab === 3}">
+                <span>Установите трекр "Каскономики"</span>
+            </div>
+            <div class="section-two-btn" ng-click="vm.tab = 4" ng-class="{'active' : vm.tab === 4}">
+                <span>Пользуйтесь сервисом и экономьте на каско</span>
+            </div>
+        </div>
+        <div class="section-two-content">
+            <p class="section-two-text" ng-if="vm.tab === 1">11111</p>
+            <p class="section-two-text" ng-if="vm.tab === 2">2222</p>
+            <p class="section-two-text" ng-if="vm.tab === 3">33333.</p>
+            <p class="section-two-text" ng-if="vm.tab === 4">4444</p>
+        </div>
+        <div class="section-two-pc">
+            <div class="pc-body">
+                <img src="/src/img/background/section-two-1.jpg" ng-if="vm.tab === 1"/>
+                <img src="/src/img/background/section-two-2.jpg" ng-if="vm.tab === 2"/>
+                <img src="/src/img/background/section-two-3.jpg" ng-if="vm.tab === 3"/>
+                <img src="/src/img/background/section-two-4.jpg" ng-if="vm.tab === 4"/>
+            </div>
+        </div>
     </div>
 </div>

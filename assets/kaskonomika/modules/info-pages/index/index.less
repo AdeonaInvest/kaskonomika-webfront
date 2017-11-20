@@ -151,12 +151,62 @@
     width: 100%;
     background: url('/src/img/backgrounds/index-section2-bg-front.png') bottom right / 50% no-repeat,
                 url('/src/img/backgrounds/index-section2-bg-back.png') 100% 60% no-repeat #b2dcf6;
-    p {
-      margin: 0 auto;
-      padding: 0;
-      width: 70%;
-      font: 20px/40px @fm-web;
+    .container {
+      .section-two-btns {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        .section-two-btn {
+          float: left;
+          width: 25%;
+          height: 50px;
+          display: table;
+          border: 0;
+          padding: 10px 20px;
+          cursor: pointer;
+          transition: .2s ease;
+          border-bottom: 2px solid rgba(0,0,0,0);
+          span {
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+            font: 12px/15px @fm-bold;
+            color: #000;
+            text-transform: uppercase;
+            transition: .2s ease;
+          }
+          &:hover {
+            border-bottom: 2px solid #2A5895;
+            transition: .2s ease;
+            span {
+              display: table-cell;
+              vertical-align: middle;
+              text-align: center;
+              font: 12px/15px @fm-bold;
+              color: #2A5895;
+              transition: .2s ease;
+            }
+          }
+          &.active {
+            border-bottom: 2px solid #2A5895;
+            span {
+              color: #2A5895;
+            }
+          }
+        }
+        .section-two-content {
+          .section-two-text {
 
+          }
+        }
+        .section-two-pc {
+          .pc-body {
+            img {
+
+            }
+          }
+        }
+      }
     }
   }
   #index-section3-economy {
