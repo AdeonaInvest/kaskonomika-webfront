@@ -303,9 +303,9 @@
                 if ($rootScope.findData.step < 7) {
                     return 0;
                 } else if ($rootScope.findData.step >= 7 && $rootScope.findData.step < 10) {
-                    return 33;
+                    return 33.33;
                 } else if ($rootScope.findData.step > 9 && $rootScope.findData.step < 11) {
-                    return 66;
+                    return 66.66;
                 } else if ($rootScope.findData.step > 11) {
                     return 100;
                 }
