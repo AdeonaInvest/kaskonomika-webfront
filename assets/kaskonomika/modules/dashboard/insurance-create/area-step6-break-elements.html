@@ -3,16 +3,35 @@
     <span class="span-step">Шаг 5</span>
     <span class="span-step-title">Повреждения автомобиля.</span>
     <h4>Выберите, какая часть вашего автомобиля и элементы пострадала в результате происшествия.</h4>
+    <!-- Preload car image -->
+    <div class="images-preloader ng-hide">
+        <img src="/src/img/dashboard/insurance/car/car-0-0-0.png"/>
+        <img src="/src/img/dashboard/insurance/car/car-1-0-0.png"/>
+        <img src="/src/img/dashboard/insurance/car/car-0-1-0.png"/>
+        <img src="/src/img/dashboard/insurance/car/car-0-0-1.png"/>
+        <img src="/src/img/dashboard/insurance/car/car-1-1-0.png"/>
+        <img src="/src/img/dashboard/insurance/car/car-0-1-1.png"/>
+        <img src="/src/img/dashboard/insurance/car/car-1-0-1.png"/>
+        <img src="/src/img/dashboard/insurance/car/car-1-1-1.png"/>
+    </div>
+    <hr/>
     <div class="animated zoomIn">
         <div class="select-car-direction">
-            <div class="front-part damagedPart" ng-click="vm.issue.damagedParts.front = !vm.issue.damagedParts.front" ng-class="{'active': vm.issue.damagedParts.front}">
-
+            <div class="titles-area">
+                <div class="front-part-area ta-center" ng-click="vm.issue.damagedParts.front = !vm.issue.damagedParts.front" ng-class="{'active': vm.issue.damagedParts.front}">
+                    Передняя часть
+                </div>
+                <div class="center-part-area ta-center" ng-click="vm.issue.damagedParts.center = !vm.issue.damagedParts.center" ng-class="{'active': vm.issue.damagedParts.center}">
+                    Средняя часть
+                </div>
+                <div class="back-part-area ta-center" ng-click="vm.issue.damagedParts.back = !vm.issue.damagedParts.back" ng-class="{'active': vm.issue.damagedParts.back}">
+                    Задняя часть
+                </div>
             </div>
-            <div class="center-part damagedPart" ng-click="vm.issue.damagedParts.center = !vm.issue.damagedParts.center" ng-class="{'active': vm.issue.damagedParts.center}">
-
-            </div>
-            <div class="back-part damagedPart" ng-click="vm.issue.damagedParts.back = !vm.issue.damagedParts.back" ng-class="{'active': vm.issue.damagedParts.back}">
-
+            <div class="car-parts-area" style="background: url({{vm.issueCarImage()}}) center no-repeat">
+                <div class="front-part-area damagedPart" ng-click="vm.issue.damagedParts.front = !vm.issue.damagedParts.front" ng-class="{'active': vm.issue.damagedParts.front}"></div>
+                <div class="center-part-area damagedPart" ng-click="vm.issue.damagedParts.center = !vm.issue.damagedParts.center" ng-class="{'active': vm.issue.damagedParts.center}"></div>
+                <div class="back-part-area damagedPart" ng-click="vm.issue.damagedParts.back = !vm.issue.damagedParts.back" ng-class="{'active': vm.issue.damagedParts.back}"></div>
             </div>
         </div>
     </div>

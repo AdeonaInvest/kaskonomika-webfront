@@ -16,6 +16,7 @@
         ///////////////////
         function activate() {
             checkUser();
+            checkUrlParams();
         }
 
         /**
@@ -48,6 +49,13 @@
                         xerror('MODULE : DASHBOARD : INSURANCE_LIST : getLossesList() error!')
                     }
                 })
+        }
+
+        function checkUrlParams() {
+            vm.params = $location.search();
+            if (vm.params.action) {
+                xlog('открытие мобалки')
+            }
         }
         
     }

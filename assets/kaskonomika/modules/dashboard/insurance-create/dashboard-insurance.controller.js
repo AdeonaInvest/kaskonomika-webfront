@@ -73,16 +73,14 @@
         vm.createLossesApplication = createLossesApplication;
         vm.insuranceReady = insuranceReady;
         vm.getDamagedPartsList = getDamagedPartsList;
+        vm.issueCarImage = issueCarImage;
 
         activate();
         ///////////////////
         function activate() {
             getLocalData(); //Получение данных о token'е из localStorage
             setRulesForMap(); //Получние прав и определение координат пользователя
-            $http.post(config.api + 'storage/files/categories',{token: vm.token})
-                .then(function(res){
-                    xlog(res.data);
-                })
+            watchCarDirection(); //Наблюдение за кликами по поврежденным частям
         }
 
         /**
@@ -281,6 +279,9 @@
             });
         }
 
+        /**
+         * Получение списка поврежденных деталей
+         */
         function getDamagedPartsList() {
             let url = 'losses/damages?token=' + vm.token;
             vm.issue.damagedParts.front ? url += '&is_front=1' : null;
@@ -299,22 +300,31 @@
                 })
         }
 
-        watchCarDerection();
-        function watchCarDerection() {
+        /**
+         * Наблюдение за кликами по поврежденным частям
+         */
+        function watchCarDirection() {
+            vm.damagedCarGroup = {};
+            vm.issue.damagedPartsItems = {};
+            vm.issue.damagedPartsGroup = {};
+
             $scope.$watch('vm.issue.damagedParts.front',function(){
                 vm.damagedCarGroup = {};
+                vm.issue.damagedPartsItems = {};
                 vm.issue.damagedPartsGroup = {};
                 if (vm.issue.damagedParts.front || vm.issue.damagedParts.center || vm.issue.damagedParts.back) getDamagedGroup();
             });
 
             $scope.$watch('vm.issue.damagedParts.center',function(){
                 vm.damagedCarGroup = {};
+                vm.issue.damagedPartsItems = {};
                 vm.issue.damagedPartsGroup = {};
                 if (vm.issue.damagedParts.front || vm.issue.damagedParts.center || vm.issue.damagedParts.back) getDamagedGroup();
             });
 
             $scope.$watch('vm.issue.damagedParts.back',function(){
                 vm.damagedCarGroup = {};
+                vm.issue.damagedPartsItems = {};
                 vm.issue.damagedPartsGroup = {};
                 if (vm.issue.damagedParts.front || vm.issue.damagedParts.center || vm.issue.damagedParts.back) getDamagedGroup();
             });
@@ -376,6 +386,9 @@
         }
 
 
+        /**
+         * Получение категорий и списка поврежденных деталей
+         */
         function getDamagedGroup() {
             let url = 'losses/damages?token=' + vm.token;
             vm.issue.damagedParts.front ? url += '&is_front=1' : null;
@@ -480,13 +493,25 @@
         }
 
         /**
+         * Формирование ссылки на выбранные повреждения авто
+         * @returns {string} - url изображения
+         */
+        function issueCarImage() {
+            let front = 0, middle = 0, back = 0;
+            vm.issue.damagedParts.front ? front = 1 : front = 0;
+            vm.issue.damagedParts.center ? middle = 1 : middle = 0;
+            vm.issue.damagedParts.back ? back = 1 : back = 0;
+            return '/src/img/dashboard/insurance/car/car-' + front + '-' + middle + '-' + back + '.png';
+        }
+
+        /**
          * Утверждение заявления и отправка данных на сервер
          */
         function insuranceReady() {
             $http.post(config.api + 'losses/applications/'+vm.issue.lossesId+'/confirm',{token:vm.token})
                 .then(function(res){
                     if (res.data.result) {
-                        $location.path('/dashboard/insurance/list?action=createdSuccess');
+                        $location.url('/dashboard/insurance/list?action=createdSuccess');
                     }
                 })
         }
