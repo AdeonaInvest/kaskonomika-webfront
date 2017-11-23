@@ -1,0 +1,93 @@
+.lossesModal {
+  .modal-body {
+    .panel {
+      .panel-body {
+        dl {
+          margin-bottom: 10px;
+          dt {
+            width: 200px;
+          }
+          dd {
+            margin-left: 220px;
+            .popover-html {
+              dl {
+                margin-bottom: 0;
+                dt {
+                  width: 100px;
+                }
+                dd {
+                  margin-left: 120px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .list-inline {
+      padding: 0;
+      li {
+        margin: 5px;
+        max-width: 15%;
+        .list-item {
+          position: relative;
+          a {
+            img {
+              max-height: 200px;
+            }
+          }
+          .title {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,.4);
+            color: #fff;
+            display: block;
+            padding: 5px;
+          }
+        }
+      }
+    }
+    .comments-area {
+      .form-group {
+        width: 80%;
+        input {
+          width: 100%;
+        }
+        button {
+          width: 20%;
+        }
+      }
+      .comments-list {
+        blockquote {
+          padding: 0 10px;
+          margin: 10px 0;
+          text-align: left;
+          p {
+            margin:0;
+            font: 14px/14px @fm-main;
+            .fa-pencil {
+              cursor: pointer;
+              &:hover {
+                color: @color_15
+              }
+            }
+          }
+          footer {
+            font: 12px/12px @fm-main;
+            .fa-trash-o {
+              cursor: pointer;
+              &:hover {
+                color: @color_12;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .modal-footer {
+
+  }
+}

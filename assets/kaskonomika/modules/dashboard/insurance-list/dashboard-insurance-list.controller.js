@@ -5,9 +5,9 @@
         .module('kaskonomika')
         .controller('dashboardInsuranceListController', dashboardInsuranceListController);
 
-    dashboardInsuranceListController.$inject = ['$rootScope','$scope','$http','$location','config'];
+    dashboardInsuranceListController.$inject = ['$rootScope','modalService','$http','$location','config'];
 
-    function dashboardInsuranceListController($rootScope, $scope, $http,$location,config) {
+    function dashboardInsuranceListController($rootScope, modalService, $http,$location,config) {
         let vm = this;
 
         vm.lossesList = []; //Список новых уведомлений
@@ -51,10 +51,19 @@
                 })
         }
 
+        /**
+         *
+         */
         function checkUrlParams() {
             vm.params = $location.search();
             if (vm.params.action) {
-                xlog('открытие мобалки')
+                modalService.open({
+                    data: {
+                        header: 'Ваша заявка принята',
+                        text: 'Спасибо за использование нашего сервиса. Наш менеджер свяжется с вами в ближайшее время.'
+                    }
+                });
+                $location.search('action', null);
             }
         }
         
